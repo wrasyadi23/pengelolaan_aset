@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAreaAlamatTable extends Migration
+class CreateAsetAreaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateAreaAlamatTable extends Migration
      */
     public function up()
     {
-        Schema::create('area_alamat', function (Blueprint $table) {
+        Schema::create('aset_area', function (Blueprint $table) {
             $table->id();
-            $table->string('kd_alamat',45)->unique();
-            $table->string('alamat',45);
-            $table->string('kd_area',45)->foreign()->reference('kd_area')->on('area_klasifikasi')->onDelete('cascade');
+            $table->string('kd_aset',45);
+            $table->string('kd_area',45);
+            $table->string('kd_alamat',45);
+            $table->string('kd_keterangan',45);
+            
         });
     }
 
@@ -28,6 +30,6 @@ class CreateAreaAlamatTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('area_alamat');
+        Schema::dropIfExists('aset_area');
     }
 }
