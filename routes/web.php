@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+// pemeliharaan
+Route::get('pemeliharaan','pemeliharaanController@index');
+// input pekerjaan
+Route::get('pemeliharaan/input-pekerjaan','input_pekerjaanController@index');

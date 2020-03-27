@@ -64,7 +64,7 @@
             Sidebar start
         ***********************************-->
         <div class="nk-sidebar">           
-           @include('sidebars.admin')
+           @include('sidebars.pemeliharaan.admin')
         </div>
         <!--**********************************
             Sidebar end
