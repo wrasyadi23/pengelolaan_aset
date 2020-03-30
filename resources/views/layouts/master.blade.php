@@ -126,6 +126,10 @@
     <script src="{{asset('quixlab/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js')}}"></script>
 
     <script src="{{asset('quixlab/js/dashboard/dashboard-1.js')}}"></script>
+    {{-- datatables --}}
+    <script src="{{asset('quixlab/plugins/tables/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('quixlab/plugins/tables/js/datatable/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('quixlab/plugins/tables/js/datatable-init/datatable-basic.min.js')}}"></script>
 
 </body>
 
