@@ -13,6 +13,7 @@
     <!-- Chartist -->
     <link rel="stylesheet" href="{{asset('quixlab/plugins/chartist/css/chartist.min.css')}}">
     <link rel="stylesheet" href="{{asset('quixlab/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css')}}">
+    <link rel="stylesheet" href="{{asset('quixlab/plugins/tables/css/datatable/dataTables.bootstrap4.min.css')}}">
     <!-- Custom Stylesheet -->
     <link href="{{asset('quixlab/css/style.css')}}" rel="stylesheet">
 
