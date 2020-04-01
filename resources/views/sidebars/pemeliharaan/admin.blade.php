@@ -7,7 +7,7 @@
             </a>
         </li>
         <li>
-            <a href="/pemeliharaan/input-pekerjaan" aria-expanded="false">
+            <a href="/pemeliharaan/pekerjaan" aria-expanded="false">
                 <i class="icon-note menu-icon"></i><span class="nav-text">Input Pekerjaan</span>
             </a>
         </li>

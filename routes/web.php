@@ -20,4 +20,5 @@ Route::get('/', function () {
 // pemeliharaan
 Route::get('pemeliharaan','pemeliharaanController@index');
 // input pekerjaan
-Route::get('pemeliharaan/input-pekerjaan','input_pekerjaanController@index');
+Route::get('pemeliharaan/pekerjaan','input_pekerjaanController@index');
+Route::get('pemeliharaan/pekerjaan-create','input_pekerjaanController@create');
