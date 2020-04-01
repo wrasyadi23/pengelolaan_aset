@@ -13,4 +13,8 @@ class input_pekerjaanController extends Controller
     public function create() {
         return view('pemeliharaan.pekerjaan-create');
     }
+
+    public function store(Request $request) {
+        
+    }
 }
