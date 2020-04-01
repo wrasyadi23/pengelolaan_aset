@@ -10,6 +10,7 @@
                         <form action="/pemeliharaan/pekerjaan-create" method="post">
                             @csrf
                             <div class="basic-form">
+                                {{-- combobox dinamis start --}}
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="klasifikasi-area">Klasifikasi Area</label>
@@ -24,6 +25,7 @@
                                         <select name="" id="" class="form-control"></select>
                                     </div>
                                 </div>
+                                {{-- combobox dinamis end --}}
                             </div>
                         </form>
                     </div>
