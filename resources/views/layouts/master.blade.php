@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{asset('quixlab/plugins/tables/css/datatable/dataTables.bootstrap4.min.css')}}">
     <!-- Custom Stylesheet -->
     <link href="{{asset('quixlab/css/style.css')}}" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{asset('select2/css/select2.min.css')}}">
 </head>
 
 <body>
@@ -102,6 +102,8 @@
     <!--**********************************
         Scripts
     ***********************************-->
+
+
     <script src="{{asset('quixlab/plugins/common/common.min.js')}}"></script>
     <script src="{{asset('quixlab/js/custom.min.js')}}"></script>
     <script src="{{asset('quixlab/js/settings.js')}}"></script>
@@ -131,7 +133,9 @@
     <script src="{{asset('quixlab/plugins/tables/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('quixlab/plugins/tables/js/datatable/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('quixlab/plugins/tables/js/datatable-init/datatable-basic.min.js')}}"></script>
+    <script src="{{asset('select2/js/select2.full.min.js')}}"></script>
 
+    @yield('script')
 </body>
 
 </html>

@@ -14,21 +14,26 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="klasifikasi-area">Klasifikasi Area</label>
-                                        <select name="kd_area" id="" class="form-control input-default"></select>
+                                        <select name="kd_area" id="kd_area" class="form-control input-default">
+                                            <option disabled selected></option>
+                                            @foreach ($klasifikasi as $index => $item)
+                                                <option value="{{$item->kd_area}}">{{$item->klasifikasi_area}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="alamat">Sub Area 1/Alamat</label>
-                                        <select name="kd_alamat" id="" class="form-control input-default"></select>
+                                        <select name="kd_alamat" id="kd_alamat" class="form-control input-default" disabled></select>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="keterangan">Sub Area 2/Keterangan Objek</label>
-                                        <select name="kd_keterangan" id="" class="form-control input-default"></select>
+                                        <select name="kd_keterangan" id="kd_keterangan" class="form-control input-default"></select>
                                     </div>
                                 </div>
                                 {{-- combobox dinamis end --}}
                                 <div class="form-group">
                                     <label for="jenisPekerjaan">Jenis Pekerjaan</label>
-                                    <select name="jenisPekerjaan" id="" class="form-control input-default"></select>
+                                    <select name="jenisPekerjaan" id="jenisPekerjaan" class="form-control input-default"></select>
                                 </div>
                                 <div class="form-group">
                                     <label for="keterangan">Keterangan Kerusakan</label>
@@ -50,4 +55,74 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script>
+        $("#kd_area").select2({
+            placeholder: 'Pilih Klasifikasi area',
+            allowClear: true
+        });
+        $("#kd_alamat").select2({
+            placeholder: 'Pilih Alamat',
+            allowClear: true,
+            disabled: true
+        });
+        $("#kd_keterangan").select2({
+            placeholder: 'Pilih Alamat',
+            allowClear: true,
+            disabled: true
+        });
+        $("#jenisPekerjaan").select2();
+
+        $("#kd_area").change(function () {
+            var alamat = "<option disabled selected></option>"
+            $.ajax({
+                type: "POST",
+                url: "/api/get-area",
+                data: {
+                    kd_area: $("#kd_area").val()
+                },
+                error: function(e) {
+                    console.log(e)
+                },
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    for (var x = 0; data.length > x; x++) {
+                        alamat += "<option value="+data[x].kd_alamat + ">" + data[x].alamat + "</option>";
+                    }
+                    console.log(alamat);
+                    $("#kd_alamat")
+                    .empty()
+                    .append(alamat)
+                    .prop("disabled", false);
+                }
+            })
+        })
+
+        $("#kd_alamat").change(function () {
+            var keterangan = "<option disabled selected></option>"
+            $.ajax({
+                type: "POST",
+                url: "/api/get-keterangan",
+                data: {
+                    kd_alamat: $("#kd_alamat").val()
+                },
+                error: function(e) {
+                    console.log(e)
+                },
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    for (var x = 0; data.length > x; x++) {
+                        keterangan += "<option value="+data[x].kd_keterangan + ">" + data[x].keterangan + "</option>";
+                    }
+                    console.log(keterangan);
+                    $("#kd_keterangan")
+                    .empty()
+                    .append(keterangan)
+                    .prop("disabled", false);
+                }
+            })
+        })
+    </script>
 @endsection
