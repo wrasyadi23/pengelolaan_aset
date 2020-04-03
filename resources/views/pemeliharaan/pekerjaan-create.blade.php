@@ -77,6 +77,12 @@
 
         $("#kd_area").change(function () {
             var alamat = "<option disabled selected></option>"
+            $("#kd_alamat")
+                .empty()
+                .prop("disabled", true);
+            $("#kd_keterangan")
+                .empty()
+                .prop("disabled", true);
             $.ajax({
                 type: "POST",
                 url: "/api/get-area", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
