@@ -62,17 +62,17 @@
         $("#kd_area").select2({
             placeholder: 'Pilih Klasifikasi area',
             allowClear: true
-        });
+        }); // fungsi untuk mengubah dropdown biasa menjadi plugin select2
         $("#kd_alamat").select2({
             placeholder: 'Pilih Alamat',
             allowClear: true,
             disabled: true
-        });
+        }); // fungsi untuk mengubah dropdown biasa menjadi plugin select2
         $("#kd_keterangan").select2({
             placeholder: 'Pilih Keterangan Objek',
             allowClear: true,
             disabled: true
-        });
+        }); // fungsi untuk mengubah dropdown biasa menjadi plugin select2
         $("#jenisPekerjaan").select2({
             placeholder: 'Pilih Jenis Pekerjaan',
             allowClear: true
@@ -80,9 +80,15 @@
 
         $("#kd_area").change(function () {
             var alamat = "<option disabled selected></option>"
+            $("#kd_alamat")
+                .empty()
+                .prop("disabled", true);
+            $("#kd_keterangan")
+                .empty()
+                .prop("disabled", true);
             $.ajax({
                 type: "POST",
-                url: "/api/get-area",
+                url: "/api/get-area", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
                 data: {
                     kd_area: $("#kd_area").val()
                 },
@@ -92,12 +98,12 @@
                 success: function(response) {
                     var data = JSON.parse(response);
                     for (var x = 0; data.length > x; x++) {
-                        alamat += "<option value="+data[x].kd_alamat + ">" + data[x].alamat + "</option>";
+                        alamat += "<option value="+data[x].kd_alamat + ">" + data[x].alamat + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
                     }
-                    console.log(alamat);
+                    console.log(alamat); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
                     $("#kd_alamat")
                     .empty()
-                    .append(alamat)
+                    .append(alamat) // variable yang berisi tag <option> diassign ke combobox terkait
                     .prop("disabled", false);
                 }
             })
@@ -107,7 +113,7 @@
             var keterangan = "<option disabled selected></option>"
             $.ajax({
                 type: "POST",
-                url: "/api/get-keterangan",
+                url: "/api/get-keterangan", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
                 data: {
                     kd_alamat: $("#kd_alamat").val()
                 },
@@ -117,12 +123,12 @@
                 success: function(response) {
                     var data = JSON.parse(response);
                     for (var x = 0; data.length > x; x++) {
-                        keterangan += "<option value="+data[x].kd_keterangan + ">" + data[x].keterangan + "</option>";
+                        keterangan += "<option value="+data[x].kd_keterangan + ">" + data[x].keterangan + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
                     }
-                    console.log(keterangan);
+                    console.log(keterangan); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
                     $("#kd_keterangan")
                     .empty()
-                    .append(keterangan)
+                    .append(keterangan) // variable yang berisi tag <option> diassign ke combobox terkait
                     .prop("disabled", false);
                 }
             })
