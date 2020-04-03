@@ -17,7 +17,7 @@ class CreateAreaKeteranganTable extends Migration
             $table->id();
             $table->string('kd_keterangan',45)->unique();
             $table->string('keterangan',45);
-            $table->string('kd_alamat',45)->foreign()->reference('kd_alamat')->on('area_alamat')->onDelete('cascade');;
+            $table->string('kd_alamat',45);;
         });
     }
 

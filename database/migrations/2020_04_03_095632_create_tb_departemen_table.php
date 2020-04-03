@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTbReguTable extends Migration
+class CreateTbDepartemenTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateTbReguTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_regu', function (Blueprint $table) {
+        Schema::create('tb_departemen', function (Blueprint $table) {
             $table->id();
-            $table->string('kd_regu',45)->unique();
-            $table->string('regu',45);
-            $table->string('kd_seksi',45);
+            $table->string('kd_departemen',45)->unique();
+            $table->string('departemen',45);
         });
     }
 
@@ -28,6 +27,6 @@ class CreateTbReguTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_regu');
+        Schema::dropIfExists('tb_departemen');
     }
 }

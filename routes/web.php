@@ -22,4 +22,4 @@ Route::get('pemeliharaan','pemeliharaanController@index');
 // input pekerjaan
 Route::get('pemeliharaan/pekerjaan','input_pekerjaanController@index');
 Route::get('pemeliharaan/pekerjaan-create','input_pekerjaanController@create');
-Route::post('pemeliharaan/pekerjaan-storea','input_pekerjaanController@store');
+Route::post('pemeliharaan/pekerjaan-store','input_pekerjaanController@store');

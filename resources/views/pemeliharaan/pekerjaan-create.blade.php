@@ -36,8 +36,8 @@
                                     <select name="jenisPekerjaan" id="jenisPekerjaan" class="form-control input-default"></select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="keterangan">Keterangan Kerusakan</label>
-                                    <textarea name="keterangan" id="" rows="7" class="form-control input-default"></textarea>
+                                    <label for="uraian">Uraian Kerusakan/Error</label>
+                                    <textarea name="uraian" id="" rows="7" class="form-control input-default"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="image">Upload Foto</label>
@@ -69,11 +69,14 @@
             disabled: true
         });
         $("#kd_keterangan").select2({
-            placeholder: 'Pilih Alamat',
+            placeholder: 'Pilih Keterangan Objek',
             allowClear: true,
             disabled: true
         });
-        $("#jenisPekerjaan").select2();
+        $("#jenisPekerjaan").select2({
+            placeholder: 'Pilih Jenis Pekerjaan',
+            allowClear: true
+        });
 
         $("#kd_area").change(function () {
             var alamat = "<option disabled selected></option>"

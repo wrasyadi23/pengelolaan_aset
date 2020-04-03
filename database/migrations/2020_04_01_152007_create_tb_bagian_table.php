@@ -17,6 +17,7 @@ class CreateTbBagianTable extends Migration
             $table->id();
             $table->string('kd_bagian',45)->unique();
             $table->string('bagian',45);
+            $table->string('kd_departemen',45)->foreign()->reference('kd_departemen')->on('tb_departemen')->onDelete('cascade');
         });
     }
 

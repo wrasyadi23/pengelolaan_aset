@@ -17,7 +17,7 @@ class CreateTbSeksiTable extends Migration
             $table->id();
             $table->string('kd_seksi',45)->unique();
             $table->string('seksi',45);
-            $table->string('kd_bagian',45)->foreign()->reference('kd_bagian')->on('tb_bagian')->onDelete('cascade');
+            $table->string('kd_bagian',45);
         });
     }
 
