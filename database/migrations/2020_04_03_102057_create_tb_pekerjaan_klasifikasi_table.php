@@ -17,7 +17,7 @@ class CreateTbPekerjaanKlasifikasiTable extends Migration
             $table->id();
             $table->string('kd_klasifikasi_pekerjaan',45)->unique();
             $table->string('klasifikasi_pekerjaan',45);
-            $table->string('kd_regu',45)->foreign()->reference('kd_regu')->on('tb_regu')->onDelete('cascade');
+            $table->string('kd_regu',45);
         });
     }
 

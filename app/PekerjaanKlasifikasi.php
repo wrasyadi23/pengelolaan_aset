@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bagian extends Model
+class PekerjaanKlasifikasi extends Model
 {
-    protected $table = 'tb_bagian';
+    protected $table = 'tb_pekerjaan_klasifikasi';
     public $timestamp = false;
     public $incrementing = false;
 }

@@ -2,11 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Departemen;
-use App\Bagian;
-use App\Seksi;
-use App\Regu;
-
 
 class OrganisasiSeeder extends Seeder
 {
@@ -17,14 +12,14 @@ class OrganisasiSeeder extends Seeder
      */
     public function run()
     {
-        Departemen::insert([
+        \App\Departemen::insert([
             [
                 'kd_departemen' => 'DEP0001',
                 'departemen' => 'Pelayanan Umum'
             ]
         ]);
 
-        Bagian::insert([
+        \App\Bagian::insert([
             [
                 'kd_bagian' => 'BAG0001',
                 'bagian' => 'Transport',
@@ -42,7 +37,7 @@ class OrganisasiSeeder extends Seeder
             ]
         ]);
 
-        Seksi::insert([
+        \App\Seksi::insert([
             [
                 'kd_seksi' => 'SIE0001',
                 'Seksi' => 'Sipil',
@@ -60,7 +55,7 @@ class OrganisasiSeeder extends Seeder
             ]
         ]);
 
-        Regu::insert([
+        \App\Regu::insert([
             [
                 'kd_regu' => 'RU0001',
                 'regu' => 'Gedung, Jalan & Dekorasi',
@@ -83,7 +78,7 @@ class OrganisasiSeeder extends Seeder
             ],
             [
                 'kd_regu' => 'RU0005',
-                'regu' => 'Listrik Perumahan & Perkantor',
+                'regu' => 'Listrik Perumahan & Perkantoran',
                 'kd_seksi' => 'SIE0003'
             ],
             [

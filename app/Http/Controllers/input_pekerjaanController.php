@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AreaKlasifikasi;
+use App\PekerjaanKlasifikasi;
 use Illuminate\Http\Request;
 
 class input_pekerjaanController extends Controller
@@ -12,9 +13,11 @@ class input_pekerjaanController extends Controller
     }
 
     public function create() {
-        $klasifikasi = AreaKlasifikasi::all();
+        $area_klasifikasi = AreaKlasifikasi::all();
+        $pekerjaan_klasifikasi = PekerjaanKlasifikasi::all();
         return view('pemeliharaan.pekerjaan-create', [
-            'klasifikasi' => $klasifikasi
+            'area_klasifikasi' => $area_klasifikasi,
+            'pekerjaan_klasifikasi' => $pekerjaan_klasifikasi
         ]);
     }
 

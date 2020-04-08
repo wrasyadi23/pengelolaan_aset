@@ -16,8 +16,8 @@
                                         <label for="klasifikasi-area">Klasifikasi Area</label>
                                         <select name="kd_area" id="kd_area" class="form-control input-default">
                                             <option disabled selected></option>
-                                            @foreach ($klasifikasi as $index => $item)
-                                                <option value="{{$item->kd_area}}">{{$item->klasifikasi_area}}</option>
+                                            @foreach ($area_klasifikasi as $area => $itemArea)
+                                                <option value="{{$itemArea->kd_area}}">{{$itemArea->klasifikasi_area}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -33,7 +33,12 @@
                                 {{-- combobox dinamis end --}}
                                 <div class="form-group">
                                     <label for="jenisPekerjaan">Jenis Pekerjaan</label>
-                                    <select name="jenisPekerjaan" id="jenisPekerjaan" class="form-control input-default"></select>
+                                    <select name="jenisPekerjaan" id="jenisPekerjaan" class="form-control input-default">
+                                        <option disabled selected></option>
+                                        @foreach ($pekerjaan_klasifikasi as $pekerjaan => $itemPekerjaan)
+                                            <option value="{{$itemPekerjaan->kd_klasifikasi_pekerjaan}}">{{$itemPekerjaan->klasifikasi_pekerjaan}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="uraian">Uraian Kerusakan/Error</label>
