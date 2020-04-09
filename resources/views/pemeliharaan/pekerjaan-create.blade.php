@@ -33,7 +33,7 @@
                                 {{-- combobox dinamis end --}}
                                 <div class="form-group">
                                     <label for="jenisPekerjaan">Jenis Pekerjaan</label>
-                                    <select name="jenisPekerjaan" id="jenisPekerjaan" class="form-control input-default">
+                                    <select name="kd_klasifikasi_pekerjaan" id="kd_klasifikasi_pekerjaan" class="form-control input-default">
                                         <option disabled selected></option>
                                         @foreach ($pekerjaan_klasifikasi as $pekerjaan => $itemPekerjaan)
                                             <option value="{{$itemPekerjaan->kd_klasifikasi_pekerjaan}}">{{$itemPekerjaan->klasifikasi_pekerjaan}}</option>
@@ -78,7 +78,7 @@
             allowClear: true,
             disabled: true
         }); // fungsi untuk mengubah dropdown biasa menjadi plugin select2
-        $("#jenisPekerjaan").select2({
+        $("#kd_klasifikasi_pekerjaan").select2({
             placeholder: 'Pilih Jenis Pekerjaan',
             allowClear: true
         });

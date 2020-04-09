@@ -16,7 +16,7 @@ class CreateTbPekerjaanTable extends Migration
         Schema::create('tb_pekerjaan', function (Blueprint $table) {
             $table->id();
             $table->string('booknumber',45)->unique();
-            // requester info 
+            // requester info ambil dari Auth
             $table->string('nama',45);
             $table->string('nik',45);
             // job info 
