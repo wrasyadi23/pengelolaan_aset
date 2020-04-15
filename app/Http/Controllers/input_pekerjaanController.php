@@ -24,8 +24,8 @@ class input_pekerjaanController extends Controller
 
     public function store(Request $request) {
         // get book number
-        $data = Pekerjaan::select('id','bookNumber','YEAR(tanggal_pekerjaan)')
-        ->where('YEAR(tanggal_pekerjaan)','=',date('Y'))
+        $data = Pekerjaan::select('id','bookNumber','tanggal_pekerjaan')
+        ->whereYear('tanggal_pekerjaan',date('Y'))
         ->orderBy('id','desc')->count();
         $tahun_sekarang = date('Y m');
         if ($data > 0) {
@@ -41,12 +41,15 @@ class input_pekerjaanController extends Controller
         $kd_klasifikasi_pekerjaan = $request->input('kd_klasifikasi_pekerjaan');
         $tanggal_pekerjaan = date('Y-m-d');
         $uraian = $request->input('uraian');
-        $file = $request->file('file')->move('',$request->file('file')->getClientOriginalName());
+        if ($request->hasFile('file')) {
+            $file = $request->file('file')->move('file/pemeliharaan',$request->file('file')->getClientOriginalName());
+        }
 
         // menghitung pekerjaan dari data hari terakhir
         $validasi_tanggal_pelaksanaan = Pekerjaan::select('id','tanggal_pelaksanaan')
         ->orderBy('id','desc')->first();
-        if ($validasi_tanggal_pelaksanaan->tanggal_pelaksanaan->count() <= 5) {
+        $validasi_tanggal_pelaksanaan->tanggal_pelaksanaan->count();
+        if ($validasi <= 5) {
             $tanggal_pelaksanaan = date('Y-m-d');
         }
         else {
@@ -55,14 +58,16 @@ class input_pekerjaanController extends Controller
 
         $pekerjaan = new Pekerjaan;
         $pekerjaan->bookNumber = $bookNumber;
-        $pekerjaan->nama = $nama;
-        $pekerjaan->nik = $nik;
+        $pekerjaan->nama = 'Mohammad Wava';
+        $pekerjaan->nik = '2115446';
         $pekerjaan->kd_klasifikasi_pekerjaan = $kd_klasifikasi_pekerjaan;
         $pekerjaan->tanggal_pekerjaan = $tanggal_pekerjaan;
         $pekerjaan->tanggal_pelaksanaan = $tanggal_pelaksanaan;
         $pekerjaan->uraian = $uraian;
         $pekerjaan->file = $request->file('file')->getClientOriginalName();
         $pekerjaan->status = '1';
+        $pekerjaan->save();
 
+        return redirect('pemeliharaan.pekerjaan')->with('message','Data berhasil dimasukkan.');
     }
 }
