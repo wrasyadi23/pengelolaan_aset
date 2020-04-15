@@ -42,7 +42,7 @@ class input_pekerjaanController extends Controller
         $tanggal_pekerjaan = date('Y-m-d');
         $uraian = $request->input('uraian');
         if ($request->hasFile('file')) {
-            $file = $request->file('file')->move('file/pemeliharaan',$request->file('file')->getClientOriginalName());
+            $file = $request->file('file')->storage('public/pemeliharaan',$request->file('file')->getClientOriginalName());
         }
 
         // menghitung pekerjaan dari data hari terakhir
