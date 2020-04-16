@@ -9,11 +9,13 @@ use Illuminate\Http\Request;
 
 class input_pekerjaanController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('pemeliharaan.pekerjaan');
     }
 
-    public function create() {
+    public function create()
+    {
         $area_klasifikasi = AreaKlasifikasi::all();
         $pekerjaan_klasifikasi = PekerjaanKlasifikasi::all();
         return view('pemeliharaan.pekerjaan-create', [
@@ -22,16 +24,16 @@ class input_pekerjaanController extends Controller
         ]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         // get book number
-        $data = Pekerjaan::select('id','bookNumber','tanggal_pekerjaan')
-        ->whereYear('tanggal_pekerjaan',date('Y'))
-        ->orderBy('id','desc')->count();
+        $data = Pekerjaan::select('id', 'bookNumber', 'tanggal_pekerjaan')
+            ->whereYear('tanggal_pekerjaan', date('Y'))
+            ->orderBy('id', 'desc')->count();
         $tahun_sekarang = date('Y m');
         if ($data > 0) {
             $getBookNumber = $tahun_sekarang . sprintf('%05s', $data + 1);
-        }
-        else {
+        } else {
             $getBookNumber = $tahun_sekarang . sprintf('%05s', 1);
         }
 
@@ -41,19 +43,17 @@ class input_pekerjaanController extends Controller
         $kd_klasifikasi_pekerjaan = $request->input('kd_klasifikasi_pekerjaan');
         $tanggal_pekerjaan = date('Y-m-d');
         $uraian = $request->input('uraian');
-        if ($request->hasFile('file')) {
-            $file = $request->file('file')->storage('public/pemeliharaan',$request->file('file')->getClientOriginalName());
+        if ($request->hasFile('foto')) {
+            $request->file('foto')->move(public_path('pemeliharaan'),$request->file('foto')->getClientOriginalName());
         }
 
         // menghitung pekerjaan dari data hari terakhir
-        $validasi_tanggal_pelaksanaan = Pekerjaan::select('id','tanggal_pelaksanaan')
-        ->orderBy('id','desc')->first();
-        $validasi_tanggal_pelaksanaan->tanggal_pelaksanaan->count();
-        if ($validasi <= 5) {
+        $validasi_tanggal_pelaksanaan = Pekerjaan::select('id','tanggal_pelaksanaan')->orderBy('id','desc')->first()->count();
+        if ($validasi_tanggal_pelaksanaan <= 5) {
             $tanggal_pelaksanaan = date('Y-m-d');
         }
         else {
-            $tanggal_pelaksanaan = date('Y-m-d') + 1;
+            $tanggal_pelaksanaan = date('Y-m-d', strtotime(('+ 1 day')));
         }
 
         $pekerjaan = new Pekerjaan;
@@ -64,10 +64,10 @@ class input_pekerjaanController extends Controller
         $pekerjaan->tanggal_pekerjaan = $tanggal_pekerjaan;
         $pekerjaan->tanggal_pelaksanaan = $tanggal_pelaksanaan;
         $pekerjaan->uraian = $uraian;
-        $pekerjaan->file = $request->file('file')->getClientOriginalName();
+        $pekerjaan->file = $request->file('foto')->getClientOriginalName();
         $pekerjaan->status = '1';
         $pekerjaan->save();
 
-        return redirect('pemeliharaan.pekerjaan')->with('message','Data berhasil dimasukkan.');
+        return redirect('pemeliharaan.pekerjaan')->with('message', 'Data berhasil dimasukkan.');
     }
 }

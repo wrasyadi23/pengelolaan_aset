@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Input Pekerjaan</h4>
                     <div class="card-content">
-                        <form action="/pemeliharaan/pekerjaan-store" method="post">
+                        <form action="/pemeliharaan/pekerjaan-store" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="basic-form">
                                 {{-- combobox dinamis start --}}
@@ -47,7 +47,7 @@
                                 <div class="form-group">
                                     <label for="image">Upload Foto</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input">
+                                        <input type="file" class="custom-file-input" name="foto" id="foto">
                                         <label class="custom-file-label">Choose file</label>
                                     </div>
                                 </div>
