@@ -11,14 +11,14 @@ class input_pekerjaanController extends Controller
 {
     public function index()
     {
-        return view('pemeliharaan.pekerjaan');
+        return view('pemeliharaan/pekerjaan');
     }
 
     public function create()
     {
         $area_klasifikasi = AreaKlasifikasi::all();
         $pekerjaan_klasifikasi = PekerjaanKlasifikasi::all();
-        return view('pemeliharaan.pekerjaan-create', [
+        return view('pemeliharaan/pekerjaan-create', [
             'area_klasifikasi' => $area_klasifikasi,
             'pekerjaan_klasifikasi' => $pekerjaan_klasifikasi
         ]);
@@ -30,7 +30,7 @@ class input_pekerjaanController extends Controller
         $data = Pekerjaan::select('id', 'bookNumber', 'tanggal_pekerjaan')
             ->whereYear('tanggal_pekerjaan', date('Y'))
             ->orderBy('id', 'desc')->count();
-        $tahun_sekarang = date('Y m');
+        $tahun_sekarang = date('Ym');
         if ($data > 0) {
             $getBookNumber = $tahun_sekarang . sprintf('%05s', $data + 1);
         } else {
@@ -41,19 +41,21 @@ class input_pekerjaanController extends Controller
         $nama = $request->input('nama');
         $nik = $request->input('nik');
         $kd_klasifikasi_pekerjaan = $request->input('kd_klasifikasi_pekerjaan');
-        $tanggal_pekerjaan = date('Y-m-d');
+        $tanggal_pekerjaan = date('Y-m-d h:m:s');
         $uraian = $request->input('uraian');
         if ($request->hasFile('foto')) {
             $request->file('foto')->move(public_path('pemeliharaan'),$request->file('foto')->getClientOriginalName());
         }
 
         // menghitung pekerjaan dari data hari terakhir
-        $validasi_tanggal_pelaksanaan = Pekerjaan::select('id','tanggal_pelaksanaan')->orderBy('id','desc')->first()->count();
+        $getLastData = Pekerjaan::select('tanggal_pelaksanaan')->orderBy('id','desc')->first(); //sudah bisa get tanggal pelaksanaan terakhir
+        $validasi_tanggal_pelaksanaan = Pekerjaan::where('tanggal_pelaksanaan','=',$getLastData) // saya kirim kesini untuk parameter
+        ->orderBy('id','desc')->count();
         if ($validasi_tanggal_pelaksanaan <= 5) {
             $tanggal_pelaksanaan = date('Y-m-d');
         }
         else {
-            $tanggal_pelaksanaan = date('Y-m-d', strtotime(('+ 1 day')));
+            $tanggal_pelaksanaan = date('Y-m-d', strtotime(('+ 1 day'))); //belom bisa jalan +1 pada order ke 6
         }
 
         $pekerjaan = new Pekerjaan;
@@ -68,6 +70,6 @@ class input_pekerjaanController extends Controller
         $pekerjaan->status = '1';
         $pekerjaan->save();
 
-        return redirect('pemeliharaan.pekerjaan')->with('message', 'Data berhasil dimasukkan.');
+        return redirect('pemeliharaan/pekerjaan')->with('message', 'Data berhasil dimasukkan.');
     }
 }
