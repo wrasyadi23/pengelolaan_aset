@@ -51,7 +51,7 @@ class input_pekerjaanController extends Controller
 
         $validasi_tanggal_pelaksanaan = Pekerjaan::select('id', 'tanggal_pelaksanaan')->orderBy('id', 'desc')->first();
         if (empty($validasi_tanggal_pelaksanaan)) {
-            $tanggal_pelaksanaan = date('Y-m-d');
+            $tanggal_pelaksanaan = Carbon::now();
         } elseif ($validasi_tanggal_pelaksanaan->where('tanggal_pelaksanaan', $validasi_tanggal_pelaksanaan->tanggal_pelaksanaan)->count() < 5) {
             $tanggal_pelaksanaan = $validasi_tanggal_pelaksanaan->tanggal_pelaksanaan;
         } else {
