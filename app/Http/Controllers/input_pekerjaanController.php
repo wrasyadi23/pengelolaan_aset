@@ -44,18 +44,17 @@ class input_pekerjaanController extends Controller
         $tanggal_pekerjaan = date('Y-m-d h:m:s');
         $uraian = $request->input('uraian');
         if ($request->hasFile('foto')) {
-            $request->file('foto')->move(public_path('pemeliharaan'),$request->file('foto')->getClientOriginalName());
+            $request->file('foto')->move(public_path('pemeliharaan'), $request->file('foto')->getClientOriginalName());
         }
 
         // menghitung pekerjaan dari data hari terakhir
-        $getLastData = Pekerjaan::select('tanggal_pelaksanaan')->orderBy('id','desc')->first(); //sudah bisa get tanggal pelaksanaan terakhir
-        $validasi_tanggal_pelaksanaan = Pekerjaan::where('tanggal_pelaksanaan','=',$getLastData) // saya kirim kesini untuk parameter
-        ->orderBy('id','desc')->count();
-        if ($validasi_tanggal_pelaksanaan <= 5) {
+        $validasi_tanggal_pelaksanaan = Pekerjaan::select('id', 'tanggal_pelaksanaan')->orderBy('id', 'desc')->limit(1);
+        if (empty($validasi_tanggal_pelaksanaan)) {
             $tanggal_pelaksanaan = date('Y-m-d');
-        }
-        else {
-            $tanggal_pelaksanaan = date('Y-m-d', strtotime(('+ 1 day'))); //belom bisa jalan +1 pada order ke 6
+        } elseif ($validasi_tanggal_pelaksanaan->where('tanggal_pelaksanaan', $validasi_tanggal_pelaksanaan->tanggal_pelaksanaan)->count() < 5) {
+            $tanggal_pelaksanaan = $validasi_tanggal_pelaksanaan->tanggal_pelaksanaan;
+        } else {
+            $tanggal_pelaksanaan = Carbon::createFromDate($validasi_tanggal_pelaksanaan->tanggal_pelaksanaan)->addDay();
         }
 
         $pekerjaan = new Pekerjaan;
