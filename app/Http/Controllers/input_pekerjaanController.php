@@ -12,7 +12,8 @@ class input_pekerjaanController extends Controller
 {
     public function index()
     {
-        return view('pemeliharaan/pekerjaan');
+        $getDataPekerjaan = Pekerjaan::all();
+        return view('pemeliharaan/pekerjaan',['DataPekerjaan' => $getDataPekerjaan]);
     }
 
     public function create()
@@ -58,7 +59,7 @@ class input_pekerjaanController extends Controller
         }
 
         $pekerjaan = new Pekerjaan;
-        $pekerjaan->bookNumber = $bookNumber;
+        $pekerjaan->booknumber = $bookNumber;
         $pekerjaan->nama = 'Mohammad Wava';
         $pekerjaan->nik = '2115446';
         $pekerjaan->kd_klasifikasi_pekerjaan = $kd_klasifikasi_pekerjaan;
@@ -66,7 +67,7 @@ class input_pekerjaanController extends Controller
         $pekerjaan->tanggal_pelaksanaan = $tanggal_pelaksanaan;
         $pekerjaan->uraian = $uraian;
         $pekerjaan->file = $request->file('foto')->getClientOriginalName();
-        $pekerjaan->status = '1';
+        $pekerjaan->status = 'Requested';
         $pekerjaan->save();
 
         return redirect('pemeliharaan/pekerjaan')->with('message', 'Data berhasil dimasukkan.');
