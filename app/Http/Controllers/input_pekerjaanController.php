@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\AreaKlasifikasi;
 use App\PekerjaanKlasifikasi;
 use App\Pekerjaan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class input_pekerjaanController extends Controller
@@ -47,8 +48,7 @@ class input_pekerjaanController extends Controller
             $request->file('foto')->move(public_path('pemeliharaan'), $request->file('foto')->getClientOriginalName());
         }
 
-        // menghitung pekerjaan dari data hari terakhir
-        $validasi_tanggal_pelaksanaan = Pekerjaan::select('id', 'tanggal_pelaksanaan')->orderBy('id', 'desc')->limit(1);
+        $validasi_tanggal_pelaksanaan = Pekerjaan::select('id', 'tanggal_pelaksanaan')->orderBy('id', 'desc')->first();
         if (empty($validasi_tanggal_pelaksanaan)) {
             $tanggal_pelaksanaan = date('Y-m-d');
         } elseif ($validasi_tanggal_pelaksanaan->where('tanggal_pelaksanaan', $validasi_tanggal_pelaksanaan->tanggal_pelaksanaan)->count() < 5) {
