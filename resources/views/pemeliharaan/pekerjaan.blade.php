@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section('title','Data Pekerjaan')
 @section('content')
 <div class="container-fluid mt-3">
     <div class="row">
@@ -23,6 +23,7 @@
                                         <td>Jadwal Perbaikan</td>
                                         <td>Keterangan</td>
                                         <td>Status</td>
+                                        <td>Detail</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -34,7 +35,8 @@
                                         <td>{{$item->tanggal_pekerjaan}}</td>
                                         <td>{{$item->tanggal_pelaksanaan}}</td>
                                         <td>{{$item->uraian}}</td>
-                                        <td><span class="badge badge-pill badge-primary">{{$item->status}}</span></td>
+                                        <td><span class="badge badge-primary">{{$item->status}}</span></td>
+                                        <td><a href="/pemeliharaan/pekerjaan-detail/{{$item->booknumber}}" class="badge badge-success">Detail</a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>

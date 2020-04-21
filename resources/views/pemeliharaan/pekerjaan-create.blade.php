@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title','Input Pekerjaan')
 @section('content')
 <div class="container-fluid mt-3">
     <div class="row">

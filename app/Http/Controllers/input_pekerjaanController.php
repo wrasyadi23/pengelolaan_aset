@@ -72,4 +72,10 @@ class input_pekerjaanController extends Controller
 
         return redirect('pemeliharaan/pekerjaan')->with('message', 'Data berhasil dimasukkan.');
     }
+
+    public function detail($booknumber) {
+        
+        $getDetail = Pekerjaan::where('booknumber',$booknumber)->first();
+        return view('pemeliharaan/pekerjaan-detail',['DetailPekerjaan' => $getDetail]);
+    }
 }
