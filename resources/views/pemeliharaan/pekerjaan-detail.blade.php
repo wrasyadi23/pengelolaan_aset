@@ -8,7 +8,36 @@
                 <div class="card-body">
                     <h4 class="card-title">Detail Pekerjaan</h4>
                     <div class="card-content">
-                        <div class="basic-form">
+                        {{-- Tampilan detail table, uncomment dari bawah untuk pakai --}}
+                        <table class="table table-hover table-bordered table-striped">
+                            <tr>
+                                <th>Book Number</th>
+                                <td>{{$DetailPekerjaan->booknumber}}</td>
+                            </tr>
+                            <tr>
+                                <th>Nama / Nik</th>
+                                <td>{{$DetailPekerjaan->nama}} / {{$DetailPekerjaan->nik}}</td>
+                            </tr>
+                            <tr>
+                                <th>Klasifikasi Pekerjaan</th>
+                                <td>{{$DetailPekerjaan->kd_klasifikasi_pekerjaan}} - {{$DetailPekerjaan->getKlasifikasi->klasifikasi_pekerjaan}}</td>
+                            </tr>
+                            <tr>
+                                <th>Tanggal</th>
+                                <td>{{$DetailPekerjaan->tanggal_pekerjaan}}</td>
+                            </tr>
+                            <tr>
+                                <th>Jadwal Sementara</th>
+                                <td>{{$DetailPekerjaan->tanggal_pelaksanaan}}</td>
+                            </tr>
+                            <tr>
+                                <th>Uraian</th>
+                                <td>{{$DetailPekerjaan->uraian}}</td>
+                            </tr>
+                        </table>
+
+                        {{-- Tampilan form, uncomment dari bawah untuk pakai  --}}
+                        {{-- <div class="basic-form">
                             <div class="form-group row">
                                 <label for="booknumber" class="col-sm-3 col-form-label">Book Number</label>
                                 <div class="col-sm-9">
@@ -39,15 +68,12 @@
                                     <input type="text" name="" id="" class="form-control-plaintext" value="{{$DetailPekerjaan->tanggal_pelaksanaan}}" readonly>
                                 </div>
                             </div>
-                            {{-- error disini bang, gamau rata kiri  --}}
                             <div class="form-group row">
                                 <label for="booknumber" class="col-sm-3 col-form-label">Uraian</label>
                                 <div class="col-sm-9">
-                                    <textarea name="" id="" rows="7" class="form-control-plaintext text-left" readonly>
-                                        {{$DetailPekerjaan->uraian}}
-                                    </textarea>
+                                    <textarea name="" id="" rows="7" class="form-control-plaintext" readonly>{{$DetailPekerjaan->uraian}}</textarea>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
