@@ -10,4 +10,13 @@ class AreaAlamat extends Model
     public $timestamps = false;
     public $incrementing = false;
 
+    public function getAreaKlasifikasi()
+    {
+        return $this->hasOne('App\AreaKlasifikasi', 'kd_area', 'kd_area');
+    }
+
+    public function getAreaKeterangan()
+    {
+        return $this->hasMany('App\AreaKeterangan', 'kd_alamat', 'kd_alamat');
+    }
 }

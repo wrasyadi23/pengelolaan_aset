@@ -42,6 +42,9 @@ class input_pekerjaanController extends Controller
         $bookNumber = $getBookNumber;
         $nama = $request->input('nama');
         $nik = $request->input('nik');
+        $kd_area = $request->input('kd_area');
+        $kd_alamat = $request->input('kd_alamat');
+        $kd_keterangan = $request->input('kd_keterangan');
         $kd_klasifikasi_pekerjaan = $request->input('kd_klasifikasi_pekerjaan');
         $tanggal_pekerjaan = date('Y-m-d h:m:s');
         $uraian = $request->input('uraian');
@@ -62,6 +65,9 @@ class input_pekerjaanController extends Controller
         $pekerjaan->booknumber = $bookNumber;
         $pekerjaan->nama = 'Mohammad Wava';
         $pekerjaan->nik = '2115446';
+        $pekerjaan->kd_area = $kd_area;
+        $pekerjaan->kd_alamat = $kd_alamat;
+        $pekerjaan->kd_keterangan = $kd_keterangan;
         $pekerjaan->kd_klasifikasi_pekerjaan = $kd_klasifikasi_pekerjaan;
         $pekerjaan->tanggal_pekerjaan = $tanggal_pekerjaan;
         $pekerjaan->tanggal_pelaksanaan = $tanggal_pelaksanaan;

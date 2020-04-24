@@ -19,6 +19,16 @@
                                 <td>{{$DetailPekerjaan->nama}} / {{$DetailPekerjaan->nik}}</td>
                             </tr>
                             <tr>
+                                <th rowspan="3">Area</th>
+                                <td>{{$DetailPekerjaan->kd_area}} / {{$DetailPekerjaan->nik}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{$DetailPekerjaan->kd_alamat}} / {{$DetailPekerjaan->nik}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{$DetailPekerjaan->kd_keterangan}} / {{$DetailPekerjaan->nik}}</td>
+                            </tr>
+                            <tr>
                                 <th>Klasifikasi Pekerjaan</th>
                                 <td>{{$DetailPekerjaan->kd_klasifikasi_pekerjaan}} - {{$DetailPekerjaan->getKlasifikasi->klasifikasi_pekerjaan}}</td>
                             </tr>

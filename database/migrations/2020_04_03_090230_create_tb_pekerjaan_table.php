@@ -20,6 +20,9 @@ class CreateTbPekerjaanTable extends Migration
             $table->string('nama',45);
             $table->string('nik',45);
             // job info 
+            $table->string('kd_area',45);
+            $table->string('kd_alamat',45);
+            $table->string('kd_keterangan',45);
             $table->string('kd_klasifikasi_pekerjaan',45);
             $table->datetime('tanggal_pekerjaan');
             $table->date('tanggal_pelaksanaan');
