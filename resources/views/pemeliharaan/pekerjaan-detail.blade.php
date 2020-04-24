@@ -39,6 +39,11 @@
                                 <td><a href="{{asset('pemeliharaan/'.$DetailPekerjaan->file)}}">{{$DetailPekerjaan->file}}</a></td>
                             </tr>
                         </table>
+                        <div class="general-button">
+                            <button class="btn mb-1 btn-primary" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan'">Back</button>
+                            <button class="btn mb-1 btn-primary" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-edit/{{$DetailPekerjaan->booknumber}}'">Edit</button>
+                            <button class="btn mb-1 btn-success" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-approve/{{$DetailPekerjaan->booknumber}}'">Approve</button>
+                            <button class="btn mb-1 btn-danger" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-cancel/{{$DetailPekerjaan->booknumber}}'">Cancel</button>
                         </div>
                     </div>
                 </div>

@@ -78,4 +78,10 @@ class input_pekerjaanController extends Controller
         $getDetail = Pekerjaan::where('booknumber',$booknumber)->first();
         return view('pemeliharaan/pekerjaan-detail',['DetailPekerjaan' => $getDetail]);
     }
+
+    public function edit($booknumber) {
+
+         $getDataPekerjaan = Pekerjaan::where('booknumber',$booknumber)->first();
+         return view('pemeliharaan/pekerjaan-edit', ['DataPekerjaan' => $getDataPekerjaan]);
+    }
 }

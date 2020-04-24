@@ -24,3 +24,4 @@ Route::get('/pemeliharaan/pekerjaan','input_pekerjaanController@index');
 Route::get('/pemeliharaan/pekerjaan-create','input_pekerjaanController@create');
 Route::post('/pemeliharaan/pekerjaan-store','input_pekerjaanController@store');
 Route::get('/pemeliharaan/pekerjaan-detail/{booknumber}','input_pekerjaanController@detail');
+Route::get('/pemeliharaan/pekerjaan-edit/{booknumber}','input_pekerjaanController@edit');
