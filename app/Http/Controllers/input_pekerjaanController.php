@@ -87,7 +87,36 @@ class input_pekerjaanController extends Controller
 
     public function edit($booknumber) {
 
-         $getDataPekerjaan = Pekerjaan::where('booknumber',$booknumber)->first();
-         return view('pemeliharaan/pekerjaan-edit', ['DataPekerjaan' => $getDataPekerjaan]);
+        $area_klasifikasi = AreaKlasifikasi::all();
+        $pekerjaan_klasifikasi = PekerjaanKlasifikasi::all();
+        $getDataPekerjaan = Pekerjaan::where('booknumber',$booknumber)->first();
+        return view('pemeliharaan/pekerjaan-edit', [
+            'DataPekerjaan' => $getDataPekerjaan,
+            'area_klasifikasi' => $area_klasifikasi,
+            'pekerjaan_klasifikasi' => $pekerjaan_klasifikasi
+        ]);
+    }
+
+    public function update($booknumber, request $request) {
+
+
+    }
+
+    public function approve($booknumber) {
+
+        $approvePekerjaan = Pekerjaan::where('booknumber',$booknumber)->first();
+        $approvePekerjaan->status = 'Approved';
+        $approvePekerjaan->save();
+
+        return redirect('pemeliharaan/pekerjaan')->with('message', 'Pekerjaan telah disetujui.');        
+    }
+
+    public function cancel($booknumber) {
+
+        $cancelPekerjaan = Pekerjaan::where('booknumber',$booknumber)->first();
+        $cancelPekerjaan->status = 'Canceled';
+        $cancelPekerjaan->save();
+
+        return redirect('pemeliharaan/pekerjaan')->with('message', 'Pekerjaan telah dicancel.');
     }
 }

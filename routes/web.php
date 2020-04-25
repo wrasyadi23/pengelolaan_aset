@@ -25,3 +25,6 @@ Route::get('/pemeliharaan/pekerjaan-create','input_pekerjaanController@create');
 Route::post('/pemeliharaan/pekerjaan-store','input_pekerjaanController@store');
 Route::get('/pemeliharaan/pekerjaan-detail/{booknumber}','input_pekerjaanController@detail');
 Route::get('/pemeliharaan/pekerjaan-edit/{booknumber}','input_pekerjaanController@edit');
+Route::get('/pemeliharaan/pekerjaan-approve/{booknumber}','input_pekerjaanController@approve');
+Route::get('/pemeliharaan/pekerjaan-cancel/{booknumber}','input_pekerjaanController@cancel');
+Route::post('/pemeliharaan/pekerjaan-update/{booknumber}','input_pekerjaanController@update');

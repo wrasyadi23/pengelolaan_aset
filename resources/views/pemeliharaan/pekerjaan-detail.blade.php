@@ -20,13 +20,13 @@
                             </tr>
                             <tr>
                                 <th rowspan="3">Area</th>
-                                <td>{{$DetailPekerjaan->kd_area}} / {{$DetailPekerjaan->nik}}</td>
+                                <td>{{$DetailPekerjaan->kd_area}} - {{$DetailPekerjaan->getAreaKlasifikasi->klasifikasi_area}}</td>
                             </tr>
                             <tr>
-                                <td>{{$DetailPekerjaan->kd_alamat}} / {{$DetailPekerjaan->nik}}</td>
+                                <td>{{$DetailPekerjaan->kd_alamat}} - {{$DetailPekerjaan->getAreaAlamat->alamat}}</td>
                             </tr>
                             <tr>
-                                <td>{{$DetailPekerjaan->kd_keterangan}} / {{$DetailPekerjaan->nik}}</td>
+                                <td>{{$DetailPekerjaan->kd_keterangan}} - {{$DetailPekerjaan->getAreaKeterangan->keterangan}}</td>
                             </tr>
                             <tr>
                                 <th>Klasifikasi Pekerjaan</th>
