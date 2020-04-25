@@ -14,4 +14,9 @@ class AreaKeterangan extends Model
     {
         return $this->belongsTo('App\AreaAlamat', 'kd_alamat', 'kd_alamat');
     }
+
+    public function getPekerjaan()
+    {
+        return $this->belongsTo('App\Pekerjaan', 'kd_keterangan', 'kd_keterangan');
+    }
 }

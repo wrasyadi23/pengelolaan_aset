@@ -14,4 +14,9 @@ class Regu extends Model
     {
         return $this->belongsTo('App\Seksi', 'kd_seksi', 'kd_seksi');
     }
+
+    public function getKlasifikasi()
+    {
+        return $this->hasMany('App\AreaKlasifikasi', 'kd_regu', 'kd_regu');
+    }
 }

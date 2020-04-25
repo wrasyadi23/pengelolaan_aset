@@ -16,7 +16,7 @@
                                     <div class="form-group col-md-4">
                                         <label for="klasifikasi-area">Klasifikasi Area</label>
                                         <select name="kd_area" id="kd_area" class="form-control input-default">
-                                            <option value="{{$DataPekerjaan->booknumber}}" selected></option>
+                                            <option value="{{$DataPekerjaan->kd_area}}" selected>{{$DataPekerjaan->getAreaKlasifikasi->klasifikasi_area}}</option>
                                             @foreach ($area_klasifikasi as $area => $itemArea)
                                                 <option value="{{$itemArea->kd_area}}">{{$itemArea->klasifikasi_area}}</option>
                                             @endforeach
@@ -25,13 +25,13 @@
                                     <div class="form-group col-md-4">
                                         <label for="alamat">Sub Area 1/Alamat</label>
                                         <select name="kd_alamat" id="kd_alamat" class="form-control input-default">
-                                            <option value="" selected></option>
+                                            <option value="{{$DataPekerjaan->kd_alamat}}" selected>{{$DataPekerjaan->getAreaAlamat->alamat}}</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="keterangan">Sub Area 2/Keterangan Objek</label>
                                         <select name="kd_keterangan" id="kd_keterangan" class="form-control input-default">
-                                            <option value="" selected></option>
+                                            <option value="{{$DataPekerjaan->kd_keterangan}}" selected>{{$DataPekerjaan->getAreaKeterangan->keterangan}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
                                 <div class="form-group">
                                     <label for="jenisPekerjaan">Jenis Pekerjaan</label>
                                     <select name="kd_klasifikasi_pekerjaan" id="kd_klasifikasi_pekerjaan" class="form-control input-default">
-                                        <option value="" selected></option>
+                                        <option value="{{$DataPekerjaan->kd_klasifikasi_pekerjaan}}" selected>{{$DataPekerjaan->getKlasifikasi->klasifikasi_pekerjaan}}</option>
                                         @foreach ($pekerjaan_klasifikasi as $pekerjaan => $itemPekerjaan)
                                             <option value="{{$itemPekerjaan->kd_klasifikasi_pekerjaan}}">{{$itemPekerjaan->klasifikasi_pekerjaan}}</option>
                                         @endforeach
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="uraian">Uraian Kerusakan/Error</label>
-                                    <textarea name="uraian" id="" rows="7" class="form-control input-default"></textarea>
+                                    <textarea name="uraian" id="" rows="7" class="form-control input-default">{{$DataPekerjaan->uraian}}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="image">Upload Foto</label>
@@ -59,7 +59,6 @@
                                 <table class="table-responsive table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <td>No</td>
                                             <td>Foto</td>
                                             <td>Nama File</td>
                                             <td>Action</td>
@@ -67,10 +66,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>No</td>
-                                            <td>Foto</td>
-                                            <td>Nama File</td>
-                                            <td>Action</td>
+                                            <td><img src="{{asset('pemeliharaan/'.$DataPekerjaan->file)}}" alt="" srcset=""></td>
+                                            <td>{{$DataPekerjaan->file}}</td>
+                                            <td><a href="/pemeliharaan/pemeliharaan-delete-file/{{$DataPekerjaan->booknumber}}" class="badge badge-danger">Delete</a></td>
                                         </tr>
                                     </tbody>
                                 </table>

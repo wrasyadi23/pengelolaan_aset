@@ -14,4 +14,9 @@ class AreaKlasifikasi extends Model
     {
         return $this->hasMany('App\AreaAlamat', 'kd_area', 'kd_area');
     }
+
+    public function getPekerjaan()
+    {
+        return $this->belongsTo('App\Pekerjaan', 'kd_area', 'kd_area');
+    }
 }

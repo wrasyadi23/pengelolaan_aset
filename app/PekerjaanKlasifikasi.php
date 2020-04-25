@@ -17,6 +17,6 @@ class PekerjaanKlasifikasi extends Model
 
     public function getRegu()
     {
-        return $this->hasOne('App\Regu', 'kd_regu', 'kd_regu');
+        return $this->belongsTo('App\Regu', 'kd_regu', 'kd_regu');
     }
 }
