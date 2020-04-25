@@ -12,7 +12,7 @@ class AreaAlamat extends Model
 
     public function getAreaKlasifikasi()
     {
-        return $this->hasOne('App\AreaKlasifikasi', 'kd_area', 'kd_area');
+        return $this->belongsTo('App\AreaKlasifikasi', 'kd_area', 'kd_area');
     }
 
     public function getAreaKeterangan()

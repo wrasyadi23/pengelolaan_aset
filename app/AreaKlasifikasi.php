@@ -12,6 +12,6 @@ class AreaKlasifikasi extends Model
 
     public function getAreaAlamat()
     {
-        return $this->belongsTo('App\AreaAlamat', 'kd_area', 'kd_area');
+        return $this->hasMany('App\AreaAlamat', 'kd_area', 'kd_area');
     }
 }
