@@ -11,7 +11,7 @@
                         <form action="/pemeliharaan/pekerjaan-update/{{$DataPekerjaan->booknumber}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="basic-form">
-                                {{-- combobox dinamis start --}}
+                                {{-- combobox dinamis start - errornya disini bang  --}}
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="klasifikasi-area">Klasifikasi Area</label>
@@ -56,19 +56,20 @@
                                         <label class="custom-file-label">Choose file</label>
                                     </div>
                                 </div>
-                                <table class="table-responsive table-striped table-bordered">
+                                <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <td>Foto</td>
-                                            <td>Nama File</td>
-                                            <td>Action</td>
+                                            <th>Foto</th>
+                                            <th>Nama File</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><img src="{{asset('pemeliharaan/'.$DataPekerjaan->file)}}" alt="" srcset=""></td>
-                                            <td>{{$DataPekerjaan->file}}</td>
-                                            <td><a href="/pemeliharaan/pemeliharaan-delete-file/{{$DataPekerjaan->booknumber}}" class="badge badge-danger">Delete</a></td>
+                                            <td><img src="{{asset('pemeliharaan/'.$DataPekerjaan->file)}}" width="150px"></td>
+                                            <td><a href="{{asset('pemeliharaan/'.$DataPekerjaan->file)}}">{{$DataPekerjaan->file}}</a></td>
+                                            {{-- <td><a href="/pemeliharaan/pemeliharaan-delete-file/{{$DataPekerjaan->booknumber}}" class="badge badge-danger">Delete</a></th> --}}
+                                            <td><button type="button" class="btn btn-danger" onclick="window.location.href='/pemeliharaan/pekerjaan-delete-file/{{$DataPekerjaan->booknumber}}'">Delete</button></th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -92,12 +93,12 @@
         $("#kd_alamat").select2({
             placeholder: 'Pilih Alamat',
             allowClear: true,
-            disabled: true
+            // disabled: true
         }); // fungsi untuk mengubah dropdown biasa menjadi plugin select2
         $("#kd_keterangan").select2({
             placeholder: 'Pilih Keterangan Objek',
             allowClear: true,
-            disabled: true
+            // disabled: true
         }); // fungsi untuk mengubah dropdown biasa menjadi plugin select2
         $("#kd_klasifikasi_pekerjaan").select2({
             placeholder: 'Pilih Jenis Pekerjaan',
@@ -105,7 +106,7 @@
         });
 
         $("#kd_area").change(function () {
-            var alamat = "<option disabled selected></option>"
+            // var alamat = "<option disabled selected></option>"
             // $("#kd_alamat")
             //     .empty();
             //     // .prop("disabled", true);
@@ -136,7 +137,7 @@
         })
 
         $("#kd_alamat").change(function () {
-            var keterangan = "<option disabled selected></option>"
+            // var keterangan = "<option disabled selected></option>"
             $.ajax({
                 type: "POST",
                 url: "/api/get-keterangan", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON

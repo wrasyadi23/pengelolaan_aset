@@ -7,6 +7,7 @@ use App\PekerjaanKlasifikasi;
 use App\Pekerjaan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Http\File;
 
 class input_pekerjaanController extends Controller
 {
@@ -118,5 +119,13 @@ class input_pekerjaanController extends Controller
         $cancelPekerjaan->save();
 
         return redirect('pemeliharaan/pekerjaan')->with('message', 'Pekerjaan telah dicancel.');
+    }
+
+    public function deleteFile($booknumber) {
+
+        $getFile = Pekerjaan::where('booknumber',$booknumber)->first();
+        File::delete(public_path('pemeliharaan'), $getFile->file);
+
+        return redirect()->back();
     }
 }

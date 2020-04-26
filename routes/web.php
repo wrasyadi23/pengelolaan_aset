@@ -28,3 +28,4 @@ Route::get('/pemeliharaan/pekerjaan-edit/{booknumber}','input_pekerjaanControlle
 Route::get('/pemeliharaan/pekerjaan-approve/{booknumber}','input_pekerjaanController@approve');
 Route::get('/pemeliharaan/pekerjaan-cancel/{booknumber}','input_pekerjaanController@cancel');
 Route::post('/pemeliharaan/pekerjaan-update/{booknumber}','input_pekerjaanController@update');
+Route::get('/pemeliharaan/pekerjaan-delete-file/{booknumber}','input_pekerjaanController@deleteFile');
