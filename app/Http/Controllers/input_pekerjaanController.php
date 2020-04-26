@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\AreaAlamat;
+use App\AreaKeterangan;
 use App\AreaKlasifikasi;
 use App\PekerjaanKlasifikasi;
 use App\Pekerjaan;
@@ -90,11 +92,16 @@ class input_pekerjaanController extends Controller
 
         $area_klasifikasi = AreaKlasifikasi::all();
         $pekerjaan_klasifikasi = PekerjaanKlasifikasi::all();
+        // 3 variable di bawah untuk mengambil data existing
         $getDataPekerjaan = Pekerjaan::where('booknumber',$booknumber)->first();
+        $dataAlamat = AreaAlamat::where('kd_area', $getDataPekerjaan->kd_area)->get();
+        $dataKeterangan = AreaKeterangan::where('kd_alamat', $dataAlamat->where('kd_alamat', $getDataPekerjaan->kd_alamat)->first()->kd_alamat)->get();
         return view('pemeliharaan/pekerjaan-edit', [
             'DataPekerjaan' => $getDataPekerjaan,
             'area_klasifikasi' => $area_klasifikasi,
-            'pekerjaan_klasifikasi' => $pekerjaan_klasifikasi
+            'pekerjaan_klasifikasi' => $pekerjaan_klasifikasi,
+            'dataAlamat' => $dataAlamat,
+            'dataKeterangan' => $dataKeterangan
         ]);
     }
 
