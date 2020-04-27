@@ -45,7 +45,10 @@
                                 <td>{{$DetailPekerjaan->uraian}}</td>
                             </tr>
                             <tr>
-                                <th>Foto</th>
+                                <th rowspan="2">Foto</th>
+                                <td><img src="{{asset('pemeliharaan/'.$DetailPekerjaan->file)}}" width="150px"></td>
+                            </tr>
+                            <tr>
                                 <td><a href="{{asset('pemeliharaan/'.$DetailPekerjaan->file)}}">{{$DetailPekerjaan->file}}</a></td>
                             </tr>
                         </table>

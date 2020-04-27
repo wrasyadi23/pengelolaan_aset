@@ -8,10 +8,13 @@
                 <div class="card-body">
                     <h4 class="card-title">Edit Data Pekerjaan</h4>
                     <div class="card-content">
+                        @if (session('message'))
+                            <div class="alert alert-success">{{session('message')}}</div>
+                        @endif
                         <form action="/pemeliharaan/pekerjaan-update/{{$DataPekerjaan->booknumber}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="basic-form">
-                                {{-- combobox dinamis start - errornya disini bang  --}}
+                                {{-- combobox dinamis start  --}}
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="klasifikasi-area">Klasifikasi Area</label>
@@ -77,7 +80,10 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="general-button">
+                                    <button type="button" class="btn btn-primary" onclick="window.location.href='/pemeliharaan/pekerjaan-detail/{{$DataPekerjaan->booknumber}}'">Back</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
                             </div>
                         </form>
                     </div>

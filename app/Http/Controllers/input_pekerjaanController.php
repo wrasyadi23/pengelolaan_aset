@@ -43,8 +43,8 @@ class input_pekerjaanController extends Controller
         }
 
         $bookNumber = $getBookNumber;
-        $nama = $request->input('nama');
-        $nik = $request->input('nik');
+        // $nama = $request->input('nama');
+        // $nik = $request->input('nik');
         $kd_area = $request->input('kd_area');
         $kd_alamat = $request->input('kd_alamat');
         $kd_keterangan = $request->input('kd_keterangan');
@@ -107,7 +107,24 @@ class input_pekerjaanController extends Controller
 
     public function update($booknumber, request $request) {
 
+        $kd_area = $request->input('kd_area');
+        $kd_alamat = $request->input('kd_alamat');
+        $kd_keterangan = $request->input('kd_keterangan');
+        $kd_klasifikasi_pekerjaan = $request->input('kd_klasifikasi_pekerjaan');
+        $uraian = $request->input('uraian');
+        if ($request->hasFile('foto')) {
+            $request->file('foto')->move(public_path('pemeliharaan'), $request->file('foto')->getClientOriginalName());
+        }
 
+        $pekerjaan = Pekerjaan::where('booknumber',$booknumber);
+        $pekerjaan->kd_area = $kd_area;
+        $pekerjaan->kd_alamat = $kd_alamat;
+        $pekerjaan->kd_keterangan = $kd_keterangan;
+        $pekerjaan->kd_klasifikasi_pekerjaan = $kd_klasifikasi_pekerjaan;
+        $pekerjaan->file = $request->file('foto')->getClientOriginalName();
+        $pekerjaan->save();
+        
+        return redirect('pemeliharaan/pekerjaan-detail/{{$booknumber}}')->with('message','Data berhasil diupdate.');
     }
 
     public function approve($booknumber) {

@@ -6,9 +6,15 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Input Pekerjaan</h4>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <h4 class="card-title">Input Pekerjaan</h4>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <button type="button" class="btn mb-1 btn-primary" onclick="window.location.href='/pemeliharaan/pekerjaan-create'">+ Tambah</button>
+                        </div>
+                    </div>
                     <div class="card-content">
-                        <button type="button" class="btn mb-1 btn-primary" onclick="window.location.href='/pemeliharaan/pekerjaan-create'">Tambah</button>
                         @if (session('message'))
                             <div class="alert alert-success">{{session('message')}}</div>
                         @endif
