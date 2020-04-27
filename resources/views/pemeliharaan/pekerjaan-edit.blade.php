@@ -2,15 +2,15 @@
 @section('title','Edit Pekerjaan')
 @section('content')
 <div class="container-fluid mt-3">
+    @if (session('message'))
+        <div class="alert alert-success">{{session('message')}}</div>
+    @endif
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Edit Data Pekerjaan</h4>
                     <div class="card-content">
-                        @if (session('message'))
-                            <div class="alert alert-success">{{session('message')}}</div>
-                        @endif
                         <form action="/pemeliharaan/pekerjaan-update/{{$DataPekerjaan->booknumber}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="basic-form">

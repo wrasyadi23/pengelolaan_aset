@@ -15,7 +15,7 @@ class input_pekerjaanController extends Controller
 {
     public function index()
     {
-        $getDataPekerjaan = Pekerjaan::all();
+        $getDataPekerjaan = Pekerjaan::whereIn('status',['Requested','Approved'])->get();
         return view('pemeliharaan/pekerjaan',['DataPekerjaan' => $getDataPekerjaan]);
     }
 

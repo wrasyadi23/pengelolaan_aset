@@ -2,6 +2,9 @@
 @section('title','Data Pekerjaan')
 @section('content')
 <div class="container-fluid mt-3">
+    @if (session('message'))
+        <div class="alert alert-success">{{session('message')}}</div>
+    @endif
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -11,13 +14,10 @@
                             <h4 class="card-title">Input Pekerjaan</h4>
                         </div>
                         <div class="col-md-6 text-right">
-                            <button type="button" class="btn mb-1 btn-primary" onclick="window.location.href='/pemeliharaan/pekerjaan-create'">+ Tambah</button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='/pemeliharaan/pekerjaan-create'">+ Tambah</button>
                         </div>
                     </div>
                     <div class="card-content">
-                        @if (session('message'))
-                            <div class="alert alert-success">{{session('message')}}</div>
-                        @endif
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration" style="width: 100%;">
                                 <thead>
