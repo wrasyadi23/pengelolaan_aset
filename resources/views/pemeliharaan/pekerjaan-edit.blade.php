@@ -58,28 +58,27 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="image">Upload Foto</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="foto" id="foto">
-                                        <label class="custom-file-label">Choose file</label>
-                                    </div>
+                                    <input type="file" class="form-control input-default" name="foto" id="foto">
                                 </div>
-                                <table class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Foto</th>
-                                            <th>Nama File</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><img src="{{asset('pemeliharaan/'.$DataPekerjaan->file)}}" width="150px"></td>
-                                            <td><a href="{{asset('pemeliharaan/'.$DataPekerjaan->file)}}">{{$DataPekerjaan->file}}</a></td>
-                                            {{-- <td><a href="/pemeliharaan/pemeliharaan-delete-file/{{$DataPekerjaan->booknumber}}" class="badge badge-danger">Delete</a></th> --}}
-                                            <td><button type="button" class="btn btn-danger" onclick="window.location.href='/pemeliharaan/pekerjaan-delete-file/{{$DataPekerjaan->booknumber}}'">Delete</button></th>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Foto</th>
+                                                <th>Nama File</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><img src="{{asset('pemeliharaan/'.$DataPekerjaan->file)}}" width="150px"></td>
+                                                <td><a href="{{asset('pemeliharaan/'.$DataPekerjaan->file)}}">{{$DataPekerjaan->file}}</a></td>
+                                                {{-- <td><a href="/pemeliharaan/pemeliharaan-delete-file/{{$DataPekerjaan->booknumber}}" class="badge badge-danger">Delete</a></th> --}}
+                                                <td><button type="button" class="btn btn-danger" onclick="window.location.href='/pemeliharaan/pekerjaan-delete-file/{{$DataPekerjaan->booknumber}}'">Delete</button></th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                                 <div class="general-button">
                                     <button type="button" class="btn btn-primary" onclick="window.location.href='/pemeliharaan/pekerjaan-detail/{{$DataPekerjaan->booknumber}}'">Back</button>
                                     <button type="submit" class="btn btn-primary">Submit</button>

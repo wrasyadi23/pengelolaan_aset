@@ -152,4 +152,13 @@ class input_pekerjaanController extends Controller
 
         return redirect()->back();
     }
+
+    public function disapprove($booknumber) {
+
+        $disapprovePekerjaan = Pekerjaan::where('booknumber',$booknumber)->first();
+        $disapprovePekerjaan->status = 'Requested';
+        $disapprovePekerjaan->save();
+
+        return redirect('pemeliharaan/pekerjaan')->with('message', 'Data telah diupdate.');
+    }
 }

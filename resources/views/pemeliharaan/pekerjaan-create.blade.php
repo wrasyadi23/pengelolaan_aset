@@ -47,10 +47,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="image">Upload Foto</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="foto" id="foto">
-                                        <label class="custom-file-label">Choose file</label>
-                                    </div>
+                                    <input type="file" class="form-control input-default" name="foto" id="foto">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
