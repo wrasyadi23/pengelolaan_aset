@@ -19,7 +19,7 @@
                             <div class="alert alert-success">{{session('message')}}</div>
                         @endif
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered zero-configuration">
+                            <table class="table table-striped table-bordered zero-configuration" style="width: 100%;">
                                 <thead>
                                     <tr>
                                         <td>No Booking</td>
