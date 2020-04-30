@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section('title','Home')
 @section('content')
     <div class="container-fluid mt-3">
         <div class="row">

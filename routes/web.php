@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 // pemeliharaan
-Route::get('/pemeliharaan','pemeliharaanController@index');
+Route::get('/pemeliharaan/dashboard','pemeliharaanController@index');
 // input pekerjaan
 Route::get('/pemeliharaan/pekerjaan','input_pekerjaanController@index');
 Route::get('/pemeliharaan/pekerjaan-create','input_pekerjaanController@create');

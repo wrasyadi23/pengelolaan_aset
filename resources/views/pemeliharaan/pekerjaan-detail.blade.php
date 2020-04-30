@@ -54,13 +54,13 @@
                         </table>
                         <div class="general-button">
                             <button class="btn mb-1 btn-primary" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan'">Back</button>
-                            <button class="btn mb-1 btn-primary" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-edit/{{$DetailPekerjaan->booknumber}}'">Edit</button>
-                            @if ($DetailPekerjaan->status == 'Approved')
-                                <button class="btn mb-1 btn-warning" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-disapprove/{{$DetailPekerjaan->booknumber}}'">Disapprove</button>
-                                <button class="btn mb-1 btn-success" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-close/{{$DetailPekerjaan->booknumber}}'">Closed</button>
-                            @endif
                             @if ($DetailPekerjaan->status == 'Requested')
+                            <button class="btn mb-1 btn-primary" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-edit/{{$DetailPekerjaan->booknumber}}'">Edit</button>
                                 <button class="btn mb-1 btn-success" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-approve/{{$DetailPekerjaan->booknumber}}'">Approve</button>
+                            @endif
+                            @if ($DetailPekerjaan->status == 'Approved')
+                            <button class="btn mb-1 btn-warning" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-disapprove/{{$DetailPekerjaan->booknumber}}'">Disapprove</button>
+                            <button class="btn mb-1 btn-success" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-close/{{$DetailPekerjaan->booknumber}}'">Closed</button>
                             @endif
                             <button class="btn mb-1 btn-danger" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-cancel/{{$DetailPekerjaan->booknumber}}'">Cancel</button>
                         </div>

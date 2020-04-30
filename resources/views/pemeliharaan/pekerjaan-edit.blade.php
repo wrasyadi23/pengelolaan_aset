@@ -73,7 +73,6 @@
                                             <tr>
                                                 <td><img src="{{asset('pemeliharaan/'.$DataPekerjaan->file)}}" width="150px"></td>
                                                 <td><a href="{{asset('pemeliharaan/'.$DataPekerjaan->file)}}">{{$DataPekerjaan->file}}</a></td>
-                                                {{-- <td><a href="/pemeliharaan/pemeliharaan-delete-file/{{$DataPekerjaan->booknumber}}" class="badge badge-danger">Delete</a></th> --}}
                                                 <td><button type="button" class="btn btn-danger" onclick="window.location.href='/pemeliharaan/pekerjaan-delete-file/{{$DataPekerjaan->booknumber}}'">Delete</button></th>
                                             </tr>
                                         </tbody>
