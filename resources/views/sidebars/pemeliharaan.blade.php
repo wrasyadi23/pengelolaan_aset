@@ -11,5 +11,10 @@
                 <i class="icon-note menu-icon"></i><span class="nav-text">Input Pekerjaan</span>
             </a>
         </li>
+        <li>
+            <a href="/pemeliharaan/klasifikasi" aria-expanded="false">
+                <i class="icon-note menu-icon"></i><span class="nav-text">Input Klasifikasi Pekerjaan</span>
+            </a>
+        </li>
     </ul>
 </div>

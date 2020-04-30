@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\AreaAlamat;
 use App\AreaKeterangan;
 use App\AreaKlasifikasi;
+use App\PekerjaanFile;
 use App\PekerjaanKlasifikasi;
 use App\Pekerjaan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Http\File;
+use File;
 
 class input_pekerjaanController extends Controller
 {
@@ -32,7 +33,7 @@ class input_pekerjaanController extends Controller
     public function store(Request $request)
     {
         // get book number
-        $data = Pekerjaan::select('id', 'bookNumber', 'tanggal_pekerjaan')
+        $data = Pekerjaan::select('id', 'booknumber', 'tanggal_pekerjaan')
             ->whereYear('tanggal_pekerjaan', date('Y'))
             ->orderBy('id', 'desc')->count();
         $tahun_sekarang = date('Ym');
@@ -42,7 +43,7 @@ class input_pekerjaanController extends Controller
             $getBookNumber = $tahun_sekarang . sprintf('%05s', 1);
         }
 
-        $bookNumber = $getBookNumber;
+        $booknumber = $getBookNumber;
         // $nama = $request->input('nama');
         // $nik = $request->input('nik');
         $kd_area = $request->input('kd_area');
@@ -52,7 +53,7 @@ class input_pekerjaanController extends Controller
         $tanggal_pekerjaan = date('Y-m-d h:m:s');
         $uraian = $request->input('uraian');
         if ($request->hasFile('foto')) {
-            $request->file('foto')->move(public_path('pemeliharaan'), $request->file('foto')->getClientOriginalName());
+            $request->file('foto')->move(public_path('pemeliharaan'), $booknumber.'_'.$request->file('foto')->getClientOriginalName());
         }
 
         $validasi_tanggal_pelaksanaan = Pekerjaan::select('id', 'tanggal_pelaksanaan')->orderBy('id', 'desc')->first();
@@ -65,7 +66,7 @@ class input_pekerjaanController extends Controller
         }
 
         $pekerjaan = new Pekerjaan;
-        $pekerjaan->booknumber = $bookNumber;
+        $pekerjaan->booknumber = $booknumber;
         $pekerjaan->nama = 'Mohammad Wava';
         $pekerjaan->nik = '2115446';
         $pekerjaan->kd_area = $kd_area;
@@ -75,9 +76,13 @@ class input_pekerjaanController extends Controller
         $pekerjaan->tanggal_pekerjaan = $tanggal_pekerjaan;
         $pekerjaan->tanggal_pelaksanaan = $tanggal_pelaksanaan;
         $pekerjaan->uraian = $uraian;
-        $pekerjaan->file = $request->file('foto')->getClientOriginalName();
         $pekerjaan->status = 'Requested';
         $pekerjaan->save();
+        
+        $pekerjaanFile = new PekerjaanFile;
+        $pekerjaanFile->booknumber = $booknumber;
+        $pekerjaanFile->file = $booknumber.'_'.$request->file('foto')->getClientOriginalName();
+        $pekerjaanFile->save();
 
         return redirect('pemeliharaan/pekerjaan')->with('message', 'Data berhasil dimasukkan.');
     }
@@ -113,7 +118,7 @@ class input_pekerjaanController extends Controller
         $kd_klasifikasi_pekerjaan = $request->input('kd_klasifikasi_pekerjaan');
         $uraian = $request->input('uraian');
         if ($request->hasFile('foto')) {
-            $request->file('foto')->move(public_path('pemeliharaan'), $request->file('foto')->getClientOriginalName());
+            $request->file('foto')->move(public_path('pemeliharaan'), $booknumber.'_'.$request->file('foto')->getClientOriginalName());
         }
 
         $pekerjaan = Pekerjaan::where('booknumber',$booknumber);
@@ -121,10 +126,14 @@ class input_pekerjaanController extends Controller
         $pekerjaan->kd_alamat = $kd_alamat;
         $pekerjaan->kd_keterangan = $kd_keterangan;
         $pekerjaan->kd_klasifikasi_pekerjaan = $kd_klasifikasi_pekerjaan;
-        $pekerjaan->file = $request->file('foto')->getClientOriginalName();
         $pekerjaan->save();
         
-        return redirect('pemeliharaan/pekerjaan-detail/{{$booknumber}}')->with('message','Data berhasil diupdate.');
+        $pekerjaanFile = PekerjaanFile::where('booknumber',$booknumber);
+        $pekerjaanFile->booknumber = $booknumber;
+        $pekerjaanFile->file = $booknumber.'_'.$request->file('foto')->getClientOriginalName();
+        $pekerjaanFile-save();
+        
+        return redirect('pemeliharaan/pekerjaan-detail/'.$pekerjaan->booknumber)->with('message','Data berhasil diupdate.');
     }
 
     public function approve($booknumber) {
@@ -146,9 +155,10 @@ class input_pekerjaanController extends Controller
     }
 
     public function deleteFile($booknumber) {
-
-        $getFile = Pekerjaan::where('booknumber',$booknumber)->first();
-        File::delete(public_path('pemeliharaan'), $getFile->file);
+        
+        $getFile = PekerjaanFile::where('booknumber',$booknumber)->first();
+        File::delete('pemeliharaan/'. $getFile->file);
+        $getFile->delete();
 
         return redirect()->back();
     }
@@ -159,6 +169,6 @@ class input_pekerjaanController extends Controller
         $disapprovePekerjaan->status = 'Requested';
         $disapprovePekerjaan->save();
 
-        return redirect('pemeliharaan/pekerjaan')->with('message', 'Data telah diupdate.');
+        return redirect('pemeliharaan/pekerjaan-detail/'.$disapprovePekerjaan->booknumber)->with('message', 'Data telah diupdate.');
     }
 }

@@ -71,8 +71,8 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><img src="{{asset('pemeliharaan/'.$DataPekerjaan->file)}}" width="150px"></td>
-                                                <td><a href="{{asset('pemeliharaan/'.$DataPekerjaan->file)}}">{{$DataPekerjaan->file}}</a></td>
+                                                <td><img src="{{asset('pemeliharaan/'.$DataPekerjaan->getFile->file)}}" width="150px"></td>
+                                                <td><a href="{{asset('pemeliharaan/'.$DataPekerjaan->getFile->file)}}">{{$DataPekerjaan->getFile->file}}</a></td>
                                                 <td><button type="button" class="btn btn-danger" onclick="window.location.href='/pemeliharaan/pekerjaan-delete-file/{{$DataPekerjaan->booknumber}}'">Delete</button></th>
                                             </tr>
                                         </tbody>

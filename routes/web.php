@@ -31,3 +31,5 @@ Route::get('/pemeliharaan/pekerjaan-cancel/{booknumber}','input_pekerjaanControl
 Route::post('/pemeliharaan/pekerjaan-update/{booknumber}','input_pekerjaanController@update');
 Route::get('/pemeliharaan/pekerjaan-delete-file/{booknumber}','input_pekerjaanController@deleteFile');
 Route::get('/pemeliharaan/pekerjaan-close/{booknumber}','input_pekerjaanController@close');
+// input klasifikasi pekerjaan 
+Route::get('/pemeliharaan/klasifikasi','input_klasifikasiController@index');

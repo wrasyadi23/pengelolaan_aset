@@ -2,6 +2,9 @@
 @section('title','Detail Pekerjaan')
 @section('content')
 <div class="container-fluid mt-3">
+    @if (session('message'))
+        <div class="alert alert-success">{{session('message')}}</div>
+    @endif
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -46,10 +49,10 @@
                             </tr>
                             <tr>
                                 <th rowspan="2">Foto</th>
-                                <td><img src="{{asset('pemeliharaan/'.$DetailPekerjaan->file)}}" width="150px"></td>
+                                <td><img src="{{asset('pemeliharaan/'.$DetailPekerjaan->getFile->file)}}" width="150px"></td>
                             </tr>
                             <tr>
-                                <td><a href="{{asset('pemeliharaan/'.$DetailPekerjaan->file)}}">{{$DetailPekerjaan->file}}</a></td>
+                                <td><a href="{{asset('pemeliharaan/'.$DetailPekerjaan->getFile->file)}}">{{$DetailPekerjaan->getFile->file}}</a></td>
                             </tr>
                         </table>
                         <div class="general-button">

@@ -14,7 +14,7 @@
                             <h4 class="card-title">Input Pekerjaan</h4>
                         </div>
                         <div class="col-md-6 text-right">
-                            <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='/pemeliharaan/pekerjaan-create'">+ Tambah</button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='/pemeliharaan/pekerjaan-create'">+ Tambah Pekerjaan</button>
                         </div>
                     </div>
                     <div class="card-content">

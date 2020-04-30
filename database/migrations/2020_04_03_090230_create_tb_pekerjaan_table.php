@@ -27,7 +27,6 @@ class CreateTbPekerjaanTable extends Migration
             $table->datetime('tanggal_pekerjaan');
             $table->date('tanggal_pelaksanaan');
             $table->text('uraian');
-            $table->string('file');
             $table->string('status',45);
             $table->timestamps();
         });

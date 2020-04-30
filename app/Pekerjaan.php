@@ -28,4 +28,9 @@ class Pekerjaan extends Model
     {
         return $this->hasOne('App\AreaKeterangan', 'kd_keterangan', 'kd_keterangan');
     }
+
+    public function getFile()
+    {
+        return $this->hasOne('App\PekerjaanFile', 'booknumber', 'booknumber');
+    }
 }
