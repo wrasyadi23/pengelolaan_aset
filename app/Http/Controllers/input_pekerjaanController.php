@@ -76,7 +76,7 @@ class input_pekerjaanController extends Controller
         $pekerjaan->status = 'Requested';
         $pekerjaan->save();
 
-        // Operasi simpan foto dipindah kebawah untuk memastikan booknumber telah tersimpang sebelum operasi ke table tb_pekerjaan_file
+        // Operasi simpan foto dipindah kebawah untuk memastikan booknumber telah tersimpan sebelum operasi ke table tb_pekerjaan_file
         if ($request->hasFile('foto')) {
             foreach ($request->file('foto') as $key => $foto) {
                 $uid = uniqid(time(), false); // Generate random unique id
@@ -129,7 +129,7 @@ class input_pekerjaanController extends Controller
         $pekerjaan->kd_klasifikasi_pekerjaan = $kd_klasifikasi_pekerjaan;
         $pekerjaan->save();
 
-        // Operasi simpan foto dipindah kebawah untuk memastikan booknumber telah tersimpang sebelum operasi ke table tb_pekerjaan_file
+        // Operasi simpan foto dipindah kebawah untuk memastikan booknumber telah tersimpan sebelum operasi ke table tb_pekerjaan_file
         if ($request->hasFile('foto')) {
             foreach ($request->file('foto') as $key => $foto) {
                 $uid = uniqid(time(), false); // Generate random unique id
