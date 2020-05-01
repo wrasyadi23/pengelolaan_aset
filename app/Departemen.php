@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Departemen extends Model
 {
     protected $table = 'tb_departemen';
-    public $timestamp = false;
+    public $timestamps = false;
     public $incrementing = false;
 
     public function getBagian()

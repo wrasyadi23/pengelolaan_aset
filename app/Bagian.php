@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Bagian extends Model
 {
     protected $table = 'tb_bagian';
-    public $timestamp = false;
+    public $timestamps = false;
     public $incrementing = false;
 
     public function getDepartemen()

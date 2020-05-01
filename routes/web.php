@@ -29,7 +29,7 @@ Route::get('/pemeliharaan/pekerjaan-approve/{booknumber}','input_pekerjaanContro
 Route::get('/pemeliharaan/pekerjaan-disapprove/{booknumber}','input_pekerjaanController@disapprove');
 Route::get('/pemeliharaan/pekerjaan-cancel/{booknumber}','input_pekerjaanController@cancel');
 Route::post('/pemeliharaan/pekerjaan-update/{booknumber}','input_pekerjaanController@update');
-Route::get('/pemeliharaan/pekerjaan-delete-file/{booknumber}','input_pekerjaanController@deleteFile');
+Route::get('/pemeliharaan/pekerjaan-delete-file/{id}','input_pekerjaanController@deleteFile');
 Route::get('/pemeliharaan/pekerjaan-close/{booknumber}','input_pekerjaanController@close');
 // input klasifikasi pekerjaan 
 Route::get('/pemeliharaan/klasifikasi','input_klasifikasiController@index');

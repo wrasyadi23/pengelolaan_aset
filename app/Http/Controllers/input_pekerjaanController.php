@@ -154,11 +154,11 @@ class input_pekerjaanController extends Controller
         return redirect('pemeliharaan/pekerjaan')->with('message', 'Pekerjaan telah dicancel.');
     }
 
-    public function deleteFile($booknumber) {
+    public function deleteFile($id) {
         
-        $getFile = PekerjaanFile::where('booknumber',$booknumber)->first();
-        File::delete('pemeliharaan/'. $getFile->file);
+        $getFile = PekerjaanFile::where('id',$id)->first();
         $getFile->delete();
+        unlink(public_path('pemeliharaan/').$getFile->file);
 
         return redirect()->back();
     }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PekerjaanKlasifikasi extends Model
 {
     protected $table = 'tb_pekerjaan_klasifikasi';
-    public $timestamp = false;
+    public $timestamps = false;
     public $incrementing = false;
 
     public function getPekerjaan()
