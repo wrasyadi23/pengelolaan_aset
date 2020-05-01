@@ -31,6 +31,6 @@ class Pekerjaan extends Model
 
     public function getFile()
     {
-        return $this->hasOne('App\PekerjaanFile', 'booknumber', 'booknumber');
+        return $this->hasMany('App\PekerjaanFile', 'booknumber', 'booknumber'); // Relasi foto menjadi hasMany karena 1 booknumber bisa memliki beberapa foto
     }
 }

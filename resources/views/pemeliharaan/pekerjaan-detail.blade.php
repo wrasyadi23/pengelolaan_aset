@@ -47,13 +47,25 @@
                                 <th>Uraian</th>
                                 <td>{{$DetailPekerjaan->uraian}}</td>
                             </tr>
+                            @if ($DetailPekerjaan->getFile->count() != null) {{-- Kondisi untuk Cek apakah ada data ber-relasi atau tidak --}}
                             <tr>
-                                <th rowspan="2">Foto</th>
-                                <td><img src="{{asset('pemeliharaan/'.$DetailPekerjaan->getFile->file)}}" width="150px"></td>
+                                <th rowspan="{{$DetailPekerjaan->getFile->count() + 1}}">Foto</th>
+                                @foreach ($DetailPekerjaan->getFile->all() as $foto)
+                                <tr>
+                                    <td>
+                                        <img src="{{asset('pemeliharaan/'.$foto->file)}}" width="150px"><br>
+                                        <a href="{{asset('pemeliharaan/'.$foto->file)}}">{{$foto->file}}</a>
+                                    </td>
+                                </tr>
+                                @endforeach
                             </tr>
+                            @else {{-- Jika tidak ada data ber-relasi, munculkan kode berikut --}}
                             <tr>
-                                <td><a href="{{asset('pemeliharaan/'.$DetailPekerjaan->getFile->file)}}">{{$DetailPekerjaan->getFile->file}}</a></td>
+                                <th>Foto</th>
+                                <td>Tidak ada foto yang diupload</td>
                             </tr>
+                            @endif
+
                         </table>
                         <div class="general-button">
                             <button class="btn mb-1 btn-primary" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan'">Back</button>

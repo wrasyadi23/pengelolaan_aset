@@ -15,7 +15,7 @@ class CreateTbPekerjaanFileTable extends Migration
     {
         Schema::create('tb_pekerjaan_file', function (Blueprint $table) {
             $table->id();
-            $table->string('booknumber',45)->unique();
+            $table->string('booknumber',45); // booknumber tidak boleh unik agar bisa menampung beberapa foto di booknumber yang sama
             $table->string('file');
         });
     }

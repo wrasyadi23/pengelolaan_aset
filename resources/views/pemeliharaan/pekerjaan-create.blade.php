@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="image">Upload Foto</label>
-                                    <input type="file" class="form-control input-default" name="foto" id="foto">
+                                    <input type="file" class="form-control input-default" name="foto[]" id="foto[]" multiple> {{-- ditambahkan simbol array[] & multiple agar bisa upload beberapa file --}}
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>

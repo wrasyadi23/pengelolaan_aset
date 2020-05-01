@@ -52,9 +52,6 @@ class input_pekerjaanController extends Controller
         $kd_klasifikasi_pekerjaan = $request->input('kd_klasifikasi_pekerjaan');
         $tanggal_pekerjaan = date('Y-m-d h:m:s');
         $uraian = $request->input('uraian');
-        if ($request->hasFile('foto')) {
-            $request->file('foto')->move(public_path('pemeliharaan'), $booknumber.'_'.$request->file('foto')->getClientOriginalName());
-        }
 
         $validasi_tanggal_pelaksanaan = Pekerjaan::select('id', 'tanggal_pelaksanaan')->orderBy('id', 'desc')->first();
         if (empty($validasi_tanggal_pelaksanaan)) {
@@ -78,11 +75,18 @@ class input_pekerjaanController extends Controller
         $pekerjaan->uraian = $uraian;
         $pekerjaan->status = 'Requested';
         $pekerjaan->save();
-        
-        $pekerjaanFile = new PekerjaanFile;
-        $pekerjaanFile->booknumber = $booknumber;
-        $pekerjaanFile->file = $booknumber.'_'.$request->file('foto')->getClientOriginalName();
-        $pekerjaanFile->save();
+
+        // Operasi simpan foto dipindah kebawah untuk memastikan booknumber telah tersimpang sebelum operasi ke table tb_pekerjaan_file
+        if ($request->hasFile('foto')) {
+            foreach ($request->file('foto') as $key => $foto) {
+                $uid = uniqid(time(), false); // Generate random unique id
+                $foto->move(public_path('pemeliharaan'), $booknumber . '_' . $uid . '_' . $foto->getClientOriginalName());
+                $pekerjaanFile = new PekerjaanFile;
+                $pekerjaanFile->booknumber = $booknumber;
+                $pekerjaanFile->file = $booknumber . '_' . $uid . '_' . $foto->getClientOriginalName();
+                $pekerjaanFile->save();
+            }
+        }
 
         return redirect('pemeliharaan/pekerjaan')->with('message', 'Data berhasil dimasukkan.');
     }
@@ -117,23 +121,27 @@ class input_pekerjaanController extends Controller
         $kd_keterangan = $request->input('kd_keterangan');
         $kd_klasifikasi_pekerjaan = $request->input('kd_klasifikasi_pekerjaan');
         $uraian = $request->input('uraian');
-        if ($request->hasFile('foto')) {
-            $request->file('foto')->move(public_path('pemeliharaan'), $booknumber.'_'.$request->file('foto')->getClientOriginalName());
-        }
 
-        $pekerjaan = Pekerjaan::where('booknumber',$booknumber);
+        $pekerjaan = Pekerjaan::where('booknumber',$booknumber)->first();
         $pekerjaan->kd_area = $kd_area;
         $pekerjaan->kd_alamat = $kd_alamat;
         $pekerjaan->kd_keterangan = $kd_keterangan;
         $pekerjaan->kd_klasifikasi_pekerjaan = $kd_klasifikasi_pekerjaan;
         $pekerjaan->save();
-        
-        $pekerjaanFile = PekerjaanFile::where('booknumber',$booknumber);
-        $pekerjaanFile->booknumber = $booknumber;
-        $pekerjaanFile->file = $booknumber.'_'.$request->file('foto')->getClientOriginalName();
-        $pekerjaanFile-save();
-        
-        return redirect('pemeliharaan/pekerjaan-detail/'.$pekerjaan->booknumber)->with('message','Data berhasil diupdate.');
+
+        // Operasi simpan foto dipindah kebawah untuk memastikan booknumber telah tersimpang sebelum operasi ke table tb_pekerjaan_file
+        if ($request->hasFile('foto')) {
+            foreach ($request->file('foto') as $key => $foto) {
+                $uid = uniqid(time(), false); // Generate random unique id
+                $foto->move(public_path('pemeliharaan'), $booknumber . '_' . $uid . '_' . $foto->getClientOriginalName());
+                $pekerjaanFile = new PekerjaanFile;
+                $pekerjaanFile->booknumber = $booknumber;
+                $pekerjaanFile->file = $booknumber . '_' . $uid . '_' . $foto->getClientOriginalName();
+                $pekerjaanFile->save();
+            }
+        }
+
+        return redirect('pemeliharaan/pekerjaan-detail/' . $pekerjaan->booknumber)->with('message', 'Data berhasil diupdate.');
     }
 
     public function approve($booknumber) {

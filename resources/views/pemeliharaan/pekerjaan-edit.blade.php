@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="image">Upload Foto</label>
-                                    <input type="file" class="form-control input-default" name="foto" id="foto">
+                                    <input type="file" class="form-control input-default" name="foto[]" id="foto[]" multiple> {{-- ditambahkan simbol array[] & multiple agar bisa upload beberapa file --}}
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped">
@@ -70,11 +70,33 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                             @if ($DataPekerjaan->getFile->count() != null) {{-- Untuk Cek apakah ada data ber-relasi atau tidak --}}
                                             <tr>
+                                                @foreach ($DataPekerjaan->getFile->all() as $foto)
+                                                <tr>
+                                                    <td>
+                                                        <img src="{{asset('pemeliharaan/'.$foto->file)}}" width="150px"><br>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{asset('pemeliharaan/'.$foto->file)}}">{{$foto->file}}</a>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-danger" onclick="window.location.href='/pemeliharaan/pekerjaan-delete-file/{{$foto->id}}'">Delete</button>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tr>
+                                            @else {{-- Jika tidak ada data ber-relasi, munculkan kode berikut --}}
+                                            <tr>
+                                                <th>Foto</th>
+                                                <td colspan="2">Tidak ada foto yang diunggah</td>
+                                            </tr>
+                                            @endif
+                                            {{-- <tr>
                                                 <td><img src="{{asset('pemeliharaan/'.$DataPekerjaan->getFile->file)}}" width="150px"></td>
                                                 <td><a href="{{asset('pemeliharaan/'.$DataPekerjaan->getFile->file)}}">{{$DataPekerjaan->getFile->file}}</a></td>
                                                 <td><button type="button" class="btn btn-danger" onclick="window.location.href='/pemeliharaan/pekerjaan-delete-file/{{$DataPekerjaan->getFile->id}}'">Delete</button></th>
-                                            </tr>
+                                            </tr> --}}
                                         </tbody>
                                     </table>
                                 </div>
