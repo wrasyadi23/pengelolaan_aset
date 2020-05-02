@@ -70,28 +70,25 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                             @if ($DataPekerjaan->getFile->count() != null) {{-- Untuk Cek apakah ada data ber-relasi atau tidak --}}
+                                        @if ($DataPekerjaan->getFile->count() != null) {{-- Untuk Cek apakah ada data ber-relasi atau tidak --}}
+                                            @foreach ($DataPekerjaan->getFile->all() as $foto)
                                             <tr>
-                                                @foreach ($DataPekerjaan->getFile->all() as $foto)
-                                                <tr>
-                                                    <td>
-                                                        <img src="{{asset('pemeliharaan/'.$foto->file)}}" width="150px"><br>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{asset('pemeliharaan/'.$foto->file)}}">{{$foto->file}}</a>
-                                                    </td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-danger" onclick="window.location.href='/pemeliharaan/pekerjaan-delete-file/{{$foto->id}}'">Delete</button>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
+                                                <td>
+                                                    <img src="{{asset('pemeliharaan/'.$foto->file)}}" width="150px"><br>
+                                                </td>
+                                                <td>
+                                                    <a href="{{asset('pemeliharaan/'.$foto->file)}}">{{$foto->file}}</a>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger" onclick="window.location.href='/pemeliharaan/pekerjaan-delete-file/{{$foto->id}}'">Delete</button>
+                                                </td>
                                             </tr>
-                                            @else {{-- Jika tidak ada data ber-relasi, munculkan kode berikut --}}
+                                            @endforeach
+                                        @else {{-- Jika tidak ada data ber-relasi, munculkan kode berikut --}}
                                             <tr>
-                                                <th>Foto</th>
-                                                <td colspan="2">Tidak ada foto yang diunggah</td>
+                                                <td colspan="3" align="center">Tidak ada foto yang diunggah</td>
                                             </tr>
-                                            @endif
+                                        @endif
                                             {{-- <tr>
                                                 <td><img src="{{asset('pemeliharaan/'.$DataPekerjaan->getFile->file)}}" width="150px"></td>
                                                 <td><a href="{{asset('pemeliharaan/'.$DataPekerjaan->getFile->file)}}">{{$DataPekerjaan->getFile->file}}</a></td>

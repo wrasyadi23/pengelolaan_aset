@@ -13,9 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
 
 // pemeliharaan
 Route::get('/pemeliharaan/dashboard','pemeliharaanController@index');
