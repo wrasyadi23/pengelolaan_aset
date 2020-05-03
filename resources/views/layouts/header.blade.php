@@ -166,7 +166,14 @@
                             <li>
                                 <a href="page-lock.html"><i class="icon-lock"></i> <span>Lock Screen</span></a>
                             </li> --}}
-                            <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                            <li>
+                                <form action="{{route('logout')}}" method="post" id="logout-form">
+                                @csrf
+                                <a id="logout" href="javascript:document.getElementById('logout-form').submit()">
+                                    <i class="icon-key"></i> <span>Logout</span>
+                                </a>
+                                </form>
+                            </li>
                         </ul>
                     </div>
                 </div>
