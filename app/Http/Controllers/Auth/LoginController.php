@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -39,12 +40,21 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    
-    public function validateLogin(Request $request) {
 
-        $user = User::where('nik','=',$request->input($this->nik))->first();
-        if ($user->getKaryawan->status == 'Aktif') {
-            return redirect('home');
+    public function username()
+    {
+        return 'nik';
+    }
+
+    public function validateLogin(Request $request)
+    {
+        $user = User::where('nik', $request->input('nik'))->first();
+        if (!empty($user)) {
+            if ($user->getKaryawan->status != 'Aktif') {
+                throw ValidationException::withMessages(['nik' => 'Status karyawan tidak aktif']);
+            }
+        } else {
+            throw ValidationException::withMessages(['nik' => 'Status karyawan tidak terdaftar']);
         }
     }
 }

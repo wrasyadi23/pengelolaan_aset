@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html class="h-100" lang="en">
 
@@ -12,11 +11,11 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('quixlab/images/favicon.png')}}">
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
     <link href="{{asset('quixlab/css/style.css')}}" rel="stylesheet">
-    
+
 </head>
 
 <body class="h-100">
-    
+
     <!--*******************
         Preloader start
     ********************-->
@@ -31,7 +30,7 @@
         Preloader end
     ********************-->
 
-    
+
 
 
 
@@ -42,23 +41,21 @@
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
-                                <a class="text-center" href="/"><H4>Pelayanan Umum</H4></a>
+                                <a class="text-center" href="/">
+                                    <H4>Pelayanan Umum</H4>
+                                </a>
                                 <form class="mt-5 mb-5 login-input" method="POST" action="{{route('login')}}">
-                                @csrf
+                                    @csrf
                                     <div class="form-group">
                                         <input type="text" id="nik" name="nik" class="form-control" value="{{ old('nik') }}" placeholder="Nomor NIK" required autofocus autocomplete="nik">
                                         @error('nik')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                            <span class="text-danger">{{$message}}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control" placeholder="Password" name="password" required autocomplete="current-password">
                                         @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                            <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <button class="btn login-form__btn submit w-100" type="submit">Sign In</button>
@@ -71,9 +68,9 @@
             </div>
         </div>
     </div>
-    
 
-    
+
+
 
     <!--**********************************
         Scripts
@@ -84,9 +81,5 @@
     <script src="{{asset('quixlab/js/gleek.js')}}"></script>
     <script src="{{asset('quixlab/js/styleSwitcher.js')}}"></script>
 </body>
+
 </html>
-
-
-
-
-
