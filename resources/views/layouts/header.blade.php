@@ -154,7 +154,7 @@
                     <div class="dropdown-content-body">
                         <ul>
                             <li>
-                                <a href="app-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
+                                <a href="#"><i class="icon-user"></i> <span>{{Auth::user()->nama}}</span></a>
                             </li>
                             {{-- <li>
                                 <a href="javascript:void()">

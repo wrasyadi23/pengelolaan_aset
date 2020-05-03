@@ -19,4 +19,9 @@ class Bagian extends Model
     {
         return $this->hasMany('App\Seksi', 'kd_bagian', 'kd_bagian');
     }
+
+    public function getKaryawan()
+    {
+        return $this->belongsTo('App\Karyawan', 'nik', 'nik');
+    }
 }

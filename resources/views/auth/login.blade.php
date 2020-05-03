@@ -46,8 +46,8 @@
                                 <form class="mt-5 mb-5 login-input" method="POST" action="{{route('login')}}">
                                 @csrf
                                     <div class="form-group">
-                                        <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="Email" required autofocus autocomplete="email">
-                                        @error('email')
+                                        <input type="text" id="nik" name="nik" class="form-control" value="{{ old('nik') }}" placeholder="Nomor NIK" required autofocus autocomplete="nik">
+                                        @error('nik')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

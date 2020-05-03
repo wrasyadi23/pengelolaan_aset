@@ -19,4 +19,9 @@ class Seksi extends Model
     {
         return $this->hasMany('App\Regu', 'kd_seksi', 'kd_seksi');
     }
+
+    public function getKaryawan()
+    {
+        return $this->belongsTo('App\Karyawan', 'nik', 'nik');
+    }
 }

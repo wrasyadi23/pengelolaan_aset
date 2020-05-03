@@ -11,6 +11,7 @@ use App\Pekerjaan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use File;
+use Auth;
 
 class input_pekerjaanController extends Controller
 {
@@ -64,8 +65,8 @@ class input_pekerjaanController extends Controller
 
         $pekerjaan = new Pekerjaan;
         $pekerjaan->booknumber = $booknumber;
-        $pekerjaan->nama = 'Mohammad Wava';
-        $pekerjaan->nik = '2115446';
+        $pekerjaan->nama = Auth::user()->nama;
+        $pekerjaan->nik = Auth::user()->nik;
         $pekerjaan->kd_area = $kd_area;
         $pekerjaan->kd_alamat = $kd_alamat;
         $pekerjaan->kd_keterangan = $kd_keterangan;
@@ -83,7 +84,7 @@ class input_pekerjaanController extends Controller
                 $foto->move(public_path('pemeliharaan'), $booknumber . '_' . $uid . '_' . $foto->getClientOriginalName());
                 $pekerjaanFile = new PekerjaanFile;
                 $pekerjaanFile->booknumber = $booknumber;
-                $pekerjaanFile->file = $booknumber . '_' . $uid . '_' . $foto->getClientOriginalName();
+                $pekerjaanFile->file = $uid . '_' . $foto->getClientOriginalName();
                 $pekerjaanFile->save();
             }
         }
@@ -136,7 +137,7 @@ class input_pekerjaanController extends Controller
                 $foto->move(public_path('pemeliharaan'), $booknumber . '_' . $uid . '_' . $foto->getClientOriginalName());
                 $pekerjaanFile = new PekerjaanFile;
                 $pekerjaanFile->booknumber = $booknumber;
-                $pekerjaanFile->file = $booknumber . '_' . $uid . '_' . $foto->getClientOriginalName();
+                $pekerjaanFile->file = $uid . '_' . $foto->getClientOriginalName();
                 $pekerjaanFile->save();
             }
         }

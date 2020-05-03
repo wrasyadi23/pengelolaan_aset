@@ -19,4 +19,9 @@ class Regu extends Model
     {
         return $this->hasMany('App\AreaKlasifikasi', 'kd_regu', 'kd_regu');
     }
+
+    public function getKaryawan()
+    {
+        return $this->belongsTo('App\Karyawan', 'nik', 'nik');
+    }
 }
