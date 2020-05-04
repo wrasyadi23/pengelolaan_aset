@@ -37,4 +37,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/pemeliharaan/pekerjaan-close/{booknumber}','input_pekerjaanController@close');
     // input klasifikasi pekerjaan 
     Route::get('/pemeliharaan/klasifikasi','input_klasifikasiController@index');
+    Route::get('/pemeliharaan/klasifikasi-create','input_klasifikasiController@create');
+    Route::post('/pemeliharaan/klasifikasi-store','input_klasifikasiController@store');
 }); 

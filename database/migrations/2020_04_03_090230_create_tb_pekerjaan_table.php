@@ -19,6 +19,7 @@ class CreateTbPekerjaanTable extends Migration
             // requester info ambil dari Auth
             $table->string('nama',45);
             $table->string('nik',45);
+            $table->string('telepon',45);
             // job info 
             $table->string('kd_area',45);
             $table->string('kd_alamat',45);

@@ -45,8 +45,7 @@ class input_pekerjaanController extends Controller
         }
 
         $booknumber = $getBookNumber;
-        // $nama = $request->input('nama');
-        // $nik = $request->input('nik');
+        $telepon = $request->input('telepon');
         $kd_area = $request->input('kd_area');
         $kd_alamat = $request->input('kd_alamat');
         $kd_keterangan = $request->input('kd_keterangan');
@@ -67,6 +66,7 @@ class input_pekerjaanController extends Controller
         $pekerjaan->booknumber = $booknumber;
         $pekerjaan->nama = Auth::user()->nama;
         $pekerjaan->nik = Auth::user()->nik;
+        $pekerjaan->telepon = $telepon;
         $pekerjaan->kd_area = $kd_area;
         $pekerjaan->kd_alamat = $kd_alamat;
         $pekerjaan->kd_keterangan = $kd_keterangan;
@@ -81,7 +81,7 @@ class input_pekerjaanController extends Controller
         if ($request->hasFile('foto')) {
             foreach ($request->file('foto') as $key => $foto) {
                 $uid = uniqid(time(), false); // Generate random unique id
-                $foto->move(public_path('pemeliharaan'), $booknumber . '_' . $uid . '_' . $foto->getClientOriginalName());
+                $foto->move(public_path('pemeliharaan'), $uid . '_' . $foto->getClientOriginalName());
                 $pekerjaanFile = new PekerjaanFile;
                 $pekerjaanFile->booknumber = $booknumber;
                 $pekerjaanFile->file = $uid . '_' . $foto->getClientOriginalName();
@@ -117,6 +117,7 @@ class input_pekerjaanController extends Controller
 
     public function update($booknumber, request $request) {
 
+        $telepon = $request->input('telepon');
         $kd_area = $request->input('kd_area');
         $kd_alamat = $request->input('kd_alamat');
         $kd_keterangan = $request->input('kd_keterangan');
@@ -124,6 +125,7 @@ class input_pekerjaanController extends Controller
         $uraian = $request->input('uraian');
 
         $pekerjaan = Pekerjaan::where('booknumber',$booknumber)->first();
+        $pekerjaan->telepon = $telepon;
         $pekerjaan->kd_area = $kd_area;
         $pekerjaan->kd_alamat = $kd_alamat;
         $pekerjaan->kd_keterangan = $kd_keterangan;
@@ -134,7 +136,7 @@ class input_pekerjaanController extends Controller
         if ($request->hasFile('foto')) {
             foreach ($request->file('foto') as $key => $foto) {
                 $uid = uniqid(time(), false); // Generate random unique id
-                $foto->move(public_path('pemeliharaan'), $booknumber . '_' . $uid . '_' . $foto->getClientOriginalName());
+                $foto->move(public_path('pemeliharaan'), $uid . '_' . $foto->getClientOriginalName());
                 $pekerjaanFile = new PekerjaanFile;
                 $pekerjaanFile->booknumber = $booknumber;
                 $pekerjaanFile->file = $uid . '_' . $foto->getClientOriginalName();

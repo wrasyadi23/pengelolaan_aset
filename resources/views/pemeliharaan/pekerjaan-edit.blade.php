@@ -18,7 +18,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="klasifikasi-area">Klasifikasi Area</label>
-                                        <select name="kd_area" id="kd_area" class="form-control input-default">
+                                        <select name="kd_area" id="kd_area" class="form-control input-default" required>
                                             @foreach ($area_klasifikasi as $area => $itemArea)
                                                 <option value="{{$itemArea->kd_area}}" {{$itemArea->kd_area == $DataPekerjaan->kd_area ? 'selected' : ''}}>{{$itemArea->klasifikasi_area}}</option>
                                             @endforeach
@@ -26,7 +26,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="alamat">Sub Area 1/Alamat</label>
-                                        <select name="kd_alamat" id="kd_alamat" class="form-control input-default">
+                                        <select name="kd_alamat" id="kd_alamat" class="form-control input-default" required>
                                             @foreach ($dataAlamat as $alamat)
                                                 <option value="{{$alamat->kd_alamat}}" {{$alamat->kd_alamat == $DataPekerjaan->kd_alamat ? 'selected' : ''}}>{{$alamat->alamat}}</option>                                                
                                             @endforeach
@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="keterangan">Sub Area 2/Keterangan Objek</label>
-                                        <select name="kd_keterangan" id="kd_keterangan" class="form-control input-default">
+                                        <select name="kd_keterangan" id="kd_keterangan" class="form-control input-default" required>
                                             @foreach ($dataKeterangan as $areaKeterangan => $itemKeterangan)
                                                 <option value="{{$itemKeterangan->kd_keterangan}}" {{$itemKeterangan->kd_keterangan == $DataPekerjaan->kd_keterangan ? 'selected' : ''}}>{{$itemKeterangan->keterangan}}</option>                                                
                                             @endforeach
@@ -44,7 +44,7 @@
                                 {{-- combobox dinamis end --}}
                                 <div class="form-group">
                                     <label for="jenisPekerjaan">Jenis Pekerjaan</label>
-                                    <select name="kd_klasifikasi_pekerjaan" id="kd_klasifikasi_pekerjaan" class="form-control input-default">
+                                    <select name="kd_klasifikasi_pekerjaan" id="kd_klasifikasi_pekerjaan" class="form-control input-default" required>
                                         @foreach ($pekerjaan_klasifikasi as $pekerjaan => $itemPekerjaan)
                                             <option value="{{$itemPekerjaan->kd_klasifikasi_pekerjaan}}" {{$itemPekerjaan->kd_klasifikasi_pekerjaan == $DataPekerjaan->kd_klasifikasi_pekerjaan ? 'selected' : '' }}>
                                                 {{$itemPekerjaan->klasifikasi_pekerjaan}}
@@ -53,8 +53,12 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label for="telepon">Telepon</label>
+                                    <input type="text" name="telepon" id="" class="form-control form-control-sm input-default" value="{{$DataPekerjaan->telepon}}" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="uraian">Uraian Kerusakan/Error</label>
-                                    <textarea name="uraian" id="" rows="7" class="form-control input-default">{{$DataPekerjaan->uraian}}</textarea>
+                                    <textarea name="uraian" id="" rows="7" class="form-control input-default" required>{{$DataPekerjaan->uraian}}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="image">Upload Foto</label>
