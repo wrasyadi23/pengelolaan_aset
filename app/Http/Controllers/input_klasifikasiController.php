@@ -68,7 +68,7 @@ class input_klasifikasiController extends Controller
     
         $klasifikasi = PekerjaanKlasifikasi::where('id',$id)->first();
         $klasifikasi->klasifikasi_pekerjaan = $klasifikasi_pekerjaan;
-        $klasifikasi->kd_regu = $klasifikasi_pekerjaan;
+        $klasifikasi->kd_regu = $kd_regu;
         $klasifikasi->save();
 
         return redirect('pemeliharaan/klasifikasi')->with('message','Data berhasil diupdate.');
