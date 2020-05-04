@@ -17,7 +17,7 @@ class Regu extends Model
 
     public function getKlasifikasi()
     {
-        return $this->hasMany('App\AreaKlasifikasi', 'kd_regu', 'kd_regu');
+        return $this->hasMany('App\PekerjaanKlasifikasi', 'kd_regu', 'kd_regu');
     }
 
     public function getKaryawan()

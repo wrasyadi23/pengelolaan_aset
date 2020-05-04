@@ -39,4 +39,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/pemeliharaan/klasifikasi','input_klasifikasiController@index');
     Route::get('/pemeliharaan/klasifikasi-create','input_klasifikasiController@create');
     Route::post('/pemeliharaan/klasifikasi-store','input_klasifikasiController@store');
+    Route::get('/pemeliharaan/klasifikasi-edit/{id}','input_klasifikasiController@edit');
+    Route::post('/pemeliharaan/klasifikasi-update/{id}','input_klasifikasiController@update');
 }); 

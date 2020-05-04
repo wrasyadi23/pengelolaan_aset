@@ -1,14 +1,14 @@
 @extends('layouts.master')
-@section('title','Klasifikasi Pekerjaan')
+@section('title','Edit Klasifikasi Pekerjaan')
 @section('content')
 <div class="container-fluid mt-3">
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Input Klasifikasi</h4>
+                    <h4 class="card-title">Edit Klasifikasi</h4>
                     <div class="card-content">
-                        <form action="/pemeliharaan/klasifikasi-store" method="post" enctype="multipart/form-data">
+                        <form action="/pemeliharaan/klasifikasi-update/{{$klasifikasi->id}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="basic-form">
                                 {{-- combobox dinamis start --}}
@@ -18,23 +18,31 @@
                                         <select name="kd_bagian" id="kd_bagian" class="form-control input-default" required>
                                             <option disabled selected></option>
                                             @foreach ($bagian as $itemBagian)
-                                                <option value="{{$itemBagian->kd_bagian}}">{{$itemBagian->bagian}}</option>
+                                                <option value="{{$itemBagian->kd_bagian}}"{{$itemBagian->kd_bagian == $dataSeksi->kd_bagian ? 'selected' : ''}}>{{$itemBagian->bagian}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="seksi">Seksi</label>
-                                        <select name="kd_seksi" id="kd_seksi" class="form-control input-default" disabled required></select>
+                                        <select name="kd_seksi" id="kd_seksi" class="form-control input-default" required>
+                                            @foreach ($dataSeksi->get() as $itemSeksi)
+                                                <option value="{{$dataSeksi->kd_seksi}}"{{$itemSeksi->kd_seksi == $dataRegu->kd_seksi ? 'selected' : ''}}>{{$itemSeksi->seksi}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="regu">Regu</label>
-                                        <select name="kd_regu" id="kd_regu" class="form-control input-default" required></select>
+                                        <select name="kd_regu" id="kd_regu" class="form-control input-default" required>
+                                            @foreach ($dataRegu->get() as $itemRegu)
+                                                <option value="{{$dataRegu->kd_regu}}"{{$itemRegu->kd_regu == $klasifikasi->kd_regu ? 'selected' : ''}}>{{$itemRegu->regu}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 {{-- combobox dinamis end --}}
                                 <div class="form-group">
                                     <label for="telepon">Klasifikasi Pekerjaan</label>
-                                    <input type="text" name="klasifikasi_pekerjaan" id="" class="form-control input-default" required>
+                                    <input type="text" name="klasifikasi_pekerjaan" id="" class="form-control input-default" value="{{$klasifikasi->klasifikasi_pekerjaan}}" required>
                                 </div>
                                 <div class="general-button">
                                     <button type="button" class="btn btn-primary" onclick="window.location.href='/pemeliharaan/klasifikasi'">Back</button>
@@ -59,12 +67,10 @@
         $("#kd_seksi").select2({
             placeholder: 'Pilih Seksi',
             allowClear: true,
-            disabled: true
         }); // fungsi untuk mengubah dropdown biasa menjadi plugin select2
         $("#kd_regu").select2({
             placeholder: 'Pilih Regu',
             allowClear: true,
-            disabled: true
         }); // fungsi untuk mengubah dropdown biasa menjadi plugin select2
 
 

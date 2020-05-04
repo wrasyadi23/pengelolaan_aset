@@ -27,8 +27,8 @@
                                     <div class="form-group col-md-4">
                                         <label for="alamat">Sub Area 1/Alamat</label>
                                         <select name="kd_alamat" id="kd_alamat" class="form-control input-default" required>
-                                            @foreach ($dataAlamat as $alamat)
-                                                <option value="{{$alamat->kd_alamat}}" {{$alamat->kd_alamat == $DataPekerjaan->kd_alamat ? 'selected' : ''}}>{{$alamat->alamat}}</option>                                                
+                                            @foreach ($dataAlamat as $alamat =. $itemAlamat)
+                                                <option value="{{$itemAlamat->kd_alamat}}" {{$itemAlamat->kd_alamat == $DataPekerjaan->kd_alamat ? 'selected' : ''}}>{{$itemAlamat->alamat}}</option>                                                
                                             @endforeach
                                         </select>
                                     </div>
