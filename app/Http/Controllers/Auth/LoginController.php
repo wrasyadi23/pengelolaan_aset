@@ -41,6 +41,9 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+     * Fungsi untuk mengubah field login dari email menjadi NIK
+     */
     public function username()
     {
         return 'nik';
@@ -48,13 +51,13 @@ class LoginController extends Controller
 
     public function validateLogin(Request $request)
     {
-        $user = User::where('nik', $request->input('nik'))->first();
-        if (!empty($user)) {
+        $user = User::where('nik', $request->input('nik'))->first(); // Cari data user dengan NIK yang diinput
+        if (!empty($user)) { // Jika ada data user dengan nik yang sama, cek status aktif
             if ($user->getKaryawan->status != 'Aktif') {
-                throw ValidationException::withMessages(['nik' => 'Status karyawan tidak aktif']);
+                throw ValidationException::withMessages(['nik' => 'Status karyawan tidak aktif']); // Munculkan error ketika karyawan tidak aktif
             }
         } else {
-            throw ValidationException::withMessages(['nik' => 'Status karyawan tidak terdaftar']);
+            throw ValidationException::withMessages(['nik' => 'Status karyawan tidak terdaftar']); // Jika tidak ada user terdaftar, tampilkan pesan user tidak terdaftar
         }
     }
 }
