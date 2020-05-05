@@ -41,4 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/pemeliharaan/klasifikasi-store','input_klasifikasiController@store');
     Route::get('/pemeliharaan/klasifikasi-edit/{id}','input_klasifikasiController@edit');
     Route::post('/pemeliharaan/klasifikasi-update/{id}','input_klasifikasiController@update');
+    Route::get('/pemeliharaan/klasifikasi-delete/{id}','input_klasifikasiController@delete');
+    // data pekerjaan 
+    Route::get('/pemeliharaan/data','pemeliharaanController@data');
 }); 

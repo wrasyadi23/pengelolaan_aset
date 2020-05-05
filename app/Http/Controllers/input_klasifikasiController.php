@@ -73,4 +73,12 @@ class input_klasifikasiController extends Controller
 
         return redirect('pemeliharaan/klasifikasi')->with('message','Data berhasil diupdate.');
     }
+
+    public function delete($id)
+    {
+        $klasifikasi = PekerjaanKlasifikasi::where('id',$id)->first();
+        $klasifikasi->delete();
+        
+        return redirect()->back();
+    }
 }
