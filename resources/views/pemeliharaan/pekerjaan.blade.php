@@ -35,7 +35,7 @@
                                 <tbody>
                                 @foreach ($DataPekerjaan as $Pekerjaan => $item)    
                                     <tr>
-                                        <td><a href="/pekerjaan/pekerjaan-info/{{$item->booknumber}}">{{$item->booknumber}}</a></td>
+                                        <td>{{$item->booknumber}}</td>
                                         <td>{{$item->nama}}</td>
                                         <td>{{$item->nik}}</td>
                                         <td>{{$item->tanggal_pekerjaan}}</td>
