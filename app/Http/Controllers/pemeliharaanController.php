@@ -15,7 +15,10 @@ use Illuminate\Http\Request;
 class pemeliharaanController extends Controller
 {
     public function index(){
-        return view('pemeliharaan/dashboard');
+        $pekerjaan = Pekerjaan::all();
+        return view('pemeliharaan/dashboard',[
+            'pekerjaan' => $pekerjaan,
+        ]);
     }
 
     public function data()
