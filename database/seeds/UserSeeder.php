@@ -28,6 +28,8 @@ class UserSeeder extends Seeder
             'tempat_lahir' => 'Surabaya',
             'tanggal_lahir' => '1993-06-23',
             'jenis_kelamin' => 'L',
+            'jabatan' => 'Pelaksana',
+            'golongan' => '6A',
             'kd_departemen' => 'DEP0001',
             'kd_bagian' => 'BAG0003',
             'kd_seksi' => 'SIE0001',
