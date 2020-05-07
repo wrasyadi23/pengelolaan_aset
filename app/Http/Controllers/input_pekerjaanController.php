@@ -164,7 +164,16 @@ class input_pekerjaanController extends Controller
 
         return redirect('pemeliharaan/pekerjaan')->with('message', 'Pekerjaan telah dicancel.');
     }
+    
+    public function close($booknumber) {
 
+        $closePekerjaan = Pekerjaan::where('booknumber',$booknumber)->first();
+        $closePekerjaan->status = 'Closed';
+        $closePekerjaan->save();
+
+        return redirect('pemeliharaan/pekerjaan')->with('message', 'Pekerjaan telah selesai.');
+    }
+    
     public function deleteFile($id) {
         
         $getFile = PekerjaanFile::where('id',$id)->first();

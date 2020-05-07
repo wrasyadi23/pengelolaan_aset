@@ -37,16 +37,16 @@
                                                 </tr>
                                             </thead>
                                             <tbody>    
-                                                @foreach ($pekerjaan->where('status','Requested') as $requested => $req)
+                                                @foreach ($pekerjaan->where('status','Requested') as $requested => $request)
                                                     <tr>
-                                                        <td>{{$req->booknumber}}</td>
-                                                        <td>{{$req->nama}}</td>
-                                                        <td>{{$req->nik}}</td>
-                                                        <td>{{$req->tanggal_pekerjaan}}</td>
-                                                        <td>{{$req->tanggal_pelaksanaan}}</td>
-                                                        <td>{{$req->uraian}}</td>
-                                                        <td><span class="badge badge-primary">{{$req->status}}</span></td>
-                                                        <td><a href="/pemeliharaan/pekerjaan-detail/{{$req->booknumber}}" class="badge badge-success">Detail</a></td>
+                                                        <td>{{$request->booknumber}}</td>
+                                                        <td>{{$request->nama}}</td>
+                                                        <td>{{$request->nik}}</td>
+                                                        <td>{{$request->tanggal_pekerjaan}}</td>
+                                                        <td>{{$request->tanggal_pelaksanaan}}</td>
+                                                        <td>{{$request->uraian}}</td>
+                                                        <td><span class="badge badge-primary">{{$request->status}}</span></td>
+                                                        <td><a href="/pemeliharaan/pekerjaan-detail/{{$request->booknumber}}" class="badge badge-success">Detail</a></td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -114,7 +114,7 @@
                                                         <td>{{$cancel->tanggal_pelaksanaan}}</td>
                                                         <td>{{$cancel->uraian}}</td>
                                                         <td><span class="badge badge-primary">{{$cancel->status}}</span></td>
-                                                        <td><a href="/pemeliharaan/pekerjaan-detail/{{$cancel->booknumber}}" class="badge badge-success">Detail</a></td>
+                                                        <td><a href="/pemeliharaan/pekerjaan-detail/{{$close->booknumber}}" class="badge badge-success">Detail</a></td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -122,7 +122,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="Closed">
+                            <div class="tab-pane fade" id="closed">
                                 <div class="p-t-15">
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered zero-configuration" style="width: 100%;">
