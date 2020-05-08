@@ -27,9 +27,9 @@ class input_klasifikasiController extends Controller
         $data = PekerjaanKlasifikasi::select('id','kd_klasifikasi_pekerjaan')
             ->orderBy('id', 'desc')->count();
         if ($data > 0) {
-            $kd_klasifikasi_pekerjaan = 'KP' . sprintf('%04s', $data + 1);
+            $kd_klasifikasi_pekerjaan = 'KP' . sprintf('%05s', $data + 1);
         } else {
-            $kd_klasifikasi_pekerjaan = 'KP' . sprintf('%04s', 1);
+            $kd_klasifikasi_pekerjaan = 'KP' . sprintf('%05s', 1);
         }
         
         $klasifikasi_pekerjaan = $request->input('klasifikasi_pekerjaan');

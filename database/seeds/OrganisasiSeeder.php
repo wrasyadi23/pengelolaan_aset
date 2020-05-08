@@ -58,7 +58,7 @@ class OrganisasiSeeder extends Seeder
         \App\Regu::insert([
             [
                 'kd_regu' => 'RU0001',
-                'regu' => 'Gedung, Jalan & Dekorasi',
+                'regu' => 'Gedung & Jalan',
                 'kd_seksi' => 'SIE0001'
             ],
             [
@@ -90,6 +90,11 @@ class OrganisasiSeeder extends Seeder
                 'kd_regu' => 'RU0007',
                 'regu' => 'Pemancar, Sound System & Pagging',
                 'kd_seksi' => 'SIE0003'
+            ],
+            [
+                'kd_regu' => 'RU0008',
+                'regu' => 'Dekorasi & Pekerjaan Kayu',
+                'kd_seksi' => 'SIE0001'
             ]
         ]);
 
