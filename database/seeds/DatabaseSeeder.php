@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
             AreaSeeder::class,
             OrganisasiSeeder::class,
             KlasifikasiPekerjaanSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            KapasitasSeeder::class,
         ]);
     }
 }

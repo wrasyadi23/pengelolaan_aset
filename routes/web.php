@@ -20,20 +20,10 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => ['auth']], function () {
-    // pemeliharaan
-    Route::get('/pemeliharaan/dashboard','pemeliharaanController@index');
-    // input pekerjaan
-    Route::get('/pemeliharaan/pekerjaan','input_pekerjaanController@index');
-    Route::get('/pemeliharaan/pekerjaan-create','input_pekerjaanController@create');
-    Route::post('/pemeliharaan/pekerjaan-store','input_pekerjaanController@store');
-    Route::get('/pemeliharaan/pekerjaan-detail/{booknumber}','input_pekerjaanController@detail');
-    Route::get('/pemeliharaan/pekerjaan-edit/{booknumber}','input_pekerjaanController@edit');
+Route::group(['middleware' => ['auth','role:Admin']], function () {
     Route::get('/pemeliharaan/pekerjaan-approve/{booknumber}','input_pekerjaanController@approve');
     Route::get('/pemeliharaan/pekerjaan-disapprove/{booknumber}','input_pekerjaanController@disapprove');
     Route::get('/pemeliharaan/pekerjaan-cancel/{booknumber}','input_pekerjaanController@cancel');
-    Route::post('/pemeliharaan/pekerjaan-update/{booknumber}','input_pekerjaanController@update');
-    Route::get('/pemeliharaan/pekerjaan-delete-file/{id}','input_pekerjaanController@deleteFile');
     Route::get('/pemeliharaan/pekerjaan-close/{booknumber}','input_pekerjaanController@close');
     // input klasifikasi pekerjaan 
     Route::get('/pemeliharaan/klasifikasi','input_klasifikasiController@index');
@@ -45,3 +35,16 @@ Route::group(['middleware' => ['auth']], function () {
     // data pekerjaan 
     Route::get('/pemeliharaan/data','pemeliharaanController@data');
 }); 
+
+Route::group(['middleware' => ['auth','role:Admin,Worker,User']], function () {
+    // pemeliharaan
+    Route::get('/pemeliharaan/dashboard','pemeliharaanController@index');
+    // input pekerjaan
+    Route::get('/pemeliharaan/pekerjaan','input_pekerjaanController@index');
+    Route::get('/pemeliharaan/pekerjaan-create','input_pekerjaanController@create');
+    Route::post('/pemeliharaan/pekerjaan-store','input_pekerjaanController@store');
+    Route::get('/pemeliharaan/pekerjaan-detail/{booknumber}','input_pekerjaanController@detail');
+    Route::get('/pemeliharaan/pekerjaan-edit/{booknumber}','input_pekerjaanController@edit');
+    Route::post('/pemeliharaan/pekerjaan-update/{booknumber}','input_pekerjaanController@update');
+    Route::get('/pemeliharaan/pekerjaan-delete-file/{id}','input_pekerjaanController@deleteFile');
+});

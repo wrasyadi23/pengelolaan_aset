@@ -7,6 +7,7 @@ use App\AreaKeterangan;
 use App\AreaKlasifikasi;
 use App\PekerjaanFile;
 use App\PekerjaanKlasifikasi;
+use App\PekerjaanKapasitas;
 use App\Pekerjaan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,7 +18,9 @@ class input_pekerjaanController extends Controller
 {
     public function index()
     {
-        $getDataPekerjaan = Pekerjaan::whereIn('status',['Requested','Approved'])->get();
+        $getDataPekerjaan = Pekerjaan::where('nik', Auth::user()->nik)
+            ->whereIn('status',['Requested','Approved'])
+            ->get();
         return view('pemeliharaan/pekerjaan',['DataPekerjaan' => $getDataPekerjaan]);
     }
 
@@ -53,10 +56,10 @@ class input_pekerjaanController extends Controller
         $tanggal_pekerjaan = date('Y-m-d h:m:s');
         $uraian = $request->input('uraian');
 
-        $validasi_tanggal_pelaksanaan = Pekerjaan::select('id', 'tanggal_pelaksanaan')->orderBy('id', 'desc')->first();
+        $validasi_tanggal_pelaksanaan = Pekerjaan::select('id','kd_klasifikasi_pekerjaan','tanggal_pelaksanaan')->orderBy('id', 'desc')->first();
         if (empty($validasi_tanggal_pelaksanaan)) {
             $tanggal_pelaksanaan = Carbon::now();
-        } elseif ($validasi_tanggal_pelaksanaan->where('tanggal_pelaksanaan', $validasi_tanggal_pelaksanaan->tanggal_pelaksanaan)->count() < 5) {
+        } elseif ($validasi_tanggal_pelaksanaan->where('tanggal_pelaksanaan', $validasi_tanggal_pelaksanaan->tanggal_pelaksanaan)->count() < $validasi_tanggal_pelaksanaan->getKlasifikasi->getRegu->getKapasitas->kapasitas) {
             $tanggal_pelaksanaan = $validasi_tanggal_pelaksanaan->tanggal_pelaksanaan;
         } else {
             $tanggal_pelaksanaan = Carbon::createFromDate($validasi_tanggal_pelaksanaan->tanggal_pelaksanaan)->addDay();

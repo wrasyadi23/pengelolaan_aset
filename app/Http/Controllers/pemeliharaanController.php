@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 class pemeliharaanController extends Controller
 {
     public function index(){
-        $pekerjaan = Pekerjaan::all();
+        $pekerjaan = Pekerjaan::where('nik',Auth::user()->nik)->get();
         return view('pemeliharaan/dashboard',[
             'pekerjaan' => $pekerjaan,
         ]);
@@ -23,7 +23,7 @@ class pemeliharaanController extends Controller
 
     public function data()
     {
-        $pekerjaan = Pekerjaan::all();
+        $pekerjaan = Pekerjaan::where('nik',Auth::user()->nik)->get();
         return view('pemeliharaan/data',[
             'pekerjaan' => $pekerjaan,
         ]);

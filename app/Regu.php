@@ -24,4 +24,9 @@ class Regu extends Model
     {
         return $this->belongsTo('App\Karyawan', 'nik', 'nik');
     }
+
+    public function getKapasitas()
+    {
+        return $this->hasOne('App\PekerjaanKapasitas', 'kd_regu', 'kd_regu');
+    }
 }

@@ -77,13 +77,15 @@
                             <button class="btn mb-1 btn-primary" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan'">Back</button>
                             @if ($DetailPekerjaan->status == 'Requested')
                                 <button class="btn mb-1 btn-primary" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-edit/{{$DetailPekerjaan->booknumber}}'">Edit</button>
+                                @if (Auth::user()->role == 'Admin')
                                 <button class="btn mb-1 btn-success" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-approve/{{$DetailPekerjaan->booknumber}}'">Approve</button>
+                                @endif
                             @endif
-                            @if ($DetailPekerjaan->status == 'Approved')
+                            @if ($DetailPekerjaan->status == 'Approved' && Auth::user()->role == 'Admin')
                                 <button class="btn mb-1 btn-warning" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-disapprove/{{$DetailPekerjaan->booknumber}}'">Disapprove</button>
                                 <button class="btn mb-1 btn-success" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-close/{{$DetailPekerjaan->booknumber}}'">Closed</button>
                             @endif
-                            @if ($DetailPekerjaan->whereIn('status',['Requested','Approved']))
+                            @if ($DetailPekerjaan->whereIn('status',['Requested','Approved']) && Auth::user()->role == 'Admin')
                                 <button class="btn mb-1 btn-danger" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-cancel/{{$DetailPekerjaan->booknumber}}'">Cancel</button>
                             @endif
                         </div>
