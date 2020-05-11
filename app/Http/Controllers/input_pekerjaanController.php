@@ -59,7 +59,10 @@ class input_pekerjaanController extends Controller
         $validasi_tanggal_pelaksanaan = Pekerjaan::select('id','kd_klasifikasi_pekerjaan','tanggal_pelaksanaan')->orderBy('id', 'desc')->first();
         if (empty($validasi_tanggal_pelaksanaan)) {
             $tanggal_pelaksanaan = Carbon::now();
-        } elseif ($validasi_tanggal_pelaksanaan->where('tanggal_pelaksanaan', $validasi_tanggal_pelaksanaan->tanggal_pelaksanaan)->count() < $validasi_tanggal_pelaksanaan->getKlasifikasi->getRegu->getKapasitas->kapasitas) {
+        } elseif ($validasi_tanggal_pelaksanaan->where([
+                ['tanggal_pelaksanaan', $validasi_tanggal_pelaksanaan->tanggal_pelaksanaan],
+                ['kd_klasifikasi_pekerjaan', $kd_klasifikasi_pekerjaan],
+            ])->count() < $validasi_tanggal_pelaksanaan->getKlasifikasi->getRegu->getKapasitas->kapasitas) {
             $tanggal_pelaksanaan = $validasi_tanggal_pelaksanaan->tanggal_pelaksanaan;
         } else {
             $tanggal_pelaksanaan = Carbon::createFromDate($validasi_tanggal_pelaksanaan->tanggal_pelaksanaan)->addDay();
