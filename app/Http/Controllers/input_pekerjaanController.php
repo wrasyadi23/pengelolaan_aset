@@ -19,9 +19,9 @@ class input_pekerjaanController extends Controller
     public function index()
     {
         $getDataPekerjaan = Pekerjaan::where('nik', Auth::user()->nik)
-            ->whereIn('status',['Requested','Approved'])
+            ->whereIn('status', ['Requested', 'Approved'])
             ->get();
-        return view('pemeliharaan/pekerjaan',['DataPekerjaan' => $getDataPekerjaan]);
+        return view('pemeliharaan/pekerjaan', ['DataPekerjaan' => $getDataPekerjaan]);
     }
 
     public function create()
@@ -56,16 +56,18 @@ class input_pekerjaanController extends Controller
         $tanggal_pekerjaan = date('Y-m-d h:m:s');
         $uraian = $request->input('uraian');
 
-        $validasi_tanggal_pelaksanaan = Pekerjaan::select('id','kd_klasifikasi_pekerjaan','tanggal_pelaksanaan')->orderBy('id', 'desc')->first();
+        $validasi_tanggal_pelaksanaan = Pekerjaan::select('id', 'kd_klasifikasi_pekerjaan', 'tanggal_pelaksanaan')->where('kd_klasifikasi_pekerjaan', $kd_klasifikasi_pekerjaan)->orderBy('id', 'desc')->get();
         if (empty($validasi_tanggal_pelaksanaan)) {
             $tanggal_pelaksanaan = Carbon::now();
-        } elseif ($validasi_tanggal_pelaksanaan->where([
-                ['tanggal_pelaksanaan', $validasi_tanggal_pelaksanaan->tanggal_pelaksanaan],
-                ['kd_klasifikasi_pekerjaan', $kd_klasifikasi_pekerjaan],
-            ])->count() < $validasi_tanggal_pelaksanaan->getKlasifikasi->getRegu->getKapasitas->kapasitas) {
-            $tanggal_pelaksanaan = $validasi_tanggal_pelaksanaan->tanggal_pelaksanaan;
+        } elseif (
+            $validasi_tanggal_pelaksanaan
+            ->where('tanggal_pelaksanaan', $validasi_tanggal_pelaksanaan->first()->tanggal_pelaksanaan)
+            ->count() <
+            $validasi_tanggal_pelaksanaan->first()->getKlasifikasi->getRegu->getKapasitas->kapasitas
+        ) {
+            $tanggal_pelaksanaan = $validasi_tanggal_pelaksanaan->first()->tanggal_pelaksanaan;
         } else {
-            $tanggal_pelaksanaan = Carbon::createFromDate($validasi_tanggal_pelaksanaan->tanggal_pelaksanaan)->addDay();
+            $tanggal_pelaksanaan = Carbon::createFromDate($validasi_tanggal_pelaksanaan->first()->tanggal_pelaksanaan)->addDay();
         }
 
         $pekerjaan = new Pekerjaan;
@@ -98,18 +100,20 @@ class input_pekerjaanController extends Controller
         return redirect('pemeliharaan/pekerjaan')->with('message', 'Data berhasil dimasukkan.');
     }
 
-    public function detail($booknumber) {
-        
-        $getDetail = Pekerjaan::where('booknumber',$booknumber)->first();
-        return view('pemeliharaan/pekerjaan-detail',['DetailPekerjaan' => $getDetail]);
+    public function detail($booknumber)
+    {
+
+        $getDetail = Pekerjaan::where('booknumber', $booknumber)->first();
+        return view('pemeliharaan/pekerjaan-detail', ['DetailPekerjaan' => $getDetail]);
     }
 
-    public function edit($booknumber) {
+    public function edit($booknumber)
+    {
 
         $area_klasifikasi = AreaKlasifikasi::all();
         $pekerjaan_klasifikasi = PekerjaanKlasifikasi::all();
         // 3 variable di bawah untuk mengambil data existing
-        $getDataPekerjaan = Pekerjaan::where('booknumber',$booknumber)->first();
+        $getDataPekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
         $dataAlamat = AreaAlamat::where('kd_area', $getDataPekerjaan->kd_area)->get();
         $dataKeterangan = AreaKeterangan::where('kd_alamat', $dataAlamat->where('kd_alamat', $getDataPekerjaan->kd_alamat)->first()->kd_alamat)->get();
         return view('pemeliharaan/pekerjaan-edit', [
@@ -121,7 +125,8 @@ class input_pekerjaanController extends Controller
         ]);
     }
 
-    public function update($booknumber, request $request) {
+    public function update($booknumber, request $request)
+    {
 
         $telepon = $request->input('telepon');
         $kd_area = $request->input('kd_area');
@@ -130,7 +135,7 @@ class input_pekerjaanController extends Controller
         $kd_klasifikasi_pekerjaan = $request->input('kd_klasifikasi_pekerjaan');
         $uraian = $request->input('uraian');
 
-        $pekerjaan = Pekerjaan::where('booknumber',$booknumber)->first();
+        $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
         $pekerjaan->telepon = $telepon;
         $pekerjaan->kd_area = $kd_area;
         $pekerjaan->kd_alamat = $kd_alamat;
@@ -153,48 +158,53 @@ class input_pekerjaanController extends Controller
         return redirect('pemeliharaan/pekerjaan-detail/' . $pekerjaan->booknumber)->with('message', 'Data berhasil diupdate.');
     }
 
-    public function approve($booknumber) {
+    public function approve($booknumber)
+    {
 
-        $approvePekerjaan = Pekerjaan::where('booknumber',$booknumber)->first();
+        $approvePekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
         $approvePekerjaan->status = 'Approved';
         $approvePekerjaan->save();
 
-        return redirect('pemeliharaan/pekerjaan')->with('message', 'Pekerjaan telah disetujui.');        
+        return redirect('pemeliharaan/pekerjaan')->with('message', 'Pekerjaan telah disetujui.');
     }
 
-    public function cancel($booknumber) {
+    public function cancel($booknumber)
+    {
 
-        $cancelPekerjaan = Pekerjaan::where('booknumber',$booknumber)->first();
+        $cancelPekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
         $cancelPekerjaan->status = 'Canceled';
         $cancelPekerjaan->save();
 
         return redirect('pemeliharaan/pekerjaan')->with('message', 'Pekerjaan telah dicancel.');
     }
-    
-    public function close($booknumber) {
 
-        $closePekerjaan = Pekerjaan::where('booknumber',$booknumber)->first();
+    public function close($booknumber)
+    {
+
+        $closePekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
         $closePekerjaan->status = 'Closed';
         $closePekerjaan->save();
 
         return redirect('pemeliharaan/pekerjaan')->with('message', 'Pekerjaan telah selesai.');
     }
-    
-    public function deleteFile($id) {
-        
-        $getFile = PekerjaanFile::where('id',$id)->first();
+
+    public function deleteFile($id)
+    {
+
+        $getFile = PekerjaanFile::where('id', $id)->first();
         $getFile->delete();
-        unlink(public_path('pemeliharaan/').$getFile->file);
+        unlink(public_path('pemeliharaan/') . $getFile->file);
 
         return redirect()->back();
     }
 
-    public function disapprove($booknumber) {
+    public function disapprove($booknumber)
+    {
 
-        $disapprovePekerjaan = Pekerjaan::where('booknumber',$booknumber)->first();
+        $disapprovePekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
         $disapprovePekerjaan->status = 'Requested';
         $disapprovePekerjaan->save();
 
-        return redirect('pemeliharaan/pekerjaan-detail/'.$disapprovePekerjaan->booknumber)->with('message', 'Data telah diupdate.');
+        return redirect('pemeliharaan/pekerjaan-detail/' . $disapprovePekerjaan->booknumber)->with('message', 'Data telah diupdate.');
     }
 }
