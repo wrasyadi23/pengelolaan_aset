@@ -34,6 +34,11 @@ Route::group(['middleware' => ['auth','role:Admin']], function () {
     Route::get('/pemeliharaan/klasifikasi-delete/{id}','input_klasifikasiController@delete');
     // data pekerjaan 
     Route::get('/pemeliharaan/data','pemeliharaanController@data');
+    // data organisasi
+    Route::get('/organisasi','OrganisasiController@index');
+    Route::get('/organisasi-create','OrganisasiController@create');
+    Route::post('/organisasi-search-departemen','OrganisasiController@cariBagian');
+    Route::post('/organisasi-search-bagian','OrganisasiController@cariBagian');
 }); 
 
 Route::group(['middleware' => ['auth','role:Admin,Worker,User']], function () {

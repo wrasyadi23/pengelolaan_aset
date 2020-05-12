@@ -17,6 +17,11 @@
                 <i class="icon-note menu-icon"></i><span class="nav-text">Input Klasifikasi Pekerjaan</span>
             </a>
         </li>
+        <li>
+            <a href="/organisasi" aria-expanded="false">
+                <i class="fa fa-address-book-o"></i><span class="nav-text">Organisasi</span>
+            </a>
+        </li>
         @endif
         @if (Auth::user()->role == 'Admin' && Auth::user()->role == 'Worker')    
         <li>

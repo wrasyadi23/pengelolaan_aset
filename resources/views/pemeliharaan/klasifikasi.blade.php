@@ -47,8 +47,8 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            {{$klasifikasi_pekerjaan->links()}}
                         </div>
+                        {{$klasifikasi_pekerjaan->links()}}
                     </div>
                 </div>
             </div>
