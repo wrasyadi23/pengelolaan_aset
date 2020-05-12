@@ -9,6 +9,7 @@ use App\PekerjaanFile;
 use App\PekerjaanKlasifikasi;
 use App\PekerjaanKapasitas;
 use App\Pekerjaan;
+use App\Regu;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use File;
@@ -56,10 +57,13 @@ class input_pekerjaanController extends Controller
         $tanggal_pekerjaan = date('Y-m-d h:m:s');
         $uraian = $request->input('uraian');
 
-        $validasi_tanggal_pelaksanaan = Pekerjaan::select('id', 'kd_klasifikasi_pekerjaan', 'tanggal_pelaksanaan')->where('kd_klasifikasi_pekerjaan', $kd_klasifikasi_pekerjaan)->orderBy('id', 'desc')->get();
+        $pekerjaanKlasifikasi = PekerjaanKlasifikasi::where('kd_klasifikasi_pekerjaan', $kd_klasifikasi_pekerjaan)->first();
+        $filteredKp = PekerjaanKlasifikasi::where('kd_regu', $pekerjaanKlasifikasi->kd_regu)->select('kd_klasifikasi_pekerjaan')->get()->toArray();
+
+        $validasi_tanggal_pelaksanaan = Pekerjaan::select('id', 'kd_klasifikasi_pekerjaan', 'tanggal_pelaksanaan')->whereIn('kd_klasifikasi_pekerjaan', $filteredKp)->orderBy('id', 'desc')->get();
         if (empty($validasi_tanggal_pelaksanaan)) {
             $tanggal_pelaksanaan = Carbon::now();
-        } elseif (
+        } elseif ( 
             $validasi_tanggal_pelaksanaan
             ->where('tanggal_pelaksanaan', $validasi_tanggal_pelaksanaan->first()->tanggal_pelaksanaan)
             ->count() <
