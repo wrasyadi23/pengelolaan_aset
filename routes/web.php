@@ -35,10 +35,15 @@ Route::group(['middleware' => ['auth','role:Admin']], function () {
     // data pekerjaan 
     Route::get('/pemeliharaan/data','pemeliharaanController@data');
     // data organisasi
-    Route::get('/organisasi','OrganisasiController@index');
-    Route::get('/organisasi-create','OrganisasiController@create');
-    Route::post('/organisasi-search-departemen','OrganisasiController@cariBagian');
-    Route::post('/organisasi-search-bagian','OrganisasiController@cariBagian');
+    Route::get('/organisasi-departemen','DepartemenController@index');
+    Route::get('/organisasi-departemen-create','DepartemenController@create');
+    Route::post('/organisasi-departemen-store','DepartemenController@store');
+    Route::get('/organisasi-departemen-edit/{kd_departemen}','DepartemenController@edit');
+    Route::post('/organisasi-departemen-update/{kd_departemen}','DepartemenController@update');
+    Route::get('/organisasi-departemen-delete/{id}','DepartemenController@delete');
+    Route::get('/organisasi-bagian','BagianController@index');
+    Route::get('/organisasi-bagian-create','BagianController@create');
+    Route::post('/organisasi-bagian-store','BagianController@store');
 }); 
 
 Route::group(['middleware' => ['auth','role:Admin,Worker,User']], function () {

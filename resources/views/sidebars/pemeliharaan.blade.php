@@ -18,7 +18,7 @@
             </a>
         </li>
         <li>
-            <a href="/organisasi" aria-expanded="false">
+            <a href="/organisasi-departemen" aria-expanded="false">
                 <i class="fa fa-address-book-o"></i><span class="nav-text">Organisasi</span>
             </a>
         </li>
