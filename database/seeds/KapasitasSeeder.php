@@ -13,7 +13,7 @@ class KapasitasSeeder extends Seeder
     {
         \App\PekerjaanKapasitas::insert([
             [
-                'kapasitas' => '5',
+                'kapasitas' => '3',
                 'kd_regu' => 'RU0001',
             ],
             [
@@ -21,7 +21,7 @@ class KapasitasSeeder extends Seeder
                 'kd_regu' => 'RU0002',
             ],
             [
-                'kapasitas' => '5',
+                'kapasitas' => '4',
                 'kd_regu' => 'RU0003',
             ],
             [
@@ -41,7 +41,7 @@ class KapasitasSeeder extends Seeder
                 'kd_regu' => 'RU0007',
             ],
             [
-                'kapasitas' => '5',
+                'kapasitas' => '3',
                 'kd_regu' => 'RU0008',
             ],
         ]);

@@ -49,7 +49,10 @@
                                             <td>{{$no++}}</td>
                                             <td>{{$dep->kd_departemen}}</td>
                                             <td>{{$dep->departemen}}</td>
-                                            <td><a href="/organisasi-bagian/{{$dep->kd_departemen}}" class="badge badge-primary">Detail</a> <a href="/organisasi-delete-departemen/{{$dep->kd_departemen}}" class="badge badge-danger">Delete</a></td>
+                                            <td><a href="/organisasi-bagian/{{$dep->kd_departemen}}" class="badge badge-primary">Data Bagian</a> 
+                                                <a href="/organisasi-departemen-edit/{{$dep->kd_departemen}}" class="badge badge-success">Edit</a> 
+                                                <a href="/organisasi-departemen-delete/{{$dep->id}}" class="badge badge-danger">Delete</a> 
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
