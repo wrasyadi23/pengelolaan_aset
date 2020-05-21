@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
                 'nama' => 'Rizal Fahrudin A',
                 'nik' => 'T545556',
                 'email' => 'rizal@gmail.com',
-                'role' => 'User',
+                'role' => 'Worker',
                 'password' => Hash::make('rahasiakita'),
                 'remember_token' => Str::random(60)
             ],
