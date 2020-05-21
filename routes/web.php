@@ -43,9 +43,9 @@ Route::group(['middleware' => ['auth','role:Admin']], function () {
     Route::get('/organisasi-departemen-delete/{id}','DepartemenController@delete');
     Route::get('/organisasi-bagian/{kd_departemen}','BagianController@index');
     Route::post('/organisasi-bagian-store/{kd_departemen}','BagianController@store');
-    Route::post('/organisasi-bagian-edit/{id}/{kd_departemen}','BagianController@edit');
-    Route::post('/organisasi-bagian-update/{id}/{kd_departemen}','BagianController@update');
-    Route::post('/organisasi-bagian-delete/{id}/{kd_departemen}','BagianController@delete');
+    Route::get('/organisasi-bagian-edit/{kd_bagian}','BagianController@edit');
+    Route::post('/organisasi-bagian-update/{kd_bagian}','BagianController@update');
+    Route::get('/organisasi-bagian-delete/{id}','BagianController@delete');
 }); 
 
 Route::group(['middleware' => ['auth','role:Admin,Worker,User']], function () {

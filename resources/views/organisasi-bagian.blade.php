@@ -14,12 +14,14 @@
                     </div>
                     <div class="card-content">
                         <div class="basic-form">
-                            <form action="/organisasi-bagian-store/{{$bagian->first()->kd_departemen}}" method="post" enctype="multipart/form-data">
+                            <form name="bagian" action="/organisasi-bagian-store/{{$bagian->first()->kd_departemen}}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" name="bagian" id="" class="form-control form-control-sm input-default" placeholder="Nama Bagian">
-                                    <h6 class="font-italic text-danger mt-1">Contoh : Pemeliharaan Kawasan</h6>
-                                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                                    <input type="text" name="bagian" id="" class="form-control input-default" placeholder="Contoh : Pemeliharaan Kawasan">
+                                </div>
+                                <div class="basic-form">
+                                    <button class="btn btn-primary" onclick="window.location.href='/organisasi-departemen'">Back</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -50,8 +52,8 @@
                                         <td>{{$bag->kd_bagian}}</td>
                                         <td>{{$bag->bagian}}</td>
                                         <td><a href="/organisasi-seksi-/{{$bag->kd_bagian}}" class="badge badge-primary">Data Seksi</a> 
-                                            <a href="/organisasi-bagian-edit/{{$bag->id}}/{{$bag->kd_departemen}}" class="badge badge-success">Edit</a> 
-                                            <a href="/organisasi-bagian-delete/{{$bag->id}}/{{$bag->kd_departemen}}" class="badge badge-danger">Delete</a>
+                                            <a href="/organisasi-bagian-edit/{{$bag->kd_bagian}}" class="badge badge-success">Edit</a> 
+                                            <a href="/organisasi-bagian-delete/{{$bag->id}}" class="badge badge-danger">Delete</a>
                                         </td>
                                     </tr>
                                     @endforeach
