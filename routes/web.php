@@ -41,11 +41,18 @@ Route::group(['middleware' => ['auth','role:Admin']], function () {
     Route::get('/organisasi-departemen-edit/{kd_departemen}','DepartemenController@edit');
     Route::post('/organisasi-departemen-update/{kd_departemen}','DepartemenController@update');
     Route::get('/organisasi-departemen-delete/{id}','DepartemenController@delete');
+    // data organisasi bagian 
     Route::get('/organisasi-bagian/{kd_departemen}','BagianController@index');
     Route::post('/organisasi-bagian-store/{kd_departemen}','BagianController@store');
     Route::get('/organisasi-bagian-edit/{kd_bagian}','BagianController@edit');
     Route::post('/organisasi-bagian-update/{kd_bagian}','BagianController@update');
     Route::get('/organisasi-bagian-delete/{id}','BagianController@delete');
+    // data organisasi seksi 
+    Route::get('/organisasi-seksi/{kd_bagian}','SeksiController@index');
+    Route::post('/organisasi-seksi-store/{kd_bagian}','SeksiController@store');
+    Route::get('/organisasi-seksi-edit/{kd_seksi}','SeksiController@edit');
+    Route::post('/organisasi-seksi-update/{kd_seksi}','SeksiController@update');
+    Route::get('/organisasi-seksi-delete/{id}','SeksiController@delete');
 }); 
 
 Route::group(['middleware' => ['auth','role:Admin,Worker,User']], function () {

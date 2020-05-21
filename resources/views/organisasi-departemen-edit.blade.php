@@ -25,7 +25,7 @@
                                 <input type="text" name="departemen" id="" class="form-control input-default" value="{{$departemen->departemen}}" required>
                             </div>
                             <div class="basic-form">
-                                <button class="btn btn-primary" onclick="window.location.href='/organisasi-departemen'">Back</button>
+                                <button type="button" class="btn btn-primary" onclick="window.location.href='/organisasi-departemen'">Back</button>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </form>

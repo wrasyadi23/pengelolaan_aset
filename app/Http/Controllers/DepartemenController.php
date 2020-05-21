@@ -33,7 +33,6 @@ class DepartemenController extends Controller
         $departemen->kd_departemen = $kd_departemen;
         $departemen->departemen = $request->input('departemen');
         $departemen->save();
-
         return redirect('organisasi-departemen')->with('message', 'Departemen baru berhasil dimasukkan.');
     }
 

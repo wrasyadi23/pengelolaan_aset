@@ -29,7 +29,6 @@ class BagianController extends Controller
         $bagian->bagian = $request->input('bagian');
         $bagian->kd_departemen = $kd_departemen;
         $bagian->save();
-
         return redirect('organisasi-bagian/'.$kd_departemen)->with('message','Data berhasil dimasukkan.');
     }
 
@@ -37,5 +36,20 @@ class BagianController extends Controller
     {
         $bagian = Bagian::where('kd_bagian',$kd_bagian)->first();
         return view('organisasi-bagian-edit', ['bagian' => $bagian]);
+    }
+
+    public function update($kd_bagian, Request $request)
+    {
+        $bagian = Bagian::where('kd_bagian',$kd_bagian)->first();
+        $bagian->bagian = $request->input('bagian');
+        $bagian->save();
+        return redirect('organisasi-bagian/'.$bagian->kd_departemen)->with('message', 'Data berhasil diupdate.');
+    }
+
+    public function delete($id)
+    {
+        $bagian = Bagian::find($id);
+        $bagian->delete();
+        return redirect()->back();
     }
 }
