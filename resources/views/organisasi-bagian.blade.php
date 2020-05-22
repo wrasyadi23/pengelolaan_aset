@@ -10,14 +10,22 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-row">
-                        <h4 class="card-title">Input Data Bagian - Departemen {{$bagian->first()->getDepartemen->departemen}}</h4>
+                        {{--
+                            * Jika ingin panggil dari variable bagian meskipun data kosong harus menggunakan Ternary Operator (Operator pengkondisian IF sederhana): 
+                            * BEFORE: {{$bagian->first()->getDepartemen->departemen}}
+                            * AFTER: {{!empty($bagian->first()->getDepartemen->departemen) ? $bagian->first()->getDepartemen->departemen : 'Data Kosong'}}
+                            *
+                            * Penggunaan Ternary Operator:
+                            * {{ (kondisi) ? (value jika kondisi true) : (value jika kondisi false) }}
+                        --}}
+                        <h4 class="card-title">Input Data Bagian - Departemen {{$departemen->departemen}}</h4>
                     </div>
                     <div class="card-content">
                         <div class="basic-form">
-                            <form name="bagian" action="/organisasi-bagian-store/{{$bagian->first()->kd_departemen}}" method="post">
+                            <form name="bagian" action="/organisasi-bagian-store/{{$departemen->kd_departemen}}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" name="bagian" id="" class="form-control input-default" placeholder="Contoh : {{$bagian->first()->bagian}}">
+                                    <input type="text" name="bagian" id="" class="form-control input-default" placeholder="Contoh : Transport">
                                 </div>
                                 <div class="basic-form">
                                     <button type="button" class="btn btn-primary" onclick="window.location.href='/organisasi-departemen'">Back</button>
@@ -30,7 +38,7 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Data Bagian - Departemen {{$bagian->first()->getDepartemen->departemen}}</h4>
+                    <h4 class="card-title">Data Bagian - Departemen {{$departemen->departemen}}</h4>
                     <div class="card-content">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration" style="width: 100%;">
@@ -46,7 +54,7 @@
                                     @php
                                         $no='1';
                                     @endphp
-                                    @foreach ($bagian as $item => $bag)    
+                                    @foreach ($departemen->getBagian as $item => $bag)    
                                     <tr>
                                         <td>{{$no++}}</td>
                                         <td>{{$bag->kd_bagian}}</td>
