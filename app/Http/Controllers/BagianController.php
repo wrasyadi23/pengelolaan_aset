@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bagian;
+use App\Departemen;
 
 class BagianController extends Controller
 {
     public function index($kd_departemen)
     {
         $bagian = Bagian::where('kd_departemen',$kd_departemen)->orderBy('id','asc')->get();
-        return view('organisasi-bagian', ['bagian' => $bagian]);
+
+        // Query start dari departemen, karena jika start dari bagian, data bagiannya masih kosong (tidak ada kd_departemen)
+        $departemen = Departemen::where('kd_departemen', $kd_departemen)->firstOrFail(); 
+        return view('organisasi-bagian', [
+            'departemen' => $departemen,
+            'bagian' => $bagian //Variabel dibawa hanya untuk contoh
+        ]);
     }
 
     public function store($kd_departemen,Request $request)
