@@ -23,7 +23,7 @@
             </a>
         </li>
         @endif
-        @if (Auth::user()->role == 'Admin')    
+        @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Worker')    
         <li>
             <a href="/pemeliharaan/data" aria-expanded="false">
                 <i class="icon-chart menu-icon"></i><span class="nav-text">Data Pemeliharaan</span>

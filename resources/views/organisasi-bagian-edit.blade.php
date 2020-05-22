@@ -25,7 +25,7 @@
                                 <input type="text" name="bagian" id="" class="form-control input-default" value="{{$bagian->bagian}}" required>
                             </div>
                             <div class="basic-form">
-                                <button type="button" class="btn btn-primary" onclick="window.location.href='{/organisasi-bagian/{{$bagian->kd_departemen}}'">Back</button>
+                                <button type="button" class="btn btn-primary" onclick="window.location.href='/organisasi-bagian/{{$bagian->kd_departemen}}'">Back</button>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </form>

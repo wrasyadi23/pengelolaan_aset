@@ -32,8 +32,6 @@ Route::group(['middleware' => ['auth','role:Admin']], function () {
     Route::get('/pemeliharaan/klasifikasi-edit/{id}','input_klasifikasiController@edit');
     Route::post('/pemeliharaan/klasifikasi-update/{id}','input_klasifikasiController@update');
     Route::get('/pemeliharaan/klasifikasi-delete/{id}','input_klasifikasiController@delete');
-    // data pekerjaan 
-    Route::get('/pemeliharaan/data','pemeliharaanController@data');
     // data organisasi
     Route::get('/organisasi-departemen','DepartemenController@index');
     Route::get('/organisasi-departemen-create','DepartemenController@create');
@@ -53,9 +51,17 @@ Route::group(['middleware' => ['auth','role:Admin']], function () {
     Route::get('/organisasi-seksi-edit/{kd_seksi}','SeksiController@edit');
     Route::post('/organisasi-seksi-update/{kd_seksi}','SeksiController@update');
     Route::get('/organisasi-seksi-delete/{id}','SeksiController@delete');
+    // data organisasi regu 
+    Route::get('/organisasi-regu/{kd_seksi}','ReguController@index');
+    Route::post('/organisasi-regu-store/{kd_seksi}','ReguController@store');
+    Route::get('/organisasi-regu-edit/{kd_regu}','ReguController@edit');
+    Route::post('/organisasi-regu-update/{kd_regu}','ReguController@update');
+    Route::get('/organisasi-regu-delete/{id}','ReguController@delete');
 }); 
 
 Route::group(['middleware' => ['auth','role:Admin,Worker,User']], function () {
+    // data pekerjaan 
+    Route::get('/pemeliharaan/data','pemeliharaanController@data');
     // pemeliharaan
     Route::get('/pemeliharaan/dashboard','pemeliharaanController@index');
     // input pekerjaan
