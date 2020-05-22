@@ -10,14 +10,9 @@ class BagianController extends Controller
 {
     public function index($kd_departemen)
     {
-        $bagian = Bagian::where('kd_departemen',$kd_departemen)->orderBy('id','asc')->get();
-
         // Query start dari departemen, karena jika start dari bagian, data bagiannya masih kosong (tidak ada kd_departemen)
         $departemen = Departemen::where('kd_departemen', $kd_departemen)->firstOrFail(); 
-        return view('organisasi-bagian', [
-            'departemen' => $departemen,
-            'bagian' => $bagian //Variabel dibawa hanya untuk contoh
-        ]);
+        return view('organisasi-bagian', ['departemen' => $departemen]);
     }
 
     public function store($kd_departemen,Request $request)
