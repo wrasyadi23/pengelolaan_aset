@@ -57,6 +57,8 @@ Route::group(['middleware' => ['auth','role:Admin']], function () {
     Route::get('/organisasi-regu-edit/{kd_regu}','ReguController@edit');
     Route::post('/organisasi-regu-update/{kd_regu}','ReguController@update');
     Route::get('/organisasi-regu-delete/{id}','ReguController@delete');
+    // laporan kegiatan 
+    Route::get('/pemeliharaan/laporan/{awal}/{akhir}','LaporanController@index');
 }); 
 
 Route::group(['middleware' => ['auth','role:Admin,Worker,User']], function () {
