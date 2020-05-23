@@ -10,17 +10,17 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-row">
-                        <h4 class="card-title">Input Data Seksi - Bagian {{$seksi->first()->getBagian->bagian}}</h4>
+                        <h4 class="card-title">Input Data Seksi - Bagian {{$bagian->bagian}}</h4>
                     </div>
                     <div class="card-content">
                         <div class="basic-form">
-                            <form name="seksi" action="/organisasi-seksi-store/{{$seksi->first()->kd_bagian}}" method="post">
+                            <form name="seksi" action="/organisasi-seksi-store/{{$bagian->kd_bagian}}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" name="seksi" id="" class="form-control input-default" placeholder="Contoh : {{$seksi->first()->seksi}}">
+                                    <input type="text" name="seksi" id="" class="form-control input-default" placeholder="Contoh : Administrasi Umum Transport">
                                 </div>
                                 <div class="basic-form">
-                                    <button type="button" class="btn btn-primary" onclick="window.location.href='/organisasi-bagian/{{$seksi->first()->getBagian->getDepartemen->kd_departemen}}'">Back</button>
+                                    <button type="button" class="btn btn-primary" onclick="window.location.href='/organisasi-bagian/{{$bagian->kd_departemen}}'">Back</button>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </form>
@@ -30,7 +30,7 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Data Seksi - Bagian {{$seksi->first()->getBagian->bagian}}</h4>
+                    <h4 class="card-title">Data Seksi - Bagian {{$bagian->bagian}}</h4>
                     <div class="card-content">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration" style="width: 100%;">
@@ -46,7 +46,7 @@
                                     @php
                                         $no='1';
                                     @endphp
-                                    @foreach ($seksi as $item => $sie)    
+                                    @foreach ($bagian->getSeksi as $item => $sie)    
                                     <tr>
                                         <td>{{$no++}}</td>
                                         <td>{{$sie->kd_seksi}}</td>

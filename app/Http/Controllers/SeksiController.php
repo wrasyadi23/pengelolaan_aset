@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Seksi;
+use App\Bagian;
 
 class SeksiController extends Controller
 {
     public function index($kd_bagian)
     {
-        $seksi = Seksi::where('kd_bagian',$kd_bagian)->orderBy('id','asc')->get();
-        return view('organisasi-seksi', ['seksi' => $seksi]);
+        $bagian = Bagian::where('kd_bagian',$kd_bagian)->firstOrFail();
+        return view('organisasi-seksi', ['bagian' => $bagian]);
     }
 
     public function store($kd_bagian,Request $request)
