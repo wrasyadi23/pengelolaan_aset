@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Regu;
+use App\Seksi;
 
 class ReguController extends Controller
 {
     public function index($kd_seksi)
     {
-        $regu = Regu::where('kd_seksi', $kd_seksi)->orderBy('id','asc')->get();
-        return view('organisasi-regu', ['regu' => $regu]);
+        $seksi = Seksi::where('kd_seksi', $kd_seksi)->firstOrFail();
+        return view('organisasi-regu', ['seksi' => $seksi]);
     }
 
     public function store($kd_seksi,Request $request)

@@ -17,7 +17,7 @@
                             <form name="seksi" action="/organisasi-seksi-store/{{$bagian->kd_bagian}}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" name="seksi" id="" class="form-control input-default" placeholder="Contoh : Administrasi Umum Transport">
+                                    <input type="text" name="seksi" id="" class="form-control input-default" placeholder="Contoh : Listrik, Instrumen & Telkom">
                                 </div>
                                 <div class="basic-form">
                                     <button type="button" class="btn btn-primary" onclick="window.location.href='/organisasi-bagian/{{$bagian->kd_departemen}}'">Back</button>

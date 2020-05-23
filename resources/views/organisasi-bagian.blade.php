@@ -25,7 +25,7 @@
                             <form name="bagian" action="/organisasi-bagian-store/{{$departemen->kd_departemen}}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" name="bagian" id="" class="form-control input-default" placeholder="Contoh : Transport">
+                                    <input type="text" name="bagian" id="" class="form-control input-default" placeholder="Contoh : Pemeliharaan Kawasan">
                                 </div>
                                 <div class="basic-form">
                                     <button type="button" class="btn btn-primary" onclick="window.location.href='/organisasi-departemen'">Back</button>
