@@ -65,15 +65,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($collection as $item)
+                                        @foreach ($pekerjaan as $item)
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{$no++}}</td>
+                                            <td>{{$item->first()->getKlasifikasi->klasifikasi_pekerjaan}}</td>
+                                            <td>{{count($item->where('status', 'Requested'))}}</td>
+                                            <td>{{count($item->where('status', 'Approved'))}}</td>
+                                            <td>{{count($item->where('status', 'In Progress'))}}</td>
+                                            <td>{{count($item->where('status', 'Closed'))}}</td>
+                                            <td>{{count($item)}}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
