@@ -58,7 +58,9 @@ Route::group(['middleware' => ['auth','role:Admin']], function () {
     Route::post('/organisasi-regu-update/{kd_regu}','ReguController@update');
     Route::get('/organisasi-regu-delete/{id}','ReguController@delete');
     // laporan kegiatan 
-    Route::get('/pemeliharaan/laporan/{awal}/{akhir}','LaporanController@index');
+    Route::get('/pemeliharaan/laporan','LaporanController@index');
+    Route::post('/pemeliharaan/laporan-search','LaporanController@search');
+    Route::get('/pemeliharaan/laporan-preview/{awal}/{akhir}','LaporanController@preview');
 }); 
 
 Route::group(['middleware' => ['auth','role:Admin,Worker,User']], function () {

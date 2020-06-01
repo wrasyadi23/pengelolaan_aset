@@ -14,14 +14,19 @@
                     </div>
                     <div class="card-content">
                         <div class="basic-form">
-                            <form name="regu" action="/organisasi-regu-store/{{$seksi->kd_seksi}}" method="post">
+                            <form name="laporan" action="/pemeliharaan/laporan-search" method="post">
                                 @csrf
-                                <div class="form-group">
-                                    <input type="text" name="regu" id="" class="form-control input-default" placeholder="Contoh : Listrik Perumahan & Perkantoran">
-                                </div>
-                                <div class="basic-form">
-                                    <button type="button" class="btn btn-primary" onclick="window.location.href='/organisasi-seksi/{{$seksi->kd_bagian}}'">Back</button>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="form-row">
+                                    <div class="form-group col-sm-3">
+                                        <input type="date" name="awal" id="" class="form-control input-default">
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <input type="date" name="akhir" id="" class="form-control input-default">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <button type="submit" class="btn btn-primary" style="padding: 11px 20px 11px 20px;">Submit</button>
+                                        <button type="reset" class="btn btn-primary" style="padding: 11px 20px 11px 20px;">Reset</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -30,36 +35,52 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Data Regu - Seksi {{$seksi->seksi}}</h4>
-                    <div class="card-content">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered zero-configuration" style="width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Kode</th>
-                                        <th>Regu</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $no='1';
-                                    @endphp
-                                    @foreach ($seksi->getRegu as $item => $ru)    
-                                    <tr>
-                                        <td>{{$no++}}</td>
-                                        <td>{{$ru->kd_regu}}</td>
-                                        <td>{{$ru->regu}}</td>
-                                        <td><a href="/organisasi-regu-edit/{{$ru->kd_regu}}" class="badge badge-success">Edit</a> 
-                                            <a href="/organisasi-regu-delete/{{$ru->id}}" class="badge badge-danger">Delete</a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                    @if (empty($awal) && empty($akhir))
+                        <div class="card-content">
+                            <div class="text-center">
+                                <p><h4>Laporan Kegiatan {{Auth::user()->getKaryawan->getRegu->regu}}</h4></p>
+                                <p><h5>Tidak ada kegiatan.</h5></p>
+                            </div>
                         </div>
-                    </div>
+                    @else    
+                        <div class="card-content">
+                            <div class="text-center">
+                                <p><h4>Laporan Kegiatan {{Auth::user()->getKaryawan->getRegu->regu}}</h4></p>
+                                <p><h5>Periode : {{$awal}} - {{$akhir}}</h5></p>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-striped table-bordered zero-configuration" style="width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2">No</th>
+                                            <th rowspan="2">Klasifikasi Pekerjaan</th>
+                                            <th colspan="4">Kegiatan dalam Angka</th>
+                                            <th rowspan="2">Total</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Requested</th>
+                                            <th>Approved</th>
+                                            <th>In Progres</th>
+                                            <th>Closed</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($collection as $item)
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

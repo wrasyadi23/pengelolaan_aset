@@ -13,7 +13,7 @@ class LaporanController extends Controller
     public function index()
     {
         $pekerjaan = Pekerjaan::all();
-        return view('/pemeliharaan/laporan', ['pekerjaan',$pekerjaan]);
+        return view('/pemeliharaan/laporan', ['pekerjaan' => $pekerjaan]);
     }
     public function search(Request $request)
     {   
@@ -28,6 +28,10 @@ class LaporanController extends Controller
             ->where('tanggal_pekerjaan','<=',$akhir)
             ->where('kd_klasifikasi',$klasifikasi)->get();
         }
-        return view('/pemeliharaan/laporan', ['pekerjaan',$pekerjaan]);
+        return view('/pemeliharaan/laporan', [
+            'pekerjaan' => $pekerjaan,
+            'awal' => $awal,
+            'akhir' => $akhir,
+        ]);
     }
 }
