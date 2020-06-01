@@ -68,6 +68,7 @@
                                         @foreach ($pekerjaan as $item)
                                         <tr>
                                             <td>{{$no++}}</td>
+                                            {{-- Perlu pakai first() karena untuk ambil data dari table yang jadi acuan grouping / indexnya --}}
                                             <td>{{$item->first()->getKlasifikasi->klasifikasi_pekerjaan}}</td>
                                             <td>{{count($item->where('status', 'Requested'))}}</td>
                                             <td>{{count($item->where('status', 'Approved'))}}</td>
