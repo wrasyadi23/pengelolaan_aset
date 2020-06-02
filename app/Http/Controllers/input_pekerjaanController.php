@@ -66,8 +66,7 @@ class input_pekerjaanController extends Controller
         } elseif ( 
             $validasi_tanggal_pelaksanaan
             ->where('tanggal_pelaksanaan', $validasi_tanggal_pelaksanaan->first()->tanggal_pelaksanaan)
-            ->count() <
-            $validasi_tanggal_pelaksanaan->first()->getKlasifikasi->getRegu->getKapasitas->kapasitas
+            ->count() < $validasi_tanggal_pelaksanaan->first()->getKlasifikasi->getRegu->getKapasitas->kapasitas
         ) {
             $tanggal_pelaksanaan = $validasi_tanggal_pelaksanaan->first()->tanggal_pelaksanaan;
         } else {
