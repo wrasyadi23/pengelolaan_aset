@@ -16,12 +16,14 @@
                         <div class="basic-form">
                             <form name="regu" action="/organisasi-regu-store/{{$seksi->kd_seksi}}" method="post">
                                 @csrf
-                                <div class="form-group">
-                                    <input type="text" name="regu" id="" class="form-control input-default" placeholder="Contoh : Listrik Perumahan & Perkantoran">
-                                </div>
-                                <div class="basic-form">
-                                    <button type="button" class="btn btn-primary" onclick="window.location.href='/organisasi-seksi/{{$seksi->kd_bagian}}'">Back</button>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="form-row">
+                                    <div class="form-group col-sm-4">
+                                        <input type="text" name="regu" id="" class="form-control input-default" placeholder="Contoh : Listrik Perumahan & Perkantoran">
+                                    </div>
+                                    <div class="form-group col-sm-8">
+                                        <button type="button" class="btn btn-primary" style="padding: 11px 20px 11px 20px;" onclick="window.location.href='/organisasi-seksi/{{$seksi->kd_bagian}}'">Back</button>
+                                        <button type="submit" class="btn btn-primary" style="padding: 11px 20px 11px 20px;">Submit</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>

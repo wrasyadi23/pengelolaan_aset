@@ -24,12 +24,14 @@
                         <div class="basic-form">
                             <form name="bagian" action="/organisasi-bagian-store/{{$departemen->kd_departemen}}" method="post">
                                 @csrf
-                                <div class="form-group">
-                                    <input type="text" name="bagian" id="" class="form-control input-default" placeholder="Contoh : Pemeliharaan Kawasan">
-                                </div>
-                                <div class="basic-form">
-                                    <button type="button" class="btn btn-primary" onclick="window.location.href='/organisasi-departemen'">Back</button>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="form-row">
+                                    <div class="form-group col-sm-4">
+                                        <input type="text" name="bagian" id="" class="form-control input-default" placeholder="Contoh : Pemeliharaan Kawasan">
+                                    </div>
+                                    <div class="form-group col-sm-8">
+                                        <button type="button" class="btn btn-primary" style="padding: 11px 20px 11px 20px;" onclick="window.location.href='/organisasi-departemen'">Back</button>
+                                        <button type="submit" class="btn btn-primary" style="padding: 11px 20px 11px 20px;">Submit</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>

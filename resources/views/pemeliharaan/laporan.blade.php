@@ -49,8 +49,8 @@
                                 <p><h5>Periode : {{$awal}} - {{$akhir}}</h5></p>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-sm table-striped table-bordered zero-configuration" style="width: 100%;">
-                                    <thead>
+                                <table class="table table-sm table-bordered" style="width: 100%;">
+                                    <thead align="center">
                                         <tr>
                                             <th rowspan="2">No</th>
                                             <th rowspan="2">Klasifikasi Pekerjaan</th>
