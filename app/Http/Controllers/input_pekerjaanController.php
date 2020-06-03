@@ -61,7 +61,7 @@ class input_pekerjaanController extends Controller
         $filteredKp = PekerjaanKlasifikasi::where('kd_regu', $pekerjaanKlasifikasi->kd_regu)->select('kd_klasifikasi_pekerjaan')->get()->toArray();
 
         $validasi_tanggal_pelaksanaan = Pekerjaan::select('id', 'kd_klasifikasi_pekerjaan', 'tanggal_pelaksanaan')->whereIn('kd_klasifikasi_pekerjaan', $filteredKp)->orderBy('id', 'desc')->get();
-        if (empty($validasi_tanggal_pelaksanaan)) {
+        if ($validasi_tanggal_pelaksanaan->count() == 0) {
             $tanggal_pelaksanaan = Carbon::now();
         } elseif ( 
             $validasi_tanggal_pelaksanaan
