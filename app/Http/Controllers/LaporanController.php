@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Pekerjaan;
 use App\PekerjaanKlasifikasi;
 use App\Karyawan;
+use App\Seksi;
 use Auth;
 
 class LaporanController extends Controller
@@ -20,11 +21,17 @@ class LaporanController extends Controller
         $awal = $request->input('awal');
         $akhir = $request->input('akhir');
         if (Auth::user()->role == 'Admin') {
-            $pekerjaan = Pekerjaan::where('tanggal_pekerjaan', '>=', $awal)
-                ->where('tanggal_pekerjaan', '<=', $akhir)
-                ->with('getKlasifikasi')->get() // get relation di query untuk keperluan grouping
-                ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan') // Untuk grouping array dengan index getKlasifikasi.kd_klasifikasi_pekerjaan
-                ->all();
+            $pekerjaan = PekerjaanKlasifikasi::with(['getPekerjaan' => function ($query) use ($awal, $akhir) {
+                $query->whereBetween('tb_pekerjaan.tanggal_pekerjaan', [$awal, $akhir]);
+            }, 'getRegu.getSeksi'])->get();
+
+            // PekerjaanKlasifikasi::with('getRegu.getSeksi')->get();
+            // Pekerjaan::where('tanggal_pekerjaan', '>=', $awal)
+            //     ->where('tanggal_pekerjaan', '<=', $akhir)
+            //     ->with(['getKlasifikasi'])->get() // get relation di query untuk keperluan grouping
+            //     ->groupBy('kd_klasifikasi_pekerjaan') // Untuk grouping array dengan index getKlasifikasi.kd_klasifikasi_pekerjaan
+            //     ->sortByDesc('kd_klasifikasi_pekerjaan')
+            //     ->all();
         } elseif (Auth::user()->role == 'Worker') {
             $klasifikasi = PekerjaanKlasifikasi::where('kd_klasifikasi', Auth::user()->getKaryawan->getRegu->getKlasifikasi->kd_klasifikasi)->toArray();
             $pekerjaan = Pekerjaan::where('tanggal_pekerjaan', '>=', $awal)
@@ -35,7 +42,7 @@ class LaporanController extends Controller
                 ->all();
         }
         return
-            // json_encode($pekerjaan) ;
+            // json_encode($pekerjaan);
             view('/pemeliharaan/laporan', [
                 'no' => 1,
                 'pekerjaan' => $pekerjaan,

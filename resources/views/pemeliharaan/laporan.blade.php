@@ -53,7 +53,7 @@
                                     <table class="table table-sm table-bordered" style="width: 100%;">
                                         <thead align="center">
                                             <tr>
-                                                <th rowspan="2">No</th>
+                                                {{-- <th rowspan="2">No</th> --}}
                                                 <th rowspan="2">Seksi</th>
                                                 <th rowspan="2">Regu</th>
                                                 <th rowspan="2">Klasifikasi Pekerjaan</th>
@@ -68,19 +68,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($pekerjaan as $item)
+                                            @foreach ($pekerjaan as $index => $item)
                                             <tr>
-                                                <td>{{$no++}}</td>
-                                                {{-- Perlu pakai first() karena untuk ambil data dari table yang jadi acuan grouping / indexnya --}}
-                                                <td rowspan="{{$item->getKlasifikasi->getRegu->count()}}">{{$item->getKlasifikasi->getRegu->getSeksi->seksi}}</td>
-                                                {{-- apakah bisa menggunakan rowspan seperti ini? --}}
-                                                <td rowspan="{{$item->getKlasifikasi->count()}}">{{$item->getKlasifikasi->getRegu->regu}}</td>
-                                                <td>{{$item->first()->getKlasifikasi->klasifikasi_pekerjaan}}</td>
-                                                <td>{{count($item->where('status', 'Requested'))}}</td>
-                                                <td>{{count($item->where('status', 'Approved'))}}</td>
-                                                <td>{{count($item->where('status', 'In Progress'))}}</td>
-                                                <td>{{count($item->where('status', 'Closed'))}}</td>
-                                                <td>{{count($item)}}</td>
+                                                <td>{{$item->getRegu->getSeksi->seksi}}</td>
+                                                <td>{{$item->getRegu->regu}}</td>
+                                                <td>{{$item->klasifikasi_pekerjaan}}</td>
+                                                <td>{{$item->getPekerjaan->where('status', 'Requested')->count()}}</td>
+                                                <td>{{$item->getPekerjaan->where('status', 'Approved')->count()}}</td>
+                                                <td>{{$item->getPekerjaan->where('status', 'In Progress')->count()}}</td>
+                                                <td>{{$item->getPekerjaan->where('status', 'Closed')->count()}}</td>
+                                                <td>{{count($item->getPekerjaan)}}</td>
                                             </tr>
                                             @endforeach
                                         </tbody>

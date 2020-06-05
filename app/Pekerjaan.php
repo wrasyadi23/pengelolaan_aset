@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pekerjaan extends Model
 {
     protected $table = 'tb_pekerjaan';
+    protected $guarded = [];
     public $incrementing = 'false';
 
     public function getKlasifikasi()
