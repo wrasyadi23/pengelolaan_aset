@@ -71,10 +71,12 @@
                                             @foreach ($pekerjaan as $item)
                                             <tr>
                                                 <td>{{$no++}}</td>
-                                                {{-- Perlu pakai first() karena untuk ambil data dari table yang jadi acuan grouping / indexnya --}}
-                                                <td rowspan="{{$item->getKlasifikasi->getRegu->count()}}">{{$item->getKlasifikasi->getRegu->getSeksi->seksi}}</td>
-                                                {{-- apakah bisa menggunakan rowspan seperti ini? --}}
-                                                <td rowspan="{{$item->getKlasifikasi->count()}}">{{$item->getKlasifikasi->getRegu->regu}}</td>
+                                                {{-- Perlu pakai first() karena untuk ambil data dari table yang jadi acuan grouping / indexnya
+                                                <td rowspan="{{$item->first()->getKlasifikasi->getRegu->count()}}">{{$item->first()->getKlasifikasi->getRegu->getSeksi->seksi}}</td>
+                                                apakah bisa menggunakan rowspan seperti ini?
+                                                <td rowspan="{{$item->first()->getKlasifikasi->count()}}">{{$item->first()->getKlasifikasi->getRegu->regu}}</td> --}}
+                                                <td>{{$item->first()->getKlasifikasi->getRegu->getSeksi->seksi}}</td>
+                                                <td>{{$item->first()->getKlasifikasi->getRegu->regu}}</td>
                                                 <td>{{$item->first()->getKlasifikasi->klasifikasi_pekerjaan}}</td>
                                                 <td>{{count($item->where('status', 'Requested'))}}</td>
                                                 <td>{{count($item->where('status', 'Approved'))}}</td>

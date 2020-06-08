@@ -22,7 +22,7 @@ class LaporanController extends Controller
         if (Auth::user()->role == 'Admin') {
             $pekerjaan = Pekerjaan::where('tanggal_pekerjaan', '>=', $awal)
                 ->where('tanggal_pekerjaan', '<=', $akhir)
-                ->with('getKlasifikasi')->get() // get relation di query untuk keperluan grouping
+                ->with('getKlasifikasi.getRegu.getSeksi')->get() // get relation di query untuk keperluan grouping
                 ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan') // Untuk grouping array dengan index getKlasifikasi.kd_klasifikasi_pekerjaan
                 ->all();
         } elseif (Auth::user()->role == 'Worker') {
