@@ -32,6 +32,11 @@ class LaporanController extends Controller
             //     ->groupBy('kd_klasifikasi_pekerjaan') // Untuk grouping array dengan index getKlasifikasi.kd_klasifikasi_pekerjaan
             //     ->sortByDesc('kd_klasifikasi_pekerjaan')
             //     ->all();
+            $pekerjaan = Pekerjaan::where('tanggal_pekerjaan', '>=', $awal)
+                ->where('tanggal_pekerjaan', '<=', $akhir)
+                ->with('getKlasifikasi.getRegu.getSeksi')->get() // get relation di query untuk keperluan grouping
+                ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan') // Untuk grouping array dengan index getKlasifikasi.kd_klasifikasi_pekerjaan
+                ->all();
         } elseif (Auth::user()->role == 'Worker') {
             $klasifikasi = PekerjaanKlasifikasi::where('kd_klasifikasi', Auth::user()->getKaryawan->getRegu->getKlasifikasi->kd_klasifikasi)->toArray();
             $pekerjaan = Pekerjaan::where('tanggal_pekerjaan', '>=', $awal)
