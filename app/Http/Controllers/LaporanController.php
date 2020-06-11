@@ -21,25 +21,27 @@ class LaporanController extends Controller
         $awal = $request->input('awal');
         $akhir = $request->input('akhir');
         if (Auth::user()->role == 'Admin') {
-            $pekerjaan = PekerjaanKlasifikasi::with(['getPekerjaan' => function ($query) use ($awal, $akhir) {
-                $query->whereBetween('tb_pekerjaan.tanggal_pekerjaan', [$awal, $akhir]);
-            }, 'getRegu.getSeksi'])->get();
+            $rawData = Seksi::with(['getRegu.getKlasifikasi.getPekerjaan' => function ($query) use ($awal, $akhir) {
+                $query->whereBetween('tb_pekerjaan.tanggal_pekerjaan', [$awal, $akhir])->select('*');
+            }])->get();
 
-            // PekerjaanKlasifikasi::with('getRegu.getSeksi')->get();
-            // Pekerjaan::where('tanggal_pekerjaan', '>=', $awal)
-            //     ->where('tanggal_pekerjaan', '<=', $akhir)
-            //     ->with(['getKlasifikasi'])->get() // get relation di query untuk keperluan grouping
-            //     ->groupBy('kd_klasifikasi_pekerjaan') // Untuk grouping array dengan index getKlasifikasi.kd_klasifikasi_pekerjaan
-            //     ->sortByDesc('kd_klasifikasi_pekerjaan')
-            //     ->all();
-            $pekerjaan = Pekerjaan::where('tanggal_pekerjaan', '>=', $awal)
-                ->where('tanggal_pekerjaan', '<=', $akhir)
-                ->with('getKlasifikasi.getRegu.getSeksi')->get() // get relation di query untuk keperluan grouping
-                ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan') // Untuk grouping array dengan index getKlasifikasi.kd_klasifikasi_pekerjaan
-                ->all();
+            $countPekerjaanRequested = Pekerjaan::whereBetween('tanggal_pekerjaan', [$awal, $akhir])->where('status', 'Requested')->count();
+            $countPekerjaanApproved = Pekerjaan::whereBetween('tanggal_pekerjaan', [$awal, $akhir])->where('status', 'Approved')->count();
+            $countPekerjaanProgress = Pekerjaan::whereBetween('tanggal_pekerjaan', [$awal, $akhir])->where('status', 'In Progress')->count();
+            $countPekerjaanClosed = Pekerjaan::whereBetween('tanggal_pekerjaan', [$awal, $akhir])->where('status', 'Closed')->count();
+            $countPekerjaanTotal = Pekerjaan::whereBetween('tanggal_pekerjaan', [$awal, $akhir])->count();
+
+            foreach ($rawData as $indexSeksi => $itemSeksi) {
+                $countKlasifikasi[$indexSeksi] = 0;
+                foreach ($itemSeksi->getRegu as $indexRegu => $itemRegu) {
+                    foreach ($itemRegu->getKlasifikasi as $indexKlasifikasi => $itemKlasifikasi) {
+                        $countKlasifikasi[$indexSeksi]++;
+                    }
+                }
+            }
         } elseif (Auth::user()->role == 'Worker') {
             $klasifikasi = PekerjaanKlasifikasi::where('kd_klasifikasi', Auth::user()->getKaryawan->getRegu->getKlasifikasi->kd_klasifikasi)->toArray();
-            $pekerjaan = Pekerjaan::where('tanggal_pekerjaan', '>=', $awal)
+            $rawData = Pekerjaan::where('tanggal_pekerjaan', '>=', $awal)
                 ->where('tanggal_pekerjaan', '<=', $akhir)
                 ->where('kd_klasifikasi', $klasifikasi)
                 ->with('getKlasifikasi')->get()
@@ -47,10 +49,20 @@ class LaporanController extends Controller
                 ->all();
         }
         return
-            // json_encode($pekerjaan);
+            // json_encode([
+            //     $countPekerjaan->count(),
+            //     $countKlasifikasi,
+            //     'data' => $rawData
+            // ]);
             view('/pemeliharaan/laporan', [
                 'no' => 1,
-                'pekerjaan' => $pekerjaan,
+                'rawData' => $rawData,
+                'countKlasifikasi' => $countKlasifikasi,
+                'countPekerjaanRequested' => $countPekerjaanRequested,
+                'countPekerjaanApproved' => $countPekerjaanApproved,
+                'countPekerjaanProgress' => $countPekerjaanProgress,
+                'countPekerjaanClosed' => $countPekerjaanClosed,
+                'countPekerjaanTotal' => $countPekerjaanTotal,
                 'awal' => $awal,
                 'akhir' => $akhir,
             ]);
