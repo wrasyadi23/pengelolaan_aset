@@ -57,10 +57,6 @@ Route::group(['middleware' => ['auth','role:Admin']], function () {
     Route::get('/organisasi-regu-edit/{kd_regu}','ReguController@edit');
     Route::post('/organisasi-regu-update/{kd_regu}','ReguController@update');
     Route::get('/organisasi-regu-delete/{id}','ReguController@delete');
-    // laporan kegiatan 
-    Route::get('/pemeliharaan/laporan','LaporanController@index');
-    Route::post('/pemeliharaan/laporan-search','LaporanController@search');
-    Route::get('/pemeliharaan/laporan-preview/{awal}/{akhir}','LaporanController@preview');
 }); 
 
 Route::group(['middleware' => ['auth','role:Admin,Worker,User']], function () {
@@ -76,4 +72,8 @@ Route::group(['middleware' => ['auth','role:Admin,Worker,User']], function () {
     Route::get('/pemeliharaan/pekerjaan-edit/{booknumber}','input_pekerjaanController@edit');
     Route::post('/pemeliharaan/pekerjaan-update/{booknumber}','input_pekerjaanController@update');
     Route::get('/pemeliharaan/pekerjaan-delete-file/{id}','input_pekerjaanController@deleteFile');
+    // laporan kegiatan 
+    Route::get('/pemeliharaan/laporan','LaporanController@index');
+    Route::post('/pemeliharaan/laporan-search','LaporanController@search');
+    Route::get('/pemeliharaan/laporan-preview/{awal}/{akhir}','LaporanController@preview');
 });

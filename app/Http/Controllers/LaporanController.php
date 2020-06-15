@@ -47,14 +47,15 @@ class LaporanController extends Controller
                 ->with('getKlasifikasi')->get()
                 ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan')
                 ->all();
+        } elseif (Auth::user()->role == 'User') {
+            $rawData = Pekerjaan::where('tanggal_pekerjaan','>=', $awal)
+            ->where('tanggal_pekerjaan','<=',$akhir)
+            ->where('nik','=',Auth::user()->nik)
+            ->with('getKlasifikasi')->get()
+            ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan')
+            ->all();
         }
-        return
-            // json_encode([
-            //     $countPekerjaan->count(),
-            //     $countKlasifikasi,
-            //     'data' => $rawData
-            // ]);
-            view('/pemeliharaan/laporan', [
+        return view('/pemeliharaan/laporan', [
                 'no' => 1,
                 'rawData' => $rawData,
                 'countKlasifikasi' => $countKlasifikasi,

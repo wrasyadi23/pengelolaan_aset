@@ -190,7 +190,65 @@
             </div>
         </div>
         @elseif (Auth::user()->role == 'User')
-
+        <div class="card">
+            <div class="card-body">
+                @if (empty($awal) && empty($akhir))
+                <div class="card-content">
+                    <div class="text-center">
+                        <p>
+                            <h4>Laporan Permohonan {{Auth::user()->nama}} / {{Auth::user()->nik}}</h4>
+                        </p>
+                        <p>
+                            <h5>Tidak ada permohonan.</h5>
+                        </p>
+                    </div>
+                </div>
+                @else
+                <div class="card-content">
+                    <div class="text-center">
+                        <p>
+                            <h4>Laporan Permohonan {{Auth::user()->nama}} / {{Auth::user()->nik}}</h4>
+                        </p>
+                        <p>
+                            <h5>Periode : {{$awal}} - {{$akhir}}</h5>
+                        </p>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered" style="width: 100%;">
+                            <thead align="center">
+                                <tr>
+                                    <th rowspan="2">No</th>
+                                    <th rowspan="2">Klasifikasi Pekerjaan</th>
+                                    <th colspan="4">Kegiatan dalam Angka</th>
+                                    <th rowspan="2">Total</th>
+                                </tr>
+                                <tr>
+                                    <th>Requested</th>
+                                    <th>Approved</th>
+                                    <th>In Progres</th>
+                                    <th>Closed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($rawData as $item)
+                                <tr>
+                                    <td>{{$no++}}</td>
+                                    {{-- Perlu pakai first() karena untuk ambil data dari table yang jadi acuan grouping / indexnya --}}
+                                    <td>{{$item->first()->getKlasifikasi->klasifikasi_pekerjaan}}</td>
+                                    <td>{{count($item->where('status', 'Requested'))}}</td>
+                                    <td>{{count($item->where('status', 'Approved'))}}</td>
+                                    <td>{{count($item->where('status', 'In Progress'))}}</td>
+                                    <td>{{count($item->where('status', 'Closed'))}}</td>
+                                    <td>{{count($item)}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                @endif
+            </div>
+        </div>
         @endif
     </div>
 </div>
