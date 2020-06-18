@@ -210,4 +210,31 @@ class input_pekerjaanController extends Controller
 
         return redirect('pemeliharaan/pekerjaan-detail/' . $disapprovePekerjaan->booknumber)->with('message', 'Data telah diupdate.');
     }
+
+    public function proceed($booknumber)
+    {
+        $proceed = Pekerjaan::where('booknumber', $booknumber)->first();
+        $proceed->status = 'In Progress';
+        $proceed->save();
+
+        return redirect('pemeliharaan/pekerjaan')->with('message', 'Status pekerjaan In Progress.');
+    }
+
+    public function done($booknumber)
+    {
+        $done = Pekerjaan::where('booknumber',$booknumber)->first();
+        $done->status = 'Done';
+        $done->save();
+
+        return redirect('pemeliharaan/pekerjaan')->with('message', 'Status pekerjaan Done.');
+    }
+
+    public function accepted($booknumber)
+    {
+        $accepted = Pekerjaan::where('booknumber',$booknumber)->first();
+        $accepted->status = 'Closed';
+        $accepted->save();
+
+        return redirect('pemeliharaan/pekerjaan')->with('message', 'Pekerjaan telah selesai.');
+    }
 }

@@ -72,8 +72,12 @@ Route::group(['middleware' => ['auth','role:Admin,Worker,User']], function () {
     Route::get('/pemeliharaan/pekerjaan-edit/{booknumber}','input_pekerjaanController@edit');
     Route::post('/pemeliharaan/pekerjaan-update/{booknumber}','input_pekerjaanController@update');
     Route::get('/pemeliharaan/pekerjaan-delete-file/{id}','input_pekerjaanController@deleteFile');
+    Route::get('/pemeliharaan/pekerjaan-proceed/{booknumber}','input_pekerjaanController@proceed');
+    Route::get('/pemeliharaan/pekerjaan-done/{booknumber}','input_pekerjaanController@done');
+    Route::get('/pemeliharaan/pekerjaan-accepted/{booknumber}','input_pekerjaanController@accepted');
     // laporan kegiatan 
     Route::get('/pemeliharaan/laporan','LaporanController@index');
     Route::post('/pemeliharaan/laporan-search','LaporanController@search');
     Route::get('/pemeliharaan/laporan-preview/{awal}/{akhir}','LaporanController@preview');
+    Route::get('/pemeliharaan/preview/{awal}/{akhir}','LaporanController@preview');
 });

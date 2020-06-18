@@ -110,6 +110,7 @@
                                                 <td>{{$itemKlasifikasi->getPekerjaan->where('status', 'Requested')->count()}}</td>
                                                 <td>{{$itemKlasifikasi->getPekerjaan->where('status', 'Approved')->count()}}</td>
                                                 <td>{{$itemKlasifikasi->getPekerjaan->where('status', 'In Progress')->count()}}</td>
+                                                <td>{{$itemKlasifikasi->getPekerjaan->where('status', 'Done')->count()}}</td>
                                                 <td>{{$itemKlasifikasi->getPekerjaan->where('status', 'Closed')->count()}}</td>
                                                 <td>{{$itemKlasifikasi->getPekerjaan->count()}}</td>
                                             </tr>
@@ -124,6 +125,9 @@
                                 <th>{{$countPekerjaanTotal}}</th>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="form-row">
+                        <button class="btn btn-primary" onclick=""></button>
                     </div>
                 </div>
                 @endif
@@ -178,6 +182,7 @@
                                     <td>{{count($item->where('status', 'Requested'))}}</td>
                                     <td>{{count($item->where('status', 'Approved'))}}</td>
                                     <td>{{count($item->where('status', 'In Progress'))}}</td>
+                                    <td>{{count($item->where('status', 'Done'))}}</td>
                                     <td>{{count($item->where('status', 'Closed'))}}</td>
                                     <td>{{count($item)}}</td>
                                 </tr>
@@ -238,6 +243,7 @@
                                     <td>{{count($item->where('status', 'Requested'))}}</td>
                                     <td>{{count($item->where('status', 'Approved'))}}</td>
                                     <td>{{count($item->where('status', 'In Progress'))}}</td>
+                                    <td>{{count($item->where('status', 'Done'))}}</td>
                                     <td>{{count($item->where('status', 'Closed'))}}</td>
                                     <td>{{count($item)}}</td>
                                 </tr>
