@@ -79,5 +79,4 @@ Route::group(['middleware' => ['auth','role:Admin,Worker,User']], function () {
     Route::get('/pemeliharaan/laporan','LaporanController@index');
     Route::post('/pemeliharaan/laporan-search','LaporanController@search');
     Route::get('/pemeliharaan/laporan-preview/{awal}/{akhir}','LaporanController@preview');
-    Route::get('/pemeliharaan/preview/{awal}/{akhir}','LaporanController@preview');
 });

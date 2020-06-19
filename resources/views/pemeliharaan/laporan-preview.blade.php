@@ -1,40 +1,14 @@
-@extends('layouts.master')
-@section('title','Laporan Kegiatan')
-@section('content')
-<div class="container-fluid mt-3">
-    {{-- @if (session('message'))
-        <div class="alert alert-success">{{session('message')}}</div>
-@endif --}}
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="form-row">
-                    <h4 class="card-title">Laporan Kegiatan</h4>
-                </div>
-                <div class="card-content">
-                    <div class="basic-form">
-                        <form name="laporan" action="/pemeliharaan/laporan-search" method="post">
-                            @csrf
-                            <div class="form-row">
-                                <div class="form-group col-sm-3">
-                                    <input type="date" name="awal" id="" class="form-control input-default">
-                                </div>
-                                <div class="form-group col-sm-3">
-                                    <input type="date" name="akhir" id="" class="form-control input-default">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <button type="submit" class="btn btn-primary"
-                                            style="padding: 11px 20px 11px 20px;">Submit</button>
-                                    <button type="reset" class="btn btn-primary"
-                                            style="padding: 11px 20px 11px 20px;">Reset</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="{{asset('quixlab/css/style.css')}}" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid mt-3">
         @if (Auth::user()->role == 'Admin')
         <div class="card">
             <div class="card-body">
@@ -74,7 +48,6 @@
                                     <th>Requested</th>
                                     <th>Approved</th>
                                     <th>In Progres</th>
-                                    <th>Done</th>
                                     <th>Closed</th>
                                 </tr>
                             </thead>
@@ -122,14 +95,10 @@
                                 <th>{{$countPekerjaanRequested}}</th>
                                 <th>{{$countPekerjaanApproved}}</th>
                                 <th>{{$countPekerjaanProgress}}</th>
-                                <th>{{$countPekerjaanDone}}</th>
                                 <th>{{$countPekerjaanClosed}}</th>
                                 <th>{{$countPekerjaanTotal}}</th>
                             </tbody>
                         </table>
-                    </div>
-                    <div class="form-row">
-                        <button class="btn btn-primary" onclick="window.location.href='/pemeliharaan/laporan-preview/{{$awal}}/{{$akhir}}'">Print Laporan</button>
                     </div>
                 </div>
                 @endif
@@ -172,7 +141,6 @@
                                     <th>Requested</th>
                                     <th>Approved</th>
                                     <th>In Progres</th>
-                                    <th>Done</th>
                                     <th>Closed</th>
                                 </tr>
                             </thead>
@@ -234,7 +202,6 @@
                                     <th>Requested</th>
                                     <th>Approved</th>
                                     <th>In Progres</th>
-                                    <th>Done</th>
                                     <th>Closed</th>
                                 </tr>
                             </thead>
@@ -261,6 +228,5 @@
         </div>
         @endif
     </div>
-</div>
-</div>
-@endsection
+</body>
+</html>
