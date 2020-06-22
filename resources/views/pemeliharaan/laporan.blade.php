@@ -67,7 +67,7 @@
                                     <th rowspan="2">Seksi</th>
                                     <th rowspan="2">Regu</th>
                                     <th rowspan="2">Klasifikasi Pekerjaan</th>
-                                    <th colspan="4">Kegiatan dalam Angka</th>
+                                    <th colspan="5">Kegiatan dalam Angka</th>
                                     <th rowspan="2">Total</th>
                                 </tr>
                                 <tr>
@@ -117,7 +117,7 @@
                                         @endforeach
                                     @endforeach
                                 @endforeach
-                                <th colspan="3">Grand Total</td>
+                                <th colspan="3">Grand Total</th>
                                 <th>{{$countPekerjaanRequested}}</th>
                                 <th>{{$countPekerjaanApproved}}</th>
                                 <th>{{$countPekerjaanProgress}}</th>
@@ -164,7 +164,7 @@
                                 <tr>
                                     <th rowspan="2">No</th>
                                     <th rowspan="2">Klasifikasi Pekerjaan</th>
-                                    <th colspan="4">Kegiatan dalam Angka</th>
+                                    <th colspan="5">Kegiatan dalam Angka</th>
                                     <th rowspan="2">Total</th>
                                 </tr>
                                 <tr>
@@ -226,7 +226,7 @@
                                 <tr>
                                     <th rowspan="2">No</th>
                                     <th rowspan="2">Klasifikasi Pekerjaan</th>
-                                    <th colspan="4">Kegiatan dalam Angka</th>
+                                    <th colspan="5">Kegiatan dalam Angka</th>
                                     <th rowspan="2">Total</th>
                                 </tr>
                                 <tr>
