@@ -20,7 +20,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => ['auth','role:Admin']], function () {
+Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::get('/pemeliharaan/pekerjaan-approve/{booknumber}','input_pekerjaanController@approve');
     Route::get('/pemeliharaan/pekerjaan-disapprove/{booknumber}','input_pekerjaanController@disapprove');
     Route::get('/pemeliharaan/pekerjaan-cancel/{booknumber}','input_pekerjaanController@cancel');
@@ -59,7 +59,7 @@ Route::group(['middleware' => ['auth','role:Admin']], function () {
     Route::get('/organisasi-regu-delete/{id}','ReguController@delete');
 }); 
 
-Route::group(['middleware' => ['auth','role:Admin,Worker,User']], function () {
+Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function () {
     // data pekerjaan 
     Route::get('/pemeliharaan/data','pemeliharaanController@data');
     // pemeliharaan

@@ -64,8 +64,18 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-        <div class="nk-sidebar">           
-           @include('sidebars.pemeliharaan')
+        <div class="nk-sidebar">
+            @if (Auth::user()->role == 'Root')
+                @include('sidebars.admin')
+            @elseif (Auth::user()->role == 'Admin' || Auth::user()->role == 'Worker')
+                @if (Auth::user()->getKaryawan->getBagian->kd_bagian == 'BAG0001')
+                    @include('sidebars.transport')
+                @elseif (Auth::user()->getKaryawan->getBagian->kd_bagian == 'BAG0002')
+                    @include('sidebars.perlengkapan')
+                @elseif (Auth::user()->getKaryawan->getBagian->kd_bagian == 'BAG0003')
+                    @include('sidebars.pemeliharaan')
+                @endif
+            @endif           
         </div>
         <!--**********************************
             Sidebar end
