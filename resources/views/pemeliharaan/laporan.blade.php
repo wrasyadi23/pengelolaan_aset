@@ -106,7 +106,6 @@
                                                         {{$itemRegu->regu}}
                                                     </td>
                                                 @endif
-
                                                 <td>{{$itemKlasifikasi->klasifikasi_pekerjaan}}</td>
                                                 <td>{{$itemKlasifikasi->getPekerjaan->where('status', 'Requested')->count()}}</td>
                                                 <td>{{$itemKlasifikasi->getPekerjaan->where('status', 'Approved')->count()}}</td>

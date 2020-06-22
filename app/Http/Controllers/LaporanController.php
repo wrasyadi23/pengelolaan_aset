@@ -111,7 +111,7 @@ class LaporanController extends Controller
             ->all();
         }
 
-        $pdf =  PDF::loadview('/pemeliharaan/laporan-preview', [
+        $pdf =  PDF::loadView('/pemeliharaan/laporan-preview', [
                 'no' => 1,
                 'rawData' => $rawData,
                 'countKlasifikasi' => $countKlasifikasi,
@@ -123,8 +123,8 @@ class LaporanController extends Controller
                 'countPekerjaanTotal' => $countPekerjaanTotal,
                 'awal' => $awal,
                 'akhir' => $akhir,
-            ]);
+            ])->setPaper('a4','portrait');
         
-        return $pdf->stream();
+        return $pdf->download('laporan-kegiatan.pdf');
     }
 }

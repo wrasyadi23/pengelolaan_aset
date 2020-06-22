@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{asset('quixlab/css/style.css')}}" rel="stylesheet">
+    <style>
+        .page-break {
+            page-break-after: always;
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid mt-3">
@@ -104,6 +109,7 @@
                 @endif
             </div>
         </div>
+        <div class="page-break"></div>
         @elseif (Auth::user()->role == 'Worker')
         <div class="card">
             <div class="card-body">
@@ -165,6 +171,7 @@
                 @endif
             </div>
         </div>
+        <div class="page-break"></div>
         @elseif (Auth::user()->role == 'User')
         <div class="card">
             <div class="card-body">
@@ -227,6 +234,7 @@
             </div>
         </div>
         @endif
+        <div class="page-break"></div>
     </div>
 </body>
 </html>
