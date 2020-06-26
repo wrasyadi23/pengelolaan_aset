@@ -65,7 +65,7 @@
         @if (Auth::user()->role == 'Admin')
         <h1>Laporan Kegiatan {{Auth::user()->getKaryawan->getBagian->bagian}}</h1>
         <h2>Periode : {{$awal}} - {{$akhir}}</h2>
-        <table class="table table-sm table-bordered">
+        <table>
             <tr>
                 {{-- <th rowspan="2">No</th> --}}
                 <th rowspan="2">Seksi</th>
@@ -128,6 +128,68 @@
                 <td>{{$countPekerjaanClosed}}</td>
                 <td>{{$countPekerjaanTotal}}</td>
             </tr>
+        </table>
+        @elseif (Auth::user()->role == 'Worker')
+        <h1>Laporan Kegiatan {{Auth::user()->getKaryawan->getRegu->regu}}</h1>
+        <h2>Periode : {{$awal}} - {{$akhir}}</h2>
+        <table>
+            <tr>
+                <th rowspan="2">No</th>
+                <th rowspan="2">Klasifikasi Pekerjaan</th>
+                <th colspan="5">Kegiatan dalam Angka</th>
+                <th rowspan="2">Total</th>
+            </tr>
+            <tr>
+                <th>Requested</th>
+                <th>Approved</th>
+                <th>In Progres</th>
+                <th>Done</th>
+                <th>Closed</th>
+            </tr>
+            @foreach ($rawData as $item)
+            <tr>
+                <td>{{$no++}}</td>
+                {{-- Perlu pakai first() karena untuk ambil data dari table yang jadi acuan grouping / indexnya --}}
+                <td>{{$item->first()->getKlasifikasi->klasifikasi_pekerjaan}}</td>
+                <td>{{count($item->where('status', 'Requested'))}}</td>
+                <td>{{count($item->where('status', 'Approved'))}}</td>
+                <td>{{count($item->where('status', 'In Progress'))}}</td>
+                <td>{{count($item->where('status', 'Done'))}}</td>
+                <td>{{count($item->where('status', 'Closed'))}}</td>
+                <td>{{count($item)}}</td>
+            </tr>
+            @endforeach
+        </table>
+        @elseif (Auth::user()->role == User)
+        <h1>Laporan Permohonan {{Auth::user()->nama}} / {{Auth::user()->nik}}</h1>
+        <h2>Periode : {{$awal}} - {{$akhir}}</h2>
+        <table>
+            <tr>
+                <th rowspan="2">No</th>
+                <th rowspan="2">Klasifikasi Pekerjaan</th>
+                <th colspan="5">Kegiatan dalam Angka</th>
+                <th rowspan="2">Total</th>
+            </tr>
+            <tr>
+                <th>Requested</th>
+                <th>Approved</th>
+                <th>In Progres</th>
+                <th>Done</th>
+                <th>Closed</th>
+            </tr>
+            @foreach ($rawData as $item)
+            <tr>
+                <td>{{$no++}}</td>
+                {{-- Perlu pakai first() karena untuk ambil data dari table yang jadi acuan grouping / indexnya --}}
+                <td>{{$item->first()->getKlasifikasi->klasifikasi_pekerjaan}}</td>
+                <td>{{count($item->where('status', 'Requested'))}}</td>
+                <td>{{count($item->where('status', 'Approved'))}}</td>
+                <td>{{count($item->where('status', 'In Progress'))}}</td>
+                <td>{{count($item->where('status', 'Done'))}}</td>
+                <td>{{count($item->where('status', 'Closed'))}}</td>
+                <td>{{count($item)}}</td>
+            </tr>
+            @endforeach
         </table>
         @endif
     </div>    

@@ -192,6 +192,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="form-row">
+                        <button class="btn btn-primary" onclick="window.location.href='/pemeliharaan/laporan-preview/{{$awal}}/{{$akhir}}'">Print Laporan</button>
+                    </div>
                 </div>
                 @endif
             </div>
@@ -253,6 +256,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="form-row">
+                        <button class="btn btn-primary" onclick="window.location.href='/pemeliharaan/laporan-preview/{{$awal}}/{{$akhir}}'">Print Laporan</button>
                     </div>
                 </div>
                 @endif

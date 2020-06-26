@@ -42,10 +42,10 @@ class LaporanController extends Controller
                 }
             }
         } elseif (Auth::user()->role == 'Worker') {
-            $klasifikasi = PekerjaanKlasifikasi::where('kd_klasifikasi', Auth::user()->getKaryawan->getRegu->getKlasifikasi->kd_klasifikasi)->toArray();
+            $klasifikasi = PekerjaanKlasifikasi::where('kd_klasifikasi_pekerjaan', Auth::user()->getKaryawan->getRegu->getKlasifikasi->kd_klasifikasi_pekerjaan)->toArray();
             $rawData = Pekerjaan::where('tanggal_pekerjaan', '>=', $awal)
                 ->where('tanggal_pekerjaan', '<=', $akhir)
-                ->where('kd_klasifikasi', $klasifikasi)
+                ->where('kd_klasifikasi_pekerjaan', $klasifikasi)
                 ->with('getKlasifikasi')->get()
                 ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan')
                 ->all();
