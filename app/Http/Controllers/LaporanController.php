@@ -42,37 +42,45 @@ class LaporanController extends Controller
                 }
             }
         } elseif (Auth::user()->role == 'Worker') {
-            $klasifikasi = PekerjaanKlasifikasi::where('kd_klasifikasi_pekerjaan', Auth::user()->getKaryawan->getRegu->getKlasifikasi->kd_klasifikasi_pekerjaan)->toArray();
+            // $klasifikasi = PekerjaanKlasifikasi::where('kd_klasifikasi_pekerjaan', )->get()->toArray();
             $rawData = Pekerjaan::where('tanggal_pekerjaan', '>=', $awal)
                 ->where('tanggal_pekerjaan', '<=', $akhir)
-                ->where('kd_klasifikasi_pekerjaan', $klasifikasi)
+                ->where('kd_klasifikasi_pekerjaan', Auth::user()->getKaryawan->getRegu->getKlasifikasi->map->only('kd_klasifikasi_pekerjaan'))
                 ->with('getKlasifikasi')->get()
                 ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan')
                 ->all();
+
+            $countKlasifikasi = 0;
+            $countPekerjaanRequested = 0;
+            $countPekerjaanApproved = 0;
+            $countPekerjaanProgress = 0;
+            $countPekerjaanDone = 0;
+            $countPekerjaanClosed = 0;
+            $countPekerjaanTotal = 0;
         } elseif (Auth::user()->role == 'User') {
-            $rawData = Pekerjaan::where('tanggal_pekerjaan','>=', $awal)
-            ->where('tanggal_pekerjaan','<=',$akhir)
-            ->where('nik','=',Auth::user()->nik)
-            ->with('getKlasifikasi')->get()
-            ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan')
-            ->all();
+            $rawData = Pekerjaan::where('tanggal_pekerjaan', '>=', $awal)
+                ->where('tanggal_pekerjaan', '<=', $akhir)
+                ->where('nik', '=', Auth::user()->nik)
+                ->with('getKlasifikasi')->get()
+                ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan')
+                ->all();
         }
         return view('/pemeliharaan/laporan', [
-                'no' => 1,
-                'rawData' => $rawData,
-                'countKlasifikasi' => $countKlasifikasi,
-                'countPekerjaanRequested' => $countPekerjaanRequested,
-                'countPekerjaanApproved' => $countPekerjaanApproved,
-                'countPekerjaanProgress' => $countPekerjaanProgress,
-                'countPekerjaanDone' => $countPekerjaanDone,
-                'countPekerjaanClosed' => $countPekerjaanClosed,
-                'countPekerjaanTotal' => $countPekerjaanTotal,
-                'awal' => $awal,
-                'akhir' => $akhir,
-            ]);
+            'no' => 1,
+            'rawData' => $rawData,
+            'countKlasifikasi' => $countKlasifikasi,
+            'countPekerjaanRequested' => $countPekerjaanRequested,
+            'countPekerjaanApproved' => $countPekerjaanApproved,
+            'countPekerjaanProgress' => $countPekerjaanProgress,
+            'countPekerjaanDone' => $countPekerjaanDone,
+            'countPekerjaanClosed' => $countPekerjaanClosed,
+            'countPekerjaanTotal' => $countPekerjaanTotal,
+            'awal' => $awal,
+            'akhir' => $akhir,
+        ]);
     }
 
-    public function preview($awal,$akhir)
+    public function preview($awal, $akhir)
     {
         if (Auth::user()->role == 'Admin') {
             $rawData = Seksi::with(['getRegu.getKlasifikasi.getPekerjaan' => function ($query) use ($awal, $akhir) {
@@ -95,20 +103,28 @@ class LaporanController extends Controller
                 }
             }
         } elseif (Auth::user()->role == 'Worker') {
-            $klasifikasi = PekerjaanKlasifikasi::where('kd_klasifikasi', Auth::user()->getKaryawan->getRegu->getKlasifikasi->kd_klasifikasi)->toArray();
+            // $klasifikasi = PekerjaanKlasifikasi::where('kd_klasifikasi', Auth::user()->getKaryawan->getRegu->getKlasifikasi->kd_klasifikasi)->toArray();
             $rawData = Pekerjaan::where('tanggal_pekerjaan', '>=', $awal)
                 ->where('tanggal_pekerjaan', '<=', $akhir)
-                ->where('kd_klasifikasi', $klasifikasi)
+                ->where('kd_klasifikasi_pekerjaan', Auth::user()->getKaryawan->getRegu->getKlasifikasi->map->only('kd_klasifikasi_pekerjaan'))
                 ->with('getKlasifikasi')->get()
                 ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan')
                 ->all();
+
+                $countKlasifikasi = 0;
+                $countPekerjaanRequested = 0;
+                $countPekerjaanApproved = 0;
+                $countPekerjaanProgress = 0;
+                $countPekerjaanDone = 0;
+                $countPekerjaanClosed = 0;
+                $countPekerjaanTotal = 0;
         } elseif (Auth::user()->role == 'User') {
-            $rawData = Pekerjaan::where('tanggal_pekerjaan','>=', $awal)
-            ->where('tanggal_pekerjaan','<=',$akhir)
-            ->where('nik','=',Auth::user()->nik)
-            ->with('getKlasifikasi')->get()
-            ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan')
-            ->all();
+            $rawData = Pekerjaan::where('tanggal_pekerjaan', '>=', $awal)
+                ->where('tanggal_pekerjaan', '<=', $akhir)
+                ->where('nik', '=', Auth::user()->nik)
+                ->with('getKlasifikasi')->get()
+                ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan')
+                ->all();
         }
 
         // $pdf =  PDF::loadView('/pemeliharaan/laporan-preview', [
@@ -124,8 +140,8 @@ class LaporanController extends Controller
         //         'awal' => $awal,
         //         'akhir' => $akhir,
         //     ])->setPaper('a4','portrait');
-        
-        $pdf = PDF::loadView('/pemeliharaan/laporan-preview',[
+
+        $pdf = PDF::loadView('/pemeliharaan/laporan-preview', [
             'no' => 1,
             'rawData' => $rawData,
             'countKlasifikasi' => $countKlasifikasi,
@@ -137,8 +153,8 @@ class LaporanController extends Controller
             'countPekerjaanTotal' => $countPekerjaanTotal,
             'awal' => $awal,
             'akhir' => $akhir,
-        ])->setPaper('a4','portrait');
-        
+        ])->setPaper('a4', 'portrait');
+
         return $pdf->stream();
     }
 }
