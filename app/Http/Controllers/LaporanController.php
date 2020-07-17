@@ -51,12 +51,12 @@ class LaporanController extends Controller
                 ->all();
 
             $countKlasifikasi = 0;
-            $countPekerjaanRequested = 0;
-            $countPekerjaanApproved = 0;
-            $countPekerjaanProgress = 0;
-            $countPekerjaanDone = 0;
-            $countPekerjaanClosed = 0;
-            $countPekerjaanTotal = 0;
+            $countPekerjaanRequested = Pekerjaan::whereBetween('tanggal_pekerjaan',[$awal, $akhir])->where('status','Requested')->count();
+            $countPekerjaanApproved = Pekerjaan::whereBetween('tanggal_pekerjaan',[$awal, $akhir])->where('status','Approved')->count();;
+            $countPekerjaanProgress = Pekerjaan::whereBetween('tanggal_pekerjaan',[$awal, $akhir])->where('status','In Progress')->count();;
+            $countPekerjaanDone = Pekerjaan::whereBetween('tanggal_pekerjaan',[$awal, $akhir])->where('status','Done')->count();;
+            $countPekerjaanClosed = Pekerjaan::whereBetween('tanggal_pekerjaan',[$awal, $akhir])->where('status','Closed')->count();;
+            $countPekerjaanTotal = Pekerjaan::whereBetween('tanggal_pekerjaan',[$awal, $akhir])->count();;
         } elseif (Auth::user()->role == 'User') {
             $rawData = Pekerjaan::where('tanggal_pekerjaan', '>=', $awal)
                 ->where('tanggal_pekerjaan', '<=', $akhir)

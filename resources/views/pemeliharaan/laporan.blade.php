@@ -117,13 +117,15 @@
                                         @endforeach
                                     @endforeach
                                 @endforeach
-                                <th colspan="3">Grand Total</th>
-                                <th>{{$countPekerjaanRequested}}</th>
-                                <th>{{$countPekerjaanApproved}}</th>
-                                <th>{{$countPekerjaanProgress}}</th>
-                                <th>{{$countPekerjaanDone}}</th>
-                                <th>{{$countPekerjaanClosed}}</th>
-                                <th>{{$countPekerjaanTotal}}</th>
+                                <tr>
+                                    <th colspan="3">Grand Total</th>
+                                    <th>{{$countPekerjaanRequested}}</th>
+                                    <th>{{$countPekerjaanApproved}}</th>
+                                    <th>{{$countPekerjaanProgress}}</th>
+                                    <th>{{$countPekerjaanDone}}</th>
+                                    <th>{{$countPekerjaanClosed}}</th>
+                                    <th>{{$countPekerjaanTotal}}</th>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -189,6 +191,15 @@
                                     <td>{{count($item)}}</td>
                                 </tr>
                                 @endforeach
+                                <tr>
+                                    <th colspan="3">Grand Total</th>
+                                    <th>{{$countPekerjaanRequested}}</th>
+                                    <th>{{$countPekerjaanApproved}}</th>
+                                    <th>{{$countPekerjaanProgress}}</th>
+                                    <th>{{$countPekerjaanDone}}</th>
+                                    <th>{{$countPekerjaanClosed}}</th>
+                                    <th>{{$countPekerjaanTotal}}</th>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -254,6 +265,15 @@
                                     <td>{{count($item)}}</td>
                                 </tr>
                                 @endforeach
+                                <tr>
+                                    <th colspan="3">Grand Total</th>
+                                    <th>{{$rawData->where('status','Requested')->count()}}</th>
+                                    <th>{{$rawData->where('status','Approved')->count()}}</th>
+                                    <th>{{$rawData->where('status','In Progress')->count()}}</th>
+                                    <th>{{$rawData->where('status','Done')->count()}}</th>
+                                    <th>{{$rawData->where('status','Closed')->count()}}</th>
+                                    <th>{{$rawData->count()}}</th>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

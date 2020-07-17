@@ -151,14 +151,23 @@
                 <td>{{$no++}}</td>
                 {{-- Perlu pakai first() karena untuk ambil data dari table yang jadi acuan grouping / indexnya --}}
                 <td>{{$item->first()->getKlasifikasi->klasifikasi_pekerjaan}}</td>
-                <td>{{count($item->where('status', 'Requested'))}}</td>
-                <td>{{count($item->where('status', 'Approved'))}}</td>
-                <td>{{count($item->where('status', 'In Progress'))}}</td>
-                <td>{{count($item->where('status', 'Done'))}}</td>
-                <td>{{count($item->where('status', 'Closed'))}}</td>
-                <td>{{count($item)}}</td>
+                <td>{{$countPekerjaanRequested}}</td>
+                <td>{{$countPekerjaanApproved}}</td>
+                <td>{{$countPekerjaanProgress}}</td>
+                <td>{{$countPekerjaanDone}}</td>
+                <td>{{$countPekerjaanClosed}}</td>
+                <td>{{$countPekerjaanTotal}}</td>
             </tr>
             @endforeach
+            <tr class="grandtotal">
+                <td colspan="3">Grand Total</td>
+                <td>{{$rawData->where('status','Requested')->count()}}</td>
+                <td>{{$rawData->where('status','Approved')->count()}}</td>
+                <td>{{$rawData->where('status','In Progress')->count()}}</td>
+                <td>{{$rawData->where('status','Done')->count()}}</td>
+                <td>{{$rawData->where('status','Closed')->count()}}</td>
+                <td>{{$rawData->count()}}</td>
+            </tr>
         </table>
         @elseif (Auth::user()->role == User)
         <h1>Laporan Permohonan {{Auth::user()->nama}} / {{Auth::user()->nik}}</h1>
@@ -190,6 +199,15 @@
                 <td>{{count($item)}}</td>
             </tr>
             @endforeach
+            <tr class="grandtotal">
+                <td colspan="3">Grand Total</td>
+                <td>{{$rawData->where('status','Requested')->count()}}</td>
+                <td>{{$rawData->where('status','Approved')->count()}}</td>
+                <td>{{$rawData->where('status','In Progress')->count()}}</td>
+                <td>{{$rawData->where('status','Done')->count()}}</td>
+                <td>{{$rawData->where('status','Closed')->count()}}</td>
+                <td>{{$rawData->count()}}</td>
+            </tr>
         </table>
         @endif
     </div>    
