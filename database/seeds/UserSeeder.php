@@ -38,6 +38,22 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('rahasiakita'),
                 'remember_token' => Str::random(60)
             ],
+            [
+                'nama' => 'Gunawan',
+                'nik' => 'T253626',
+                'email' => 'gunawan@gmail.com',
+                'role' => 'Admin',
+                'password' => Hash::make('rahasiakita'),
+                'remember_token' => Str::random(60)
+            ],
+            [
+                'nama' => 'Achmad Endro S.',
+                'nik' => 'K201206',
+                'email' => 'endro@gmail.com',
+                'role' => 'Admin',
+                'password' => Hash::make('rahasiakita'),
+                'remember_token' => Str::random(60)
+            ],
             
         ]);
 
@@ -82,6 +98,34 @@ class UserSeeder extends Seeder
                 'kd_bagian' => 'BAG0003',
                 'kd_seksi' => 'SIE0001',
                 'kd_regu' => 'RU0002',
+                'status' => 'Aktif'
+            ],
+            [
+                'nama' => 'Gunawan',
+                'nik' => 'T253626',
+                'tempat_lahir' => 'Gresik',
+                'tanggal_lahir' => '1963-05-10',
+                'jenis_kelamin' => 'L',
+                'jabatan' => 'Kasi',
+                'golongan' => '5A',
+                'kd_departemen' => 'DEP0001',
+                'kd_bagian' => 'BAG0001',
+                'kd_seksi' => 'SIE0004',
+                'kd_regu' => 'RU0009',
+                'status' => 'Aktif'
+            ],
+            [
+                'nama' => 'Achmad Endro S.',
+                'nik' => 'K201206',
+                'tempat_lahir' => 'Gresik',
+                'tanggal_lahir' => '1993-04-23',
+                'jenis_kelamin' => 'L',
+                'jabatan' => 'FJM',
+                'golongan' => '-',
+                'kd_departemen' => 'DEP0001',
+                'kd_bagian' => 'BAG0001',
+                'kd_seksi' => 'SIE0005',
+                'kd_regu' => 'RU0010',
                 'status' => 'Aktif'
             ],
         ]);
