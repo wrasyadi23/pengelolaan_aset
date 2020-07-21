@@ -12,7 +12,7 @@
                 <i class="icon-note menu-icon"></i><span class="nav-text">Sewa Kendaraan</span>
             </a>
             <ul aria-expanded="false">
-                <li><a href="/transport/sewa">Input SP</a></li>
+                <li><a href="/transport/spsewa">Input SP</a></li>
                 <li><a href="/transport/sewa-kontrak">SR Sewa Kontrak</a></li>
                 <li><a href="/transport/sewa-isidentil">SR Sewa Isidentil</a></li>
                 <li><a href="/transport/sewa-pr">Input Nomor PR</a></li>
