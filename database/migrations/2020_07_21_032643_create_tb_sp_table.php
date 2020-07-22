@@ -19,6 +19,7 @@ class CreateTbSpTable extends Migration
             $table->string('no_sp',255);
             $table->string('cost_center',15);
             $table->string('gl_account',15);
+            $table->string('id_aktifitas_rkap',15);
             $table->string('deskripsi',255);
             $table->string('uraian',255);
             $table->string('keterangan',255);

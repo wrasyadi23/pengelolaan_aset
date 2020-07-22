@@ -82,4 +82,5 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
 
     //input servie request sewa
     Route::get('/transport/spsewa', 'SpSewaController@spsewa');
+    Route::post('/transport/store','SpSewaController@store');
 });
