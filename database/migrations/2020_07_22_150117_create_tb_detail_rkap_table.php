@@ -19,7 +19,7 @@ class CreateTbDetailRkapTable extends Migration
             $table->string('aktifitas', 45);
             $table->string('nama_aktifitas', 45);
             $table->text('uraian');
-            $table->integer('nilai_aktifitas', 15, 2);
+            $table->decimal('nilai_aktifitas', 15, 2);
             $table->string('kd_rkap', 45);
             $table->string('kd_bagian', 45);
             $table->string('kd_seksi', 45);

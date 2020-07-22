@@ -18,13 +18,13 @@ class CreateTbBbmTable extends Migration
             $table->string('kd_bbm', 45)->unique();
             $table->date('tgl_isi');
             $table->string('jenis_bbm', 45);
-            $table->integer('jml', 8, 2);
-            $table->integer('oddo', 10, 0);
+            $table->decimal('jml', 8, 2);
+            $table->integer('oddo');
             $table->string('pemohon', 45);
             $table->string('keterangan', 45);
             $table->string('status', 45);
             $table->date('tgl_realisasi');
-            $table->integer('harga_realisasi', 15, 2);
+            $table->decimal('harga_realisasi', 15, 2);
             $table->string('kd_aktifitas', 45);
             $table->string('kd_kendaraan', 45);
             $table->string('nopol', 45);
