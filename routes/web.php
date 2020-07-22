@@ -81,10 +81,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/pemeliharaan/laporan-preview/{awal}/{akhir}','LaporanController@preview');
     //input servie request sewa
     Route::get('/transport/spsewa', 'SpSewaController@spsewa');
-<<<<<<< HEAD
+    Route::post('/transport/store','SpSewaController@store');
     //parkirtol
     Route::get('/transport/parkirtol', 'parkirtolController@parkirtol');
-=======
-    Route::post('/transport/store','SpSewaController@store');
->>>>>>> da9e9c515cdc4f2daf240e280fd5106265bd4c4c
 });
