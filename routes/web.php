@@ -79,7 +79,8 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/pemeliharaan/laporan','LaporanController@index');
     Route::post('/pemeliharaan/laporan-search','LaporanController@search');
     Route::get('/pemeliharaan/laporan-preview/{awal}/{akhir}','LaporanController@preview');
-
     //input servie request sewa
     Route::get('/transport/spsewa', 'SpSewaController@spsewa');
+    //parkirtol
+    Route::get('/transport/parkirtol', 'parkirtolController@parkirtol');
 });

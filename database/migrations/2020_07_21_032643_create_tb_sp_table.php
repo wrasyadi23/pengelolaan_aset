@@ -12,23 +12,24 @@ class CreateTbSpTable extends Migration
      * @return void
      */
     public function up()
-    {
+    { 
         Schema::create('tb_sp', function (Blueprint $table) {
             $table->id();
-            $table->string('kd_sp',25);
-            $table->string('no_sp',255);
-            $table->string('cost_center',15);
-            $table->string('gl_account',15);
-            $table->string('deskripsi',255);
-            $table->string('uraian',255);
-            $table->string('keterangan',255);
+            $table->string('kd_sp', 45)->unique();
+            $table->string('no_sp', 45);
+            $table->string('cost_center', 45);
+            $table->string('gl_acc', 45);
+            $table->text('deskripsi', 255);
+            $table->text('uraian', 255);
+            $table->text('keterangan', 255);
             $table->date('tgl');
-            $table->string('jenis',45);
-            $table->decimal('harga',8, 2);
+            $table->string('jenis', 45);
+            $table->decimal('harga', 15, 2);
             $table->integer('jml');
-            $table->string('satuan',15);
-            $table->string('rekanan',15);
-            $table->string('status',15);
+            $table->string('satuan', 45);
+            $table->string('rekanan', 45);
+            $table->string('status', 45);
+            $table->string('kd_aktifitas_rkap', 45);
             $table->timestamps();
         });
     }
