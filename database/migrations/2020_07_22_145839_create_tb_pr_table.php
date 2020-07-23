@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRkapTable extends Migration
+class CreateTbPrTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateRkapTable extends Migration
      */
     public function up()
     {
-        Schema::create('rkap', function (Blueprint $table) {
+        Schema::create('tb_pr', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('kd_pr', 45)->unique();
+            $table->string('no_pr', 45);
+            $table->date('tgl');
+            $table->string('kd_sr', 45);
         });
     }
 
@@ -26,6 +29,6 @@ class CreateRkapTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rkap');
+        Schema::dropIfExists('tb_pr');
     }
 }

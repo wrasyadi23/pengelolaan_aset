@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTbBaTable extends Migration
+class CreateTbRiksamaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateTbBaTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_ba', function (Blueprint $table) {
+        Schema::create('tb_riksama', function (Blueprint $table) {
             $table->id();
-            $table->string('kd_ba', 45);
-            $table->string('no_ba', 45);
-            $table->text('uraian');
+            $table->string('kd_riksama', 45)->unique();
+            $table->string('no_riksama', 45);
             $table->date('tgl');
             $table->date('tgl_awal');
             $table->date('tgl_akhir');
-            $table->string('kd_sp', 45);
+            $table->string('periode', 45);
+            $table->string('kd_ok', 45);
+            $table->timestamps();
         });
     }
 
@@ -32,6 +33,6 @@ class CreateTbBaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_ba');
+        Schema::dropIfExists('tb_riksama');
     }
 }

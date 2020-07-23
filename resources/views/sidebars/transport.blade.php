@@ -22,10 +22,15 @@
         </li>
         @endif
         @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Worker')    
-        <li>
-            <a href="/pemeliharaan/data" aria-expanded="false">
-                <i class="icon-chart menu-icon"></i><span class="nav-text">Data Pemeliharaan</span>
+        <li class="mega-menu mega-menu-sm">
+            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                <i class="icon-note menu-icon"></i><span class="nav-text">Parkir & Tol</span>
             </a>
+            <ul aria-expanded="false">
+                <li><a href="/transport/parkirtol">Input Karcis Parkir & Tol</a></li>
+                <li><a href="/transport/parkirtol-data">Data Parkir & Tol</a></li>
+                <li><a href="/transport/parkirtol-laporan">Laporan</a></li>
+            </ul>
         </li>
         @endif
         {{-- <li>
