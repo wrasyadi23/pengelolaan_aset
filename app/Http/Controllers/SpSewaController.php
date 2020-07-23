@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\SpSewa;
-use Carbon\Carbon;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SpSewaController extends Controller
 {
@@ -52,11 +52,19 @@ class SpSewaController extends Controller
         $newRealisasi->jenis = $jenis;
         $newRealisasi->harga = $harga;
         $newRealisasi->jml = $jml;
+        $newRealisasi->total_harga = $harga*$jml;
         $newRealisasi->satuan = $satuan;
         $newRealisasi->rekanan = $rekanan;
         $newRealisasi->status = 'Aktif';
         $newRealisasi->save();
         
         return redirect('transport/spsewa');
+    }
+
+    public function tampilsp(){
+        $getspsewa = SpSewa::orderBy('id', 'desc')
+        ->where('status', '=', 'Aktif')
+        ->paginate(10);
+        return view('transport/tampilsp', ['getspsewa' => $getspsewa]);
     }
 }
