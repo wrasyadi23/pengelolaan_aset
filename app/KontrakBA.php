@@ -14,4 +14,9 @@ class KontrakBA extends Model
     {
         return $this->belongsTo('App\Kontrak', 'kd_sp', 'kd_sp');
     }
+
+    public function getKendaraan()
+    {
+        return $this->hasMany('App\Kendaraan', 'kd_ba', 'kd_ba');
+    }
 }
