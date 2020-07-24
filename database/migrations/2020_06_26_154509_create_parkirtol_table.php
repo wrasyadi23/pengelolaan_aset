@@ -25,7 +25,6 @@ class CreateParkirtolTable extends Migration
             $table->string('uraian', 45);
             $table->string('status', 45);
             $table->date('tanggal_bayar');
-            $table->string('tanggal_bayar');
             $table->string('creator', 45);
             $table->string('kd_aktifitas_rkap', 45);
             $table->timestamps();
