@@ -44,7 +44,7 @@ class SpSewaController extends Controller
         $newRealisasi->kd_sp = $getkdsp;
         $newRealisasi->cost_center = $cost_center;
         $newRealisasi->gl_account = $gl_account;
-        $newRealisasi->id_aktifitas_rkap = '123';
+        $newRealisasi->kd_aktifitas_rkap = '123';
         $newRealisasi->deskripsi = $deskripsi;
         $newRealisasi->uraian = $uraian;
         $newRealisasi->keterangan = $keterangan;
@@ -52,7 +52,6 @@ class SpSewaController extends Controller
         $newRealisasi->jenis = $jenis;
         $newRealisasi->harga = $harga;
         $newRealisasi->jml = $jml;
-        $newRealisasi->total_harga = $harga*$jml;
         $newRealisasi->satuan = $satuan;
         $newRealisasi->rekanan = $rekanan;
         $newRealisasi->status = 'Aktif';
