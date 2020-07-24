@@ -18,4 +18,14 @@ class RkapDetail extends Model
     {
         return $this->hasMany('App\Kontrak', 'kd_aktifitas_rkap', 'kd_aktifitas_rkap');
     }
+
+    public function getBbm()
+    {
+        return $this->hasOne('App\Bbm', 'kd_aktifitas_rkap', 'kd_aktifitas_rkap');
+    }
+
+    public function getParkirtol()
+    {
+        return $this->hasOne('App\Parkirtol', 'kd_aktifitas_rkap', 'kd_aktifitas_rkap');
+    }
 }

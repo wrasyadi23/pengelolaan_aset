@@ -15,4 +15,6 @@ class parkirtolController extends Controller
     {
         return view('transport/parkirtol');
     }
+
+    
 }
