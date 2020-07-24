@@ -15,7 +15,9 @@ class CreateParkirtolDetailTable extends Migration
     {
         Schema::create('parkirtol_detail', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('kd_parkirtol', 45);
+            $table->decimal('nilai_karcis', 10, 0);
+            $table->decimal('jml_karcis', 10, 0);
         });
     }
 

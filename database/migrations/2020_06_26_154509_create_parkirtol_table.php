@@ -22,6 +22,12 @@ class CreateParkirtolTable extends Migration
             $table->date('trip_start');
             $table->date('trip_end');
             $table->string('melayani', 45);
+            $table->string('uraian', 45);
+            $table->string('status', 45);
+            $table->date('tanggal_bayar');
+            $table->string('tanggal_bayar');
+            $table->string('creator', 45);
+            $table->string('kd_aktifitas_rkap', 45);
             $table->timestamps();
         });
     }
