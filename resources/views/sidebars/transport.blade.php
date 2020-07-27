@@ -13,7 +13,7 @@
             </a>
             <ul aria-expanded="false">
                 <li><a href="/transport/tampilsp">Data Sp Sewa</a></li>
-                <li><a href="/transport/ba_kendaraan">Ba Kendaraan Baru</a></li>
+                <li><a href="/transport/sewa-ba-create">Ba Kendaraan Baru</a></li>
                 <li><a href="/transport/sewa-kontrak">SR Sewa Kontrak</a></li>
                 <li><a href="/transport/sewa-isidentil">SR Sewa Isidentil</a></li>
                 <li><a href="/transport/sewa-pr">Input Nomor PR</a></li>

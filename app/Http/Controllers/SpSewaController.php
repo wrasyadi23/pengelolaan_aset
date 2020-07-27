@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\SpSewa;
+use App\Kontrak;
+use App\KontrakBA;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +15,7 @@ class SpSewaController extends Controller
     
     public function store(Request $request)
     {
-        $data = SpSewa::select('id', 'kd_sp', 'tgl')
+        $data = Kontrak::select('id', 'kd_sp', 'tgl')
             ->whereYear('tgl', date('Y'))
             ->orderBy('id', 'desc')->count();
         $tahun_sekarang = date('Ym');
@@ -38,7 +39,7 @@ class SpSewaController extends Controller
         $satuan = $request->input('satuan');
         $rekanan = $request->input('rekanan');
         
-        $newRealisasi = new SpSewa();
+        $newRealisasi = new Kontrak();
         $newRealisasi->kd_sp = $getkdsp;
         $newRealisasi->no_sp = $no_sp;
         $newRealisasi->cost_center = $cost_center;
@@ -59,12 +60,9 @@ class SpSewaController extends Controller
         return redirect('transport/tampilsp');
     }
 
-    
-    
-    
     public function edit_sp($id)
     {
-        $editsp = SpSewa::where('id', $id)->first();
+        $editsp = Kontrak::where('id', $id)->first();
         return view('transport/edit_sp',['editsp' => $editsp]);
     }
     
@@ -83,7 +81,7 @@ class SpSewaController extends Controller
         $satuan = $request->input('satuan');
         $rekanan = $request->input('rekanan');
         
-        $newRealisasi = SpSewa::findOrFail($id);
+        $newRealisasi = Kontrak::findOrFail($id);
         $newRealisasi->no_sp = $no_sp;
         $newRealisasi->cost_center = $cost_center;
         $newRealisasi->gl_acc = $gl_acc;
@@ -102,19 +100,15 @@ class SpSewaController extends Controller
         
         return redirect('transport/tampilsp');   
     }
-        public function tampilsp(){
-            $getspsewa = SpSewa::orderBy('id', 'desc')->paginate(10);
-            return view('transport/tampilsp', ['getspsewa' => $getspsewa]);
-        }
-    
-        public function cari(Request $data){
-            $key = $data->key;
-            $getspsewa = SpSewa::where('no_sp','like',"%".$key."%")
-            ->paginate(10);
-            return view('transport/tampilsp', ['getspsewa' => $getspsewa]);
-        }
+    public function tampilsp(){
+        $getspsewa = Kontrak::orderBy('id', 'desc')->paginate(10);
+        return view('transport/tampilsp', ['getspsewa' => $getspsewa]);
+    }
 
-        public function ba_kendaraan(){
-            return view('transport/basewa');
-        }
+    public function cari(Request $data){
+        $key = $data->key;
+        $getspsewa = Kontrak::where('no_sp','like',"%".$key."%")
+        ->paginate(10);
+        return view('transport/tampilsp', ['getspsewa' => $getspsewa]);
+    }
 }
