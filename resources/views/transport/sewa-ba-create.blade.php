@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Input Ba Serah Terima Kendaraan Sewa</h4>
                         <div class="card-content">
-                            <form action="/transport/store" method="post">
+                            <form action="/transport/sewa-ba-store" method="post">
                                 @csrf
                                 <div class="basic-form">
                                     <div class="form-group">
