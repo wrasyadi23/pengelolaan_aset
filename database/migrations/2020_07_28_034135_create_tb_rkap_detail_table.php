@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTbDetailRkapTable extends Migration
+class CreateTbRkapDetailTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTbDetailRkapTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_detail_rkap', function (Blueprint $table) {
+        Schema::create('tb_rkap_detail', function (Blueprint $table) {
             $table->id();
             $table->string('kd_aktifitas_rkap', 45)->unique();
             $table->string('aktifitas', 45);
@@ -34,6 +34,6 @@ class CreateTbDetailRkapTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_detail_rkap');
+        Schema::dropIfExists('tb_rkap_detail');
     }
 }

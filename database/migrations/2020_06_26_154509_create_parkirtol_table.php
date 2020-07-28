@@ -16,17 +16,17 @@ class CreateParkirtolTable extends Migration
         Schema::create('parkirtol', function (Blueprint $table) {
             $table->id();
             $table->string('kd_parkirtol', 45)->unique();
-            $table->string('nama', 45);
             $table->string('nik', 45);
-            $table->date('tanggal');
+            $table->date('tgl');
             $table->date('trip_start');
             $table->date('trip_end');
             $table->string('melayani', 45);
             $table->string('uraian', 45);
             $table->string('status', 45);
-            $table->date('tanggal_bayar');
+            $table->date('tgl_bayar');
             $table->string('creator', 45);
-            $table->string('kd_aktifitas_rkap', 45);
+            $table->string('kd_uangmuka', 45);
+            $table->string('kd_pengemudi', 45);
             $table->timestamps();
         });
     }

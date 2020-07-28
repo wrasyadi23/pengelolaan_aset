@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Pengemudi extends Model
 {
     protected $table = 'tb_pengemudi';
-    public $timestamps = false;
     public $incrementing = false;
+
+    public function getParkirtol()
+    {
+        return $this->belongsTo('App\Parkirtol', 'kd_pengemudi', 'kd_pengemudi');
+    }
     
 }

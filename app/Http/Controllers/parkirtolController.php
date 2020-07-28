@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Parkirtol;
 use App\ParkirtolDetail;
+use App\Uangmuka;
 use Carbon\Carbon;
 use File;
 use Auth;
@@ -13,8 +14,22 @@ class parkirtolController extends Controller
 {
     public function index()
     {
-        return view('transport/parkirtol');
+        $parkirtol = Parkirtol::where('status','Requested')->get();
+        return view('transport/parkirtol',[
+            'parkirtol' => $parkirtol,
+        ]);
     }
 
-    
+    public function create()
+    {
+        $uangmuka = Uangmuka::where('status','Requested')->get();
+        return view('transport/parkirtol-create', [
+            'uangmuka' => $uangmuka,
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        
+    }
 }

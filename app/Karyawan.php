@@ -38,4 +38,9 @@ class Karyawan extends Model
     {
         return $this->hasMany('App\Pekerjaan', 'nik', 'nik');
     }
+
+    public function getUangmuka()
+    {
+        return $this->hasMany('App\uangmuka', 'nik', 'nik');
+    }
 }

@@ -22,27 +22,27 @@
                             <table class="table table-striped table-bordered zero-configuration" style="width: 100%;">
                                 <thead>
                                     <tr>
-                                        <td>No Booking</td>
+                                        <td>Kode Parkirtol</td>
                                         <td>Nama</td>
                                         <td>NIK</td>
                                         <td>Tanggal</td>
-                                        <td>Jadwal Perbaikan</td>
-                                        <td>Keterangan</td>
+                                        <td>Melayani</td>
+                                        <td>Uraian</td>
                                         <td>Status</td>
                                         <td>Detail</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($DataPekerjaan as $Pekerjaan => $item)    
+                                @foreach ($parkirtol as $data => $item)    
                                     <tr>
-                                        <td>{{$item->booknumber}}</td>
-                                        <td>{{$item->nama}}</td>
-                                        <td>{{$item->nik}}</td>
-                                        <td>{{$item->tanggal_pekerjaan}}</td>
-                                        <td>{{$item->tanggal_pelaksanaan}}</td>
+                                        <td>{{$item->kd_parkirtol}}</td>
+                                        <td>{{$item->getPengemudi->nama}}</td>
+                                        <td>{{$item->getPengemudi->nik}}</td>
+                                        <td>{{$item->tgl}}</td>
+                                        <td>{{$item->melayani}}</td>
                                         <td>{{$item->uraian}}</td>
                                         <td><span class="badge badge-primary">{{$item->status}}</span></td>
-                                        <td><a href="/pemeliharaan/pekerjaan-detail/{{$item->booknumber}}" class="badge badge-success">Detail</a></td>
+                                        <td><a href="/transport/parkirtol-detail/{{$item->kd_parkirtol}}" class="badge badge-success">Detail</a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>

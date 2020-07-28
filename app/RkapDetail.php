@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RkapDetail extends Model
 {
-    protected $table = 'tb_detail_rkap';
+    protected $table = 'tb_rkap_detail';
     public $incrementing = false;
 
     public function getRkap()
@@ -24,8 +24,8 @@ class RkapDetail extends Model
         return $this->hasOne('App\Bbm', 'kd_aktifitas_rkap', 'kd_aktifitas_rkap');
     }
 
-    public function getParkirtol()
+    public function getUangmuka()
     {
-        return $this->hasOne('App\Parkirtol', 'kd_aktifitas_rkap', 'kd_aktifitas_rkap');
+        return $this->hasMany('App\Uangmuka', 'kd_aktifitas_rkap', 'kd_aktifitas_rkap');
     }
 }

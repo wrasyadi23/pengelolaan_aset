@@ -92,6 +92,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     //parkirtol
     Route::get('/transport/parkirtol', 'parkirtolController@index');
     Route::get('/transport/parkirtol-create', 'parkirtolController@create');
+    Route::get('/transport/parkirtol-detail', 'parkirtolController@detail');
     Route::post('/transport/parkirtol-store', 'parkirtolController@store');
-    Route::post('/transport/parkirtol-edit', 'parkirtolController@edit');
+    Route::get('/transport/parkirtol-edit/{kd_parkirtol}', 'parkirtolController@edit');
 });

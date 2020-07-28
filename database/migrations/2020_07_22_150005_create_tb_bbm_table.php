@@ -25,7 +25,8 @@ class CreateTbBbmTable extends Migration
             $table->string('status', 45);
             $table->date('tgl_realisasi');
             $table->decimal('harga_realisasi', 15, 2);
-            $table->string('kd_aktifitas', 45);
+            $table->string('creator', 45);
+            $table->string('kd_aktifitas_rkap', 45);
             $table->string('kd_kendaraan', 45);
             $table->string('nopol', 45);
             $table->timestamps();

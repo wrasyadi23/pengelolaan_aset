@@ -15,8 +15,14 @@ class Parkirtol extends Model
         return $this->hasMany('App\ParkirtolDetail', 'kd_parkirtol', 'kd_parkirtol');
     }
 
-    public function getRkapDetail()
+    public function getPengemudi()
     {
-        return $this->belongsTo('App\RkapDetail', 'kd_aktifitas_rkap', 'kd_aktifitas_rkap');
+        return $this->hasOne('App\Pengemudi', 'kd_pengemudi', 'kd_pengemudi');
     }
+
+    public function getUangmuka()
+    {
+        return $this->belongsTo('App\Uangmuka', 'kd_uangmuka', 'kd_uangmuka');
+    }
+    
 }
