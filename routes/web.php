@@ -83,7 +83,6 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/transport/spsewa', 'SpSewaController@spsewa');
     Route::post('/transport/store','SpSewaController@store');
     Route::get('/transport/tampilsp', 'SpSewaController@tampilsp');
-    Route::get('/transport/tampilsp', 'SpSewaController@tampilsp');
     Route::get('/transport/cari', 'SpSewaController@cari');
     Route::get('/transport/edit_sp/{id}','SpSewaController@edit_sp');
     Route::post('/transport/update/{id}','SpSewaController@update');
