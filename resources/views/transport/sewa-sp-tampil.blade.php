@@ -18,7 +18,7 @@
                             <div class="form-group col-md-4">
                                 <button type="submit" class="btn btn-primary">Cari</button>
                                 <button type="reset" class="btn btn-primary" onclick="window.location.href='/transport/tampilsp'">Reset</button>
-                                <a href="/transport/spsewa" class="btn btn-success">Sp Baru</a>
+                                <a href="/transport/sewa-sp-create" class="btn btn-success">Sp Baru</a>
                             </div> 
                     </form>
                     <div class="card-content">

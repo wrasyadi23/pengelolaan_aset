@@ -80,9 +80,9 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::post('/pemeliharaan/laporan-search','LaporanController@search');
     Route::get('/pemeliharaan/laporan-preview/{awal}/{akhir}','LaporanController@preview');
     //input servie request sewa
-    Route::get('/transport/spsewa', 'SpSewaController@spsewa');
+    Route::get('/transport/sewa-sp-create', 'SpSewaController@spsewa');
     Route::post('/transport/store','SpSewaController@store');
-    Route::get('/transport/tampilsp', 'SpSewaController@tampilsp');
+    Route::get('/transport/sewa-sp-tampil', 'SpSewaController@tampilsp');
     Route::get('/transport/cari', 'SpSewaController@cari');
     Route::get('/transport/edit_sp/{id}','SpSewaController@edit_sp');
     Route::post('/transport/update/{id}','SpSewaController@update');

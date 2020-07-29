@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class SpSewaController extends Controller
 {
     public function spsewa(){
-        return view('transport/spsewa');
+        return view('transport/sewa-sp-create');
     }
     
     public function store(Request $request)
@@ -57,7 +57,7 @@ class SpSewaController extends Controller
         $newRealisasi->status = 'Requested';
         $newRealisasi->save();
         
-        return redirect('transport/tampilsp');
+        return redirect('transport/sewa-sp-tampil');
     }
 
     public function edit_sp($id)
@@ -98,17 +98,17 @@ class SpSewaController extends Controller
         $newRealisasi->status = 'Requested';
         $newRealisasi->save();
         
-        return redirect('transport/tampilsp');   
+        return redirect('transport/sewa-sp-tampil');   
     }
     public function tampilsp(){
         $getspsewa = Kontrak::orderBy('id', 'desc')->paginate(10);
-        return view('transport/tampilsp', ['getspsewa' => $getspsewa]);
+        return view('transport/sewa-sp-tampil', ['getspsewa' => $getspsewa]);
     }
 
     public function cari(Request $data){
         $key = $data->key;
         $getspsewa = Kontrak::where('no_sp','like',"%".$key."%")
         ->paginate(10);
-        return view('transport/tampilsp', ['getspsewa' => $getspsewa]);
+        return view('transport/sewa-sp-tampil', ['getspsewa' => $getspsewa]);
     }
 }

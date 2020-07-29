@@ -12,7 +12,7 @@
                 <i class="icon-note menu-icon"></i><span class="nav-text">Sewa Kendaraan</span>
             </a>
             <ul aria-expanded="false">
-                <li><a href="/transport/tampilsp">Data Sp Sewa</a></li>
+                <li><a href="/transport/sewa-sp-tampil">Data Sp Sewa</a></li>
                 <li><a href="/transport/sewa-ba-create">Ba Kendaraan Baru</a></li>
                 <li><a href="/transport/sewa-kontrak">SR Sewa Kontrak</a></li>
                 <li><a href="/transport/sewa-isidentil">SR Sewa Isidentil</a></li>
