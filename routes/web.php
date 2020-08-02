@@ -88,6 +88,9 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::post('/transport/update/{id}','SpSewaController@update');
     Route::get('/transport/sewa-ba-create', 'BAController@index');
     Route::post('/transport/sewa-ba-store', 'BAController@store');
+    Route::get('/transport/sewa-kendaraan-create', 'KendaraanController@create');
+    Route::post('/transport/simpan','KendaraanController@simpan');
+
     //parkirtol
     Route::get('/transport/parkirtol', 'parkirtolController@index');
     Route::get('/transport/parkirtol-create', 'parkirtolController@create');

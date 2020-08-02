@@ -51,6 +51,6 @@ class BAController extends Controller
         // $newRealisasi->save();
         
         return redirect('transport/sewa-ba-create');
-    
     }
+
 }
