@@ -14,12 +14,21 @@
             <ul aria-expanded="false">
                 <li><a href="/transport/sewa-sp-tampil">Data Sp Sewa</a></li>
                 <li><a href="/transport/sewa-ba-create">Ba Kendaraan Baru</a></li>
-                <li><a href="/transport/sewa-kendaraan-create">Input Kendaraan</a></li>
                 <li><a href="/transport/sewa-kontrak">SR Sewa Kontrak</a></li>
                 <li><a href="/transport/sewa-isidentil">SR Sewa Isidentil</a></li>
                 <li><a href="/transport/sewa-pr">Input Nomor PR</a></li>
                 <li><a href="/transport/sewa-ok">Input Nomor OK</a></li>
                 <li><a href="/transport/sewa-riksama">BA Riksama</a></li>
+            </ul>
+        </li>
+        <li class="mega-menu mega-menu-sm">
+            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                <i class="icon-note menu-icon"></i><span class="nav-text">Data Kendaraan</span>
+            </a>
+            <ul aria-expanded="false">
+                <li><a href="/transport/kendaraan-create">Input Kendaraan</a></li>
+                <li><a href="/transport/kendaraan-mutasi">Mutasi Kendaraan</a></li>
+                <li><a href="/transport/kendaraan-data">Data Kendaraan</a></li>
             </ul>
         </li>
         @endif

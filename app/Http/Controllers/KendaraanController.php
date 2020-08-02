@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Kontrak;
 use App\KontrakBA;
 use App\Kendaraan;
+use Carbon\Carbon;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -11,20 +12,21 @@ class KendaraanController extends Controller
 {
     public function create(){
         $rawDataBA = KontrakBA::orderBy('id', 'desc')->get();
-        return view('transport/sewa-kendaraan-create', [
+        return view('transport/kendaraan-create', [
             'rawDataBA' => $rawDataBA
             ]);
         }
 
-    public function simpan(Request $request)
+    public function store(Request $request)
     {
         $data = Kendaraan::select('id', 'kd_kendaraan')
         ->orderBy('id', 'desc')->count();
-    if ($data > 0) {
-        $kendaraan = 'KEND' .  sprintf('%04s', $data + 1);
-    } else {
-        $kendaraan = 'KEND' .  sprintf('%04s', 1);
-    }
+        if ($data > 0) {
+            $kendaraan = 'KEND' .  sprintf('%04s', $data + 1);
+        } else {
+            $kendaraan = 'KEND' .  sprintf('%04s', 1);
+        }
+        
         $nopol = $request->input('nopol');
         $merk = $request->input('merk');
         $type = $request->input('type');
@@ -44,28 +46,28 @@ class KendaraanController extends Controller
         $kd_seksi = $request->input('kd_seksi');
         $kd_regu = $request->input('kd_regu');
         
-        $newRealisasi = new Kendaraan();
-        $newRealisasi->kd_kendaraan = $kendaraan;
-        $newRealisasi->nopol = $nopol;
-        $newRealisasi->merk = $merk;
-        $newRealisasi->type = $type;
-        $newRealisasi->tahun = $tahun;
-        $newRealisasi->warna = $warna;
-        $newRealisasi->jenis = $jenis;
-        $newRealisasi->jenis_bbm = $jenis_bbm;
-        $newRealisasi->jml_bbm = $jml_bbm;
-        $newRealisasi->no_bpkb = $no_bpkb;
-        $newRealisasi->no_stnk = $no_stnk;
-        $newRealisasi->no_mesin = $no_mesin;
-        $newRealisasi->no_rangka = $no_rangka;
-        $newRealisasi->status = 'Aktif';
-        $newRealisasi->kd_ba = $kd_ba;
-        $newRealisasi->kd_departemen = '-';
-        $newRealisasi->kd_bagian = '-';
-        $newRealisasi->kd_seksi = '-';
-        $newRealisasi->kd_regu = '-';
-        $newRealisasi->save();
+        $kendaraan = new Kendaraan;
+        $kendaraan->kd_kendaraan = $kendaraan;
+        $kendaraan->nopol = $nopol;
+        $kendaraan->merk = $merk;
+        $kendaraan->type = $type;
+        $kendaraan->tahun = Carbon::parse($tahun)->format('Y');
+        $kendaraan->warna = $warna;
+        $kendaraan->jenis = $jenis;
+        $kendaraan->jenis_bbm = $jenis_bbm;
+        $kendaraan->jml_bbm = $jml_bbm;
+        $kendaraan->no_bpkb = $no_bpkb;
+        $kendaraan->no_stnk = $no_stnk;
+        $kendaraan->no_mesin = $no_mesin;
+        $kendaraan->no_rangka = $no_rangka;
+        $kendaraan->status = 'Aktif';
+        $kendaraan->kd_ba = $kd_ba;
+        $kendaraan->kd_departemen = '-';
+        $kendaraan->kd_bagian = '-';
+        $kendaraan->kd_seksi = '-';
+        $kendaraan->kd_regu = '-';
+        $kendaraan->save();
         
-        return redirect('transport/sewa-kendaraan-create');
+        return redirect('transport/kendaraan-create');
     }
 }
