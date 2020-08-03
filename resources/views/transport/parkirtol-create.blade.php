@@ -7,16 +7,16 @@
     @endif
     <div class="row">
         <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <h4 class="card-title">Parkir & Tol</h4>
+            <form action="/parkirtol-store" method="post">
+                @csrf
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <h4 class="card-title">Parkir & Tol</h4>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-content">
-                        <form action="/parkirtol-store" method="post">
-                            @csrf
+                        <div class="card-content">
                             <div class="basic-form">
                                 <div class="form-group">
                                     <label for="uangmuka">No. Uangmuka</label>
@@ -49,13 +49,27 @@
                                         <label for="trip_end">Trip End</label>
                                         <input type="date" name="trip_end" id="" class="form-control input-default" required>
                                     </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>            
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <h4 class="card-title">Detail Parkir & Tol</h4>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="basic-form">
+                                detail parkirtol
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -70,5 +84,7 @@
             placeholder: 'Pilih Pengemudi',
             allowClear: true
         });
+
     </script>
+    <script src=""></script>
 @endsection

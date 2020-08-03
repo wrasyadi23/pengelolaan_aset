@@ -33,6 +33,17 @@ class parkirtolController extends Controller
 
     public function store(Request $request)
     {
+        // getParkirtol
+        $data = Parkirtol::select('id', 'kd_parkirtol')
+            ->whereYear('tgl', date('Y'))
+            ->orderBy('id', 'desc')->count();
+        $tahun_sekarang = date('Ym');
+        if ($data > 0) {
+            $kd_parkirtol = 'PT' . $tahun_sekarang . sprintf('%05s', $data + 1);
+        } else {
+            $kd_parkirtol = 'PT' . $tahun_sekarang . sprintf('%05s', 1);
+        }
+
         
     }
 }
