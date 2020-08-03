@@ -35,6 +35,17 @@
         @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Worker')    
         <li class="mega-menu mega-menu-sm">
             <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                <i class="icon-note menu-icon"></i><span class="nav-text">Uang Muka</span>
+            </a>
+            <ul aria-expanded="false">
+                <li><a href="/transport/uangmuka">Input Uang Muka</a></li>
+                <li><a href="/transport/uangmuka-data">Data Uang Muka</a></li>
+                <li><a href="/transport/uangmuka-realisasi">Pertanggungjawaban Uang Muka</a></li>
+                <li><a href="/transport/uangmuka-laporan">Laporan</a></li>
+            </ul>
+        </li>
+        <li class="mega-menu mega-menu-sm">
+            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                 <i class="icon-note menu-icon"></i><span class="nav-text">Parkir & Tol</span>
             </a>
             <ul aria-expanded="false">

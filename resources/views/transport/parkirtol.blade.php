@@ -14,7 +14,7 @@
                             <h4 class="card-title">Parkir & Tol</h4>
                         </div>
                         <div class="col-md-6 text-right">
-                            <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='/transport/parkirtol'">+ Tambah</button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='/transport/parkirtol-create'">+ Tambah</button>
                         </div>
                     </div>
                     <div class="card-content">
