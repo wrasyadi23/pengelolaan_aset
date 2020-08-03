@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="tahun">Tahun Pembuatan</label>
-                                        <input type="year" name="tahun" id="" class="form-control input-default" placeholder="Tahun Pembuatan" required>
+                                        <input type="text" name="tahun" id="" class="form-control input-default" placeholder="Tahun Pembuatan" required>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="warna">Warna</label>
@@ -47,7 +47,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="jenis">Jenis Kendaraan</label>
-                                        <select name = "jenis" class="form-control">
+                                        <select name = "jenis" class="form-control input-default">
                                             <option selected="selected">Pilih Jenis Kendaraan</option>
                                             <option value="Sedan">Sedan</option>
                                             <option value="Bus">Bus</option>
@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="jenis_bbm">Jenis BBM</label>
-                                        <select name = "jenis_bbm" class="form-control">
+                                        <select name = "jenis_bbm" class="form-control input-default">
                                             <option selected="selected">Pilih Jenis Kendaraan</option>
                                             <option value="PetraMax">PetraMax</option>
                                             <option value="Pertalite">Pertalite</option>
@@ -66,8 +66,8 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="jata_bbm">Jatah BBM</label>
-                                        <input type="decimal" name="jml_bbm" id="" class="form-control input-default" placeholder="Jata BBM" required>
+                                        <label for="jml_bbm">Jumlah BBM</label>
+                                        <input type="number" name="jml_bbm" id="" class="form-control input-default" placeholder="Jumlah BBM" required>
                                     </div>
                                 </div>
                                 <div class="form-row">

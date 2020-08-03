@@ -22,9 +22,9 @@ class KendaraanController extends Controller
         $data = Kendaraan::select('id', 'kd_kendaraan')
         ->orderBy('id', 'desc')->count();
         if ($data > 0) {
-            $kendaraan = 'KEND' .  sprintf('%04s', $data + 1);
+            $kd_kendaraan = 'KEND' .  sprintf('%05s', $data + 1);
         } else {
-            $kendaraan = 'KEND' .  sprintf('%04s', 1);
+            $kd_kendaraan = 'KEND' .  sprintf('%05s', 1);
         }
         
         $nopol = $request->input('nopol');
@@ -47,11 +47,11 @@ class KendaraanController extends Controller
         $kd_regu = $request->input('kd_regu');
         
         $kendaraan = new Kendaraan;
-        $kendaraan->kd_kendaraan = $kendaraan;
+        $kendaraan->kd_kendaraan = $kd_kendaraan;
         $kendaraan->nopol = $nopol;
         $kendaraan->merk = $merk;
         $kendaraan->type = $type;
-        $kendaraan->tahun = Carbon::parse($tahun)->format('Y');
+        $kendaraan->tahun = $tahun;
         $kendaraan->warna = $warna;
         $kendaraan->jenis = $jenis;
         $kendaraan->jenis_bbm = $jenis_bbm;

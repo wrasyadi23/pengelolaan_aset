@@ -11,7 +11,7 @@ class Kendaraan extends Model
 
     public function getKontrakBA()
     {
-        return $this->belongsTo('App\KontrakBA', 'foreign_key', 'other_key');
+        return $this->belongsTo('App\KontrakBA', 'kd_ba', 'kd_ba');
     }
     public function getSR()
     {

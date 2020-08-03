@@ -19,7 +19,7 @@ class CreateTbKendaraanTable extends Migration
             $table->string('nopol', 45);
             $table->string('merk', 45);
             $table->string('type', 45);
-            $table->date('tahun');
+            $table->integer('tahun');
             $table->string('warna', 45);
             $table->string('jenis', 45);
             $table->string('jenis_bbm', 45);

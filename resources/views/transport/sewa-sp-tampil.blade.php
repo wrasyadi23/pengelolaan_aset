@@ -20,6 +20,7 @@
                                 <button type="reset" class="btn btn-primary" onclick="window.location.href='/transport/tampilsp'">Reset</button>
                                 <a href="/transport/sewa-sp-create" class="btn btn-success">Sp Baru</a>
                             </div> 
+                        </div>
                     </form>
                     <div class="card-content">
                         {{-- Tampilan detail table, uncomment dari bawah untuk pakai --}}
