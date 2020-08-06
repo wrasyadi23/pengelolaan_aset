@@ -83,16 +83,25 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/transport/sewa-sp-create', 'SpSewaController@spsewa');
     Route::post('/transport/store','SpSewaController@store');
     Route::get('/transport/sewa-sp-tampil', 'SpSewaController@tampilsp');
+    Route::get('/transport/tampilsp', 'SpSewaController@tampilsp');
     Route::get('/transport/cari', 'SpSewaController@cari');
-    Route::get('/transport/edit_sp/{id}','SpSewaController@edit_sp');
-    Route::post('/transport/update/{id}','SpSewaController@update');
+    Route::get('/transport/sewa-sp-edit/{kd_sp}','SpSewaController@edit_sp');
+    Route::post('/transport/update/{kd_sp}','SpSewaController@update');
     Route::get('/transport/sewa-ba-create', 'BAController@index');
     Route::post('/transport/sewa-ba-store', 'BAController@store');
-    Route::get('/transport/kendaraan-create', 'KendaraanController@create');
-    Route::post('/transport/kendaraan-store','KendaraanController@store');
-    Route::post('/transport/kendaraan-edit','KendaraanController@edit');
-    Route::post('/transport/kendaraan-mutasi','KendaraanController@mutasi');
-
+    Route::get('/transport/sewa-ba-tampil', 'BAController@tampilba');
+    Route::get('/transport/sewa-ba-edit/{kd_ba}', 'BAController@editba');
+    Route::post('/transport/sewa-ba-update/{id}', 'BAController@update');
+    Route::get('/transport/sewa-kendaraan-create', 'KendaraanController@create');
+    Route::post('/transport/simpan','KendaraanController@simpan');
+    Route::get('/transport/sewa-kendaraan-tampil', 'KendaraanController@tampilkend');
+    Route::get('/transport/sewa-kendaraan-edit/{id}', 'KendaraanController@edit');
+    Route::post('/transport/sewa-kendaraan-edit/{id}', 'KendaraanController@update');
+    Route::get('/transport/cari1', 'KendaraanController@cari1');
+    Route::get('/transport/sewa-sr-create', 'SrController@create');
+    Route::post('/transport/store','SrController@store');
+    Route::get('/transport/sewa-sr-tampil', 'SrController@tampilsr');
+    Route::get('/transport/sewa-sr-edit/{id}', 'SrController@edit');
     //parkirtol
     Route::get('/transport/parkirtol', 'parkirtolController@index');
     Route::get('/transport/parkirtol-create', 'parkirtolController@create');

@@ -36,21 +36,50 @@ class BAController extends Controller
         $tgl_akhir = $request->input('tgl_akhir');
         $kd_sp = $request->input('kd_sp');
         
-        $newRealisasi = new KontrakBA();
-        $newRealisasi->kd_ba = $getkdba;
-        $newRealisasi->no_ba = $no_ba;
+        $newKontrakBA = new KontrakBA();
+        $newKontrakBA->kd_ba = $getkdba;
+        $newKontrakBA->no_ba = $no_ba;
+        $newKontrakBA->tgl_akhir = $tgl_akhir;
+        $newKontrakBA->tgl = $tgl;
+        $newKontrakBA->tgl_awal = $tgl_awal;
+        $newKontrakBA->uraian = $uraian;
+        $newKontrakBA->kd_sp = $kd_sp;
+        $newKontrakBA->save();
+        
+        $updateKontrak = Kontrak::where('kd_sp', $kd_sp)->first();
+        $updateKontrak->status = 'Aktif';
+        $updateKontrak->save();
+        
+        return redirect('transport/sewa-ba-create');
+    }
+
+    public function tampilba(){
+        $basewa = kontrakBA::orderBy('id', 'desc')->paginate(10);
+        return view('/transport/sewa-ba-tampil', ['basewa' => $basewa]);
+    }
+    
+    public function editba($kd_ba)
+    {
+        $editba = KontrakBA::where('kd_ba', $kd_ba)->first();
+        return view('transport/sewa-ba-edit', ['editba' => $editba]);
+    }
+
+    public function update(Request $request, $id){
+        
+        $uraian = $request->input('uraian');
+        $tgl = $request->input('tgl');
+        $tgl_awal = $request->input('tgl_awal');
+        $tgl_akhir = $request->input('tgl_akhir');
+        $kd_sp = $request->input('kd_sp');
+        
+        $newRealisasi = KontrakBA::findOrFail($id);
         $newRealisasi->tgl_akhir = $tgl_akhir;
         $newRealisasi->tgl = $tgl;
         $newRealisasi->tgl_awal = $tgl_awal;
         $newRealisasi->uraian = $uraian;
-        $newRealisasi->kd_sp = $kd_sp;
         $newRealisasi->save();
         
-        // $newRealisasi = Kontrak::where('id', $id)->first();
-        // $newRealisasi->status = 'Aktif';
-        // $newRealisasi->save();
-        
-        return redirect('transport/sewa-ba-create');
+        return redirect('transport/sewa-ba-tampil');
     }
 
 }
