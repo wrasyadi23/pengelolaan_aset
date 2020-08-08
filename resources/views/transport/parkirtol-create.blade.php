@@ -49,6 +49,14 @@
                                         <label for="trip_end">Trip End</label>
                                         <input type="date" name="trip_end" id="" class="form-control input-default" required>
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="melayani">Melayani</label>
+                                    <input type="text" name="melayani" id="melayani" class="form-control input-default" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="uraian">Uraian</label>
+                                    <input type="text" name="uraian" id="uraian" class="form-control input-default" required>    
                                 </div>            
                             </div>
                         </div>
