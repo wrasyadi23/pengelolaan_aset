@@ -59,8 +59,7 @@
                                         <td><div align="right"><span class="style1">{{ number_format($sp->harga*$sp->jml) }}</span></div></td>
                                         <td>{{ $sp->rekanan }}</td>
                                         <td>{{ $sp->status }}</td>
-                                        <th>
-                                            <a href="/transport/sewa-sr-edit/{{ $sp->id }}" class="badge badge-primary">Edit</a>                                        </th>
+                                        <a href="/transport/sewa-sr-edit/{{ $sp->id }}" class="badge badge-primary">Edit</a>                                        </th>
                                     </tr>
                                     @endforeach
                                 </tbody>

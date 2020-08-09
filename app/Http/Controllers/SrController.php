@@ -18,7 +18,7 @@ class SrController extends Controller
 
     public function store(Request $request)
     {
-            $data = SR::select('id', 'kd_sr')
+        $data = SR::select('id', 'kd_sr')
             ->orderBy('id', 'desc')->count();
         if ($data > 0) {
             $sr = 'SR' .  sprintf('%04s', $data + 1);
