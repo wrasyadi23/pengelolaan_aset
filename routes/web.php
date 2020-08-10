@@ -25,7 +25,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::get('/pemeliharaan/pekerjaan-disapprove/{booknumber}','input_pekerjaanController@disapprove');
     Route::get('/pemeliharaan/pekerjaan-cancel/{booknumber}','input_pekerjaanController@cancel');
     Route::get('/pemeliharaan/pekerjaan-close/{booknumber}','input_pekerjaanController@close');
-    // input klasifikasi pekerjaan 
+    // input klasifikasi pekerjaan
     Route::get('/pemeliharaan/klasifikasi','input_klasifikasiController@index');
     Route::get('/pemeliharaan/klasifikasi-create','input_klasifikasiController@create');
     Route::post('/pemeliharaan/klasifikasi-store','input_klasifikasiController@store');
@@ -39,28 +39,28 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::get('/organisasi-departemen-edit/{kd_departemen}','DepartemenController@edit');
     Route::post('/organisasi-departemen-update/{kd_departemen}','DepartemenController@update');
     Route::get('/organisasi-departemen-delete/{id}','DepartemenController@delete');
-    // data organisasi bagian 
+    // data organisasi bagian
     Route::get('/organisasi-bagian/{kd_departemen}','BagianController@index');
     Route::post('/organisasi-bagian-store/{kd_departemen}','BagianController@store');
     Route::get('/organisasi-bagian-edit/{kd_bagian}','BagianController@edit');
     Route::post('/organisasi-bagian-update/{kd_bagian}','BagianController@update');
     Route::get('/organisasi-bagian-delete/{id}','BagianController@delete');
-    // data organisasi seksi 
+    // data organisasi seksi
     Route::get('/organisasi-seksi/{kd_bagian}','SeksiController@index');
     Route::post('/organisasi-seksi-store/{kd_bagian}','SeksiController@store');
     Route::get('/organisasi-seksi-edit/{kd_seksi}','SeksiController@edit');
     Route::post('/organisasi-seksi-update/{kd_seksi}','SeksiController@update');
     Route::get('/organisasi-seksi-delete/{id}','SeksiController@delete');
-    // data organisasi regu 
+    // data organisasi regu
     Route::get('/organisasi-regu/{kd_seksi}','ReguController@index');
     Route::post('/organisasi-regu-store/{kd_seksi}','ReguController@store');
     Route::get('/organisasi-regu-edit/{kd_regu}','ReguController@edit');
     Route::post('/organisasi-regu-update/{kd_regu}','ReguController@update');
     Route::get('/organisasi-regu-delete/{id}','ReguController@delete');
-}); 
+});
 
 Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function () {
-    // data pekerjaan 
+    // data pekerjaan
     Route::get('/pemeliharaan/data','pemeliharaanController@data');
     // pemeliharaan
     Route::get('/pemeliharaan/dashboard','pemeliharaanController@index');
@@ -75,7 +75,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/pemeliharaan/pekerjaan-proceed/{booknumber}','input_pekerjaanController@proceed');
     Route::get('/pemeliharaan/pekerjaan-done/{booknumber}','input_pekerjaanController@done');
     Route::get('/pemeliharaan/pekerjaan-accepted/{booknumber}','input_pekerjaanController@accepted');
-    // laporan kegiatan 
+    // laporan kegiatan
     Route::get('/pemeliharaan/laporan','LaporanController@index');
     Route::post('/pemeliharaan/laporan-search','LaporanController@search');
     Route::get('/pemeliharaan/laporan-preview/{awal}/{akhir}','LaporanController@preview');
@@ -105,7 +105,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     //parkirtol
     Route::get('/transport/parkirtol', 'parkirtolController@index');
     Route::get('/transport/parkirtol-create', 'parkirtolController@create');
-    Route::post('/transport/parkirtol-store', 'parkirtolController@store');
+    Route::post('/transport/parkirtol-store', 'parkirtolController@store')->name('transport.parkirtol-store');
     Route::get('/transport/parkirtol-edit/{kd_parkirtol}', 'parkirtolController@edit');
     Route::get('/transport/parkirtol-detail/{kd_parkirtol}', 'parkirtolController@detail');
     //uangmuka
