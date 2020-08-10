@@ -23,7 +23,7 @@ class CreateParkirtolTable extends Migration
             $table->string('melayani', 45);
             $table->string('uraian', 45);
             $table->string('status', 45);
-            $table->date('tgl_bayar');
+            $table->date('tgl_bayar')->nullable();
             $table->string('creator', 45);
             $table->string('kd_uangmuka', 45);
             $table->string('kd_pengemudi', 45);

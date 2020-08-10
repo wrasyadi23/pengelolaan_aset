@@ -32,12 +32,9 @@
                                     <select name="kd_pengemudi" id="kd_pengemudi" class="form-control input-default" required>
                                         <option disabled selected></option>
                                         @foreach ($pengemudi as $item)
-                                            <option value="{{$item->kd_pengemudi}} | {{$item->nik}}">{{$item->nama}}</option>
+                                            <option value="{{$item->kd_pengemudi}}">{{$item->nama}}</option>
                                         @endforeach
                                     </select>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="creator" id="creator" value="{{Auth::user()->nik}}" placeholder="creator" class="form-control input-default" hidden>
                                 </div>
                                 <div class="form-group">
                                     <label for="tgl">Tanggal</label>
@@ -89,9 +86,11 @@
                                     <tfoot>
                                         <tr>
                                             <td colspan="2" align="justify">
-                                            <b><span class="pull-right">Total</span></b>
+                                                <b><span class="pull-right">Total</span></b>
                                             </td>
-                                            <td><b> <span id="total"></span></b></td>
+                                            <td>
+                                                <b><span id="total"></span></b>
+                                            </td>
                                         </tr>
                                       </tfoot>
                                </table>
@@ -126,17 +125,17 @@
             function parkirtol_detail(number)
             {
                 tr = '<tr>';
-                tr += '<td><input type="text" name="nilai_karcis[]" id="nilai_karcis-' + count + '" class="form-control hitung" /></td>';
-                tr += '<td><input type="text" name="jml_karcis[]" id="jml_karcis-' + count + '" class="form-control hitung" /></td>';
-                tr += '<td><input type="text" name="total[]" id="total-' + count + '" class="form-control total" readonly/></td>';
+                tr += '<td><input type="text" name="nilai_karcis[]" id="nilai_karcis-' + count + '" class="form-control input-default hitung" /></td>';
+                tr += '<td><input type="text" name="jml_karcis[]" id="jml_karcis-' + count + '" class="form-control input-default hitung" /></td>';
+                tr += '<td><input type="text" name="total[]" id="total-' + count + '" class="form-control input-default total" readonly/></td>';
                 if(number > 1)
                 {
-                    tr += '<td><button type="button" name="remove" id="" class="btn btn-danger remove">Remove</button></td></tr>';
+                    tr += '<td><button type="button" name="remove" id="" class="btn btn-sm btn-danger remove">Remove</button></td></tr>';
                     $('tbody').append(tr);
                 }
                 else
                 {
-                    tr += '<td><button type="button" name="add" id="add" class="btn btn-success">Add</button></td></tr>';
+                    tr += '<td><button type="button" name="add" id="add" class="btn btn-sm btn-success">Add</button></td></tr>';
                     $('tbody').html(tr);
                 }
             }
