@@ -22,10 +22,11 @@ class CreateUangmukaTable extends Migration
             $table->date('tgl_akhir');
             $table->text('uraian');
             $table->decimal('nilai_uangmuka', 15, 2);
-            $table->decimal('nilai_realisasi_uangmuka', 15, 2);
-            $table->decimal('nilai_sisa_uangmuka', 15, 2);
+            $table->decimal('nilai_realisasi_uangmuka', 15, 2)->nullable();
+            $table->decimal('nilai_sisa_uangmuka', 15, 2)->nullable();
             $table->string('status', 45);
             $table->string('nik', 45);
+            $table->string('kd_aktifitas_rkap', 45);
             $table->timestamps();
         });
     }
