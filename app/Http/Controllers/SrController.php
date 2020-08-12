@@ -5,6 +5,7 @@ use App\Sr;
 use App\Kontrak;
 use App\Kendaraan;
 use App\KontrakBA;
+use PDF;
 use Illuminate\Http\Request;
 
 class SrController extends Controller
@@ -18,14 +19,6 @@ class SrController extends Controller
 
     public function store(Request $request)
     {
-        $data = SR::select('id', 'kd_sr')
-            ->orderBy('id', 'desc')->count();
-        if ($data > 0) {
-            $sr = 'SR' .  sprintf('%04s', $data + 1);
-        } else {
-            $sr = 'SR' .  sprintf('%04s', 1);
-        }
-        
         $data = SR::select('id', 'no_sr', 'tgl')
             ->whereYear('tgl', date('Y'))
             ->orderBy('id', 'desc')->count();
@@ -42,8 +35,8 @@ class SrController extends Controller
         $kd_ba = $request->input('kd_ba');
         
         $newRealisasi = new SR();
-        $newRealisasi->kd_sr = $sr;
-        $newRealisasi->no_sr = $getnosr;
+        $newRealisasi->kd_sr = $getnosr;
+        $newRealisasi->no_sr = '-';
         $newRealisasi->tgl = $tgl;
         $newRealisasi->tgl_awal = $tgl_awal;
         $newRealisasi->tgl_akhir = $tgl_akhir;
@@ -65,5 +58,37 @@ class SrController extends Controller
     {
         $editsr = SR::where('id', $id)->first();
         return view('transport/sewa-sr-edit', ['editsr' => $editsr]);
+    }
+    public function update($id, Request $request)
+    {
+        $no_sr = $request->input('no_sr');
+        $tgl = $request->input('tgl');
+        $tgl_awal = $request->input('tgl_awal');
+        $tgl_akhir = $request->input('tgl_akhir');
+        $keterangan = $request->input('keterangan');
+        
+        $newRealisasi = SR::findOrFail($id);
+        $newRealisasi->no_sr = $no_sr;
+        $newRealisasi->tgl = $tgl;
+        $newRealisasi->tgl_awal = $tgl_awal;
+        $newRealisasi->tgl_akhir = $tgl_akhir;
+        $newRealisasi->keterangan = $keterangan;
+        $newRealisasi->save();
+                
+        return redirect('transport/sewa-sr-tampil');
+    }
+
+    public function cari(Request $data){
+        $key = $data->key;
+        $sr = SR::where('no_sr','like',"%".$key."%")
+        ->paginate(10);
+        return view('transport/sewa-sr-tampil', ['sr' => $sr]);
+    }
+
+    public function preview($no_sr)
+    {
+        $pdf = Sr::where('no_sr', $no_sr)->get();
+        $pdf = PDF::loadView('transport/sewa-sr-preview', ['pdf' => $pdf]);
+        return $pdf->stream();
     }
 }

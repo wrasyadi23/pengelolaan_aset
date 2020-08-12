@@ -11,11 +11,14 @@
                     <div class="card-body">
                         <h4 class="card-title">Edit Sevice Request</h4>
                         <div class="card-content">
-                            <form action="/transport/store" method="post">
+                            <form action="/transport/sewa-sr-update/{{ $editsr->id }}" method="post">
                                 @csrf
                                 <div class="basic-form">
                                     <div class="form-row">
-                                        
+                                        <div class="form-group col-md-12 style1">
+                                            <label for="nopol">Service Request</label>
+                                            <input type="text" name="no_sr" id="" class="form-control input-default" placeholder="No. Sr " required value="{{ $editsr->no_sr }}">
+                                        </div>
                                         <div class="form-group col-md-12 style1">
                                             <label for="nopol">Tanggal Sr</label>
                                             <input type="date" name="tgl" id="" class="form-control input-default" placeholder="Tanggal Sr" required value="{{ $editsr->tgl }}">

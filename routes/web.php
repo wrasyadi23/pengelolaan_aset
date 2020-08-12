@@ -102,6 +102,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::post('/transport/store','SrController@store');
     Route::get('/transport/sewa-sr-tampil', 'SrController@tampilsr');
     Route::get('/transport/sewa-sr-edit/{id}', 'SrController@edit');
+    Route::post('/transport/sewa-sr-update/{id}', 'SrController@update');
     //parkirtol
     Route::get('/transport/parkirtol', 'parkirtolController@index');
     Route::get('/transport/parkirtol-create', 'parkirtolController@create');
