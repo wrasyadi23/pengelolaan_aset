@@ -55,8 +55,8 @@
                                             <td>{{ $sp->kd_sr }}</td>
                                             <td>{{ $sp->no_sr }}</td>
                                             <td>{{ $sp->tgl }}</td>
-                                            <td>{{ $sp->cost_center }}</td>
-                                            <td>{{ $sp->cost_center }}</td>
+                                            <td>{{ $sp->getKontrakBA->getKontrak->cost_center }}</td>
+                                            <td>{{ $sp->getKontrakBA->getKontrak->gl_account }}</td>
                                             <td>{{ $sp->tgl_awal }}</td>
                                             <td>{{ $sp->tgl_akhir }}</td>
                                             <td>{{ $sp->getkontrakBA->no_ba }}</td>                                       
@@ -65,8 +65,7 @@
                                             <td><div align="right" class="style2">{{ number_format($sp->harga*$sp->jml) }}</div></td>
                                             <td>{{ $sp->rekanan }}</td>
                                             <td>{{ $sp->status }}</td>
-                                            <th>
-                                                <a href="/transport/sewa-sr-edit/{{ $sp->id }}" class="badge badge-primary">Isi No.Sr</a>                                        </th>
+                                            <a href="/transport/sewa-sr-edit/{{ $sp->id }}" class="badge badge-primary">Isi No.Sr</a>                                        </th>
                                         </tr>
                                         @endforeach
                                     </tbody>

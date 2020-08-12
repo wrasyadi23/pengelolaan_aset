@@ -2,9 +2,7 @@
 @section('title','Parkir & Tol')
 @section('content')
 <div class="container-fluid mt-3">
-    @if (session('message'))
-        <div class="alert alert-success">{{session('message')}}</div>
-    @endif
+    <span id="result"></span>
     <div class="row">
         <div class="col-lg-12">
             <form action="/parkirtol-store" method="post" id="dynamic_form">
@@ -71,7 +69,6 @@
                         </div>
                         <div class="card-content">
                             <div class="basic-form">
-                                <span id="result"></span>
                                <table class="table table-bordered" >
                                     <thead>
                                         <tr>
