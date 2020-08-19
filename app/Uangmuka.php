@@ -23,4 +23,9 @@ class Uangmuka extends Model
     {
         return $this->hasMany('App\Parkirtol', 'kd_uangmuka', 'kd_uangmuka');
     }
+
+    public function UangmukaNotes()
+    {
+        return $this->hasMany('App\UangmukaNotes', 'kd_uangmuka', 'kd_uangmuka');
+    }
 }

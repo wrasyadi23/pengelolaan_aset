@@ -75,12 +75,12 @@ class uangmukaController extends Controller
     {
         $karyawan = Karyawan::all();
         $rkapDetail = RkapDetail::all();
-        $uangmuka = Uangmuka::where('kd_uangmuka', $kd_uangmuka)->first();
+        $rawDataUM = Uangmuka::where('kd_uangmuka', $kd_uangmuka)->first();
         
         return view('transport/uangmuka-edit', [
             'karyawan' => $karyawan,
             'rkapDetail' => $rkapDetail,
-            'uangmuka' => $uangmuka,
+            'rawDataUM' => $rawDataUM,
         ]);
     }
 
@@ -105,5 +105,11 @@ class uangmukaController extends Controller
         $update->save();
 
         return redirect('transport/uangmuka-detail/' . $kd_uangmuka)->with('message-success', 'Data berhasil diupdate.');
+    }
+
+    public function detail($kd_uangmuka)
+    {
+        $rawDataUM = Uangmuka::where('kd_uangmuka', $kd_uangmuka)->first();
+        return view('transport/uangmuka-detail', ['rawDataUM' => $rawDataUM]);
     }
 }
