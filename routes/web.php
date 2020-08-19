@@ -115,5 +115,6 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/transport/uangmuka-create', 'uangmukaController@create');
     Route::post('/transport/uangmuka-store', 'uangmukaController@store');
     Route::get('/transport/uangmuka-edit/{kd_uangmuka}', 'uangmukaController@edit');
+    Route::post('/transport/uangmuka-update/{kd_uangmuka}', 'uangmukaController@update');
     Route::get('/transport/uangmuka-detail/{kd_uangmuka}', 'uangmukaController@detail');
 });
