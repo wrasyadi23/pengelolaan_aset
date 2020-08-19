@@ -70,4 +70,21 @@ class uangmukaController extends Controller
             return redirect('transport/uangmuka')->with('message-success','Data berhasil disimpan.');
         }
     }
+
+    public function detail($kd_uangmuka)
+    {
+        $rawDataUM = Uangmuka::where('kd_uangmuka', $kd_uangmuka)->first();
+        return view('transport/uangmuka-detail', ['rawDataUM' => $rawDataUM]);
+    }
+
+    public function edit($kd_uangmuka)
+    {
+        $rawDataUM = Uangmuka::where('kd_uangmuka', $kd_uangmuka)->first();
+        return view('transport/uangmuka-detail', ['rawDataUM' => $rawDataUM]);
+    }
+
+    public function update($kd_uangmuka, Request $request)
+    {
+        
+    }
 }
