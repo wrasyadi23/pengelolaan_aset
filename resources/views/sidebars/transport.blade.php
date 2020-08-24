@@ -12,12 +12,12 @@
                 <i class="icon-note menu-icon"></i><span class="nav-text">Sewa Kendaraan</span>
             </a>
             <ul aria-expanded="false">
-                <li><a href="/transport/sewa-sp-tampil">Data Sp Sewa</a></li>
-                <li><a href="/transport/sewa-ba-tampil">Data Ba Kendaraan</a></li>
-                <li><a href="/transport/sewa-sr-tampil">Data SR Sewa Kendaraan</a></li>
+                <li><a href="/transport/sewa-sp-create">Input Sp Sewa</a></li>
+                <li><a href="/transport/sewa-ba-create">Input Ba Kendaraan</a></li>
+                <li><a href="/transport/sewa-sr-create">Input SR Sewa Kendaraan</a></li>
                 <li><a href="/transport/sewa-isidentil">SR Sewa Isidentil</a></li>
-                <li><a href="/transport/sewa-pr">Input Nomor PR</a></li>
-                <li><a href="/transport/sewa-ok">Input Nomor OK</a></li>
+                <li><a href="/transport/sewa-pr-create">Input Nomor PR</a></li>
+                <li><a href="/transport/sewa-ok-create">Input Nomor OK</a></li>
                 <li><a href="/transport/sewa-riksama">BA Riksama</a></li>
             </ul>
         </li>

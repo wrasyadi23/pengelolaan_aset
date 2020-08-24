@@ -101,8 +101,27 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/transport/sewa-sr-create', 'SrController@create');
     Route::post('/transport/store','SrController@store');
     Route::get('/transport/sewa-sr-tampil', 'SrController@tampilsr');
+    Route::get('/transport/sewa-sr-detail/{no_sr}', 'SrController@detail');
+    Route::get('/transport/cari', 'SrController@cari');
     Route::get('/transport/sewa-sr-edit/{id}', 'SrController@edit');
     Route::post('/transport/sewa-sr-update/{id}', 'SrController@update');
+    Route::get('transport/sewa-sr-preview/{id}', 'SrController@preview');
+    Route::get('/transport/sewa-pr-create', 'PrController@create');
+    Route::post('/transport/sewa-pr-store','PrController@simpan');
+    Route::get('/transport/sewa-pr-tampil', 'PrController@tampilpr');
+    Route::get('/transport/cari', 'PrController@cari');
+    Route::get('/transport/sewa-pr-edit/{id}', 'PrController@edit');
+    Route::post('/transport/sewa-pr-update/{id}', 'PrController@update');
+    Route::get('/transport/sewa-ok-create', 'OkController@create');
+    Route::post('/transport/sewa-ok-store','OkController@save');
+    Route::get('/transport/sewa-ok-tampil', 'OkController@tampilok');
+    Route::get('/transport/cari', 'OkController@cari');
+    Route::get('/transport/sewa-ok-edit/{id}', 'OkController@edit');
+    Route::post('/transport/sewa-ok-update/{id}', 'OkController@update');
+    Route::get('/transport/sewa-bariksama-create', 'BaRiksamaController@create');
+    Route::post('/transport/sewa-bariksama-store','BaRiksamaController@store');
+    Route::get('/transport/sewa-bariksama-tampil', 'BaRiksamaController@tampilriksama');
+    Route::get('transport/sewa-bariksama-print/{id}', 'BaRiksamaController@print');
     //parkirtol
     Route::get('/transport/parkirtol', 'parkirtolController@index');
     Route::get('/transport/parkirtol-create', 'parkirtolController@create');

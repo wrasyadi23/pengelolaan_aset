@@ -37,7 +37,7 @@
                                     </div>
                                 </div>
                                 <div class="general-button">
-                                    <button type="button" class="btn btn-primary" onclick="window.location.href='/pemeliharaan/klasifikasi'">Back</button>
+                                    <button type="button" class="btn btn-primary" onclick="window.location.href='/transport/sewa-ba-tampil'">Back</button>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
@@ -50,11 +50,3 @@
 </div>
 @endsection
 
-@section('script')
-    <script>
-        $("#kd_sp").select2({
-            placeholder: 'Pilih Nomor SP',
-            allowClear: true
-        });
-    </script>
-@endsection

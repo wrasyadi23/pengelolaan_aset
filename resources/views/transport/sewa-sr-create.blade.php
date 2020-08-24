@@ -2,14 +2,14 @@
     .style1 {color: #0066FF}
     </style>
     @extends('layouts.master')
-    @section('title','Input Kendaraan')
+    @section('title','Input Service Request')
     @section('content')
     <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Input Kendaraan</h4>
+                        <h4 class="card-title">Input Service Request</h4>
                         <div class="card-content">
                             <form action="/transport/store" method="post">
                                 @csrf
@@ -40,7 +40,7 @@
                                     </div>
                                     
                                     <div class="general-button">
-                                        <button type="button" class="btn btn-primary" onclick="window.location.href='/transport/sewa-kendaraan-tampil'">Back</button>
+                                        <button type="button" class="btn btn-primary" onclick="window.location.href='/transport/sewa-sr-tampil'">Back</button>
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>

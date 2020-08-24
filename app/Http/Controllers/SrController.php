@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Sr;
 use App\Kontrak;
+use App\Srfull;
 use App\Kendaraan;
 use App\KontrakBA;
 use PDF;
@@ -54,6 +55,12 @@ class SrController extends Controller
         return view('transport/sewa-sr-tampil', ['sr' => $sr]);
     }
 
+    public function detail(){
+        $sr = Srfull::orderBy('no_sr', 'desc')
+        ->paginate(10);
+        return view('transport/sewa-sr-detail', ['sr' => $sr]);
+    }
+
     public function edit($id)
     {
         $editsr = SR::where('id', $id)->first();
@@ -87,7 +94,7 @@ class SrController extends Controller
 
     public function preview($no_sr)
     {
-        $pdf = Sr::where('no_sr', $no_sr)->get();
+        $pdf = Srfull::where('no_sr', $no_sr)->get();
         $pdf = PDF::loadView('transport/sewa-sr-preview', ['pdf' => $pdf]);
         return $pdf->stream();
     }

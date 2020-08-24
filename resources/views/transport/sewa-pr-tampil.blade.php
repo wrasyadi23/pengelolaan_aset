@@ -3,7 +3,7 @@
     .style2 {color: #000000}
     </style>
     @extends('layouts.master')
-    @section('title','Data SR Sewa Kendaraan')
+    @section('title','Data SR, PR Sewa Kendaraan')
     @section('content')
     <div class="container-fluid mt-3">
         @if (session('message'))
@@ -13,16 +13,16 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title style1">Data SR Sewa Kendaraan</h4>
+                        <h4 class="card-title style1">Data SR, PR Sewa Kendaraan</h4>
                         <form action="/transport/cari" method="get">
                             <div class="row">
                                 <div class="form-group col-md-8">
-                                    <input type="text" name="key" id="" class="form-control" placeholder="Panggil Service Request">
+                                    <input type="text" name="key" id="" class="form-control" placeholder="Panggil Purchase Request (No.PR)">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <button type="submit" class="btn btn-primary">Cari</button>
-                                    <button type="reset" class="btn btn-primary" onclick="window.location.href='/transport/sewa-sr-tampil'">Reset</button>
-                                    <a href="/transport/sewa-sr-create" class="btn btn-success">SR Baru</a>
+                                    <button type="reset" class="btn btn-primary" onclick="window.location.href='/transport/sewa-pr-tampil'">Reset</button>
+                                    <a href="/transport/sewa-pr-create" class="btn btn-success">PR Baru</a>
                                 </div> 
                         </form>
                         <div class="card-content">
@@ -32,31 +32,31 @@
                                     <thead>
                                         <tr class = "table-secondary">
                                             <th><div align="center">No</div></th>
-                                            <th><div align="center">Kode.Sr</div></th>
+                                            <th><div align="center">Nomor PR</div></th>
+                                            <th><div align="center">Tanggal PR</div></th>
                                             <th><div align="center">No.Sr</div></th>
-                                            <th><div align="center">Tanggal</div></th>
-                                            <th><div align="center">Mulai</div></th>
-                                            <th><div align="center">Sampai</div></th>
+                                            <th><div align="center">Tanggal SR</div></th>
+                                            <th><div align="center">Mulai Sewa</div></th>
+                                            <th><div align="center">Sewa Sampai</div></th>
                                             <th><div align="center">Uraian</div></th>
                                             <th><div align="center">Rekanan</div></th>
                                             <th><div align="center">Aksi</div></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($sr as $result => $sp)
+                                        @foreach ($pr as $result => $sp)
                                         <tr>
-                                            <td>{{ $result + $sr->firstitem() }}</td>
-                                            <td>{{ $sp->kd_sr }}</td>
-                                            <td>{{ $sp->no_sr }}</td>
+                                            <td>{{ $result + $pr->firstitem() }}</td>
+                                            <td>{{ $sp->no_pr }}</td>
                                             <td>{{ $sp->tgl }}</td>
-                                            <td>{{ $sp->tgl_awal }}</td>
-                                            <td>{{ $sp->tgl_akhir }}</td>                                      
-                                            <td>{{ $sp->getKontrakBA->getKontrak->uraian }}</td>
-                                            <td>{{ $sp->getKontrakBA->getKontrak->rekanan }}</td>
+                                            <td>{{ $sp->getSR->no_sr }}</td>
+                                            <td>{{ $sp->getSR->tgl }}</td>
+                                            <td>{{ $sp->getSR->tgl_awal }}</td>
+                                            <td>{{ $sp->getSR->tgl_akhir }}</td>                                    
+                                            <td>{{ $sp->getSR->getKontrakBA->getKontrak->uraian }}</td>
+                                            <td>{{ $sp->getSR->getKontrakBA->getKontrak->rekanan }}</td>
                                             <th>
-                                                <a href="/transport/sewa-sr-edit/{{ $sp->id }}" class="badge badge-primary">Isi No.Sr</a>
-                                                <a href="/transport/sewa-sr-preview/{{ $sp->no_sr }}" class="badge badge-primary">Print</a>
-                                                <a href="/transport/sewa-sr-detail/{{ $sp->no_sr }}" class="badge badge-primary">Detail</a>  
+                                                <a href="/transport/sewa-pr-edit/{{ $sp->id }}" class="badge badge-primary">Edit</a>
                                             </th>
                                         </tr>
                                         @endforeach
