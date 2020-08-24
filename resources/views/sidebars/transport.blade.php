@@ -18,7 +18,7 @@
                 <li><a href="/transport/sewa-isidentil">SR Sewa Isidentil</a></li>
                 <li><a href="/transport/sewa-pr-create">Input Nomor PR</a></li>
                 <li><a href="/transport/sewa-ok-create">Input Nomor OK</a></li>
-                <li><a href="/transport/sewa-riksama">BA Riksama</a></li>
+                <li><a href="/transport/sewa-bariksama-create">BA Riksama</a></li>
             </ul>
         </li>
         <li class="mega-menu mega-menu-sm">
