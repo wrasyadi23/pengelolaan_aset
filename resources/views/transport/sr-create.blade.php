@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Input Service Request</h4>
                         <div class="card-content">
-                            <form action="/transport/store" method="post">
+                            <form action="/transport/sr-store" method="post">
                                 @csrf
                                 <div class="basic-form">
                                     <div class="form-row">

@@ -3,7 +3,7 @@
     .style2 {color: #000000}
     </style>
     @extends('layouts.master')
-    @section('title','Data SR Detail')
+    @section('title','Data Service Request Detail')
     @section('content')
     <div class="container-fluid mt-3">
         @if (session('message'))
@@ -13,7 +13,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title style1">Detail SR Sewa Kendaraan</h4>
+                        <h4 class="card-title style1">Data Service Request Detail</h4>
                         <div class="card-content">
                             {{-- Tampilan detail table, uncomment dari bawah untuk pakai --}}
                             <div class="table-responsive">
@@ -41,7 +41,7 @@
                             <td><div align="center"><span class="style2">{{ $sp->satuan }}</span></div></td>
                             <td><div align="center">{{ $sp->rekanan }}</div></td>
                         </tr>
-                                                        @endforeach
+                        @endforeach
                         <tr>
                             <td colspan="6" align="right"><strong>Total Harga Sewea :</strong></td>
                             <td align="left"><strong>Rp. {{ number_format($sp->ttl_hrg,0) }}</strong></td>
@@ -49,7 +49,7 @@
                         </tr>
                               </table>
                               <div class="general-button">
-                                             <button type="button" class="btn btn-success" onclick="window.location.href='/transport/sewa-sr-tampil'">Back</button>
+                                             <button type="button" class="btn btn-success" onclick="window.location.href='/transport/sr-tampil'">Back</button>
                               </div>
                           </div>
                             

@@ -13,7 +13,7 @@ class SrController extends Controller
 {
     public function create(){
         $rawDataBA = KontrakBA::orderBy('id', 'desc')->get();
-        return view('transport/sewa-sr-create', [
+        return view('transport/sr-create', [
             'rawDataBA' => $rawDataBA
             ]);
     }
@@ -45,26 +45,26 @@ class SrController extends Controller
         $newRealisasi->kd_ba = $kd_ba;
         $newRealisasi->save();
                 
-        return redirect('transport/sewa-sr-create');
+        return redirect('transport/sr-tampil');
     }
 
     public function tampilsr(){
         $sr = SR::orderBy('id', 'desc')
         ->where('keterangan', '=', 'Request')
         ->paginate(10);
-        return view('transport/sewa-sr-tampil', ['sr' => $sr]);
+        return view('transport/sr-tampil', ['sr' => $sr]);
     }
 
     public function detail(){
         $sr = Srfull::orderBy('no_sr', 'desc')
         ->paginate(10);
-        return view('transport/sewa-sr-detail', ['sr' => $sr]);
+        return view('transport/sr-detail', ['sr' => $sr]);
     }
 
     public function edit($id)
     {
         $editsr = SR::where('id', $id)->first();
-        return view('transport/sewa-sr-edit', ['editsr' => $editsr]);
+        return view('transport/sr-edit', ['editsr' => $editsr]);
     }
     public function update($id, Request $request)
     {
@@ -82,20 +82,20 @@ class SrController extends Controller
         $newRealisasi->keterangan = $keterangan;
         $newRealisasi->save();
                 
-        return redirect('transport/sewa-sr-tampil');
+        return redirect('transport/sr-tampil');
     }
 
     public function cari(Request $data){
         $key = $data->key;
         $sr = SR::where('no_sr','like',"%".$key."%")
         ->paginate(10);
-        return view('transport/sewa-sr-tampil', ['sr' => $sr]);
+        return view('transport/sr-tampil', ['sr' => $sr]);
     }
 
     public function preview($no_sr)
     {
         $pdf = Srfull::where('no_sr', $no_sr)->get();
-        $pdf = PDF::loadView('transport/sewa-sr-preview', ['pdf' => $pdf]);
+        $pdf = PDF::loadView('transport/sr-preview', ['pdf' => $pdf]);
         return $pdf->stream();
     }
 }
