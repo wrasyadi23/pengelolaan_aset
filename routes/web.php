@@ -81,7 +81,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/pemeliharaan/laporan-preview/{awal}/{akhir}','LaporanController@preview');
     //input servie request sewa
     Route::get('/transport/sewa-sp-create', 'SpSewaController@spsewa');
-    Route::post('/transport/store','SpSewaController@store');
+    Route::post('/transport/sewa-sp-store','SpSewaController@store');
     Route::get('/transport/sewa-sp-tampil', 'SpSewaController@tampilsp');
     Route::get('/transport/tampilsp', 'SpSewaController@tampilsp');
     Route::get('/transport/cari', 'SpSewaController@cari');
@@ -92,9 +92,9 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/transport/sewa-ba-tampil', 'BAController@tampilba');
     Route::get('/transport/sewa-ba-edit/{kd_ba}', 'BAController@editba');
     Route::post('/transport/sewa-ba-update/{id}', 'BAController@update');
-    Route::get('/transport/sewa-kendaraan-create', 'KendaraanController@create');
-    Route::post('/transport/simpan','KendaraanController@simpan');
-    Route::get('/transport/sewa-kendaraan-tampil', 'KendaraanController@tampilkend');
+    Route::get('/transport/kendaraan-create', 'KendaraanController@create');
+    Route::post('/transport/kendaraan-store','KendaraanController@store');
+    Route::get('/transport/kendaraan-tampil', 'KendaraanController@tampilkend');
     Route::get('/transport/sewa-kendaraan-edit/{id}', 'KendaraanController@edit');
     Route::post('/transport/sewa-kendaraan-edit/{id}', 'KendaraanController@update');
     Route::get('/transport/cari1', 'KendaraanController@cari1');

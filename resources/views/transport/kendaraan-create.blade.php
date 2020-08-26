@@ -52,6 +52,7 @@
                                             <option value="Sedan">Sedan</option>
                                             <option value="Bus">Bus</option>
                                             <option value="Station">Station</option>
+                                            <option value="PicUp">PicUp</option>
                                             <option value="Spdmtr">Sepeda Motor</option>
                                             <option value="Spdmtrroda3">Sepeda Motor Roda 3</option>
                                         </select>
@@ -89,7 +90,7 @@
                                     <input type="text" name="no_rangka" id="" class="form-control input-default" placeholder="No. Rangka" required>
                                 </div>
                                 <div class="general-button">
-                                    {{-- <button type="button" class="btn btn-primary" onclick="window.location.href='/pemeliharaan/klasifikasi'">Back</button> --}}
+                                    <button type="button" class="btn btn-primary" onclick="window.location.href='/transport/kendaraan-tampil'">Back</button>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
