@@ -62,7 +62,7 @@
                                         <td>{{ $sp->kd_bagian }}</td>
                                         <td>{{ $sp->status }}</td>
                                         <th>
-                                            <a href="/transport/sewa-kendaraan-edit/{{ $sp->id }}" class="badge badge-primary">Edit</a>                                        </th>
+                                            <a href="/transport/kendaraan-edit/{{ $sp->id }}" class="badge badge-primary">Edit</a>                                        </th>
                                     </tr>
                                     @endforeach
                                 </tbody>

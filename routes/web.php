@@ -95,8 +95,8 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/transport/kendaraan-create', 'KendaraanController@create');
     Route::post('/transport/kendaraan-store','KendaraanController@store');
     Route::get('/transport/kendaraan-tampil', 'KendaraanController@tampilkend');
-    Route::get('/transport/sewa-kendaraan-edit/{id}', 'KendaraanController@edit');
-    Route::post('/transport/sewa-kendaraan-edit/{id}', 'KendaraanController@update');
+    Route::get('/transport/kendaraan-edit/{id}', 'KendaraanController@edit');
+    Route::post('/transport/kendaraan-edit/{id}', 'KendaraanController@update');
     Route::get('/transport/cari1', 'KendaraanController@cari1');
     Route::get('/transport/sewa-sr-create', 'SrController@create');
     Route::post('/transport/store','SrController@store');
