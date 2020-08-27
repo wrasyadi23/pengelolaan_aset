@@ -14,15 +14,15 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title style1">Data SR, PR Sewa Kendaraan</h4>
-                        <form action="/transport/cari" method="get">
+                        <form action="/transport/pr-cari" method="get">
                             <div class="row">
                                 <div class="form-group col-md-8">
                                     <input type="text" name="key" id="" class="form-control" placeholder="Panggil Purchase Request (No.PR)">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <button type="submit" class="btn btn-primary">Cari</button>
-                                    <button type="reset" class="btn btn-primary" onclick="window.location.href='/transport/sewa-pr-tampil'">Reset</button>
-                                    <a href="/transport/sewa-pr-create" class="btn btn-success">PR Baru</a>
+                                    <button type="reset" class="btn btn-primary" onclick="window.location.href='/transport/pr-tampil'">Reset</button>
+                                    <a href="/transport/pr-create" class="btn btn-success">PR Baru</a>
                                 </div> 
                         </form>
                         <div class="card-content">
@@ -56,7 +56,7 @@
                                             <td>{{ $sp->getSR->getKontrakBA->getKontrak->uraian }}</td>
                                             <td>{{ $sp->getSR->getKontrakBA->getKontrak->rekanan }}</td>
                                             <th>
-                                                <a href="/transport/sewa-pr-edit/{{ $sp->id }}" class="badge badge-primary">Edit</a>
+                                                <a href="/transport/pr-edit/{{ $sp->id }}" class="badge badge-primary">Edit</a>
                                             </th>
                                         </tr>
                                         @endforeach

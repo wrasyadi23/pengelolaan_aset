@@ -23,8 +23,8 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <button type="submit" class="btn btn-primary">Cari</button>
-                                    <button type="reset" class="btn btn-primary" onclick="window.location.href='/transport/sewa-ok-tampil'">Reset</button>
-                                    <a href="/transport/sewa-ok-create" class="btn btn-success">OK Baru</a>
+                                    <button type="reset" class="btn btn-primary" onclick="window.location.href='/transport/ok-tampil'">Reset</button>
+                                    <a href="/transport/ok-create" class="btn btn-success">OK Baru</a>
                                 </div> 
                         </form>
                         <div class="card-content">
@@ -54,8 +54,14 @@
                                             <td><span class="style3">{{ $sp->no_ok }}</span></td>
                                             <td><span class="style3">{{ $sp->tgl }}</span></td>
                                             <td><span class="style3">{{ $sp->getPR->no_pr }}</span></td>
+                                            <td><span class="style3">{{ $sp->getPR->tgl }}</span></td>
+                                            <td><span class="style3">{{ $sp->getPR->getSR->no_sr }}</span></td>
+                                            <td><span class="style3">{{ $sp->getPR->getSR->tgl }}</span></td>
+                                            <td><span class="style3">{{ $sp->getPR->getSR->tgl_awal }}</span></td>
+                                            <td><span class="style3">{{ $sp->getPR->getSR->tgl_akhir }}</span></td>
+                                            
                                             <th>
-                                                <a href="/transport/sewa-ok-edit/{{ $sp->id }}" class="badge badge-primary style3">Edit</a>                                            </th>
+                                                <a href="/transport/ok-edit/{{ $sp->id }}" class="badge badge-primary style3">Edit</a>                                            </th>
                                   </tr>
                                         @endforeach
                                     </tbody>

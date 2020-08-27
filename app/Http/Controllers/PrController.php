@@ -8,7 +8,7 @@ class PrController extends Controller
 {
     public function create(){
         $rawDataSR = SR::orderBy('id', 'desc')->get();
-        return view('transport/sewa-pr-create', [
+        return view('transport/pr-create', [
             'rawDataSR' => $rawDataSR
             ]);
     }
@@ -40,26 +40,26 @@ class PrController extends Controller
             $newRealisasi->keterangan = 'Jadipr';
             $newRealisasi->save();
                     
-            return redirect('transport/sewa-pr-tampil');
+            return redirect('transport/pr-tampil');
     }
 
     public function cari(Request $data){
         $key = $data->key;
         $pr = PR::where('no_pr','like',"%".$key."%")
         ->paginate(10);
-        return view('transport/sewa-pr-tampil', ['pr' => $pr]);
+        return view('transport/pr-tampil', ['pr' => $pr]);
     }
 
     public function tampilpr(){
         $pr = PR::orderBy('id', 'desc')
         ->paginate(10);
-        return view('transport/sewa-pr-tampil', ['pr' => $pr]);
+        return view('transport/pr-tampil', ['pr' => $pr]);
     }
 
     public function edit($id)
     {
         $editpr = PR::where('id', $id)->first();
-        return view('transport/sewa-pr-edit', ['editpr' => $editpr]);
+        return view('transport/pr-edit', ['editpr' => $editpr]);
     }
 
     public function update($id, Request $request)
@@ -72,6 +72,6 @@ class PrController extends Controller
         $newRealisasi->tgl = $tgl;
         $newRealisasi->save();
                 
-        return redirect('transport/sewa-pr-tampil');
+        return redirect('transport/pr-tampil');
     }
 }

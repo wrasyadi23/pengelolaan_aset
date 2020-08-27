@@ -10,7 +10,7 @@ class OkController extends Controller
 {
     public function create(){
         $rawDataPR = PR::orderBy('id', 'desc')->get();
-        return view('transport/sewa-ok-create', [
+        return view('transport/ok-create', [
             'rawDataPR' => $rawDataPR
             ]);
     }
@@ -43,26 +43,26 @@ class OkController extends Controller
             // $newRealisasi->keterangan = 'Jadiok';
             // $newRealisasi->save();
                     
-            return redirect('transport/sewa-ok-tampil');
+            return redirect('transport/ok-tampil');
     }
 
     public function tampilok(){
         $ok = OK::orderBy('id', 'desc')
         ->paginate(10);
-        return view('transport/sewa-ok-tampil', ['ok' => $ok]);
+        return view('transport/ok-tampil', ['ok' => $ok]);
     }
 
     public function cari(Request $data){
         $key = $data->key;
         $ok = OK::where('no_ok','like',"%".$key."%")
         ->paginate(10);
-        return view('transport/sewa-ok-tampil', ['ok' => $ok]);
+        return view('transport/ok-tampil', ['ok' => $ok]);
     }
 
     public function edit($id)
     {
         $editok = OK::where('id', $id)->first();
-        return view('transport/sewa-ok-edit', ['editok' => $editok]);
+        return view('transport/ok-edit', ['editok' => $editok]);
     }
 
     public function update($id, Request $request)
@@ -75,6 +75,6 @@ class OkController extends Controller
         $newRealisasi->tgl = $tgl;
         $newRealisasi->save();
                 
-        return redirect('transport/sewa-ok-tampil');
+        return redirect('transport/ok-tampil');
     }
 }
