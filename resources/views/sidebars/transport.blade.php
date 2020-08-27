@@ -16,7 +16,7 @@
                 <li><a href="/transport/sewa-ba-create">Input Ba Kendaraan</a></li>
                 <li><a href="/transport/sr-create">Input Service Rquest</a></li>
                 <li><a href="/transport/sewa-isidentil">SR Sewa Isidentil</a></li>
-                <li><a href="/transport/sewa-pr-create">Input Nomor PR</a></li>
+                <li><a href="/transport/pr-create">Input Nomor PR</a></li>
                 <li><a href="/transport/sewa-ok-create">Input Nomor OK</a></li>
                 <li><a href="/transport/sewa-bariksama-create">BA Riksama</a></li>
             </ul>

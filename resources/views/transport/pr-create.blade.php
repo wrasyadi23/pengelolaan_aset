@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Input Purchase Request</h4>
                         <div class="card-content">
-                            <form action="/transport/sewa-pr-store" method="post">
+                            <form action="/transport/pr-simpan" method="post">
                                 @csrf
                                 <div class="basic-form">
                                     <div class="form-row">

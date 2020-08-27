@@ -8,7 +8,7 @@ class PrController extends Controller
 {
     public function create(){
         $rawDataSR = SR::orderBy('id', 'desc')->get();
-        return view('transport/sewa-pr-create', [
+        return view('transport/pr-create', [
             'rawDataSR' => $rawDataSR
             ]);
     }
@@ -36,11 +36,11 @@ class PrController extends Controller
             $newRealisasi->kd_sr = $kd_sr;
             $newRealisasi->save();
 
-            $newRealisasi = SR::where('kd_sr', $kd_sr)->first();
+            $newRealisasi = SR::where('id', $id)->first();
             $newRealisasi->keterangan = 'Jadipr';
             $newRealisasi->save();
                     
-            return redirect('transport/sewa-pr-tampil');
+            return redirect('transport/pr-tampil');
     }
 
     public function cari(Request $data){

@@ -106,8 +106,8 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/transport/sr-edit/{id}', 'SrController@edit');
     Route::post('/transport/sr-update/{id}', 'SrController@update');
     Route::get('transport/sr-preview/{id}', 'SrController@preview');
-    Route::get('/transport/sewa-pr-create', 'PrController@create');
-    Route::post('/transport/sewa-pr-store','PrController@simpan');
+    Route::get('/transport/pr-create', 'PrController@create');
+    Route::post('/transport/pr-simpan','PrController@simpan');
     Route::get('/transport/sewa-pr-tampil', 'PrController@tampilpr');
     Route::get('/transport/cari', 'PrController@cari');
     Route::get('/transport/sewa-pr-edit/{id}', 'PrController@edit');
