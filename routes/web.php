@@ -113,8 +113,8 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/transport/pr-edit/{id}', 'PrController@edit');
     Route::post('/transport/pr-update/{id}', 'PrController@update');
     Route::get('/transport/ok-create', 'OkController@create');
-    Route::post('/transport/ok-store','OkController@save');
-    Route::get('/transport/ok-tampil', 'OkController@tampilok');
+    Route::post('/transport/ok-store','OkController@store');
+    Route::get('/transport/ok-tampil', 'OkController@tampil');
     Route::get('/transport/cari', 'OkController@cari');
     Route::get('/transport/ok-edit/{id}', 'OkController@edit');
     Route::post('/transport/ok-update/{id}', 'OkController@update');
@@ -138,4 +138,5 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/transport/uangmuka-edit/{kd_uangmuka}', 'uangmukaController@edit');
     Route::post('/transport/uangmuka-update/{kd_uangmuka}', 'uangmukaController@update');
     Route::get('/transport/uangmuka-detail/{kd_uangmuka}', 'uangmukaController@detail');
+    Route::get('/transport/uangmuka-laporan', 'uangmukaController@laporan');
 });

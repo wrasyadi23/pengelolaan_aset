@@ -112,4 +112,17 @@ class uangmukaController extends Controller
         $rawDataUM = Uangmuka::where('kd_uangmuka', $kd_uangmuka)->first();
         return view('transport/uangmuka-detail', ['rawDataUM' => $rawDataUM]);
     }
+
+    // koordinasi dengan henda
+    public function data() 
+    {
+        if (Auth::user()->role == 'Admin') {
+            $rawDataUM = Uangmuka::all();
+        } 
+        elseif (Auth::user()->role == 'Worker' || Auth::user()->role == 'User') {
+            $rawDataUM = uangmuka::where('nik', Auth::user()->nik)->get();
+        }
+
+        return view('transport/uangmuka-data', ['rawDataUM' => $rawDataUM]);
+    }
 }

@@ -15,7 +15,7 @@ class OkController extends Controller
             ]);
     }
 
-    public function save(Request $request)
+    public function store(Request $request)
     {
             $data = OK::select('id', 'kd_ok', 'tgl')
                 ->whereYear('tgl', date('Y'))
@@ -31,22 +31,23 @@ class OkController extends Controller
             $kd_ok = $request->input('kd_ok');
             $no_ok = $request->input('no_ok');
             $kd_pr = $request->input('kd_pr');
+        
+            $newOK = new OK();
+            $newOK->kd_ok = $getnook;
+            $newOK->no_ok = $no_ok;
+            $newOK->tgl = $tgl;
+            $newOK->kd_pr = $kd_pr;
+            $newOK->save();
             
-            $newRealisasi = new OK();
-            $newRealisasi->kd_ok = $getnook;
-            $newRealisasi->no_ok = $no_ok;
-            $newRealisasi->tgl = $tgl;
-            $newRealisasi->kd_pr = $kd_pr;
-            $newRealisasi->save();
-
-            // $newRealisasi = SR::where('kd_sr', $kd_sr)->first();
-            // $newRealisasi->keterangan = 'Jadiok';
-            // $newRealisasi->save();
+            $getKd_sr = PR::where('kd_pr', $kd_pr)->first();
+            $updateSR = SR::where('kd_sr', $getKd_sr->kd_sr)->first();
+            $updateSR->keterangan = 'OK';
+            $updateSR->save();
                     
             return redirect('transport/ok-tampil');
     }
 
-    public function tampilok(){
+    public function tampil(){
         $ok = OK::orderBy('id', 'desc')
         ->paginate(10);
         return view('transport/ok-tampil', ['ok' => $ok]);
