@@ -13,16 +13,16 @@ class PrController extends Controller
             ]);
     }
 
-    public function simpan(Request $request)
+    public function store(Request $request)
     {
-            $data = PR::select('id', 'no_sr', 'tgl')
+            $data = PR::select('id', 'kd_pr', 'tgl')
                 ->whereYear('tgl', date('Y'))
                 ->orderBy('id', 'desc')->count();
             $tahun_sekarang = date('Ym');
             if ($data > 0) {
-                $getnopr = 'PR' . $tahun_sekarang . sprintf('%05s', $data + 1);
+                $kd_pr = 'PR' . $tahun_sekarang . sprintf('%05s', $data + 1);
             } else {
-                $getnopr = 'PR' . $tahun_sekarang . sprintf('%05s', 1);
+                $kd_pr = 'PR' . $tahun_sekarang . sprintf('%05s', 1);
             }
     
             $tgl = $request->input('tgl');
@@ -30,14 +30,14 @@ class PrController extends Controller
             $no_pr = $request->input('no_pr');
             
             $newRealisasi = new PR();
-            $newRealisasi->kd_pr = $getnopr;
+            $newRealisasi->kd_pr = $kd_pr;
             $newRealisasi->no_pr = $no_pr;
             $newRealisasi->tgl = $tgl;
             $newRealisasi->kd_sr = $kd_sr;
             $newRealisasi->save();
 
             $newRealisasi = SR::where('kd_sr', $kd_sr)->first();
-            $newRealisasi->keterangan = 'Jadipr';
+            $newRealisasi->keterangan = 'PR';
             $newRealisasi->save();
                     
             return redirect('transport/pr-tampil');
@@ -50,7 +50,7 @@ class PrController extends Controller
         return view('transport/pr-tampil', ['pr' => $pr]);
     }
 
-    public function tampilpr(){
+    public function tampil(){
         $pr = PR::orderBy('id', 'desc')
         ->paginate(10);
         return view('transport/pr-tampil', ['pr' => $pr]);

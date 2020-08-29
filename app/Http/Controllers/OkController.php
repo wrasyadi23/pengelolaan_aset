@@ -43,7 +43,7 @@ class OkController extends Controller
             $updateSR = SR::where('kd_sr', $getKd_sr->kd_sr)->first();
             $updateSR->keterangan = 'OK';
             $updateSR->save();
-                    
+                                
             return redirect('transport/ok-tampil');
     }
 

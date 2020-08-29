@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Input BA Riksama</h4>
                         <div class="card-content">
-                            <form action="/transport/sewa-bariksama-store" method="post">
+                            <form action="/transport/bariksama-store" method="post">
                                 @csrf
                                 <div class="basic-form">
                                     <div class="form-row">
@@ -43,7 +43,7 @@
                                     </div>
                                     
                                     <div class="general-button">
-                                        <button type="button" class="btn btn-primary" onclick="window.location.href='/transport/sewa-bariksama-tampil'">Back</button>
+                                        <button type="button" class="btn btn-primary" onclick="window.location.href='/transport/bariksama-tampil'">Back</button>
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
