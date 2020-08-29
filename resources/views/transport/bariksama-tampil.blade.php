@@ -19,12 +19,12 @@
                         <form action="/transport/cari" method="get">
                             <div class="row">
                                 <div class="form-group col-md-8">
-                                    <input type="text" name="key" id="" class="form-control" placeholder="Panggil Order Kerja (No.OK)">
+                                    <input type="text" name="key" id="" class="form-control" placeholder="Panggil No.BaRiksama">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <button type="submit" class="btn btn-primary">Cari</button>
-                                    <button type="reset" class="btn btn-primary" onclick="window.location.href='/transport/sewa-ok-tampil'">Reset</button>
-                                    <a href="/transport/sewa-ok-create" class="btn btn-success">OK Baru</a>
+                                    <button type="reset" class="btn btn-primary" onclick="window.location.href='/transport/bariksama-tampil'">Reset</button>
+                                    <a href="/transport/bariksama-create" class="btn btn-success">Riksama Baru</a>
                                 </div> 
                         </form>
                         <div class="card-content">
@@ -64,7 +64,7 @@
                                             <td><span class="style3">{{ $sp->tgl_awal }}</span></td>
                                             <td><span class="style3">{{ $sp->tgl_akhir }}</span></td>
                                             <th>
-                                                <a href="/transport/sewa-ok-edit/{{ $sp->id }}" class="badge badge-primary style3">Edit</a>
+                                                <a href="/transport/bariksama-edit/{{ $sp->id }}" class="badge badge-primary style3">Edit</a>
                                                 <a href="/transport/sewa-bariksama-print/{{ $sp->id }}" class="badge badge-primary style3">Print</a>                                            </th>
                                             </th>
                                         </tr>

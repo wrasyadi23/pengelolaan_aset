@@ -52,7 +52,7 @@
                                             <option value="Sedan">Sedan</option>
                                             <option value="Bus">Bus</option>
                                             <option value="Station">Station</option>
-                                            <option value="PicUp">PicUp</option>
+                                            <option value="PickUp">PickUp</option>
                                             <option value="Spdmtr">Sepeda Motor</option>
                                             <option value="Spdmtrroda3">Sepeda Motor Roda 3</option>
                                         </select>

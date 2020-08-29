@@ -30,7 +30,7 @@ class OkController extends Controller
             $tgl = $request->input('tgl');
             $kd_ok = $request->input('kd_ok');
             $no_ok = $request->input('no_ok');
-            $kd_pr = $request->input('kd_pr');
+            $kd_pr = $request->input('kd_pr');            
             
             $newRealisasi = new OK();
             $newRealisasi->kd_ok = $getnook;
@@ -39,9 +39,9 @@ class OkController extends Controller
             $newRealisasi->kd_pr = $kd_pr;
             $newRealisasi->save();
 
-            // $newRealisasi = SR::where('kd_sr', $kd_sr)->first();
-            // $newRealisasi->keterangan = 'Jadiok';
-            // $newRealisasi->save();
+            $newRealisasi = SR::where('kd_sr', $kd_sr)->first();
+            $newRealisasi->keterangan = 'Jadiok';
+            $newRealisasi->save();
                     
             return redirect('transport/ok-tampil');
     }

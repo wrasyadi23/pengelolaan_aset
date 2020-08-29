@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\OK;
+use App\SR;
 use PDF;
 use App\Riksama;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ class BaRiksamaController extends Controller
 {
     public function create(){
         $rawDataRiksama = OK::orderBy('id', 'desc')->get();
-        return view('transport/sewa-bariksama-create', [
+        return view('transport/bariksama-create', [
             'rawDataRiksama' => $rawDataRiksama
             ]);
     }
@@ -56,22 +57,43 @@ class BaRiksamaController extends Controller
             $newRealisasi->save();
 
             // $newRealisasi = SR::where('kd_sr', $kd_sr)->first();
-            // $newRealisasi->keterangan = 'Jadiok';
+            // $newRealisasi->keterangan = 'Terbayar';
             // $newRealisasi->save();
                     
-            return redirect('transport/sewa-bariksama-create');
+            return redirect('transport/bariksama-tampil');
     } 
-    
+
+    public function edit($id){
+        $riksama = Riksama::where('id', $id)->first();
+        return view('transport/bariksama-edit', ['riksama' => $riksama]);
+    }
+
+    public function update($id, Request $request)
+    {
+        $tgl = $request->input('tgl');
+        $tgl_awal = $request->input('tgl_awal');
+        $tgl_akhir = $request->input('tgl_akhir');
+        $periode = $request->input('periode');
+        
+        $newRealisasi = Riksama::findOrFail($id);
+        $newRealisasi->tgl = $tgl;
+        $newRealisasi->tgl_awal = $tgl_awal;
+        $newRealisasi->tgl_akhir = $tgl_akhir;
+        $newRealisasi->periode = $periode;
+        $newRealisasi->save(); 
+
+        return redirect('transport/bariksama-tampil');
+    }
     public function tampilriksama(){
         $riksama = Riksama::orderBy('id', 'desc')
         ->paginate(10);
-        return view('transport/sewa-bariksama-tampil', ['riksama' => $riksama]);
+        return view('transport/bariksama-tampil', ['riksama' => $riksama]);
     }
 
     public function print($no_riksama)
     {
         $pdf = Riksama::where('no_riksama', $no_riksama)->get();
-        $pdf = PDF::loadView('transport/sewa-bariksama-print', ['pdf' =>$pdf]);
+        $pdf = PDF::loadView('transport/bariksama-print', ['pdf' =>$pdf]);
         return $pdf->stream();
     }
 }
