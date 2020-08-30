@@ -31,7 +31,7 @@ class uangmukaController extends Controller
 
     public function store(Request $request)
     {
-        $data = Uangmuka::select('id', 'kd_uangmuka')
+        $data = Uangmuka::select('id', 'kd_uangmuka', 'tgl')
             ->whereYear('tgl', date('Y'))
             ->orderBy('id', 'desc')->count();
         $tahun_sekarang = date('Ym');
