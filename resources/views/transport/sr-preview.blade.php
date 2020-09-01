@@ -139,15 +139,15 @@
   </tr>
   <tr>
     <td align="center" class="style8">1</td>
-    <td><span class="style8">&nbsp;{{ $pdf->getKontrakBA->getKontrak->uraian }}</span></td>
+    <td><span class="style8">&nbsp;{{ $pdf->getKontrakBA->getKontrak->uraian}}  </span></td>
     <td><div align="center" class="style8">{{ $pdf->getKontrakBA->getKontrak->jml }}</div></td>
     <td><div align="center" class="style8">{{ $pdf->getKontrakBA->getKontrak->satuan }}</div></td>
     <td class="style8"><div align="right" class="style8">{{ number_format ($pdf->getKontrakBA->getKontrak->harga,0) }}&nbsp;</div></td>
-    <td align="center" class="style8">{{$waktu}}</td>
-    <td><div align="right" class="style8">{{ number_format($pdf->getKontrakBA->getKontrak->harga*$pdf->getKontrakBA->getKontrak->jml) }}&nbsp;</div></td>
+    <td align="center" class="style8">{{$waktu}} bulan</td>
+    <td><div align="right" class="style8">{{ number_format($pdf->getKontrakBA->getKontrak->harga*$pdf->getKontrakBA->getKontrak->jml*$waktu) }}&nbsp;</div></td>
   </tr>
   <tr>
-    <td div align="right" class="style9"colspan="2">Jumlah&nbsp;</td>
+    <td div align="right" class="style9"colspan="2">Jumlah </td>
     <td class="style9"><div align="center" class="style8">{{ $pdf->getKontrakBA->getKontrak->jml }}</div></td>
     <td class="style9"><div align="center" class="style8">{{ $pdf->getKontrakBA->getKontrak->satuan }}</div></td>
     <td colspan="3"><div align="center" class="style11">{{ number_format($pdf->getKontrakBA->getKontrak->harga*$pdf->getKontrakBA->getKontrak->jml) }}</div></td>

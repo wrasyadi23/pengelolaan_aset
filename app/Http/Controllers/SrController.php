@@ -98,10 +98,12 @@ class SrController extends Controller
         $pdf = SR::where('kd_sr', $kd_sr)->first();
         $tgl_awal = Carbon::createFromFormat('Y-m-d',$pdf->tgl_awal);
         $tgl_akhir = Carbon::createFromFormat('Y-m-d',$pdf->tgl_akhir);
-        $waktu = $tgl_awal->diffInMonths($tgl_akhir) + 1 . "bulan";
+        $waktu = $tgl_awal->diffInMonths($tgl_akhir) + 1;
+        $hari = $tgl_awal->diffInDays($tgl_akhir) + 1;
         $pdf = PDF::loadView('transport/sr-preview', [
             'pdf' => $pdf,
-            'waktu' => $waktu
+            'waktu' => $waktu,
+            'hari' => $hari
             ]);
         return $pdf->stream();
     }

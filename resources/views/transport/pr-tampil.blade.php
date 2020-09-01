@@ -39,24 +39,28 @@
                                             <th><div align="center">Mulai Sewa</div></th>
                                             <th><div align="center">Sewa Sampai</div></th>
                                             <th><div align="center">Uraian</div></th>
+                                            <th><div align="center">Jumlah</div></th>
+                                            <th><div align="center">Satuan</div></th>
                                             <th><div align="center">Rekanan</div></th>
                                             <th><div align="center">Aksi</div></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($pr as $result => $pr)
+                                        @foreach ($pr as $result => $r)
                                         <tr>
                                             <td>{{ $result + $pr->firstitem() }}</td>
-                                            <td>{{ $pr->no_pr }}</td>
-                                            <td>{{ $pr->tgl }}</td>
-                                            <td>{{ $pr->getSR->no_sr }}</td>
-                                            <td>{{ $pr->getSR->tgl }}</td>
-                                            <td>{{ $pr->getSR->tgl_awal }}</td>
-                                            <td>{{ $pr->getSR->tgl_akhir }}</td>                                    
-                                            <td>{{ $pr->getSR->getKontrakBA->getKontrak->uraian }}</td>
-                                            <td>{{ $pr->getSR->getKontrakBA->getKontrak->rekanan }}</td>
+                                            <td>{{ $r->no_pr }}</td>
+                                            <td>{{ $r->tgl }}</td>
+                                            <td>{{ $r->getSR->no_sr }}</td>
+                                            <td>{{ $r->getSR->tgl }}</td>
+                                            <td>{{ $r->getSR->tgl_awal }}</td>
+                                            <td>{{ $r->getSR->tgl_akhir }}</td>                                    
+                                            <td>{{ $r->getSR->getKontrakBA->getKontrak->uraian }}</td>
+                                            <td>{{ $r->getSR->getKontrakBA->getKontrak->jml }}</td>
+                                            <td>{{ $r->getSR->getKontrakBA->getKontrak->satuan }}</td>
+                                            <td>{{ $r->getSR->getKontrakBA->getKontrak->rekanan }}</td>
                                             <th>
-                                                <a href="/transport/pr-edit/{{ $pr->id }}" class="badge badge-primary">Edit</a>
+                                                <a href="/transport/pr-edit/{{ $r->id }}" class="badge badge-primary">Edit</a>
                                             </th>
                                         </tr>
                                         @endforeach
