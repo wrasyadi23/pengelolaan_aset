@@ -7,6 +7,7 @@ use App\Srfull;
 use App\Kendaraan;
 use App\KontrakBA;
 use PDF;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class SrController extends Controller
@@ -92,10 +93,16 @@ class SrController extends Controller
         return view('transport/sr-tampil', ['sr' => $sr]);
     }
 
-    public function preview($no_sr)
+    public function preview($kd_sr)
     {
-        $pdf = Srfull::where('no_sr', $no_sr)->get();
-        $pdf = PDF::loadView('transport/sr-preview', ['pdf' => $pdf]);
+        $pdf = SR::where('kd_sr', $kd_sr)->first();
+        $tgl_awal = Carbon::createFromFormat('Y-m-d',$pdf->tgl_awal);
+        $tgl_akhir = Carbon::createFromFormat('Y-m-d',$pdf->tgl_akhir);
+        $waktu = $tgl_awal->diffInMonths($tgl_akhir) + 1 . "bulan";
+        $pdf = PDF::loadView('transport/sr-preview', [
+            'pdf' => $pdf,
+            'waktu' => $waktu
+            ]);
         return $pdf->stream();
     }
 }

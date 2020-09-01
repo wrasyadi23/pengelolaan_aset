@@ -55,8 +55,8 @@
                                         <td>{{ $sp->getKontrakBA->getKontrak->rekanan }}</td>
                                         <th>
                                             <a href="/transport/sr-edit/{{ $sp->id }}" class="badge badge-primary">Isi No.Sr</a>
-                                            <a href="/transport/sr-preview/{{ $sp->no_sr }}" class="badge badge-primary">Print</a>
-                                            <a href="/transport/sr-detail/{{ $sp->no_sr }}" class="badge badge-primary">Detail</a>  
+                                            <a href="/transport/sr-preview/{{ $sp->kd_sr }}" class="badge badge-primary">Print</a>
+                                            <a href="/transport/sr-detail/{{ $sp->kd_sr }}" class="badge badge-primary">Detail</a>  
                                         </th>
                                     </tr>
                                     @endforeach

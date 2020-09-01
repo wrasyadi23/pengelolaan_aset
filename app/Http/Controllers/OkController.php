@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 class OkController extends Controller
 {
     public function create(){
-        $rawDataPR = PR::orderBy('id', 'desc')->get();
+        $rawDataPR = PR::orderBy('id', 'desc')
+        ->get();
         return view('transport/ok-create', [
             'rawDataPR' => $rawDataPR
             ]);

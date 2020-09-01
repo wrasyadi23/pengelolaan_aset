@@ -44,19 +44,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($pr as $result => $sp)
+                                        @foreach ($pr as $result => $pr)
                                         <tr>
                                             <td>{{ $result + $pr->firstitem() }}</td>
-                                            <td>{{ $sp->no_pr }}</td>
-                                            <td>{{ $sp->tgl }}</td>
-                                            <td>{{ $sp->getSR->no_sr }}</td>
-                                            <td>{{ $sp->getSR->tgl }}</td>
-                                            <td>{{ $sp->getSR->tgl_awal }}</td>
-                                            <td>{{ $sp->getSR->tgl_akhir }}</td>                                    
-                                            <td>{{ $sp->getSR->getKontrakBA->getKontrak->uraian }}</td>
-                                            <td>{{ $sp->getSR->getKontrakBA->getKontrak->rekanan }}</td>
+                                            <td>{{ $pr->no_pr }}</td>
+                                            <td>{{ $pr->tgl }}</td>
+                                            <td>{{ $pr->getSR->no_sr }}</td>
+                                            <td>{{ $pr->getSR->tgl }}</td>
+                                            <td>{{ $pr->getSR->tgl_awal }}</td>
+                                            <td>{{ $pr->getSR->tgl_akhir }}</td>                                    
+                                            <td>{{ $pr->getSR->getKontrakBA->getKontrak->uraian }}</td>
+                                            <td>{{ $pr->getSR->getKontrakBA->getKontrak->rekanan }}</td>
                                             <th>
-                                                <a href="/transport/pr-edit/{{ $sp->id }}" class="badge badge-primary">Edit</a>
+                                                <a href="/transport/pr-edit/{{ $pr->id }}" class="badge badge-primary">Edit</a>
                                             </th>
                                         </tr>
                                         @endforeach

@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 class PrController extends Controller
 {
     public function create(){
-        $rawDataSR = SR::orderBy('id', 'desc')->get();
+        $rawDataSR = SR::orderBy('id', 'desc')
+            ->where('keterangan','Request')
+            ->get();
         return view('transport/pr-create', [
             'rawDataSR' => $rawDataSR
             ]);

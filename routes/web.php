@@ -101,11 +101,11 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/transport/sr-create', 'SrController@create');
     Route::post('/transport/sr-store','SrController@store');
     Route::get('/transport/sr-tampil', 'SrController@tampilsr');
-    Route::get('/transport/sr-detail/{no_sr}', 'SrController@detail');
+    Route::get('/transport/sr-detail/{kd_sr}', 'SrController@detail');
     Route::get('/transport/cari', 'SrController@cari');
     Route::get('/transport/sr-edit/{id}', 'SrController@edit');
     Route::post('/transport/sr-update/{id}', 'SrController@update');
-    Route::get('transport/sr-preview/{id}', 'SrController@preview');
+    Route::get('transport/sr-preview/{kd_sr}', 'SrController@preview');
     Route::get('/transport/pr-create', 'PrController@create');
     Route::post('/transport/pr-store','PrController@store');
     Route::get('/transport/pr-tampil', 'PrController@tampil');

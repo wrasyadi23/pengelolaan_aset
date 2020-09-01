@@ -1,147 +1,205 @@
 <style type="text/css">
-.style2 {font-size: 14px}
-.style3 {font-size: 12px}
-
+.style6 {font-size: 10px; font-style: italic; }
+.style7 {font-size: 12px; font-weight: bold; }
+.style8 {font-size: 12px}
+.style9 {font-size: 14px}
+.style10 {
+	font-size: 16px;
+	font-weight: bold;
+}
+.style11 {
+	font-size: 12px;
+	font-style: italic;
+	font-weight: bold;
+}
 </style>
-<table align="center" border="1" width="536">
-	@foreach ($pdf as $result => $r)
+<table align="center" width="428" border="1">
   <tr>
-		<td width="125" height="50" align=""><img src="{{ ('logo-PG-agro.jpg') }}" width="105"></td>
-		<td width="395">
-		  <table align="center" width="83%">
-				<tr>
-					<td align="center" class="style3">PERMINTAAN JASA</td>
-				</tr>
-				<tr>
-					<td align="center" class="style3">(SERVICE REQUEST)</td>
-				</tr>
-		  </table>		  
-    </td>
-  </tr>
+    <td>
+	<table align="center" width="500" rules="none">
   <tr>
-		<td colspan="2" align="center">Kode Sr : {{ $r->kd_sr }}/No.Sr. Dop :..... </td>
-	    <table>
-		<tr></
-	  </table>  
+    <td width="105"><img src="{{ ('logo-PG-agro.jpg') }}" width="105px"/></td>
+    <td width="383"  style="border-left:inset"><div align="center">
+      <p class="style10">PERMINTAAN JASA (SERVICE REQUEST)</p>
+    </div></td>
   </tr>
-  <tr>
-		<td colspan="2" align="center">Tanggal Permintaan : {{ $r->tgl }} </td>
-	    <table>
-		<tr></
-	  </table>  
-  </tr>
-	<tr>
-		<td height="614" colspan="2" align="center">
-			<table width="580">
-				
-				<tr align="left">
-					<td width="180" class="style2">&nbsp;&nbsp;&nbsp;&nbsp;I. Unit Kerja / Plant&nbsp;&nbsp;*)</td>
-					<td width="7" align="center" class="style2">:</td>
-					<td width="320" class="style6 style2">Departemen Pelayanan Umum / Transport </td>
-				</tr>
-				<tr align="left">
-					<td width="180" class="style2">&nbsp;&nbsp;&nbsp;&nbsp;II. Uraian Pekerjaan Jasa *)</td>
-					<td width="7" align="center" class="style2">:</td>
-					<td class="style6 style2">{{ $r->uraian }}</td>
-				</tr>
-				<tr align="left">
-					<td width="180" class="style2">&nbsp;&nbsp;&nbsp;&nbsp;III.Cost Center / Fun Center &nbsp;&nbsp;*)</td>
-					<td width="7" align="center" class="style2">:</td>
-					<td class="style6 style2">{{ $r->cost_center }}</td>
-				</tr>
-				<tr align="left">
-					<td width="180" class="style2">&nbsp;&nbsp;&nbsp;&nbsp;IV. Gl Account &nbsp;&nbsp;*)</td>
-					<td width="7" align="center" class="style2">:</td>
-					<td colspan="2" class="style2">&nbsp;{{ $r->gl_acc }}</td>
-				</tr>
-				<tr align="left">
-					<td width="180" class="style2">&nbsp;&nbsp;&nbsp;&nbsp;V. No.Wo</td>
-					<td width="7" align="center" class="style2">:</td>
-				  	<td colspan="2" class="style2">-</td>
-				</tr>
-				<tr align="left">
-					<td width="180" class="style2">&nbsp;&nbsp;&nbsp;&nbsp;VI. No.Equepment / Nama Equepment </td>
-					<td width="7" align="center" class="style2">:</td>
-				  	<td colspan="2" class="style2">-</td>
-				</tr>
-				<tr align="left">
-					<td width="180" class="style2">&nbsp;&nbsp;&nbsp;&nbsp;VII. Alasan Permintaan Pekrjaan Jasa </td>
-					<td width="7" align="center" class="style2">:</td>
-				  	<td colspan="2" class="style2">&nbsp;{{ $r->alasan }}</td>
-				</tr>
-				<tr align="left">
-					<td width="180" class="style2">&nbsp;&nbsp;&nbsp;VIII. Perkiraan Jasa Yang Dibutuhkan </td>
-					<td width="7" align="center" class="style2">:</td>
-				  	<td colspan="2" class="style2">{{ $r->tgl_awal_sr }} s/d {{ $r->tgl_akhir_sr }}</td>
-				</tr>
-				<tr align="left">
-					<td width="180" class="style2">&nbsp;&nbsp;&nbsp;&nbsp;IX. Estimasi biaya (tahun berjalan) </td>
-					<td width="7" align="center" class="style2">:</td>
-				  	<td colspan="2" class="style2">&nbsp;Rp.&nbsp;&nbsp;{{ number_format($r->harga*$r->jml) }}</td>
-				</tr>
-				<tr align="left">
-					<td colspan="4" class="style2">&nbsp;&nbsp;&nbsp;&nbsp;X. Rincian Estimasi Man Power, Material, Peraltan / Sketch Drawing / Keterangan lain :</td>
-				</tr>
-				<tr align="left">
-					<td width="180" class="style2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dasar SP </td>
-					<td width="7" align="center" class="style2">:</td>
-				  	<td colspan="2" class="style2">&nbsp;{{ $r->no_sp }}</td>
-				</tr>
-				<tr align="left">
-					<td width="180" class="style2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Periode SP </td>
-					<td width="7" align="center" class="style2">:</td>
-				  	<td colspan="2" class="style2">{{ $r->tgl_awal_sp }} &nbsp;&nbsp;&nbsp; s/d &nbsp;&nbsp;&nbsp;{{ $r->tgl_akhir_sp }}</td>
-				</tr>
-				<tr align="left">
-					<td width="180" class="style2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vendor </td>
-					<td width="7" align="center" class="style2">:</td>
-				  	<td colspan="2" class="style2">{{ $r->rekanan }}</td>
-				</tr>
-				<tr>
-					<td height="290" colspan="4" class="style2">
-						<table width="534" border="1">
-							<tr align="center" class="style2">
-							  <td valign="top" align="center" width="5" class="style2"><div align="center">No</div></td>
-								<td colspan="3" align="left" width="80" class="style2"><div align="center">Diskripsi</div></td>
-								<td align="left" width="5" class="style2"><div align="center">Jml</div></td>
-								<td align="left" width="5" class="style2"><div align="center">Unit</div></td>
-								<td colspan="2" align="left" width="10" class="style2"><div align="center">Harga/Unit</div></td>
-								<td align="left" width="5" class="style2"><div align="center">Waktu</div></td>
-								<td align="left" width="9" class="style2"><div align="center">Ttl Harga</div></td>
-							</tr>
-							<tr align="left" class="style3">
-								<td width="5" align="center" valign="top" class="style3">1</td>
-								<td colspan="3" align="left" class="style3">&nbsp;{{ $r->uraian_sp }}</td>
-								<td align="center" class="style3">{{ $r->jml }}</td>
-								<td align="center" class="style3">{{ $r->satuan }}</td>
-								<td colspan="2" align="right" class="style3">{{ number_format($r->harga,0) }}&nbsp;</td>
-								<td align="left" class="style3"><div align="center">{{ $r->jml_bulan }}</div></td>
-								<td align="right" width="9" class="style3">{{ number_format($r->ttl_hrg) }}&nbsp;</td>
-							</tr>
-								<tr align="left">
-								<td colspan="9" align="center" valign="top" class="style2"><div align="right">Total&nbsp;&nbsp;</div></td>
-								<td align="right" width="9" class="style2">{{ number_format($r->ttl_hrg) }}&nbsp;</td>
-							</tr>
-							<tr align="left">
-								<td height="160" colspan="3" align="left" valign="top" class="style2"><p>Tanggal :</p>
-									<p align="center">Diminta Oleh :</p>
-									<p align="center">&nbsp;</p>
-									<p align="center">Sunoto</p>								</td>
-								<td colspan="4" align="left" class="style2">Tanggal :
-									<p align="center">Diperiksa Oleh : </p>
-									<p align="center">&nbsp;</p>
-									<p align="center">Djuli Fanani  </p>								</td>
-								<td colspan="3" align="left" class="style2"><p>Tanggal :</p>
-									<p align="center">Disetujui Oleh :</p>
-									<p align="center">&nbsp;</p>
-									<p align="center">Oda Sugarada  </p>
-									<p>&nbsp; </p>								</td>
-							</tr>
-						</table>
-					</td>
-			  	</tr>
-		  </table>		
-		</td>
-	</tr>
-	@endforeach
 </table>
+<table align="center" width="492" rules="rows">
+  <tr>
+    <td><div align="center" class="style9">Nomor : {{ $pdf->kd_sr }}</div></td>
+  </tr>
+  <tr>
+    <td><div align="center" class="style9">Tanggal Permintaan Unit Kerja : {{ $pdf->tgl }}</div></td>
+  </tr>
+</table>
+
+<table align="center" width="495" rules="rowas">
+  <tr>
+    <td width="28"><div align="center" class="style9">
+      <div align="center">I.</div>
+    </div></td>
+    <td width="146"><span class="style9">Unit Kerja /Plant *) </span></td>
+    <td width="12"><div align="center" class="style9">
+      <div align="center">:</div>
+    </div></td>
+    <td colspan="2"><span class="style9"></span><span class="style9">Dep. Pelayanan Umum/Transport </span></td>
+    </tr>
+  <tr>
+    <td><div align="center" class="style9">
+      <div align="center">II.</div>
+    </div></td>
+    <td><span class="style9">Urain Pekerjaan *) </span></td>
+    <td><div align="center" class="style9">
+      <div align="center">:</div>
+    </div></td>
+    <td colspan="2"><span class="style9"></span><span class="style9">{{ $pdf->getKontrakBA->getKontrak->uraian }}</span></td>
+    </tr>
+  <tr>
+    <td><div align="center" class="style9">
+      <div align="center">III.</div>
+    </div></td>
+    <td><span class="style9">Cost Center / Fun Center *) </span></td>
+    <td><div align="center" class="style9">
+      <div align="center">:</div>
+    </div></td>
+    <td colspan="2" class="style9"><span class="style9"></span><span class="style9">{{ $pdf->getKontrakBA->getKontrak->cost_center }}</span></td>
+    </tr>
+  <tr>
+    <td><div align="center" class="style9">IV</div></td>
+    <td><span class="style9">Gl Account *) </span></td>
+    <td><div align="center" class="style9">
+      <div align="center">:</div>
+    </div></td>
+    <td colspan="2" class="style9"><span class="style9"></span><span class="style9">{{ $pdf->getKontrakBA->getKontrak->gl_acc }}</span></td>
+    </tr>
+  <tr>
+    <td><div align="center" class="style9">VI.</div></td>
+    <td><span class="style9">Nomor WO </span></td>
+    <td><div align="center" class="style9">
+      <div align="center">:</div>
+    </div></td>
+    <td colspan="2"><span class="style9"></span><span class="style9">-</span></td>
+    </tr>
+  <tr>
+    <td><div align="center" class="style9">VII</div></td>
+    <td><span class="style9">No. Equepment / Nama Equepment </span></td>
+    <td><div align="center" class="style9">
+      <div align="center">:</div>
+    </div></td>
+    <td colspan="2"><span class="style9"></span><span class="style9">-</span></td>
+    </tr>
+  <tr>
+    <td><div align="center" class="style9">VIII.</div></td>
+    <td><span class="style9">Alasan Permintaan Pekerjaan Jasa </span></td>
+    <td><div align="center" class="style9">
+      <div align="center">:</div>
+    </div></td>
+    <td colspan="2"><span class="style9"></span><span class="style9">{{ $pdf->getKontrakBA->getKontrak->keterangan }}</span></td>
+    </tr>
+  <tr>
+    <td><div align="center" class="style9">IX.</div></td>
+    <td><span class="style9">Pekerjaan yang dibutuhkan *) </span></td>
+    <td><div align="center" class="style9">:</div></td>
+    <td colspan="2" class="style9">{{ $pdf->tgl_awal }} s/d {{ $pdf->tgl_akhir }}</td>
+    </tr>
+  <tr>
+    <td><div align="center" class="style9">X.</div></td>
+    <td><span class="style9">Estimasi biaya (tahun berjalan **) </span></td>
+    <td><div align="center" class="style9">:</div></td>
+    <td width="136">&nbsp;</td>
+    <td width="129">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><div align="center" class="style9">XI.</div></td>
+    <td colspan="4"><span class="style9">Rincian Estimasi Man Power, Material, Peralatan / Sketch Drawing / Keterangan lain : </span></td>
+    </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="4" class="style9"><span class="style8">Dasar SP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;{{ $pdf->getKontrakBA->getKontrak->no_sp }}</span></td>
+    </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="4" class="style9"><span class="style8">Periode SP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;{{ $pdf->getKontrakBA->tgl_awal }} s/d {{ $pdf->getKontrakBA->tgl_akhir }}</span></td>
+    </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="4" class="style9"><span class="style8">Vendor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;{{ $pdf->getKontrakBA->getKontrak->rekanan }}</span></td>
+    </tr>
+</table>
+
+<table rules="all" align="center" width="485">
+  <tr>
+    <td width="24"><div align="center" class="style7">No</div></td>
+    <td width="180"><div align="center" class="style7">Deskripsi</div></td>
+    <td width="26"><div align="center" class="style7">Jml</div></td>
+    <td width="23"><div align="center" class="style7">Unit</div></td>
+    <td width="58"><div align="center" class="style7">Harga/Unit</div></td>
+    <td width="35"><div align="center" class="style7">Waktu</div></td>
+    <td width="56"><div align="center" class="style7">Ttl Harga </div></td>
+  </tr>
+  <tr>
+    <td align="center" class="style8">1</td>
+    <td><span class="style8">&nbsp;{{ $pdf->getKontrakBA->getKontrak->uraian }}</span></td>
+    <td><div align="center" class="style8">{{ $pdf->getKontrakBA->getKontrak->jml }}</div></td>
+    <td><div align="center" class="style8">{{ $pdf->getKontrakBA->getKontrak->satuan }}</div></td>
+    <td class="style8"><div align="right" class="style8">{{ number_format ($pdf->getKontrakBA->getKontrak->harga,0) }}&nbsp;</div></td>
+    <td align="center" class="style8">{{$waktu}}</td>
+    <td><div align="right" class="style8">{{ number_format($pdf->getKontrakBA->getKontrak->harga*$pdf->getKontrakBA->getKontrak->jml) }}&nbsp;</div></td>
+  </tr>
+  <tr>
+    <td div align="right" class="style9"colspan="2">Jumlah&nbsp;</td>
+    <td class="style9"><div align="center" class="style8">{{ $pdf->getKontrakBA->getKontrak->jml }}</div></td>
+    <td class="style9"><div align="center" class="style8">{{ $pdf->getKontrakBA->getKontrak->satuan }}</div></td>
+    <td colspan="3"><div align="center" class="style11">{{ number_format($pdf->getKontrakBA->getKontrak->harga*$pdf->getKontrakBA->getKontrak->jml) }}</div></td>
+    </tr>
+</table>
+<table align="center" width="428">
+  <tr>
+    <td width="119"><div align="center" class="style8">
+      <div align="left">Tanggal : </div>
+    </div></td>
+    <td width="156" style="border-left:inset"><div align="center" class="style8">Tanggal : </div></td>
+    <td width="137"><div align="center" class="style8">
+      <div align="center" style="border-left:inset">Tanggal: </div>
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center" class="style8">
+      <div align="left">Diminta oleh : </div>
+    </div></td>
+    <td style="border-left:inset"><div align="center" class="style8">Diperiksa oleh : </div></td>
+    <td><div align="center" class="style8">
+      <div align="right" style="border-left:inset">Disetujui oleh : </div>
+    </div></td>
+  </tr>
+  <tr>
+    <td><p>&nbsp;</p>
+      <p>&nbsp;</p></td>
+    <td style="border-left:inset">&nbsp;</td>
+    <td style="border-left:inset">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><div align="center" class="style7">
+      <div align="left"><u>Sunoto</u></div>
+    </div></td>
+    <td style="border-left:inset"><div align="center" class="style7"><u>Djuli Fanani </u></div></td>
+    <td><div align="center" class="style7">
+      <div align="right" style="border-left:inset"><u>Oda Sugarda </u></div>
+    </div></td>
+  </tr>
+  <tr>
+    <td><div align="center" class="style6">
+      <div align="left">(Kasi Administrasi) </div>
+    </div></td>
+    <td style="border-left:inset"><div align="center" class="style6">(Kabag. Transport) </div></td>
+    <td><div align="center" class="style6">
+      <div align="right" style="border-left:inset">(Manager Pelayanan Umum </div>
+    </div></td>
+  </tr>
+</table>
+
+	</td>
+  </tr>
+</table>
+
+
