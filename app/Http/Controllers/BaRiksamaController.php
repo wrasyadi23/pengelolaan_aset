@@ -5,6 +5,7 @@ use App\OK;
 use App\SR;
 use PDF;
 use App\Riksama;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class BaRiksamaController extends Controller
@@ -83,8 +84,16 @@ class BaRiksamaController extends Controller
 
     public function print($no_riksama)
     {
-        $pdf = Riksama::where('no_riksama', $no_riksama)->get();
-        $pdf = PDF::loadView('transport/bariksama-print', ['pdf' =>$pdf]);
+        $pdf = Riksama::where('no_riksama', $no_riksama)->first();
+        $tgl_awal = Carbon::createFromFormat('Y-m-d',$pdf->tgl_awal);
+        $tgl_akhir = Carbon::createFromFormat('Y-m-d',$pdf->tgl_akhir);
+        $waktu = $tgl_awal->diffInMonths($tgl_akhir) + 1;
+        $hari = $tgl_awal->diffInDays($tgl_akhir) + 1;
+        $pdf = PDF::loadView('transport/bariksama-print', [
+            'pdf' => $pdf,
+            'waktu' => $waktu,
+            'hari' => $hari
+        ]);
         return $pdf->stream();
     }
 }

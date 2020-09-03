@@ -65,7 +65,7 @@
                                             <td><span class="style3">{{ $sp->tgl_akhir }}</span></td>
                                             <th>
                                                 <a href="/transport/bariksama-edit/{{ $sp->id }}" class="badge badge-primary style3">Edit</a>
-                                                <a href="/transport/sewa-bariksama-print/{{ $sp->id }}" class="badge badge-primary style3">Print</a>                                            </th>
+                                                <a href="/transport/bariksama-print/{{ $sp->no_riksama }}" class="badge badge-primary style3">Print</a>                                            </th>
                                             </th>
                                         </tr>
                                         @endforeach
