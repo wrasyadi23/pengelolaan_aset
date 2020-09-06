@@ -19,13 +19,13 @@ class BaRiksamaController extends Controller
 
     public function store(Request $request)
     {
-        $dataKd_riksama = Riksama::select('id', 'kd_riksama', 'tgl')
+        $data = Riksama::select('id', 'kd_riksama', 'tgl')
             ->whereYear('tgl', date('Y'))
             ->orderBy('id', 'desc')->count();
         $tahun_sekarang = date('Ym');
         if ($dataKd_riksama > 0) {
-            $kd_riksama = 'BAR' . $tahun_sekarang . sprintf('%05s', $dataKd_riksama + 1);
-            $no_riksama = sprintf('%05s', $dataNo_riksama + 1);
+            $kd_riksama = 'BAR' . $tahun_sekarang . sprintf('%05s', $data + 1);
+            $no_riksama = sprintf('%05s', $data + 1);
         } else {
             $kd_riksama = 'BAR' . $tahun_sekarang . sprintf('%05s', 1);
             $no_riksama = sprintf('%05s', 1);
@@ -76,15 +76,15 @@ class BaRiksamaController extends Controller
 
         return redirect('transport/bariksama-tampil');
     }
-    public function tampilriksama(){
+    public function tampil(){
         $riksama = Riksama::orderBy('id', 'desc')
         ->paginate(10);
         return view('transport/bariksama-tampil', ['riksama' => $riksama]);
     }
 
-    public function print($no_riksama)
+    public function print($kd_riksama)
     {
-        $pdf = Riksama::where('no_riksama', $no_riksama)->first();
+        $pdf = Riksama::where('kd_riksama', $kd_riksama)->first();
         $tgl_awal = Carbon::createFromFormat('Y-m-d',$pdf->tgl_awal);
         $tgl_akhir = Carbon::createFromFormat('Y-m-d',$pdf->tgl_akhir);
         $waktu = $tgl_awal->diffInMonths($tgl_akhir) + 1;

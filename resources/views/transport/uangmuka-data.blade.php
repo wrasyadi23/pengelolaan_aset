@@ -13,8 +13,20 @@
                         <div class="basic-form">
                             <div class="form-group">
                                 <label for="kd_uangmuka">Kode Uangmuka</label>
-                                <select name="kd_uangmuka" id="kd_uangmuka">
-
+                                <select name="kd_uangmuka" id="kd_uangmuka" class="form-control input-default">
+                                    <option disabled selected></option>
+                                    @foreach ($rawDataUM as $result => $itemUM)
+                                        <option value="{{$itemUM->kd_uangmuka}}">{{$itemUM->no_uangmuka}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="gl_account">Gl. Account</label>
+                                <select name="gl_account" id="gl_account" class="form-control input-default">
+                                    <option disabled selected></option>
+                                    @foreach ($rawDataUM as $item)
+                                        <option value="{{$item->kd_uangmuka}}">{{$item->no_uangmuka}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -37,8 +49,9 @@
             allowClear: true
         });
         $("#kd_aktifitas_rkap").select2({
-            placeholder: 'Pilih Kode Aktifitas',
-            allowClear: true
+            placeholder: 'Pilih Aktifitas',
+            allowClear: true,
+            disabled: true
         });
     </script>
 @endsection
