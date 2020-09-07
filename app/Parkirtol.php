@@ -24,5 +24,5 @@ class Parkirtol extends Model
     {
         return $this->belongsTo('App\Uangmuka', 'kd_uangmuka', 'kd_uangmuka');
     }
-    
+
 }

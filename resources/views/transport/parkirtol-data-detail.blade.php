@@ -9,13 +9,13 @@
     @endif
     <div class="row">
         <div class="col-lg-12">
-            <form action="/transport/parkirtol-approveAll" method="post">
+            <form action="/transport/parkirtol-approve" method="post">
                 @csrf
                 <div class="card">
                     <div class="card-body">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <h4 class="card-title">Parkir Dan Tol</h4>
+                                <h4 class="card-title">Detail Parkir Dan Tol {{ $parkirtol->first()->getPengemudi->nama }} ({{ $parkirtol->first()->nik }})</h4>
                             </div>
                         </div>
                         <div class="card-content">
@@ -25,8 +25,9 @@
                                         <tr>
                                             <th><div align="center">#</div></th>
                                             <th><div align="center">No</div></th>
-                                            <th><div align="center">Nik</div></th>
-                                            <th><div align="center">Nama</div></th>
+                                            <th><div align="center">Kode Parkirtol</div></th>
+                                            <th><div align="center">Tangal</div></th>
+                                            <th><div align="center">Melayani</div></th>
                                             <th><div align="center">Total</div></th>
                                             <th><div align="center">Status</div></th>
                                             <th><div align="center">Aksi</div></th>
@@ -35,20 +36,19 @@
                                     <tbody>
                                     @foreach ($parkirtol as $result => $tolx)
                                         <tr>
-                                            <td class="align-middle text-center"><input type="checkbox" name="item[]" id="item[]" value="{{$tolx->kd_pengemudi}}" /></td>
+                                            <td class="align-middle text-center"><input type="checkbox" name="item[]" id="item[]" value="{{$tolx->kd_parkirtol}}" /></td>
                                             <td align="center">{{++$result}}</td>
-                                            <td>{{$tolx->nik}}</td>
-                                            <td>{{$tolx->getPengemudi->nama}}</td>
-                                            <td>{{$tolx ->total}}</td>
+                                            <td>{{$tolx->kd_parkirtol}}</td>
+                                            <td>{{$tolx->trip_start}}</td>
+                                            <td>{{$tolx->melayani}}</td>
+                                            <td align="right">{{$tolx ->total}}</td>
                                             <td>{{$tolx->status}}</td>
-                                            <td>
-                                                <a href="parkirtol-data/{{$tolx->nik}}">Detail</a>
-                                            </td>
+                                            <td>Detail</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                     <tr>
-                                        <td colspan="7" align="center">
+                                        <td colspan="8" align="center">
                                             <input name="Check_All" value="Check All" onclick="check_all()" type="button" class="btn btn-primary">
                                             <input name="Un_CheckAll" value="Uncheck All" onclick="uncheck_all()" type="button" class="btn btn-primary">
                                             <input name="submit" type="submit" value="submit" class="btn btn-success" >

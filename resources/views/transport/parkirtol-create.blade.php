@@ -88,6 +88,9 @@
                                             <td>
                                                 <b><span id="total"></span></b>
                                             </td>
+                                            {{-- <td>
+                                                <input type="text" name="total" id="total2">
+                                            </td> --}}
                                         </tr>
                                       </tfoot>
                                </table>
@@ -121,7 +124,7 @@
 
             function parkirtol_detail(number)
             {
-                tr = '<tr>';
+                tr = '<tr class="temp-row">';
                 tr += '<td><input type="text" name="nilai_karcis[]" id="nilai_karcis-' + count + '" class="form-control input-default hitung" /></td>';
                 tr += '<td><input type="text" name="jml_karcis[]" id="jml_karcis-' + count + '" class="form-control input-default hitung" /></td>';
                 tr += '<td><input type="text" name="total[]" id="total-' + count + '" class="form-control input-default total" readonly/></td>';
@@ -135,6 +138,15 @@
                     tr += '<td><button type="button" name="add" id="add" class="btn btn-sm btn-success">Add</button></td></tr>';
                     $('tbody').html(tr);
                 }
+            }
+
+            function resetForm(){
+                $("#dynamic_form").trigger('reset');
+                $('#total').html(" ");
+                // $('#total2').html(" ");
+                $('#kd_uangmuka').select2();
+                $('#kd_pengemudi').select2();
+                $('.temp-row').remove();
             }
 
             $('body').on('focus', '.hitung', function() {
@@ -153,6 +165,7 @@
                             });
                             var hasil = rupiah(alltotal);
                             $('#total').html("Rp. "+hasil);
+                            // $('#total2').val(alltotal);
                         }
                     }, 50);
                 });
@@ -203,11 +216,11 @@
                         }
                         else
                         {
+                            resetForm();
                             parkirtol_detail(1);
                             $('#result').html('<div class="alert alert-success">'+data.success+'</div>');
                         }
                         $('#save').attr('disabled', false);
-                        $("#dynamic_form").trigger('reset');
                     }
                 })
         });

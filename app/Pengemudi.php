@@ -13,5 +13,5 @@ class Pengemudi extends Model
     {
         return $this->belongsTo('App\Parkirtol', 'kd_pengemudi', 'kd_pengemudi');
     }
-    
+
 }

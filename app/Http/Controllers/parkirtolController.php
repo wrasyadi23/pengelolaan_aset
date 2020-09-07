@@ -10,7 +10,9 @@ use Validator;
 use Carbon\Carbon;
 use File;
 use Auth;
+use DataTables;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class parkirtolController extends Controller
 {
@@ -58,7 +60,7 @@ class parkirtolController extends Controller
                     'error'  => $error->errors()->all()
                 ]);
             }
-            
+
             $kd_pengemudi = $request->kd_pengemudi;
             $kd_uangmuka = $request->kd_uangmuka;
             $nilai_karcis = $request->nilai_karcis;
@@ -81,7 +83,6 @@ class parkirtolController extends Controller
             $newParkirtol->uraian = $uraian;
             $newParkirtol->status ='Requested';
             $newParkirtol->creator = Auth::user()->nik;
-            // $newParkirtol->tgl_bayar = $request->tgl;
             $newParkirtol->kd_uangmuka = $kd_uangmuka;
             $newParkirtol->kd_pengemudi = $kd_pengemudi;
             $newParkirtol->save();
@@ -104,4 +105,56 @@ class parkirtolController extends Controller
 
 
     }
+    public function data()
+    {
+        $parkirtol = Parkirtol::where('status','Requested')
+                    ->join('parkirtol_detail','parkirtol_detail.kd_parkirtol','=','parkirtol.kd_parkirtol')
+                    ->orderBy('parkirtol.kd_pengemudi', 'ASC')
+                    ->groupBy('kd_pengemudi')
+                    ->select("*", \DB::raw("SUM(parkirtol_detail.nilai_karcis*parkirtol_detail.jml_karcis) as total"))
+                    ->get();
+        // $parkirtol = Parkirtol::select('kd_pengemudi','kd_parkirtol','nik','status', \DB::raw('sum(total) as total'))
+        //     ->groupBy('kd_pengemudi','kd_parkirtol','nik','status')
+        //     ->where('status','Requested')
+        //     ->get();
+        return view('transport/parkirtol-data',compact('parkirtol'));
+    }
+
+    public function approveAll(Request $request)
+    {
+        $today = date('Y-m-d');
+        $idrs=$request->input('item');
+        $approve = Parkirtol::whereIn('kd_pengemudi',$idrs)->where('status','Requested')
+        ->update([
+            'status' => 'Closed',
+            'tgl_bayar' => $today
+           ]);
+        return redirect('transport/parkirtol-data');
+    }
+
+    public function view($nik)
+    {
+        $parkirtol = Parkirtol::where('kd_pengemudi',$nik)
+                    ->where('status','Requested')
+                    ->join('parkirtol_detail','parkirtol_detail.kd_parkirtol','=','parkirtol.kd_parkirtol')
+                    ->orderBy('parkirtol.kd_parkirtol', 'ASC')
+                    ->groupBy('parkirtol.kd_parkirtol')
+                    ->select("*", \DB::raw("SUM(parkirtol_detail.nilai_karcis*parkirtol_detail.jml_karcis) as total"))
+                    ->get();
+        return view('transport/parkirtol-data-detail',compact('parkirtol'));
+        // dd($parkirtol) ;
+    }
+
+    public function approve(Request $request)
+    {
+        $today = date('Y-m-d');
+        $idrs=$request->input('item');
+        $approve = Parkirtol::whereIn('kd_parkirtol',$idrs)->where('status','Requested')
+        ->update([
+            'status' => 'Closed',
+            'tgl_bayar' => $today
+           ]);
+        return redirect('transport/parkirtol-data');
+    }
+
 }
