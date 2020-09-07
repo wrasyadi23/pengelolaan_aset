@@ -37,7 +37,7 @@ class parkirtolController extends Controller
     public function store(Request $request)
     {
         // getParkirtol
-        $data = Parkirtol::select('id', 'kd_parkirtol')
+        $data = Parkirtol::select('id', 'kd_parkirtol', 'tgl')
             ->whereYear('tgl', date('Y'))
             ->orderBy('id', 'desc')->count();
         $tahun_sekarang = date('Ym');

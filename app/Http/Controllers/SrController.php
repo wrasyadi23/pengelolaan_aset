@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 use App\Sr;
 use App\Kontrak;
+use App\Srfull;
 use App\Kendaraan;
 use App\KontrakBA;
 use PDF;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class SrController extends Controller
 {
     public function create(){
         $rawDataBA = KontrakBA::orderBy('id', 'desc')->get();
-        return view('transport/sewa-sr-create', [
+        return view('transport/sr-create', [
             'rawDataBA' => $rawDataBA
             ]);
     }
@@ -44,20 +46,26 @@ class SrController extends Controller
         $newRealisasi->kd_ba = $kd_ba;
         $newRealisasi->save();
                 
-        return redirect('transport/sewa-sr-create');
+        return redirect('transport/sr-tampil');
     }
 
     public function tampilsr(){
         $sr = SR::orderBy('id', 'desc')
         ->where('keterangan', '=', 'Request')
         ->paginate(10);
-        return view('transport/sewa-sr-tampil', ['sr' => $sr]);
+        return view('transport/sr-tampil', ['sr' => $sr]);
+    }
+
+    public function detail(){
+        $sr = Srfull::orderBy('no_sr', 'desc')
+        ->paginate(10);
+        return view('transport/sr-detail', ['sr' => $sr]);
     }
 
     public function edit($id)
     {
         $editsr = SR::where('id', $id)->first();
-        return view('transport/sewa-sr-edit', ['editsr' => $editsr]);
+        return view('transport/sr-edit', ['editsr' => $editsr]);
     }
     public function update($id, Request $request)
     {
@@ -75,20 +83,28 @@ class SrController extends Controller
         $newRealisasi->keterangan = $keterangan;
         $newRealisasi->save();
                 
-        return redirect('transport/sewa-sr-tampil');
+        return redirect('transport/sr-tampil');
     }
 
     public function cari(Request $data){
         $key = $data->key;
         $sr = SR::where('no_sr','like',"%".$key."%")
         ->paginate(10);
-        return view('transport/sewa-sr-tampil', ['sr' => $sr]);
+        return view('transport/sr-tampil', ['sr' => $sr]);
     }
 
-    public function preview($no_sr)
+    public function preview($kd_sr)
     {
-        $pdf = Sr::where('no_sr', $no_sr)->get();
-        $pdf = PDF::loadView('transport/sewa-sr-preview', ['pdf' => $pdf]);
+        $pdf = SR::where('kd_sr', $kd_sr)->first();
+        $tgl_awal = Carbon::createFromFormat('Y-m-d',$pdf->tgl_awal);
+        $tgl_akhir = Carbon::createFromFormat('Y-m-d',$pdf->tgl_akhir);
+        $waktu = $tgl_awal->diffInMonths($tgl_akhir) + 1;
+        $hari = $tgl_awal->diffInDays($tgl_akhir) + 1;
+        $pdf = PDF::loadView('transport/sr-preview', [
+            'pdf' => $pdf,
+            'waktu' => $waktu,
+            'hari' => $hari
+            ]);
         return $pdf->stream();
     }
 }

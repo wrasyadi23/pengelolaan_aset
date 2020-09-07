@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PR extends Model
 {
-    protected $table = 'tb_sr';
+    protected $table = 'tb_pr';
     public $incrementing = false;
     public $timestamps = false;
 

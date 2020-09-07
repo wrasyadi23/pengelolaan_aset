@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Input Sp Sewa</h4>
                         <div class="card-content">
-                            <form action="/transport/store" method="post">
+                            <form action="/transport/sewa-sp-store" method="post">
                                 @csrf
                                 <div class="basic-form">
                                     <div class="form-row">
@@ -51,6 +51,7 @@
                                                 <option value="Sedan">Sedan</option>
                                                 <option value="Bus">Bus</option>
                                                 <option value="Station">Station</option>
+                                                <option value="PickUp">PickUp</option>
                                                 <option value="Spdmtr">Sepaeda Motor</option>
                                                 <option value="Spdmtrroda3">Sepeda Motor Roda 3</option>
                                             </select>
@@ -83,7 +84,7 @@
                                     </div>
                                     
                                     <div class="general-button">
-                                        <button type="button" class="btn btn-primary" onclick="window.location.href='/pemeliharaan/klasifikasi'">Back</button>
+                                        <button type="button" class="btn btn-primary" onclick="window.location.href='/transport/sewa-sp-tampil'">Back</button>
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>

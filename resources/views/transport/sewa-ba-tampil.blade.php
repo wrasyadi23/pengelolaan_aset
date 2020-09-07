@@ -52,7 +52,7 @@
                                         <td><div align="center">{{ $sp->getkontrak->jml }}</div></td>
                                         <td><div align="right"><span class="style1">{{ number_format($sp->getkontrak->harga,0) }}</span></div></td>
                                         <td><div align="center">{{ $sp->getkontrak->satuan }}</div></td>
-                                        <td><div align="right"><span class="style1">{{ number_format($sp->getkontrak->harga*$sp->getkontrak->jml) }}</span></div></td>
+                                        <td><div align="right"><span class="style1">{{ number_format($sp->getkontrak->harga * $sp->getkontrak->jml),0}}</span></div></td>
                                         <td><div align="center">{{ $sp->getkontrak->rekanan }}</div></td>
                                         <td>{{ $sp->getkontrak->status }}</td>
                                         <th>
