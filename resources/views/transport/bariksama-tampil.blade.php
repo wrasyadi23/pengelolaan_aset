@@ -5,7 +5,7 @@
 .style5 {font-size: 12px; color: #0000CC; }
 </style>
     @extends('layouts.master')
-    @section('title','Data SR, PR, OK Sewa Kendaraan')
+    @section('title','Data SR, PR, OK, Riksama Sewa Kendaraan')
     @section('content')
     <div class="container-fluid mt-3">
         @if (session('message'))
@@ -15,8 +15,8 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title style1">Data SR, PR, OK Sewa Kendaraan</h4>
-                        <form action="/transport/cari" method="get">
+                        <h4 class="card-title style1">Data SR, PR, OK, Riksama Sewa Kendaraan</h4>
+                        <form action="/transport/bariksama-cari" method="get">
                             <div class="row">
                                 <div class="form-group col-md-8">
                                     <input type="text" name="key" id="" class="form-control" placeholder="Panggil No.BaRiksama">
@@ -63,6 +63,8 @@
                                             <td><span class="style3">{{ $sp->getOK->getPR->getSR->tgl }}</span></td>
                                             <td><span class="style3">{{ $sp->tgl_awal }}</span></td>
                                             <td><span class="style3">{{ $sp->tgl_akhir }}</span></td>
+                                            <td><span class="style3">{{ $sp->getOK->getPR->getSR->getKontrakBA->getKontrak->uraian }}- {{ date('Y', strtotime($sp->tgl)) }}-{{ $sp->getOK->getPR->getSR->getKontrakBA->getKontrak->jml }} {{ $sp->getOK->getPR->getSR->getKontrakBA->getKontrak->satuan }}</span></td>
+                                            <td align="center"><span class="style3">{{$sp->getOK->getPR->getSR->getKontrakBA->getKontrak->rekanan }}</span></td>
                                             <th>
                                                 <a href="/transport/bariksama-edit/{{ $sp->id }}" class="badge badge-primary style3">Edit</a>
                                                 <a href="/transport/bariksama-print/{{ $sp->kd_riksama }}" class="badge badge-primary style3">Print</a>                                            </th>

@@ -123,6 +123,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/transport/bariksama-edit/{id}', 'BaRiksamaController@edit');
     Route::post('/transport/bariksama-update/{id}', 'BaRiksamaController@update');
     Route::get('/transport/bariksama-tampil', 'BaRiksamaController@tampil');
+    Route::get('/transport/bariksama-cari', 'BaRiksamaController@cari');
     Route::get('transport/bariksama-print/{kd_riksama}', 'BaRiksamaController@print');
     //parkirtol
     Route::get('/transport/parkirtol', 'parkirtolController@index');

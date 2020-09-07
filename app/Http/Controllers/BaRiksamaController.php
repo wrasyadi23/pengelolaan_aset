@@ -23,7 +23,7 @@ class BaRiksamaController extends Controller
             ->whereYear('tgl', date('Y'))
             ->orderBy('id', 'desc')->count();
         $tahun_sekarang = date('Ym');
-        if ($dataKd_riksama > 0) {
+        if ($data> 0) {
             $kd_riksama = 'BAR' . $tahun_sekarang . sprintf('%05s', $data + 1);
             $no_riksama = sprintf('%05s', $data + 1);
         } else {
@@ -79,6 +79,13 @@ class BaRiksamaController extends Controller
     public function tampil(){
         $riksama = Riksama::orderBy('id', 'desc')
         ->paginate(10);
+        return view('transport/bariksama-tampil', ['riksama' => $riksama]);
+    }
+
+    public function cari(Request $data){
+        $key = $data->key;
+        $riksama = Riksama::where('no_riksama','like',"%".$key."%")
+        ->paginate(10);;
         return view('transport/bariksama-tampil', ['riksama' => $riksama]);
     }
 
