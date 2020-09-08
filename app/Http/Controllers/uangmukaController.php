@@ -66,7 +66,7 @@ class uangmukaController extends Controller
             $newUangmuka->nik = $nik;
             $newUangmuka->kd_aktifitas_rkap = $kd_aktifitas_rkap;
             $newUangmuka->save();
-    
+
             return redirect('transport/uangmuka')->with('message-success','Data berhasil disimpan.');
         }
     }
@@ -76,7 +76,7 @@ class uangmukaController extends Controller
         $karyawan = Karyawan::all();
         $rkapDetail = RkapDetail::all();
         $rawDataUM = Uangmuka::where('kd_uangmuka', $kd_uangmuka)->first();
-        
+
         return view('transport/uangmuka-edit', [
             'karyawan' => $karyawan,
             'rkapDetail' => $rkapDetail,
@@ -114,11 +114,11 @@ class uangmukaController extends Controller
     }
 
     // koordinasi dengan mas henda
-    public function data() 
+    public function data()
     {
         if (Auth::user()->role == 'Admin') {
-            $rawDataUM = Uangmuka::all();
-        } 
+            $rawDataUM = Uangmuka::where('nik', Auth::user()->nik_bagian)->get();
+        }
         elseif (Auth::user()->role == 'Worker' || Auth::user()->role == 'User') {
             $rawDataUM = uangmuka::where('nik', Auth::user()->nik)->get();
         }

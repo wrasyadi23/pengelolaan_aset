@@ -37,9 +37,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // tambah relation 
+    // tambah relation
     public function getKaryawan()
     {
         return $this->hasOne('App\Karyawan', 'nik', 'nik');
+    }
+
+    public function getNikBagianAttribute()
+    {
+        return Karyawan::where('kd_bagian', $this->getKaryawan->kd_bagian)->pluck('nik');
     }
 }
