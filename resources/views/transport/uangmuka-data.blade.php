@@ -34,6 +34,30 @@
                     </div>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <tr>
+                                    <th>Kode Uangmuka</th>
+                                    <th>No. Uangmuka</th>
+                                    <th>Tanggal</th>
+                                    <th>Uraian</th>
+                                    <th>Nilai Uangmuka</th>
+                                    <th></th>
+                                    <th>Status</th>
+                                </tr>
+                                @foreach ($collection as $item)    
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

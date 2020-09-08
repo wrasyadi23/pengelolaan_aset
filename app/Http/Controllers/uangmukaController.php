@@ -113,7 +113,6 @@ class uangmukaController extends Controller
         return view('transport/uangmuka-detail', ['rawDataUM' => $rawDataUM]);
     }
 
-    // koordinasi dengan mas henda
     public function data()
     {
         if (Auth::user()->role == 'Admin') {
