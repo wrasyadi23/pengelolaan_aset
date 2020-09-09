@@ -121,7 +121,12 @@ class parkirtolController extends Controller
                     ->groupBy('kd_pengemudi')
                     ->select("*", \DB::raw("SUM(parkirtol_detail.nilai_karcis*parkirtol_detail.jml_karcis) as total"))
                     ->get();
+        if($request->ajax()){
+            return response()->json(array('data'=>$parkirtol));
+        }
         return view('transport/parkirtol-data',compact('parkirtol','detailparkirtol'));
+        // return response()->json($parkirtol);
+        // return view('transport/parkirtol-data',compact('parkirtol','detailparkirtol'));
     }
 
     public function approveAll(Request $request)

@@ -128,7 +128,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     //parkirtol
     Route::get('/transport/parkirtol', 'parkirtolController@index');
     Route::get('/transport/parkirtol-create', 'parkirtolController@create');
-    Route::get('/transport/parkirtol-data', 'parkirtolController@data');
+    Route::get('/transport/parkirtol-data', 'parkirtolController@data')->name('transport.parkirtol-data');
     Route::post('/transport/parkirtol-approveAll', 'parkirtolController@approveAll');
     Route::get('/transport/parkirtol-data/{nik}', 'parkirtolController@view');
     Route::post('/transport/parkirtol-approve', 'parkirtolController@approve');
