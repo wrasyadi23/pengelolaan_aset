@@ -91,6 +91,7 @@ class BaRiksamaController extends Controller
 
     public function print($kd_riksama)
     {
+        Carbon::setLocale('id');
         $pdf = Riksama::where('kd_riksama', $kd_riksama)->first();
         $tgl_awal = Carbon::createFromFormat('Y-m-d',$pdf->tgl_awal);
         $tgl_akhir = Carbon::createFromFormat('Y-m-d',$pdf->tgl_akhir);

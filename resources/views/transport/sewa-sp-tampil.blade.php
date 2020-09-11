@@ -63,6 +63,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $getspsewa->links()}}
                         </div>
                         
                     </div>

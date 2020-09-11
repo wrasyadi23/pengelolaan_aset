@@ -20,21 +20,21 @@
       <td style="border-right:inset"width="109"><img src="{{ ('logo-PG-agro.jpg') }}" width="105px"/></td>
       <td width="407"><div align="center" class="style1">
         <p><strong><u>BERITA ACARA HASIL PEMERIKSAAN BERSAMA</u></strong></p>
-        <p>Nomor : {{ $pdf->no_riksama }}/LG.00.../12/BA/{{ date('Y', strtotime($pdf->tgl)) }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tanggal : {{ date('d M Y', strtotime($pdf->tgl)) }}</p>
+        <p>Nomor : {{ $pdf->no_riksama }}/LG.00.03/12/BA/{{ date('Y', strtotime($pdf->tgl)) }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tanggal : {{ date('d M Y', strtotime($pdf->tgl)) }}</p>
       </div></td>
     </tr>
   </table>
   <table align="center" width="512">
     <tr>
       <td width="17">&nbsp;</td>
-      <td colspan="4" class="style2"><span class="style1">Pada hari ini {{ date('l', strtotime($pdf->tgl)) }}, Tanggal {{ date('d M Y', strtotime($pdf->tgl)) }} telah dilaksanakan pemeriksaan bersama untuk pekerjaan sebagai berikut : </span></td>
+      <td colspan="4" class="style2"><span class="style1">Pada hari ini {{ Carbon\Carbon::parse($pdf->tgl)->translatedFormat('l') . ', Tanggal ' . Carbon\Carbon::parse($pdf->tgl)->translatedFormat('d F Y') }} telah dilaksanakan pemeriksaan bersama untuk pekerjaan sebagai berikut : </span></td>
     </tr>
     <tr>
       <td>&nbsp;</td>
       <td width="137" class="style2"><span class="style1">Rekanan *) </span></td>
       <td width="5" class="style2"><div align="center" class="style1">:</div></td>
       <td width="174" class="style2"><span class="style1"> {{ $pdf->getOK->getPR->getSR->getKontrakBA->getKontrak->rekanan }}</span></td>
-      <td width="155" class="style2"><div align="left" class="style1">Tanggal : {{ date('d M Y', strtotime($pdf->getOK->tgl)) }}</div></td>
+      <td width="155" class="style2"><div align="left" class="style1">Tanggal : {{ Carbon\Carbon::parse($pdf->getOK->tgl)->translatedFormat('d F Y') }}</div></td>
     </tr>
     <tr>
       <td>&nbsp;</td>
@@ -109,15 +109,16 @@
               <tr>
                 <td height="22">&nbsp;</td>
               </tr>
-        </table></td>
+   </table>
+      </td>
     </tr>
     <tr class="style1">
       <td><div align="center"><span class="style1"></span></div></td>
-      <td><span class="style1"> Selesai sesuai progres yang diminta oleh User (dilampiri dengan bukti</span></td>
+      <td><span class="style1"> </span></td>
     </tr>
     <tr class="style1">
       <td><div align="center" class="style1">b.</div></td>
-      <td><span class="style1"> Keberterimaan dari User, misal : rekap jam atau shift atau harian) dan untuk di <br />
+      <td><span class="style1"> <br />
   Close secara SAP</span></td>
     </tr>
     <tr class="style1">
@@ -158,7 +159,7 @@
     </tr>
     <tr>
       <td height="20" class="style1"><div align="center"><span class="style1">1.</span></div></td>
-      <td class="style1">&nbsp;</td>
+      <td class="style1">Egy</td>
       <td class="style1"><span class="style1"></span></td>
       <td class="style1"><span class="style1"></span></td>
       <td class="style1"><div align="center" class="style1">Transport</div></td>
@@ -166,27 +167,19 @@
     </tr>
     <tr>
       <td height="20" class="style1"><div align="center"><span class="style1">2.</span></div></td>
-      <td class="style1"><span class="style1"></span></td>
-      <td class="style1"><span class="style1"></span></td>
-      <td class="style1"><span class="style1"></span></td>
-      <td class="style1"><div align="center" class="style1">Transport</div></td>
-      <td class="style1"><div align="center" class="style6">(Unit Kerja Terkait) </div></td>
-    </tr>
-    <tr>
-      <td height="20" class="style1"><div align="center"><span class="style1">4.</span></div></td>
-      <td class="style1"><span class="style1"></span></td>
-      <td class="style1"><span class="style1"></span></td>
+      <td class="style1">Sunoto</td>
+      <td class="style1"><div align="center"><span class="style1">T-284326</span></div></td>
       <td class="style1"><span class="style1"></span></td>
       <td class="style1"><div align="center" class="style1">Transport</div></td>
       <td class="style1"><div align="center" class="style6">(Unit Kerja Terkait) </div></td>
     </tr>
     <tr>
-      <td height="20" class="style1"><div align="center"><span class="style1">5.</span></div></td>
+      <td height="20" class="style1"><div align="center"><span class="style1">3.</span></div></td>
       <td class="style1"><span class="style1"></span></td>
       <td class="style1"><span class="style1"></span></td>
       <td class="style1"><span class="style1"></span></td>
-      <td class="style1"><div align="center" class="style1">Transport</div></td>
-      <td class="style1"><div align="center" class="style6">(Unit Kerja Terkait) </div></td>
+      <td class="style1"><div align="center" class="style1"></div></td>
+      <td class="style1"><div align="center" class="style6">(Rekanan) </div></td>
     </tr>
   </table>
   <table align="center" width="492">
@@ -198,8 +191,8 @@
         <br/>
         </span>
         <p>&nbsp;</p>
-        <span class="style1"><u>Oda Sugarda</u>	  <br>
-      T1000000 </span><br/> 
+        <span class="style1"><u>Oda Sugarda</u>	  
+          <br>T1000000 </span><br/> 
         </p>
       </div></td>
     </tr>

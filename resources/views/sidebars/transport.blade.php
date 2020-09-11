@@ -12,13 +12,13 @@
                 <i class="icon-note menu-icon"></i><span class="nav-text">Sewa Kendaraan</span>
             </a>
             <ul aria-expanded="false">
-                <li><a href="/transport/sewa-sp-create">Input Sp Sewa</a></li>
-                <li><a href="/transport/sewa-ba-create">Input Ba Kendaraan</a></li>
-                <li><a href="/transport/sr-create">Input Service Request</a></li>
+                <li><a href="/transport/sewa-sp-tampil">Data Sp Sewa</a></li>
+                <li><a href="/transport/sewa-ba-tampil">Data Ba Kendaraan</a></li>
+                <li><a href="/transport/sr-tampil">Data Service Request</a></li>
                 <li><a href="/transport/sewa-isidentil">SR Sewa Isidentil</a></li>
-                <li><a href="/transport/pr-create">Input Nomor PR</a></li>
-                <li><a href="/transport/ok-create">Input Nomor OK</a></li>
-                <li><a href="/transport/bariksama-create">Input BA Riksama</a></li>
+                <li><a href="/transport/pr-tampil">Data Purcahse Request</a></li>
+                <li><a href="/transport/ok-tampil">Data OK</a></li>
+                <li><a href="/transport/bariksama-tampil">Data Riksama</a></li>
             </ul>
         </li>
         <li class="mega-menu mega-menu-sm">
@@ -26,7 +26,7 @@
                 <i class="icon-note menu-icon"></i><span class="nav-text">Data Kendaraan</span>
             </a>
             <ul aria-expanded="false">
-                <li><a href="/transport/kendaraan-create">Input Kendaraan</a></li>
+                <li><a href="/transport/kendaraan-tampil">Data Kendaraan</a></li>
                 <li><a href="/transport/kendaraan-mutasi">Mutasi Kendaraan</a></li>
                 <li><a href="/transport/kendaraan-data">Data Kendaraan</a></li>
             </ul>
