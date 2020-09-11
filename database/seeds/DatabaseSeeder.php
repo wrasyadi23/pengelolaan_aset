@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use bfinlay\SpreadsheetSeeder\SpreadsheetSeeder;
 
 class DatabaseSeeder extends Seeder
 {

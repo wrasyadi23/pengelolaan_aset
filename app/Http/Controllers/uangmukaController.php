@@ -23,10 +23,7 @@ class uangmukaController extends Controller
         $karyawan = Karyawan::all();
         $rkapDetail = RkapDetail::all();
 
-        return view('transport/uangmuka-create', [
-            'karyawan' => $karyawan,
-            'rkapDetail' => $rkapDetail,
-        ]);
+        return view('transport/uangmuka-create', compact('karyawan','rkapDetail'));
     }
 
     public function store(Request $request)
@@ -77,11 +74,7 @@ class uangmukaController extends Controller
         $rkapDetail = RkapDetail::all();
         $rawDataUM = Uangmuka::where('kd_uangmuka', $kd_uangmuka)->first();
 
-        return view('transport/uangmuka-edit', [
-            'karyawan' => $karyawan,
-            'rkapDetail' => $rkapDetail,
-            'rawDataUM' => $rawDataUM,
-        ]);
+        return view('transport/uangmuka-edit', compact('karyawan','rkapDetail','rawDataUM'));
     }
 
     public function update($kd_uangmuka, Request $request)
@@ -110,7 +103,7 @@ class uangmukaController extends Controller
     public function detail($kd_uangmuka)
     {
         $rawDataUM = Uangmuka::where('kd_uangmuka', $kd_uangmuka)->first();
-        return view('transport/uangmuka-detail', ['rawDataUM' => $rawDataUM]);
+        return view('transport/uangmuka-detail', compact('rawDataUM'));
     }
 
     public function data()
@@ -122,6 +115,6 @@ class uangmukaController extends Controller
             $rawDataUM = uangmuka::where('nik', Auth::user()->nik)->get();
         }
 
-        return view('transport/uangmuka-data', ['rawDataUM' => $rawDataUM]);
+        return view('transport/uangmuka-data', compact('rawDataUM'));
     }
 }
