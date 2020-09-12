@@ -38,7 +38,7 @@
                                         <td>{{$tolx->getPengemudi->nama}}</td>
                                         <td>{{$tolx ->total}}</td>
                                         <td>{{$tolx->status}}</td>
-                                        <td class="detail" id="{{$tolx->kd_pengemudi}}"> <span class="sign">detail</span></td>
+                                        <td class="detail" id="{{$tolx->kd_pengemudi}}">Detail</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -94,29 +94,8 @@
     td.detail{
     cursor:pointer;
     }
-
-    /* .header2 .sign:after{
-        content:"+";
-        display:inline-block;
-    }
-
-    .header2.expand .sign:after{
-        content:"-";
-    } */
-
 </style>
 <script language="javascript">
-    // $( document ).ready(function() { // Handler for .ready() called.
-    // // sebagai action ketika row diklik
-    // $('.header2').click(function(){
-    //    // $(this).toggleClass('expand').nextUntil('tr.header2').slideToggle(100);
-
-
-    // });
-
-    // $('.header2').click();
-    // });
-
     $(".detail").click(function(){
         var id = $(this).attr('id');
         var index = $(this).parent().index('tr');
@@ -131,7 +110,7 @@
             success:function(data)
             {
                 var htmle = '<tr style="width: 100%;">'+
-                            '<td colspan="7">'+
+                            '<td colspan="7" align="right"> <button type="button" name="remove" id="" class="btn btn-sm btn-danger remove">X</button>'+
                             ' <div class="row">'+
                                 '<div class="col-lg-12">'+
                                     '<form action="/transport/parkirtol-approve" method="post">'+
@@ -172,8 +151,8 @@
                                     '<tfoot>'+
                                         '<tr>'+
                                             '<td colspan="7" align="center">'+
-                                                '<input name="Check_All" value="Check All" onclick="check_all()" type="button" class="btn btn-primary">'+
-                                                '<input name="Un_CheckAll" value="Uncheck All" onclick="uncheck_all()" type="button" class="btn btn-primary">'+
+                                                '<input name="Check" value="Check All" onclick="check()" type="button" class="btn btn-primary">'+
+                                                '<input name="Un_Check" value="Uncheck All" onclick="uncheck()" type="button" class="btn btn-primary">'+
                                                 '<input name="submit" type="submit" value="submit" class="btn btn-success" >'+
                                             '</td>'+
                                         '</tr>'+
@@ -188,9 +167,20 @@
                     '</td>'+
                     '</tr>';
                 $('table > tbody > tr').eq(index-1).after(htmle);
+                // $('.detail').off("click");
             }
         })
 
+
+
     });
+
+    $(document).on('click', '.remove', function(){
+            // index--;
+            // location.reload();
+    $(this).closest("tr").remove();
+    });
+
+
 </script>
 @endsection
