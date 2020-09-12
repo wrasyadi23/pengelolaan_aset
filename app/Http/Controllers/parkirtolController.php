@@ -105,9 +105,12 @@ class parkirtolController extends Controller
 
 
     }
-    public function data(Request $request)
+
+    public function detailparkirtol(Request $request)
     {
-        $detailparkirtol = Parkirtol::where('kd_pengemudi','k111222')
+        // getParkirtol
+        $kd_pengemudi = $request->id;
+        $detailparkirtol = Parkirtol::where('kd_pengemudi',$kd_pengemudi)
                     ->where('status','Requested')
                     ->join('parkirtol_detail','parkirtol_detail.kd_parkirtol','=','parkirtol.kd_parkirtol')
                     ->orderBy('parkirtol.kd_parkirtol', 'ASC')
@@ -115,6 +118,13 @@ class parkirtolController extends Controller
                     ->select("*", \DB::raw("SUM(parkirtol_detail.nilai_karcis*parkirtol_detail.jml_karcis) as total"))
                     ->get();
 
+        return response()->json([
+                        'result'  => $detailparkirtol
+                        ]);
+        // return response()->json(array('result'=>$detailparkirtol));
+    }
+    public function data(Request $request)
+    {
         $parkirtol = Parkirtol::where('status','Requested')
                     ->join('parkirtol_detail','parkirtol_detail.kd_parkirtol','=','parkirtol.kd_parkirtol')
                     ->orderBy('parkirtol.kd_pengemudi', 'ASC')
@@ -124,9 +134,7 @@ class parkirtolController extends Controller
         if($request->ajax()){
             return response()->json(array('data'=>$parkirtol));
         }
-        return view('transport/parkirtol-data',compact('parkirtol','detailparkirtol'));
-        // return response()->json($parkirtol);
-        // return view('transport/parkirtol-data',compact('parkirtol','detailparkirtol'));
+        return view('transport/parkirtol-data',compact('parkirtol'));
     }
 
     public function approveAll(Request $request)
@@ -141,23 +149,10 @@ class parkirtolController extends Controller
         return redirect('transport/parkirtol-data');
     }
 
-    public function view($nik)
-    {
-        $parkirtol = Parkirtol::where('kd_pengemudi',$nik)
-                    ->where('status','Requested')
-                    ->join('parkirtol_detail','parkirtol_detail.kd_parkirtol','=','parkirtol.kd_parkirtol')
-                    ->orderBy('parkirtol.kd_parkirtol', 'ASC')
-                    ->groupBy('parkirtol.kd_parkirtol')
-                    ->select("*", \DB::raw("SUM(parkirtol_detail.nilai_karcis*parkirtol_detail.jml_karcis) as total"))
-                    ->get();
-        return view('transport/parkirtol-data-detail',compact('parkirtol'));
-        // dd($parkirtol) ;
-    }
-
     public function approve(Request $request)
     {
         $today = date('Y-m-d');
-        $idrs=$request->input('item');
+        $idrs=$request->input('item2');
         $approve = Parkirtol::whereIn('kd_parkirtol',$idrs)->where('status','Requested')
         ->update([
             'status' => 'Closed',
