@@ -110,12 +110,13 @@ class parkirtolController extends Controller
     {
         // getParkirtol
         $kd_pengemudi = $request->id;
-        $detailparkirtol = Parkirtol::where('kd_pengemudi',$kd_pengemudi)
-                    ->where('status','Requested')
+        $detailparkirtol = Parkirtol::where('parkirtol.kd_pengemudi',$kd_pengemudi)
+                    ->where('parkirtol.status','Requested')
+                    ->join('tb_pengemudi','tb_pengemudi.kd_pengemudi','=','parkirtol.kd_pengemudi')
                     ->join('parkirtol_detail','parkirtol_detail.kd_parkirtol','=','parkirtol.kd_parkirtol')
                     ->orderBy('parkirtol.kd_parkirtol', 'ASC')
                     ->groupBy('parkirtol.kd_parkirtol')
-                    ->select("*", \DB::raw("SUM(parkirtol_detail.nilai_karcis*parkirtol_detail.jml_karcis) as total"))
+                    ->select("parkirtol.*","tb_pengemudi.nama", \DB::raw("SUM(parkirtol_detail.nilai_karcis*parkirtol_detail.jml_karcis) as total"))
                     ->get();
 
         return response()->json([

@@ -31,7 +31,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($parkirtol as $result => $tolx)
-                                    <tr class="header2 expand">
+                                    <tr class="header2" id="hedmaster">
                                         <td class="align-middle text-center"><input type="checkbox" name="item[]" id="item[]" value="{{$tolx->kd_pengemudi}}" /></td>
                                         <td align="center">{{++$result}}</td>
                                         <td>{{$tolx->nik}}</td>
@@ -98,7 +98,8 @@
 <script language="javascript">
     $(".detail").click(function(){
         var id = $(this).attr('id');
-        var index = $(this).parent().index('tr');
+        var indexx = $(this).parent().index('tr.header2');
+        var index = indexx + 1;
         $.ajax({
             url:'{{ route("transport.parkirtol-data") }}',
             method:'post',
@@ -109,8 +110,11 @@
             dataType:'json',
             success:function(data)
             {
-                var htmle = '<tr style="width: 100%;">'+
-                            '<td colspan="7" align="right"> <button type="button" name="remove" id="" class="btn btn-sm btn-danger remove">X</button>'+
+                var resultx = data.result[0];
+                var nama_driver = (resultx.nama).toUpperCase();
+                var nik_driver = (resultx.nik).toUpperCase();
+                var htmle = '<tr style="width: 100%;"> '+
+                            '<td colspan="7" align="right">'+nama_driver+' / '+nik_driver+' <button type="button" name="remove" id="" class="btn btn-sm btn-danger remove"> X </button>'+
                             ' <div class="row">'+
                                 '<div class="col-lg-12">'+
                                     '<form action="/transport/parkirtol-approve" method="post">'+
@@ -144,7 +148,7 @@
                                                             '<td>'+tolx.melayani+'</td>'+
                                                             '<td align="right">'+tolx.total+'</td>'+
                                                             '<td >Detail</td>'+
-                                                        '</tr>';
+                                                            '</tr>';
 
                                                         });
                     htmle +='</tbody>'+
@@ -166,8 +170,9 @@
                     '</div>'+
                     '</td>'+
                     '</tr>';
-                $('table > tbody > tr').eq(index-1).after(htmle);
+                $('table > tbody > tr.header2').eq(index-1).after(htmle);
                 // $('.detail').off("click");
+
             }
         })
 
