@@ -107,4 +107,46 @@ class SrController extends Controller
             ]);
         return $pdf->stream();
     }
+
+    public function new(){
+        $rawDataSP = Kontrak::where('jenis', 'ESD')->get();
+        return view('transport/sr-esd-new', [
+            'rawDataSP' => $rawDataSP
+            ]);
+    }
+
+    public function simpan(Request $request)
+    {
+        $data = SR::select('id', 'no_sr', 'tgl')
+            ->whereYear('tgl', date('Y'))
+            ->orderBy('id', 'desc')->count();
+        $tahun_sekarang = date('Ym');
+        if ($data > 0) {
+            $getnosr = 'SR' . $tahun_sekarang . sprintf('%05s', $data + 1);
+        } else {
+            $getnosr = 'SR' . $tahun_sekarang . sprintf('%05s', 1);
+        }
+
+        $tgl = $request->input('tgl');
+        $tgl_awal = $request->input('tgl_awal');
+        $tgl_akhir = $request->input('tgl_akhir');
+        $kd_ba = $request->input('kd_ba');
+        
+        $newRealisasi = new SR();
+        $newRealisasi->kd_sr = $getnosr;
+        $newRealisasi->no_sr = '-';
+        $newRealisasi->tgl = $tgl;
+        $newRealisasi->tgl_awal = $tgl_awal;
+        $newRealisasi->tgl_akhir = $tgl_akhir;
+        $newRealisasi->keterangan = 'Request';
+        $newRealisasi->kd_ba = '-';
+        $newRealisasi->save();
+                
+        return redirect('transport/sr-esd-det');
+    }
+
+    public function esddet(){
+        $getsrdet = SR::orderBy('id', 'desc')->first();
+        return view ('transport/sr-detail', ['getsrdet' => $getsrdet]);
+    }
 }

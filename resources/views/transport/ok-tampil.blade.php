@@ -59,7 +59,8 @@
                                             <td><span class="style3">{{ $sp->getPR->getSR->tgl }}</span></td>
                                             <td><span class="style3">{{ $sp->getPR->getSR->tgl_awal }}</span></td>
                                             <td><span class="style3">{{ $sp->getPR->getSR->tgl_akhir }}</span></td>
-                                            
+                                            <td><span class="style3">{{ $sp->getPR->getSR->getKontrakBA->getKontrak->uraian }}-{{ $sp->getPR->getSR->getKontrakBA->getKontrak->jml }}-{{ $sp->getPR->getSR->getKontrakBA->getKontrak->satuan }}</span></td>
+                                            <td><span class="style3">{{ $sp->getPR->getSR->getKontrakBA->getKontrak->rekanan }}</span></td>
                                             <th>
                                                 <a href="/transport/ok-edit/{{ $sp->id }}" class="badge badge-primary style3">Edit</a>                                            </th>
                                   </tr>

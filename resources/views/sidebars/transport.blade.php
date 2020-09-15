@@ -15,7 +15,7 @@
                 <li><a href="/transport/sewa-sp-tampil">Data Sp Sewa</a></li>
                 <li><a href="/transport/sewa-ba-tampil">Data Ba Kendaraan</a></li>
                 <li><a href="/transport/sr-tampil">Data Service Request</a></li>
-                <li><a href="/transport/sewa-isidentil">SR Sewa Isidentil</a></li>
+                <li><a href="/transport/sr-esd-new">SR Sewa Isidentil</a></li>
                 <li><a href="/transport/pr-tampil">Data Purcahse Request</a></li>
                 <li><a href="/transport/ok-tampil">Data OK</a></li>
                 <li><a href="/transport/bariksama-tampil">Data Riksama</a></li>
