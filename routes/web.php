@@ -130,11 +130,15 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     //parkirtol
     Route::get('/transport/parkirtol', 'parkirtolController@index');
     Route::get('/transport/parkirtol-create', 'parkirtolController@create');
+    Route::post('/transport/parkirtol-store', 'parkirtolController@store')->name('transport.parkirtol-store');
     Route::get('/transport/parkirtol-data', 'parkirtolController@data')->name('transport.parkirtol-data');
     Route::post('/transport/parkirtol-data', 'parkirtolController@detailparkirtol');
     Route::post('/transport/parkirtol-approveAll', 'parkirtolController@approveAll');
     Route::post('/transport/parkirtol-approve', 'parkirtolController@approve');
-    Route::post('/transport/parkirtol-store', 'parkirtolController@store')->name('transport.parkirtol-store');
+    Route::get('/transport/parkirtol-bayar', 'parkirtolController@bayar')->name('transport.parkirtol-bayar');
+    Route::post('/transport/parkirtol-bayar', 'parkirtolController@detailbayar');
+    Route::post('/transport/parkirtol-closeAll', 'parkirtolController@closeAll');
+    Route::post('/transport/parkirtol-close', 'parkirtolController@close');
     Route::get('/transport/parkirtol-edit/{kd_parkirtol}', 'parkirtolController@edit');
     Route::post('/transport/parkirtol-update/{kd_parkirtol}', 'parkirtolController@update');
     Route::get('/transport/parkirtol-detail/{kd_parkirtol}', 'parkirtolController@detail');

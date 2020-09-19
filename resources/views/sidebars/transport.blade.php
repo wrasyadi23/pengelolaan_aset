@@ -6,7 +6,7 @@
                 <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
             </a>
         </li>
-        @if (Auth::user()->role == 'Admin')    
+        @if (Auth::user()->role == 'Admin')
         <li class="mega-menu mega-menu-sm">
             <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                 <i class="icon-note menu-icon"></i><span class="nav-text">Sewa Kendaraan</span>
@@ -32,7 +32,7 @@
             </ul>
         </li>
         @endif
-        @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Worker')    
+        @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Worker')
         <li class="mega-menu mega-menu-sm">
             <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                 <i class="icon-note menu-icon"></i><span class="nav-text">Uang Muka</span>
@@ -51,6 +51,7 @@
             <ul aria-expanded="false">
                 <li><a href="/transport/parkirtol">Input Karcis Parkir & Tol</a></li>
                 <li><a href="/transport/parkirtol-data">Data Parkir & Tol</a></li>
+                <li><a href="/transport/parkirtol-bayar">Bayar Parkir & Tol</a></li>
                 <li><a href="/transport/parkirtol-laporan">Laporan</a></li>
             </ul>
         </li>

@@ -9,12 +9,12 @@
     @endif
     <div class="row">
         <div class="col-lg-12">
-            <form action="/transport/parkirtol-approveAll" method="post">
+            <form action="/transport/parkirtol-closeAll" method="post">
                 @csrf
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title">
-                            <h4>Parkir Dan Tol</h4>
+                            <h4>Pembayaran Parkir Dan Tol</h4>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover" style="width: 100%;">
@@ -106,7 +106,7 @@
         var indexx = $(this).parent().index('tr.header2');
         var index = indexx + 1;
         $.ajax({
-            url:'{{ route("transport.parkirtol-data") }}',
+            url:'{{ route("transport.parkirtol-bayar") }}',
             method:'post',
             data:{
                     "_token": "{{ csrf_token() }}",
@@ -122,7 +122,7 @@
                             '<td colspan="7" align="right">'+nama_driver+' / '+nik_driver+' <button type="button" name="remove" id="" class="btn btn-sm btn-danger remove"> X </button>'+
                             ' <div class="row">'+
                                 '<div class="col-lg-12">'+
-                                    '<form action="/transport/parkirtol-approve" method="post">'+
+                                    '<form action="/transport/parkirtol-close" method="post">'+
                                         '@csrf'+
                                         '<div class="card">'+
                                             '<div class="card-body">'+
