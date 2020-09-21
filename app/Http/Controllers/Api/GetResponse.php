@@ -6,6 +6,8 @@ use App\AreaAlamat;
 use App\AreaKeterangan;
 use App\Seksi;
 use App\Regu;
+use App\Kontrak;
+use App\KontrakBA;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -36,6 +38,13 @@ class GetResponse extends Controller
     {
         $kd_seksi = $request->input('kd_seksi');
         $response = Regu::where('kd_seksi',$kd_seksi)->get()->toJson();
+        return $response;
+    }
+
+    public function getTarif(Request $request)
+    {
+        $kd_sp = $request->input('kd_sp');
+        $response = HargaSewaEsd::where('kd_sp',$kd_sp)->get()->toJson();
         return $response;
     }
 }
