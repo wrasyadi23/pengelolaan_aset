@@ -41,7 +41,7 @@
                                             <input type="date" name="tgl_akhir" id="" class="form-control input-default" placeholder="Tangal Akhir Sr " required>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="general-button">
                                         <button type="button" class="btn btn-primary" onclick="window.location.href='/transport/sr-tampil'">Back</button>
                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -63,15 +63,15 @@
                 allowClear : true
             });
 
-            $("#kd_tarif").select2({
-            placeholder: 'Pilih Tarif',
-            allowClear: true,
-            disabled: true
+            $("#kd_ba").select2({
+                placeholder: 'Pilih Tarif',
+                allowClear: true,
+                disabled: true
             });
 
             $("#kd_sp").change(function () {
-            var kd_tarif = "<option disabled selected></option>"
-            $("#kd_tarif")
+            var kd_ba = "<option disabled selected></option>"
+            $("#kd_ba")
                 .empty()
                 .prop("disabled", true);
             $.ajax({
@@ -86,16 +86,16 @@
                 success: function(response) {
                     var data = JSON.parse(response);
                     for (var x = 0; data.length > x; x++) {
-                        kd_tarif += "<option value="+data[x].kd_tarif + ">" + data[x].kd_tarif + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                        kd_ba += "<option value="+data[x].kd_ba + ">" + data[x].kd_ba + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
                     }
-                    console.log(kd_tarif); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
-                    $("#kd_tarif")
+                    console.log(kd_ba); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
+                    $("#kd_ba")
                     .empty()
-                    .append(kd_tarif) // variable yang berisi tag <option> diassign ke combobox terkait
+                    .append(kd_ba) // variable yang berisi tag <option> diassign ke combobox terkait
                     .prop("disabled", false);
                 }
             })
         })
         </script>
-        
+
     @endsection
