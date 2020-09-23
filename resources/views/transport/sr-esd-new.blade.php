@@ -25,8 +25,8 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-md-12 style1">
-                                            <label for="kd_ba">Kode SP</label>
-                                            <select name="kd_ba" id="kd_ba" class="form-control input-default" disabled required></select>
+                                            <label for="kd_tarif">Tarif</label>
+                                            <select name="kd_tarif" id="kd_tarif" class="form-control input-default" disabled required></select>
                                         </div>
                                         <div class="form-group col-md-4 style1">
                                             <label for="nopol">Tanggal Sr</label>
