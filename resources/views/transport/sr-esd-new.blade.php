@@ -25,8 +25,12 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-md-12 style1">
-                                            <label for="kd_ba">Kode SP</label>
-                                            <select name="kd_ba" id="kd_ba" class="form-control input-default" disabled required></select>
+                                            <label for="kd_tarif">Tarif</label>
+                                            <select name="kd_tarif" id="kd_tarif" class="form-control input-default" disabled required></select>
+                                        </div>
+                                        <div class="form-group col-md-12 style1">
+                                            <label for="merk">Merk</label>
+                                            <select name="merk" id="merk" class="form-control input-default" required></select>
                                         </div>
                                         <div class="form-group col-md-4 style1">
                                             <label for="nopol">Tanggal Sr</label>
@@ -58,20 +62,27 @@
 
     @section('script')
         <script>
-            $("#kd_sp").select2({
-                placeholder: 'Pilih Nomor SP',
-                allowClear : true
-            });
-
-            $("#kd_tarif").select2({
+        $("#kd_sp").select2({
+            placeholder: 'Pilih Nomor SP',
+            allowClear : true
+        });
+        $("#kd_tarif").select2({
             placeholder: 'Pilih Tarif',
             allowClear: true,
             disabled: true
-            });
+        });
+        $("#merk").select2({
+            placeholder: 'Pilih Merk',
+            allowClear: true,
+            disabled: true
+        });
 
-            $("#kd_sp").change(function () {
+        $("#kd_sp").change(function () {
             var kd_tarif = "<option disabled selected></option>"
             $("#kd_tarif")
+                .empty()
+                .prop("disabled", true);
+            $("#merk")
                 .empty()
                 .prop("disabled", true);
             $.ajax({
@@ -92,6 +103,30 @@
                     $("#kd_tarif")
                     .empty()
                     .append(kd_tarif) // variable yang berisi tag <option> diassign ke combobox terkait
+                    .prop("disabled", false);
+                }
+            })
+        })
+        $("#kd_tarif").change(function () {
+            var merk = "<option disabled selected></option>"
+            $.ajax({
+                type: "POST",
+                url: "/api/get-merk", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
+                data: {
+                    kd_sp: $("#kd_tarif").val()
+                },
+                error: function(e) {
+                    console.log(e)
+                },
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    for (var x = 0; data.length > x; x++) {
+                        merk += "<option value="+data[x].merk + ">" + data[x].merk + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                    }
+                    console.log(merk); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
+                    $("#merk")
+                    .empty()
+                    .append(merk) // variable yang berisi tag <option> diassign ke combobox terkait
                     .prop("disabled", false);
                 }
             })

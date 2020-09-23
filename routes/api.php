@@ -23,3 +23,4 @@ Route::post('/get-keterangan', 'Api\GetResponse@getKeterangan');
 Route::post('/get-bagian', 'Api\GetResponse@getSeksi');
 Route::post('/get-seksi', 'Api\GetResponse@getRegu');
 Route::post('/get-tarif', 'Api\GetResponse@getTarif');
+Route::post('/get-merk', 'Api\GetResponse@getMerk');
