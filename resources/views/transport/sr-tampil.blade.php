@@ -51,8 +51,7 @@
                                         <td>{{ $sp->tgl }}</td>
                                         <td>{{ $sp->tgl_awal }}</td>
                                         <td>{{ $sp->tgl_akhir }}</td>                                      
-                                        <td>{{ $sp->getKontrakBA->getKontrak->uraian }}</td>
-                                        <td>{{ $sp->getKontrakBA->getKontrak->rekanan }}</td>
+                                        
                                         <th>
                                             <a href="/transport/sr-edit/{{ $sp->id }}" class="badge badge-primary">Isi No.Sr</a>
                                             <a href="/transport/sr-preview/{{ $sp->kd_sr }}" class="badge badge-primary">Print</a>
@@ -62,8 +61,8 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $sr->links()}}
                         </div>
-                        
                     </div>
                 </div>
             </div>

@@ -50,7 +50,7 @@ class BAController extends Controller
         $updateKontrak->status = 'Aktif';
         $updateKontrak->save();
         
-        return redirect('transport/sewa-ba-create');
+        return redirect('transport/sewa-ba-tampil');
     }
 
     public function tampilba(){

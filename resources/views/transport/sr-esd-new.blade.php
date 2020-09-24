@@ -79,7 +79,7 @@
                 disabled: true
             });
 
-            $("#kd_sp").change(function () {
+        $("#kd_sp").change(function () {
             var kd_ba = "<option disabled selected></option>"
             $("#kd_tarif")
                 .empty()
@@ -108,7 +108,7 @@
                     .prop("disabled", false);
                 }
             })
-        })
+        });
         $("#kd_tarif").change(function () {
             var merk = "<option disabled selected></option>"
             $.ajax({
@@ -132,7 +132,7 @@
                     .prop("disabled", false);
                 }
             })
-        })
+        });
         </script>
 
     @endsection

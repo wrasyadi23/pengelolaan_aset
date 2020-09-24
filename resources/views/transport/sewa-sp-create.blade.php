@@ -45,15 +45,11 @@
                                             <input type="date" name="tgl" id="" class="form-control input-default" placeholder="Tanggal SP" required>
                                         </div>
                                         <div class="form-group col-md-6 style1">
-                                            <label for="regu">Jenis Kendaraan</label>
+                                            <label for="regu">Jenis Sewa</label>
                                             <select name = "jenis" class="form-control">
-                                                <option selected="selected">Pilih Jenis Kendaraan</option>
-                                                <option value="Sedan">Sedan</option>
-                                                <option value="Bus">Bus</option>
-                                                <option value="Station">Station</option>
-                                                <option value="PickUp">PickUp</option>
-                                                <option value="Spdmtr">Sepaeda Motor</option>
-                                                <option value="Spdmtrroda3">Sepeda Motor Roda 3</option>
+                                                <option selected="selected">Pilih Jenis Sewa</option>
+                                                <option value="SP">SP</option>
+                                                <option value="ESD">ESD</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6 style1">

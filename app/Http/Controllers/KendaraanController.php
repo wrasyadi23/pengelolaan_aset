@@ -72,7 +72,7 @@ class KendaraanController extends Controller
     public function tampilkend(){
         $kendaraan = Kendaraan::orderBy('id', 'desc')
         ->where('status', '=', 'Aktif')
-        ->paginate(10);
+        ->paginate(6);
         return view('transport/kendaraan-tampil', ['kendaraan' => $kendaraan]);
     }
 
