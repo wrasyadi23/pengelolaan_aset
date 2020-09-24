@@ -9,11 +9,19 @@
         @if (Auth::user()->role == 'Admin')
         <li class="mega-menu mega-menu-sm">
             <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                <i class="icon-note menu-icon"></i><span class="nav-text">Sewa Kendaraan</span>
+                <i class="icon-note menu-icon"></i><span class="nav-text">SP Sewa</span>
             </a>
             <ul aria-expanded="false">
                 <li><a href="/transport/sewa-sp-tampil">Data Sp Sewa</a></li>
                 <li><a href="/transport/sewa-ba-tampil">Data Ba Kendaraan</a></li>
+                <li><a href="/transport/sewa-harga-esd">Data Harga Sewa Esidentil</a></li>
+            </ul>
+        </li>
+        <li class="mega-menu mega-menu-sm">
+            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                <i class="icon-note menu-icon"></i><span class="nav-text">Sewa Kendaraan</span>
+            </a>
+            <ul aria-expanded="false">
                 <li><a href="/transport/sr-tampil">Data Service Request</a></li>
                 <li><a href="/transport/sr-esd-new">SR Sewa Isidentil</a></li>
                 <li><a href="/transport/pr-tampil">Data Purcahse Request</a></li>
