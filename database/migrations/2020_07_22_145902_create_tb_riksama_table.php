@@ -22,6 +22,7 @@ class CreateTbRiksamaTable extends Migration
             $table->date('tgl_akhir');
             $table->string('periode', 45);
             $table->string('kd_ok', 45);
+            $table->string('kd_sr', 45);
             $table->timestamps();
         });
     }
