@@ -15,7 +15,7 @@ class CreateTbBaTable extends Migration
     {
         Schema::create('tb_ba', function (Blueprint $table) {
             $table->id();
-            $table->string('kd_ba', 45);
+            $table->string('kd_ba', 45)->unique();
             $table->string('no_ba', 45);
             $table->text('uraian');
             $table->date('tgl');
