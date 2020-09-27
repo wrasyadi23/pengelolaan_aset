@@ -9,34 +9,13 @@
         @if (Auth::user()->role == 'Admin')
         <li class="mega-menu mega-menu-sm">
             <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                <i class="icon-note menu-icon"></i><span class="nav-text">SP Sewa</span>
+                <i class="icon-note menu-icon"></i><span class="nav-text">Surat Perjanjian</span>
             </a>
             <ul aria-expanded="false">
-                <li><a href="/transport/sewa-sp-tampil">Data Sp Sewa</a></li>
-                <li><a href="/transport/sewa-ba-tampil">Data Ba Kendaraan</a></li>
-                <li><a href="/transport/sewa-harga-esd">Data Harga Sewa Esidentil</a></li>
-            </ul>
-        </li>
-        <li class="mega-menu mega-menu-sm">
-            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                <i class="icon-note menu-icon"></i><span class="nav-text">Sewa Kendaraan</span>
-            </a>
-            <ul aria-expanded="false">
-                <li><a href="/transport/sr-tampil">Data Service Request</a></li>
-                <li><a href="/transport/sr-esd-new">SR Sewa Isidentil</a></li>
-                <li><a href="/transport/pr-tampil">Data Purcahse Request</a></li>
-                <li><a href="/transport/ok-tampil">Data OK</a></li>
-                <li><a href="/transport/bariksama-tampil">Data Riksama</a></li>
-            </ul>
-        </li>
-        <li class="mega-menu mega-menu-sm">
-            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                <i class="icon-note menu-icon"></i><span class="nav-text">Data Kendaraan</span>
-            </a>
-            <ul aria-expanded="false">
-                <li><a href="/transport/kendaraan-tampil">Data Kendaraan</a></li>
-                <li><a href="/transport/kendaraan-mutasi">Mutasi Kendaraan</a></li>
-                <li><a href="/transport/kendaraan-data">Data Kendaraan</a></li>
+                <li><a href="/transport/sp">Kontrak/SP</a></li>
+                <li><a href="/transport/sp-ba">Berita Acara SP</a></li>
+                <li><a href="/transport/sp-data">Data Kontrak/SP</a></li>
+                <li><a href="/transport/sp-data-harga">List Harga Sewa</a></li>
             </ul>
         </li>
         @endif

@@ -57,6 +57,14 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::get('/organisasi-regu-edit/{kd_regu}','ReguController@edit');
     Route::post('/organisasi-regu-update/{kd_regu}','ReguController@update');
     Route::get('/organisasi-regu-delete/{id}','ReguController@delete');
+    // data kontrak/sp
+    Route::get('/transport/sp', 'SpController@index');
+    Route::get('/transport/sp-create', 'SpController@create');
+    Route::post('/transport/sp-store', 'SpController@store');
+    Route::get('/transport/sp-edit/{kd_sp}', 'SpController@edit');
+    Route::post('/transport/sp-update/{kd_sp}', 'SpController@update');
+    Route::get('/transport/sp-delete/{kd_sp}', 'SpController@delete');
+    Route::get('/transport/sp-detail/{kd_sp}', 'SpController@detail');
 });
 
 Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function () {
@@ -79,7 +87,6 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/pemeliharaan/laporan','LaporanController@index');
     Route::post('/pemeliharaan/laporan-search','LaporanController@search');
     Route::get('/pemeliharaan/laporan-preview/{awal}/{akhir}','LaporanController@preview');
-    //input service request sewa
     
     //parkirtol
     Route::get('/transport/parkirtol', 'parkirtolController@index');
