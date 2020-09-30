@@ -33,7 +33,7 @@
                                         </div>
                                         <div class="form-group col-md-12 style1">
                                             <label for="kd_ba">Status</label>
-                                            <input type="text" name="keterangan" id="" class="form-control input-default" placeholder="Status Sr" required value="{{ $editsr->keterangan }}">
+                                            <input type="text" name="status" id="" class="form-control input-default" placeholder="Status Sr" required value="{{ $editsr->status }}">
                                         </div>
                                     </div>
                                     

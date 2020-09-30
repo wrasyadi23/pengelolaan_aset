@@ -2,14 +2,14 @@
     .style1 {color: #0066FF}
     </style>
     @extends('layouts.master')
-    @section('title','Input Service Request')
+    @section('title','Input Service Request ESD')
     @section('content')
     <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Input Service Request</h4>
+                        <h4 class="card-title">Input Service Request ESD</h4>
                         <div class="card-content">
                             <form action="/transport/sr-simpan" method="post">
                                 @csrf
@@ -17,16 +17,16 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-12 style1">
                                             <label for="kd_sp">Kode SP</label>
-                                            <select name="kd_sp" id="kd_sp" class="form-control input-default">
+                                            <select name="kd_ba" id="kd_ba" class="form-control input-default">
                                                 <option disabled selected></option>
-                                                @foreach ($rawDataSP as $item)
-                                                    <option value="{{$item->kd_sp}}">{{$item->no_sp}}</option>
+                                                @foreach ($rawDataBA as $item)
+                                                    <option value="{{$item->kd_ba}}">{{$item->no_ba}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group col-md-12 style1">
-                                            <label for="kd_tarif">Tarif</label>
-                                            <select name="kd_tarif" id="kd_tarif" class="form-control input-default" disabled required></select>
+                                            <label for="klasifiksai_tarif">Klasifikasi Tarif</label>
+                                            <select name="klasifiksai_tarif" id="klasifiksai_tarif" class="form-control input-default" disabled required></select>
                                         </div>
                                         <div class="form-group col-md-12 style1">
                                             <label for="merk">Merk</label>
@@ -62,13 +62,13 @@
 
     @section('script')
         <script>
-            $("#kd_sp").select2({
-                placeholder: 'Pilih Nomor SP',
+            $("#kd_ba").select2({
+                placeholder: 'Pilih Nomor BA',
                 allowClear : true
             });
 
-            $("#kd_tarif").select2({
-                placeholder: 'Pilih Tarif',
+            $("#klasifiksai_tarif").select2({
+                placeholder: 'Pilih Klasifikasi Tarif',
                 allowClear: true,
                 disabled: true
             });

@@ -44,9 +44,9 @@ class GetResponse extends Controller
 
     public function getTarif(Request $request)
     {
-        $kd_sp = $request->input('kd_sp');
-        $response = HargaSewaEsd::select('kd_tarif')->where('kd_sp',$kd_sp)
-            ->groupBy('kd_tarif')->get()->toJson();
+        $kd_ba = $request->input('kd_ba');
+        $response = HargaSewaEsd::select('klasifiksai_tarif')->where('kd_ba',$kd_ba)
+            ->groupBy('klasifiksai_tarif')->get()->toJson();
         return $response;
     }
 

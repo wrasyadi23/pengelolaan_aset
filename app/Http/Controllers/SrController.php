@@ -42,7 +42,7 @@ class SrController extends Controller
         $newRealisasi->tgl = $tgl;
         $newRealisasi->tgl_awal = $tgl_awal;
         $newRealisasi->tgl_akhir = $tgl_akhir;
-        $newRealisasi->keterangan = 'Request';
+        $newRealisasi->status = 'Request';
         $newRealisasi->kd_ba = $kd_ba;
         $newRealisasi->save();
                 
@@ -51,7 +51,7 @@ class SrController extends Controller
 
     public function tampilsr(){
         $sr = SR::orderBy('id', 'desc')
-        ->where('keterangan', '=', 'Request')
+        ->where('status', '=', 'Request')
         ->paginate(10);
         return view('transport/sr-tampil', ['sr' => $sr]);
     }
@@ -73,14 +73,14 @@ class SrController extends Controller
         $tgl = $request->input('tgl');
         $tgl_awal = $request->input('tgl_awal');
         $tgl_akhir = $request->input('tgl_akhir');
-        $keterangan = $request->input('keterangan');
+        $status = $request->input('status');
         
         $newRealisasi = SR::findOrFail($id);
         $newRealisasi->no_sr = $no_sr;
         $newRealisasi->tgl = $tgl;
         $newRealisasi->tgl_awal = $tgl_awal;
         $newRealisasi->tgl_akhir = $tgl_akhir;
-        $newRealisasi->keterangan = $keterangan;
+        $newRealisasi->status = $status;
         $newRealisasi->save();
                 
         return redirect('transport/sr-tampil');

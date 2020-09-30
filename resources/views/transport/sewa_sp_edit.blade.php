@@ -45,17 +45,6 @@
                                         <input type="date" name="tgl" id="" class="form-control input-default" required value="{{ $editsp->tgl }}">
                                     </div>
                                     <div class="form-group col-md-6 style1">
-                                        <label for="regu">Jenis Kendaraan</label>
-                                        <select name = "jenis" class="form-control">
-                                            <option value="{{ $editsp->jenis }}">{{ $editsp->jenis }}</option>
-                                            <option value="Sedan">Sedan</option>
-                                            <option value="Bus">Bus</option>
-                                            <option value="Station">Station</option>
-                                            <option value="Spdmtr">Sepaeda Motor</option>
-                                            <option value="Spdmtrroda3">Sepeda Motor Roda 3</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-6 style1">
                                         <label for="regu">Harga</label>
                                         <input type="text" name="harga" id="" class="form-control input-default" required value="{{ $editsp->harga }}">
                                     </div>
@@ -67,7 +56,7 @@
                                         <label for="regu">Satuan</label>
                                         <input type="text" name="satuan" id="" class="form-control input-default" required value="{{ $editsp->satuan }}">
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-12">
                                         <span class="style1">
                                         <label for="regu">Rekanan</label>
                                         </span>

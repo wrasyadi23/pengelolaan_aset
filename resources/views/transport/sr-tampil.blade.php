@@ -50,8 +50,9 @@
                                         <td>{{ $sp->no_sr }}</td>
                                         <td>{{ $sp->tgl }}</td>
                                         <td>{{ $sp->tgl_awal }}</td>
-                                        <td>{{ $sp->tgl_akhir }}</td>                                      
-                                        
+                                        <td>{{ $sp->tgl_akhir }}</td> 
+                                        <td>{{ $sp->getKontrakBA->getKontrak->uraian }}..{{ $sp->getKontrakBA->getKontrak->jml }} {{ $sp->getKontrakBA->getKontrak->satuan }}</td>                                
+                                        <td>{{ $sp->getKontrakBA->getKontrak->rekanan }}</td>
                                         <th>
                                             <a href="/transport/sr-edit/{{ $sp->id }}" class="badge badge-primary">Isi No.Sr</a>
                                             <a href="/transport/sr-preview/{{ $sp->kd_sr }}" class="badge badge-primary">Print</a>

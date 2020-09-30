@@ -46,8 +46,8 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <label for="jenis">Jenis Kendaraan</label>
-                                        <select name = "jenis" class="form-control input-default">
+                                        <label for="jenis_kend">Jenis Kendaraan</label>
+                                        <select name = "jenis_kend" class="form-control input-default">
                                             <option selected="selected">Pilih Jenis Kendaraan</option>
                                             <option value="Sedan">Sedan</option>
                                             <option value="Bus">Bus</option>
@@ -85,9 +85,21 @@
                                         <input type="text" name="no_mesin" id="" class="form-control input-default" placeholder="No Mesin" required>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="no_rangka">No. Rangka</label>
-                                    <input type="text" name="no_rangka" id="" class="form-control input-default" placeholder="No. Rangka" required>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="nopol">No. Rangka</label>
+                                        <input type="text" name="no_rangka" id="" class="form-control input-default" placeholder="No. Rangka" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="jenis_sewa">Jenis Sewa</label>
+                                        <select name = "jenis_sewa" class="form-control input-default">
+                                            <option selected="selected">Pilih Jenis Sewa</option>
+                                            <option value="SewaSP">SewaSP</option>
+                                            <option value="SewaESD">SewaESD</option>
+                                            <option value="SewaTA">SewaTA</option>
+                                            <option value="Ivestasi">Ivestasi</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="general-button">
                                     <button type="button" class="btn btn-primary" onclick="window.location.href='/transport/kendaraan-tampil'">Back</button>

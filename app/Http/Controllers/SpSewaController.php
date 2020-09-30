@@ -33,7 +33,6 @@ class SpSewaController extends Controller
         $uraian = $request->input('uraian');
         $keterangan = $request->input('keterangan');
         $tgl = $request->input('tgl');
-        $jenis = $request->input('jenis');
         $harga = $request->input('harga');
         $jml = $request->input('jml');
         $satuan = $request->input('satuan');
@@ -49,7 +48,6 @@ class SpSewaController extends Controller
         $newRealisasi->uraian = $uraian;
         $newRealisasi->keterangan = $keterangan;
         $newRealisasi->tgl = $tgl;
-        $newRealisasi->jenis = $jenis;
         $newRealisasi->harga = $harga;
         $newRealisasi->jml = $jml;
         $newRealisasi->satuan = $satuan;
@@ -63,7 +61,7 @@ class SpSewaController extends Controller
     public function edit_sp($id)
     {
         $editsp = Kontrak::where('id', $id)->first();
-        return view('transport/edit_sp',['editsp' => $editsp]);
+        return view('transport/sewa_sp_edit',['editsp' => $editsp]);
     }
     
     public function update($id, Request $request)
@@ -75,7 +73,6 @@ class SpSewaController extends Controller
         $uraian = $request->input('uraian');
         $keterangan = $request->input('keterangan');
         $tgl = $request->input('tgl');
-        $jenis = $request->input('jenis');
         $harga = $request->input('harga');
         $jml = $request->input('jml');
         $satuan = $request->input('satuan');
@@ -90,7 +87,6 @@ class SpSewaController extends Controller
         $newRealisasi->uraian = $uraian;
         $newRealisasi->keterangan = $keterangan;
         $newRealisasi->tgl = $tgl;
-        $newRealisasi->jenis = $jenis;
         $newRealisasi->harga = $harga;
         $newRealisasi->jml = $jml;
         $newRealisasi->satuan = $satuan;
