@@ -1,15 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\TarifSewaEsd;
 use App\Kontrak;
 use App\KontrakBA;
+use App\HargaSewa;
 use Illuminate\Http\Request;
 
 class TarifSewaEsdController extends Controller
 {
     public function tampiltarif(){
-        $getTarifEsd = TarifSewaEsd::orderBy('id', 'desc')->paginate(10);
+        $getTarifEsd = HargaSewa::orderBy('id', 'desc')->paginate(10);
         return view('transport/sewa-tarif-tampil', ['getTarifEsd' => $getTarifEsd]);
     }
 
@@ -22,7 +22,7 @@ class TarifSewaEsdController extends Controller
 
     public function store(Request $request)
     {
-        $data = TarifSewaEsd::select('id', 'kd_tarif')
+        $data = HargaSewa::select('id', 'kd_tarif')
         ->orderBy('id', 'desc')->count();
         if ($data > 0) {
             $kendaraan = 'TARIF' .  sprintf('%04s', $data + 1);
@@ -37,7 +37,7 @@ class TarifSewaEsdController extends Controller
         $harga = $request->input('harga');
         $kd_ba = $request->input('kd_ba');
         
-        $newRealisasi = new TarifSewaEsd();
+        $newRealisasi = new HargaSewa();
         $newRealisasi->kd_tarif = $kendaraan;
         $newRealisasi->klasifiksai_tarif = $klasifiksai_tarif;
         $newRealisasi->merk = $merk;
@@ -52,14 +52,14 @@ class TarifSewaEsdController extends Controller
 
     public function cari(Request $data){
         $key = $data->key;
-        $getTarifEsd = TarifSewaEsd::where('klasifiksai_tarif','like',"%".$key."%")
+        $getTarifEsd = HargaSewa::where('klasifikasi_tarif','like',"%".$key."%")
         ->paginate(10);
         return view('transport/sewa-tarif-tampil', ['getTarifEsd' => $getTarifEsd]);
     }
 
     public function edit($kd_tarif)
     {
-        $edittarif = TarifSewaEsd ::where('kd_tarif', $kd_tarif)->first();
+        $edittarif = HargaSewa ::where('kd_tarif', $kd_tarif)->first();
         return view('transport/sewa-tarif-edit', ['edittarif' => $edittarif]);
     }
 
@@ -71,7 +71,7 @@ class TarifSewaEsdController extends Controller
         $jenis_kend = $request->input('jenis_kend');
         $harga = $request->input('harga');
         
-        $newRealisasi = TarifSewaEsd::findOrFail($id);
+        $newRealisasi = HargaSewa::findOrFail($id);
         $newRealisasi->klasifiksai_tarif = $klasifiksai_tarif;
         $newRealisasi->merk = $merk;
         $newRealisasi->type = $type;

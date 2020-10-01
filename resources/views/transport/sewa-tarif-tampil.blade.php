@@ -31,10 +31,9 @@
                                         <th><div align="center">Klasifikasi</div></th>
                                         <th><div align="center">Merk Kendaraan</div></th>
                                         <th><div align="center">Type Kend</div></th>
-                                        <th><div align="center">Jenis</div></th>
                                         <th><div align="center">Tahun</div></th>
+                                        <th><div align="center">Jenis</div></th>
                                         <th><div align="center">Harga/Hari</div></th>
-                                        <th><div align="center">Status</div></th>
                                         <th><div align="center">Aksi</div></th>
                                     </tr>
                                 </thead>
@@ -42,13 +41,12 @@
                                     @foreach ($getTarifEsd as $result => $sp)
                                     <tr>
                                         <td>{{ $result + $getTarifEsd->firstitem() }}</td>
-                                        <td>{{ $sp->klasifiksai_tarif }}</td>
+                                        <td>{{ $sp->klasifikasi_tarif }}</td>
                                         <td>{{ $sp->merk }}</td>
                                         <td>{{ $sp->type }}</td>
+                                        <td>{{ Carbon\Carbon::parse($sp->getKontrakBA->getKontrak->tgl)->format('Y') }}</td>
                                         <td>{{ $sp->jenis_kend }}</td>
-                                        <td>{{ $sp->tahun }}</td>
                                         <td><div align="right"><span class="style1">{{ number_format($sp->harga,0) }}</span></div></td>
-                                        <td>{{ $sp->status }}</td>
                                         <th>
                                             <a href="/transport/sewa-tarif-edit/{{ $sp->kd_tarif }}" class="badge badge-primary">Edit</a>                                        </th>
                                     </tr>
