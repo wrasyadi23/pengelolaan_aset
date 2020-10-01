@@ -8,7 +8,7 @@ use App\Seksi;
 use App\Regu;
 use App\Kontrak;
 use App\KontrakBA;
-use App\HargaSewaEsd;
+use App\HargaSewa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -42,19 +42,28 @@ class GetResponse extends Controller
         return $response;
     }
 
-    public function getTarif(Request $request)
+    public function getJenisKend(Request $request)
     {
         $kd_ba = $request->input('kd_ba');
-        $response = HargaSewaEsd::select('klasifiksai_tarif')->where('kd_ba',$kd_ba)
-            ->groupBy('klasifiksai_tarif')->get()->toJson();
+        $response = HargaSewa::select('jenis_kend')->where('kd_ba',$kd_ba)
+            ->groupBy('jenis_kend')->get()->toJson();
         return $response;
     }
 
     public function getMerk(Request $request)
     {
-        $kd_tarif = $request->input('kd_tarif');
-        $response = HargaSewaEsd::select('merk')->where('kd_tarif',$kd_tarif)
+        $jenis_kend = $request->input('jenis_kend');
+        $response = HargaSewa::select('merk')->where('jenis_kend',$jenis_kend)
             ->groupBy('merk')->get()->toJson();
         return $response;
     }
+
+    public function getTarif(Request $request)
+    {
+        $merk = $request->input('merk');
+        $response = HargaSewa::select('kd_tarif','klasifikasi_tarif')->where('merk',$merk)
+            ->groupBy('klasifikasi_tarif')->get()->toJson();
+        return $response;
+    }
+
 }

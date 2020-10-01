@@ -16,7 +16,7 @@
                                 <div class="basic-form">
                                     <div class="form-row">
                                         <div class="form-group col-md-12 style1">
-                                            <label for="kd_sp">Kode SP</label>
+                                            <label for="kd_sp">Kode BA</label>
                                             <select name="kd_ba" id="kd_ba" class="form-control input-default">
                                                 <option disabled selected></option>
                                                 @foreach ($rawDataBA as $item)
@@ -25,12 +25,16 @@
                                             </select>
                                         </div>
                                         <div class="form-group col-md-12 style1">
-                                            <label for="klasifiksai_tarif">Klasifikasi Tarif</label>
-                                            <select name="klasifiksai_tarif" id="klasifiksai_tarif" class="form-control input-default" disabled required></select>
+                                            <label for="jenis_kend">Jenis Kendaraan</label>
+                                            <select name="jenis_kend" id="jenis_kend" class="form-control input-default" disabled required></select>
                                         </div>
                                         <div class="form-group col-md-12 style1">
                                             <label for="merk">Merk</label>
-                                            <select name="merk" id="merk" class="form-control input-default" required></select>
+                                            <select name="merk" id="merk" class="form-control input-default" disabled required></select>
+                                        </div>
+                                        <div class="form-group col-md-12 style1">
+                                            <label for="klasifiksai_tarif">Klasifikasi Tarif</label>
+                                            <select name="tarif" id="tarif" class="form-control input-default" required></select>
                                         </div>
                                         <div class="form-group col-md-4 style1">
                                             <label for="nopol">Tanggal Sr</label>
@@ -66,32 +70,38 @@
                 placeholder: 'Pilih Nomor BA',
                 allowClear : true
             });
-
-            $("#klasifiksai_tarif").select2({
-                placeholder: 'Pilih Klasifikasi Tarif',
+            $("#jenis_kend").select2({
+                placeholder: 'Pilih Jenis Kendaraan',
                 allowClear: true,
                 disabled: true
             });
-
             $("#merk").select2({
                 placeholder: 'Pilih Merk',
                 allowClear: true,
                 disabled: true
             });
+            $("#tarif").select2({
+                placeholder: 'Pilih Klasifikasi Tarif',
+                allowClear: true,
+                disabled: true
+            });
 
-            $("#kd_sp").change(function () {
+            $("#kd_ba").change(function () {
             var kd_ba = "<option disabled selected></option>"
-            $("#kd_tarif")
-                .empty()
-                .prop("disabled", true);
-            $("#merk")
-                .empty()
-                .prop("disabled", true);
+                $("#jenis_kend")
+                    .empty()
+                    .prop("disabled", true);
+                $("#merk")
+                    .empty()
+                    .prop("disabled", true);
+                $("#tarif")
+                    .empty()
+                    .prop("disabled", true);
             $.ajax({
                 type: "POST",
-                url: "/api/get-tarif", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
+                url: "/api/get-jenis-kend", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
                 data: {
-                    kd_sp: $("#kd_sp").val()
+                    kd_sp: $("#kd_ba").val()
                 },
                 error: function(e) {
                     console.log(e)
@@ -99,23 +109,23 @@
                 success: function(response) {
                     var data = JSON.parse(response);
                     for (var x = 0; data.length > x; x++) {
-                        kd_tarif += "<option value="+data[x].kd_tarif + ">" + data[x].kd_tarif + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                        kd_tarif += "<option value="+data[x].jenis_kend + ">" + data[x].jenis_kend + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
                     }
-                    console.log(kd_tarif); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
-                    $("#kd_tarif")
+                    console.log(jenis_kend); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
+                    $("#jenis_kend")
                     .empty()
-                    .append(kd_tarif) // variable yang berisi tag <option> diassign ke combobox terkait
+                    .append(jenis_kend) // variable yang berisi tag <option> diassign ke combobox terkait
                     .prop("disabled", false);
                 }
             })
         })
-        $("#kd_tarif").change(function () {
+        $("#jenis_kend").change(function () {
             var merk = "<option disabled selected></option>"
             $.ajax({
                 type: "POST",
                 url: "/api/get-merk", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
                 data: {
-                    kd_sp: $("#kd_tarif").val()
+                    kd_sp: $("#jenis_kend").val()
                 },
                 error: function(e) {
                     console.log(e)
@@ -129,6 +139,30 @@
                     $("#merk")
                     .empty()
                     .append(merk) // variable yang berisi tag <option> diassign ke combobox terkait
+                    .prop("disabled", false);
+                }
+            })
+        })
+        $("#merk").change(function () {
+            var merk = "<option disabled selected></option>"
+            $.ajax({
+                type: "POST",
+                url: "/api/get-tarif", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
+                data: {
+                    kd_sp: $("#merk").val()
+                },
+                error: function(e) {
+                    console.log(e)
+                },
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    for (var x = 0; data.length > x; x++) {
+                        merk += "<option value="+data[x].kd_tarif + ">" + data[x].klasifikasi_tarif + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                    }
+                    console.log(tarif); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
+                    $("#tarif")
+                    .empty()
+                    .append(tarif) // variable yang berisi tag <option> diassign ke combobox terkait
                     .prop("disabled", false);
                 }
             })
