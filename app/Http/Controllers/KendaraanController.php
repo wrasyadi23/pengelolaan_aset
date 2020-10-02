@@ -67,6 +67,29 @@ class KendaraanController extends Controller
         $newRealisasi->kd_seksi = '-';
         $newRealisasi->kd_regu = '-';
         $newRealisasi->save();
+
+        $newRealisasi = new KendaraanHistory();
+        $newRealisasi->kd_kendaraan = $kendaraan;
+        $newRealisasi->nopol = $nopol;
+        $newRealisasi->merk = $merk;
+        $newRealisasi->type = $type;
+        $newRealisasi->tahun = $tahun;
+        $newRealisasi->warna = $warna;
+        $newRealisasi->jenis_kend = $jenis_kend;
+        $newRealisasi->jenis_bbm = $jenis_bbm;
+        $newRealisasi->jml_bbm = $jml_bbm;
+        $newRealisasi->no_bpkb = $no_bpkb;
+        $newRealisasi->no_stnk = $no_stnk;
+        $newRealisasi->no_mesin = $no_mesin;
+        $newRealisasi->no_rangka = $no_rangka;
+        $newRealisasi->jenis_sewa = $jenis_sewa;
+        $newRealisasi->status = 'Aktif';
+        $newRealisasi->kd_ba = $kd_ba;
+        $newRealisasi->kd_departemen = '-';
+        $newRealisasi->kd_bagian = '-';
+        $newRealisasi->kd_seksi = '-';
+        $newRealisasi->kd_regu = '-';
+        $newRealisasi->save();
         
         return redirect('transport/kendaraan-create');
     }
