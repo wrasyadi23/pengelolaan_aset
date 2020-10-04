@@ -87,7 +87,7 @@
             });
 
             $("#kd_ba").change(function () {
-            var kd_ba = "<option disabled selected></option>"
+            var kd_jenis_kend = "<option disabled selected></option>"
                 $("#jenis_kend")
                     .empty()
                     .prop("disabled", true);
@@ -101,7 +101,7 @@
                 type: "POST",
                 url: "/api/get-jenis-kend", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
                 data: {
-                    kd_sp: $("#kd_ba").val()
+                    kd_ba: $("#kd_ba").val()
                 },
                 error: function(e) {
                     console.log(e)
@@ -109,12 +109,12 @@
                 success: function(response) {
                     var data = JSON.parse(response);
                     for (var x = 0; data.length > x; x++) {
-                        kd_tarif += "<option value="+data[x].jenis_kend + ">" + data[x].jenis_kend + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                        kd_jenis_kend += "<option value="+data[x].jenis_kend + ">" + data[x].jenis_kend + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
                     }
-                    console.log(jenis_kend); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
+                    console.log(response); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
                     $("#jenis_kend")
                     .empty()
-                    .append(jenis_kend) // variable yang berisi tag <option> diassign ke combobox terkait
+                    .append(kd_jenis_kend) // variable yang berisi tag <option> diassign ke combobox terkait
                     .prop("disabled", false);
                 }
             })
@@ -125,7 +125,7 @@
                 type: "POST",
                 url: "/api/get-merk", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
                 data: {
-                    kd_sp: $("#jenis_kend").val()
+                    jenis_kend: $("#jenis_kend").val()
                 },
                 error: function(e) {
                     console.log(e)
@@ -144,12 +144,12 @@
             })
         })
         $("#merk").change(function () {
-            var merk = "<option disabled selected></option>"
+            var tarif = "<option disabled selected></option>"
             $.ajax({
                 type: "POST",
                 url: "/api/get-tarif", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
                 data: {
-                    kd_sp: $("#merk").val()
+                    merk: $("#merk").val()
                 },
                 error: function(e) {
                     console.log(e)
@@ -157,7 +157,7 @@
                 success: function(response) {
                     var data = JSON.parse(response);
                     for (var x = 0; data.length > x; x++) {
-                        merk += "<option value="+data[x].kd_tarif + ">" + data[x].klasifikasi_tarif + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                        tarif += "<option value="+data[x].kd_tarif + ">" + data[x].klasifikasi_tarif + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
                     }
                     console.log(tarif); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
                     $("#tarif")
