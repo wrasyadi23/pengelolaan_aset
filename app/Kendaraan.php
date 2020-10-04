@@ -22,4 +22,9 @@ class Kendaraan extends Model
     {
         return $this->hasMany('App\KendaraanHistory', 'kd_kendaraan', 'kd_kendaraan');
     }
+
+    public function getPivotSewa()
+    {
+        return $this->hasMany('App\SRSewaPivot', 'kd_kendaraan', 'kd_kendaraan');
+    }
 }

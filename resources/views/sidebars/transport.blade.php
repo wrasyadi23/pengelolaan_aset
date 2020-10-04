@@ -18,6 +18,11 @@
                 <li><a href="/transport/sp-data-harga">List Harga Sewa</a></li>
             </ul>
         </li>
+        <li>
+            <a href="/organisasi-departemen" aria-expanded="false">
+                <i class="fa fa-address-book-o"></i><span class="nav-text">Organisasi</span>
+            </a>
+        </li>
         @endif
         @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Worker')
         <li class="mega-menu mega-menu-sm">

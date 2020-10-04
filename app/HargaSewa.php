@@ -19,4 +19,9 @@ class HargaSewa extends Model
     {
         return $this->hasMany('App\Kendaraan', 'kd_ba', 'kd_ba');
     }
+
+    public function getPivotSewa()
+    {
+        return $this->hasMany('App\SRSewaPivot', 'kd_tarif', 'kd_tarif');
+    }
 }

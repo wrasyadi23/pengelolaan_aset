@@ -57,14 +57,14 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::get('/organisasi-regu-edit/{kd_regu}','ReguController@edit');
     Route::post('/organisasi-regu-update/{kd_regu}','ReguController@update');
     Route::get('/organisasi-regu-delete/{id}','ReguController@delete');
-    // data kontrak/sp
-    Route::get('/transport/sp', 'SpController@index');
-    Route::get('/transport/sp-create', 'SpController@create');
-    Route::post('/transport/sp-store', 'SpController@store');
-    Route::get('/transport/sp-edit/{kd_sp}', 'SpController@edit');
-    Route::post('/transport/sp-update/{kd_sp}', 'SpController@update');
-    Route::get('/transport/sp-delete/{kd_sp}', 'SpController@delete');
-    Route::get('/transport/sp-detail/{kd_sp}', 'SpController@detail');
+    // data kontrak sp
+    Route::get('/sp', 'SpController@index');
+    Route::get('/sp-create', 'SpController@create');
+    Route::post('/sp-store', 'SpController@store');
+    Route::get('/sp-edit/{kd_sp}', 'SpController@edit');
+    Route::post('/sp-update/{kd_sp}', 'SpController@update');
+    Route::get('/sp-delete/{kd_sp}', 'SpController@delete');
+    Route::get('/sp-detail/{kd_sp}', 'SpController@detail');
 });
 
 Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function () {
