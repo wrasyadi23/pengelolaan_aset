@@ -54,7 +54,7 @@ class GetResponse extends Controller
     {
         $jenis_kend = $request->input('jenis_kend');
         $response = HargaSewa::select('merk')->where('jenis_kend',$jenis_kend)
-            ->get()->toJson();
+            ->groupBy('merk')->get()->toJson();
         return $response;
     }
 
@@ -62,7 +62,7 @@ class GetResponse extends Controller
     {
         $merk = $request->input('merk');
         $response = HargaSewa::select('kd_tarif','klasifikasi_tarif')->where('merk',$merk)
-            ->get()->toJson();
+            ->groupBy('klasifikasi_tarif')->get()->toJson();
         return $response;
     }
 

@@ -34,7 +34,7 @@
                                         </div>
                                         <div class="form-group col-md-12 style1">
                                             <label for="klasifiksai_tarif">Klasifikasi Tarif</label>
-                                            <select name="tarif" id="tarif" class="form-control input-default" required></select>
+                                            <select name="kd_tarif" id="kd_tarif" class="form-control input-default" required></select>
                                         </div>
                                         <div class="form-group col-md-4 style1">
                                             <label for="nopol">Tanggal Sr</label>
@@ -80,7 +80,7 @@
                 allowClear: true,
                 disabled: true
             });
-            $("#tarif").select2({
+            $("#kd_tarif").select2({
                 placeholder: 'Pilih Klasifikasi Tarif',
                 allowClear: true,
                 disabled: true
@@ -94,7 +94,7 @@
                 $("#merk")
                     .empty()
                     .prop("disabled", true);
-                $("#tarif")
+                $("#kd_tarif")
                     .empty()
                     .prop("disabled", true);
             $.ajax({
@@ -144,7 +144,7 @@
             })
         })
         $("#merk").change(function () {
-            var tarif = "<option disabled selected></option>"
+            var kd_tarif = "<option disabled selected></option>"
             $.ajax({
                 type: "POST",
                 url: "/api/get-tarif", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
@@ -157,12 +157,12 @@
                 success: function(response) {
                     var data = JSON.parse(response);
                     for (var x = 0; data.length > x; x++) {
-                        tarif += "<option value="+data[x].kd_tarif + ">" + data[x].klasifikasi_tarif + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                        kd_tarif += "<option value="+data[x].kd_tarif + ">" + data[x].klasifikasi_tarif + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
                     }
-                    console.log(tarif); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
-                    $("#tarif")
+                    console.log(kd_tarif); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
+                    $("#kd_tarif")
                     .empty()
-                    .append(tarif) // variable yang berisi tag <option> diassign ke combobox terkait
+                    .append(kd_tarif) // variable yang berisi tag <option> diassign ke combobox terkait
                     .prop("disabled", false);
                 }
             })

@@ -22,8 +22,8 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="klasifiksai_tarif">Klasifikasi Tarif</label>
-                                        <input type="text" name="klasifiksai_tarif" id="" class="form-control input-default" placeholder="Klasifikasi Tarif" required>
+                                        <label for="klasifikasi_tarif">Klasifikasi Tarif</label>
+                                        <input type="text" name="klasifikasi_tarif" id="" class="form-control input-default" placeholder="Klasifikasi Tarif" required>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="merk">Merk Kendaraan</label>
