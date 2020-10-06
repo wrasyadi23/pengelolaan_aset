@@ -8,7 +8,7 @@ class PrController extends Controller
 {
     public function create(){
         $rawDataSR = SR::orderBy('id', 'desc')
-            ->where('keterangan','Request')
+            ->where('status','Request')
             ->get();
         return view('transport/pr-create', [
             'rawDataSR' => $rawDataSR
@@ -39,7 +39,7 @@ class PrController extends Controller
             $newRealisasi->save();
 
             $newRealisasi = SR::where('kd_sr', $kd_sr)->first();
-            $newRealisasi->keterangan = 'PR';
+            $newRealisasi->status = 'PR';
             $newRealisasi->save();
                     
             return redirect('transport/pr-tampil');

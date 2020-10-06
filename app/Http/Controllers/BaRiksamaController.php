@@ -49,7 +49,7 @@ class BaRiksamaController extends Controller
 
         $getKd_sr = OK::where('kd_ok', $kd_ok)->first();
         $updateSR = SR::where('kd_sr', $getKd_sr->getPR->kd_sr)->first();
-        $updateSR->keterangan = 'RIKSAMA';
+        $updateSR->status = 'RIKSAMA';
         $updateSR->save();
                 
         return redirect('transport/bariksama-tampil');

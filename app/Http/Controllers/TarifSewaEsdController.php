@@ -30,7 +30,7 @@ class TarifSewaEsdController extends Controller
             $kendaraan = 'TARIF' .  sprintf('%04s', 1);
         }
         $kd_tarif = $request->input('kd_tarif');
-        $klasifiksai_tarif = $request->input('klasifiksai_tarif');
+        $klasifikasi_tarif = $request->input('klasifikasi_tarif');
         $merk = $request->input('merk');
         $type = $request->input('type');
         $jenis_kend = $request->input('jenis_kend');
@@ -39,7 +39,7 @@ class TarifSewaEsdController extends Controller
         
         $newRealisasi = new HargaSewa();
         $newRealisasi->kd_tarif = $kendaraan;
-        $newRealisasi->klasifiksai_tarif = $klasifiksai_tarif;
+        $newRealisasi->klasifikasi_tarif = $klasifikasi_tarif;
         $newRealisasi->merk = $merk;
         $newRealisasi->type = $type;
         $newRealisasi->jenis_kend = $jenis_kend;
@@ -65,14 +65,14 @@ class TarifSewaEsdController extends Controller
 
     public function update($id, Request $request)
     {
-        $klasifiksai_tarif = $request->input('klasifiksai_tarif');
+        $klasifikasi_tarif = $request->input('klasifikasi_tarif');
         $merk = $request->input('merk');
         $type = $request->input('type');
         $jenis_kend = $request->input('jenis_kend');
         $harga = $request->input('harga');
         
         $newRealisasi = HargaSewa::findOrFail($id);
-        $newRealisasi->klasifiksai_tarif = $klasifiksai_tarif;
+        $newRealisasi->klasifikasi_tarif = $klasifikasi_tarif;
         $newRealisasi->merk = $merk;
         $newRealisasi->type = $type;
         $newRealisasi->jenis_kend = $jenis_kend;

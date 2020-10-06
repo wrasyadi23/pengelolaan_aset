@@ -95,8 +95,8 @@
     
     <tr>
       <td width="27" class="style1"><div align="center" class="style1">a.</div></td>
-      <td width="412" class="style1"><span class="style1">Selesai 100%</span></td>
-      <td width="41" rowspan="6"><table width="31" height="157" rules="all">
+      <td width="412" class="style1"><span class="style1">Selesai 100% <br> Selesai sesuai progres yang diminta oleh User (dilampiri dengan bukti<br/></span></td>
+      <td width="41" rowspan="5"><table width="31" height="157" rules="all">
               <tr>
                 <td width="23" height="22">&nbsp;</td>
               </tr>
@@ -109,16 +109,12 @@
               <tr>
                 <td height="22">&nbsp;</td>
               </tr>
-   </table>
-      </td>
+   </table>      </td>
     </tr>
-    <tr class="style1">
-      <td><div align="center"><span class="style1"></span></div></td>
-      <td><span class="style1"> </span></td>
-    </tr>
+    
     <tr class="style1">
       <td><div align="center" class="style1">b.</div></td>
-      <td><span class="style1"> <br />
+      <td><span class="style1"> Keberterimaan dari User, misal : rekap jam atau shift atau harian) dan untuk di <br />
   Close secara SAP</span></td>
     </tr>
     <tr class="style1">
