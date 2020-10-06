@@ -1,9 +1,11 @@
 <style type="text/css">
-    .style1 {color: #0066FF}
-    </style>
-    @extends('layouts.master')
-    @section('title','Input Service Request ESD')
-    @section('content')
+    .style1 {
+        color: #0066FF
+    }
+</style>
+@extends('layouts.master')
+@section('title','Input Service Request ESD')
+@section('content')
     <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-lg-12">
@@ -26,32 +28,40 @@
                                         </div>
                                         <div class="form-group col-md-12 style1">
                                             <label for="jenis_kend">Jenis Kendaraan</label>
-                                            <select name="jenis_kend" id="jenis_kend" class="form-control input-default" disabled required></select>
+                                            <select name="jenis_kend" id="jenis_kend" class="form-control input-default"
+                                                    disabled required></select>
                                         </div>
                                         <div class="form-group col-md-12 style1">
                                             <label for="merk">Merk</label>
-                                            <select name="merk" id="merk" class="form-control input-default" disabled required></select>
+                                            <select name="merk" id="merk" class="form-control input-default" disabled
+                                                    required></select>
                                         </div>
                                         <div class="form-group col-md-12 style1">
                                             <label for="klasifiksai_tarif">Klasifikasi Tarif</label>
-                                            <select name="tarif" id="tarif" class="form-control input-default" required></select>
+                                            <select name="tarif" id="tarif" class="form-control input-default"
+                                                    required></select>
                                         </div>
                                         <div class="form-group col-md-4 style1">
                                             <label for="nopol">Tanggal Sr</label>
-                                            <input type="date" name="tgl" id="" class="form-control input-default" placeholder="Tanggal Sr" required>
+                                            <input type="date" name="tgl" id="" class="form-control input-default"
+                                                   placeholder="Tanggal Sr" required>
                                         </div>
                                         <div class="form-group col-md-4 style1">
                                             <label for="merk">Tanggal Awal</label>
-                                            <input type="date" name="tgl_awal" id="" class="form-control input-default" placeholder="Tanggal Awal Sr" required>
+                                            <input type="date" name="tgl_awal" id="" class="form-control input-default"
+                                                   placeholder="Tanggal Awal Sr" required>
                                         </div>
                                         <div class="form-group col-md-4 style1">
                                             <label for="type">Tangal Akhir</label>
-                                            <input type="date" name="tgl_akhir" id="" class="form-control input-default" placeholder="Tangal Akhir Sr " required>
+                                            <input type="date" name="tgl_akhir" id="" class="form-control input-default"
+                                                   placeholder="Tangal Akhir Sr " required>
                                         </div>
                                     </div>
 
                                     <div class="general-button">
-                                        <button type="button" class="btn btn-primary" onclick="window.location.href='/transport/sr-tampil'">Back</button>
+                                        <button type="button" class="btn btn-primary"
+                                                onclick="window.location.href='/transport/sr-tampil'">Back
+                                        </button>
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
@@ -62,60 +72,60 @@
             </div>
         </div>
     </div>
-    @endsection
+@endsection
 
-    @section('script')
-        <script>
-            $("#kd_ba").select2({
-                placeholder: 'Pilih Nomor BA',
-                allowClear : true
-            });
-            $("#jenis_kend").select2({
-                placeholder: 'Pilih Jenis Kendaraan',
-                allowClear: true,
-                disabled: true
-            });
-            $("#merk").select2({
-                placeholder: 'Pilih Merk',
-                allowClear: true,
-                disabled: true
-            });
-            $("#tarif").select2({
-                placeholder: 'Pilih Klasifikasi Tarif',
-                allowClear: true,
-                disabled: true
-            });
+@section('script')
+    <script>
+        $("#kd_ba").select2({
+            placeholder: 'Pilih Nomor BA',
+            allowClear: true
+        });
+        $("#jenis_kend").select2({
+            placeholder: 'Pilih Jenis Kendaraan',
+            allowClear: true,
+            disabled: true
+        });
+        $("#merk").select2({
+            placeholder: 'Pilih Merk',
+            allowClear: true,
+            disabled: true
+        });
+        $("#tarif").select2({
+            placeholder: 'Pilih Klasifikasi Tarif',
+            allowClear: true,
+            disabled: true
+        });
 
-            $("#kd_ba").change(function () {
+        $("#kd_ba").change(function () {
             var kd_jenis_kend = "<option disabled selected></option>"
-                $("#jenis_kend")
-                    .empty()
-                    .prop("disabled", true);
-                $("#merk")
-                    .empty()
-                    .prop("disabled", true);
-                $("#tarif")
-                    .empty()
-                    .prop("disabled", true);
+            $("#jenis_kend")
+                .empty()
+                .prop("disabled", true);
+            $("#merk")
+                .empty()
+                .prop("disabled", true);
+            $("#tarif")
+                .empty()
+                .prop("disabled", true);
             $.ajax({
                 type: "POST",
                 url: "/api/get-jenis-kend", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
                 data: {
                     kd_ba: $("#kd_ba").val()
                 },
-                error: function(e) {
+                error: function (e) {
                     console.log(e)
                 },
-                success: function(response) {
+                success: function (response) {
                     var data = JSON.parse(response);
                     for (var x = 0; data.length > x; x++) {
-                        kd_jenis_kend += "<option value="+data[x].jenis_kend + ">" + data[x].jenis_kend + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                        kd_jenis_kend += "<option value='" + data[x].jenis_kend + "'>" + data[x].jenis_kend + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
                     }
                     console.log(response); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
                     $("#jenis_kend")
-                    .empty()
-                    .append(kd_jenis_kend) // variable yang berisi tag <option> diassign ke combobox terkait
-                    .prop("disabled", false);
+                        .empty()
+                        .append(kd_jenis_kend) // variable yang berisi tag <option> diassign ke combobox terkait
+                        .prop("disabled", false);
                 }
             })
         })
@@ -127,19 +137,19 @@
                 data: {
                     jenis_kend: $("#jenis_kend").val()
                 },
-                error: function(e) {
+                error: function (e) {
                     console.log(e)
                 },
-                success: function(response) {
+                success: function (response) {
                     var data = JSON.parse(response);
                     for (var x = 0; data.length > x; x++) {
-                        merk += "<option value="+data[x].merk + ">" + data[x].merk + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                        merk += "<option value='" + data[x].merk + "'>" + data[x].merk + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
                     }
                     console.log(merk); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
                     $("#merk")
-                    .empty()
-                    .append(merk) // variable yang berisi tag <option> diassign ke combobox terkait
-                    .prop("disabled", false);
+                        .empty()
+                        .append(merk) // variable yang berisi tag <option> diassign ke combobox terkait
+                        .prop("disabled", false);
                 }
             })
         })
@@ -151,22 +161,23 @@
                 data: {
                     merk: $("#merk").val()
                 },
-                error: function(e) {
+                error: function (e) {
                     console.log(e)
                 },
-                success: function(response) {
+                success: function (response) {
                     var data = JSON.parse(response);
+                    console.log(data);
                     for (var x = 0; data.length > x; x++) {
-                        tarif += "<option value="+data[x].kd_tarif + ">" + data[x].klasifikasi_tarif + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                        tarif += "<option value='" + data[x].kd_tarif + "'>" + data[x].klasifikasi_tarif + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
                     }
-                    console.log(tarif); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
+                    console.log(data); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
                     $("#tarif")
-                    .empty()
-                    .append(tarif) // variable yang berisi tag <option> diassign ke combobox terkait
-                    .prop("disabled", false);
+                        .empty()
+                        .append(tarif) // variable yang berisi tag <option> diassign ke combobox terkait
+                        .prop("disabled", false);
                 }
             })
         })
-        </script>
+    </script>
 
-    @endsection
+@endsection

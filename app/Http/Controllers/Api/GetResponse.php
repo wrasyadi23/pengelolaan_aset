@@ -53,7 +53,7 @@ class GetResponse extends Controller
     public function getMerk(Request $request)
     {
         $jenis_kend = $request->input('jenis_kend');
-        $response = HargaSewa::select('merk')->where('jenis_kend',$jenis_kend)
+        $response = HargaSewa::select('merk')->groupBy('merk')->where('jenis_kend',$jenis_kend)
             ->get()->toJson();
         return $response;
     }
@@ -61,7 +61,7 @@ class GetResponse extends Controller
     public function getTarif(Request $request)
     {
         $merk = $request->input('merk');
-        $response = HargaSewa::select('kd_tarif','klasifikasi_tarif')->where('merk',$merk)
+        $response = HargaSewa::where('merk',$merk)
             ->get()->toJson();
         return $response;
     }
