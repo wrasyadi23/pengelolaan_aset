@@ -27,6 +27,32 @@
                         </div>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Data Nopol SR Isidentil</h4>
+                        <div class="card-content">
+                            <div class="table-responsive">
+                                <table class="table-striped table-bordered zero-configuration table" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <td>No</td>
+                                            <td>Nopol</td>
+                                            <td>Merk</td>
+                                            <td>Type</td>
+                                            <td>Harga</td>
+                                            <td>Action</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
