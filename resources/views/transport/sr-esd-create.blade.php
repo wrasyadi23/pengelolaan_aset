@@ -13,7 +13,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Input Service Request ESD</h4>
                         <div class="card-content">
-                            <form action="/transport/sr-simpan" method="post">
+                            <form action="/transport/sr-esd-store" method="post">
                                 @csrf
                                 <div class="basic-form">
                                     <div class="form-row">
@@ -41,8 +41,18 @@
                                             <select name="tarif" id="tarif" class="form-control input-default"
                                                     required></select>
                                         </div>
+                                        <div class="form-group col-md-6 style1">
+                                            <label for="nopol">Nopol</label>
+                                            <input type="text" name="nopol" id="" class="form-control input-default"
+                                                   placeholder="Nopol" required>
+                                        </div>
+                                        <div class="form-group col-md-6 style1">
+                                            <label for="tahun">Tahun</label>
+                                            <input type="text" name="tahun" id="" class="form-control input-default"
+                                                   placeholder="Tahun Pembuatan" required>
+                                        </div>
                                         <div class="form-group col-md-4 style1">
-                                            <label for="nopol">Tanggal Sr</label>
+                                            <label for="tgl">Tanggal Sr</label>
                                             <input type="date" name="tgl" id="" class="form-control input-default"
                                                    placeholder="Tanggal Sr" required>
                                         </div>
