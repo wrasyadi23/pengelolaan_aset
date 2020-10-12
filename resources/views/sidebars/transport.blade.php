@@ -12,10 +12,10 @@
                 <i class="icon-note menu-icon"></i><span class="nav-text">Surat Perjanjian</span>
             </a>
             <ul aria-expanded="false">
-                <li><a href="/transport/sp">Kontrak/SP</a></li>
-                <li><a href="/transport/sp-ba">Berita Acara SP</a></li>
-                <li><a href="/transport/sp-data">Data Kontrak/SP</a></li>
-                <li><a href="/transport/sp-data-harga">List Harga Sewa</a></li>
+                <li><a href="/transport/sp">Kontrak</a></li>
+                <li><a href="/transport/sp-ba">BA Kontrak</a></li>
+                <li><a href="/transport/sp-harga">Daftar Harga Sewa</a></li>
+                <li><a href="/transport/sp-data">Data Kontrak</a></li>
             </ul>
         </li>
         <li>

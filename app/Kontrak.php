@@ -23,4 +23,9 @@ class Kontrak extends Model
     {
         return RkapDetail::where('kd_bagian', $this->getRkapDetail->kd_bagian)->pluck('kd_aktifitas_rkap');
     }
+
+    public function getKontrakFile()
+    {
+        return $this->hasMany('App\KontrakFile', 'kd_sp', 'kd_sp');
+    }
 }

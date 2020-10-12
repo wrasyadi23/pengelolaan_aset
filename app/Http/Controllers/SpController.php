@@ -7,6 +7,8 @@ use App\Rkap;
 use App\RkapDetail;
 use App\Kontrak;
 use App\KontrakBA;
+use App\KontrakFile;
+use App\KontrakBAFile;
 use App\HargaSewa;
 use File;
 use Auth;
@@ -71,6 +73,19 @@ class SpController extends Controller
             $newKontrak->status = 'Requested';
             $newKontrak->kd_aktifitas_rkap = $kd_aktifitas_rkap;
             $newKontrak->save();
+
+            //bagaimana upload file extension hanya .jpg .jpeg dan .pdf?
+            if ($request->hasFile('file')) {
+                foreach ($request->hasFile('file') as $key => $file) {
+                    $uid = uniqid(time(), false);
+                    $filename = $uid . '_' . $file->getClientOriginalName();
+                    $file->move(public_path('kontrak'), $filename);
+                    $newKontrakFile = new KontrakFile;
+                    $newKontrakFile->kd_sp = $kd_sp;
+                    $newKontrakFile->file = $filename;
+                    $newKontrakFile->save();
+                }
+            }
 
             return view('sp')->with('message-success', 'Data berhasil disimpan.');
         }

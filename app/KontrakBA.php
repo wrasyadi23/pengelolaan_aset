@@ -29,4 +29,9 @@ class KontrakBA extends Model
     {
         return $this->hasMany('App\HargaSewa', 'kd_ba', 'kd_ba');
     }
+
+    public function getKontrakBAFile()
+    {
+        return $this->hasMany('App\KontrakBAFile', 'kd_ba', 'kd_ba');
+    }
 }
