@@ -52,7 +52,7 @@
                                     <textarea name="uraian" id="" cols="30" rows="5" class="form-control input-default" required></textarea>
                                 </div>
                                 <div class="general-button">
-                                    <button type="reset" class="btn btn-primary">Reset</button>
+                                    <button type="reset" class="btn btn-warning">Reset</button>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>

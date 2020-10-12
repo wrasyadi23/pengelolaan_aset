@@ -2,8 +2,10 @@
 @section('title','Kontrak/SP')
 @section('content')
 <div class="container-fluid mt-3">
-    @if (session('message'))
-        <div class="alert alert-success">{{session('message')}}</div>
+    @if (session('message-success'))
+        <div class="alert alert-success">{{session('message-success')}}</div>
+    @elseif (session('message-error'))
+        <div class="alert alert-danger">{{session('message-error')}}</div>
     @endif
     <div class="row">
         <div class="col-lg-12">
@@ -18,17 +20,6 @@
                         </div>
                     </div>
                     <div class="card-content">
-                        {{-- <div class="basic-form">
-                            <form action="/organisasi-search-departemen" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-row mb-3">
-                                    <div class="col-md-3">
-                                        <input type="text" name="cari" id="" class="" style="padding: 2px 5px 2px 5px;" placeholder="Search">
-                                        <button type="submit" class="btn btn-sm btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div> --}}
                         <div class="form-group">
                             <div class="table-responsive">
                                 <table class="table table-striped table-sm table-bordered zero-configuration" style="width: 100%;">
@@ -36,7 +27,11 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Kode</th>
-                                            <th>Departemen</th>
+                                            <th>No. Kontrak</th>
+                                            <th>Tanggal</th>
+                                            <th>Deskripsi</th>
+                                            <th>Vendor</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -44,15 +39,24 @@
                                         @php
                                             $no = 1;
                                         @endphp
-                                        @foreach ($departemen as $dep)
+                                        @foreach ($kontrak as $sp)
                                         <tr>
                                             <td>{{$no++}}</td>
-                                            <td>{{$dep->kd_departemen}}</td>
-                                            <td>{{$dep->departemen}}</td>
-                                            <td><a href="/organisasi-bagian/{{$dep->kd_departemen}}" class="badge badge-primary">Data Bagian</a> 
-                                                <a href="/organisasi-departemen-edit/{{$dep->kd_departemen}}" class="badge badge-success">Edit</a> 
-                                                <a href="/organisasi-departemen-delete/{{$dep->id}}" class="badge badge-danger">Delete</a> 
+                                            <td>{{$sp->kd_sp}}</td>
+                                            <td>{{$sp->no_sp}}</td>
+                                            <td>{{$sp->tgl}}</td>
+                                            <td>{{$sp->deskripsi}}</td>
+                                            <td>{{$sp->Vendor}}</td>
+                                            <td>
+                                                @if ($sp->status == "Requested")
+                                                    <a href="" class="badge badge-warning">{{$sp->status}}</a>
+                                                @elseif ($sp->status == "Aktif")
+                                                    <a href="" class="badge badge-success">{{$sp->status}}</a>
+                                                @else
+                                                    <a href="" class="badge badge-danger">{{$sp->status}}</a>
+                                                @endif
                                             </td>
+                                            <td>Action</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
