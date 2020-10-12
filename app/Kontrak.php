@@ -18,9 +18,4 @@ class Kontrak extends Model
     {
         return $this->belongsTo('App\RkapDetail', 'kd_aktifitas_rkap', 'kd_aktifitas_rkap');
     }
-
-    public function getKontrakBagianAttribute()
-    {
-        return RkapDetail::where('kd_bagian', $this->getRkapDetail->kd_bagian)->pluck('kd_aktifitas_rkap');
-    }
 }

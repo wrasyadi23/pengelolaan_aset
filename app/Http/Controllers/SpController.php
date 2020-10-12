@@ -16,8 +16,9 @@ class SpController extends Controller
 {
     public function index()
     {
-        $kontrak = Kontrak::where('kd_bagian', Auth::user()->kontrak_bagian)
-            ->where('status','Aktif')->get();
+        $kontrak = Kontrak::with(['getRkapDetail' => function ($query) {
+            $query->where('kd_bagian', Auth::user()->kontrak_bagian)->select('*');
+        }])->where('status','Aktif')->get();
         return view('sp', compact('kontrak'));
     }
 

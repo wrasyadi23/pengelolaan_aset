@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return Karyawan::where('kd_bagian', $this->getKaryawan->kd_bagian)->pluck('nik');
     }
+
+    public function getKontrakBagian()
+    {
+        return RkapDetail::where('kd_bagian', $this->getKaryawan->bagian)->pluck('kd_bagian');
+    }
 }
