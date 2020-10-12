@@ -59,7 +59,12 @@
                                     <label for="rekanan">Rekanan/Vendor</label>
                                     <input type="text" name="rekanan" id="" class="form-control input-default" required>
                                 </div>
+                                <div class="form-group">
+                                    <label for="file">File Kontrak/Dokumen terkait</label>
+                                    <input type="file" name="file[]" id="file[]" class="form-control input-default" multiple>
+                                </div>
                                 <div class="general-button">
+                                    <button type="button" class="btn btn-primary" onclick="window.location.href='/sp'">Back</button>
                                     <button type="reset" class="btn btn-warning">Reset</button>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
