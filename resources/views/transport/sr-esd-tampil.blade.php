@@ -28,7 +28,7 @@
                         <div class="card-content">
                             {{-- Tampilan detail table, uncomment dari bawah untuk pakai --}}
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped zero-configuration">
+                                <table class="table table-bordered table-striped zero-configuration" style="width: 100%;">
                                     <thead>
                                         <tr class = "table-secondary">
                                             <th><div align="center">No</div></th>
