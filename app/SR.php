@@ -28,4 +28,9 @@ class SR extends Model
     {
         return $this->hasMany('App\SRVerifikasi', 'kd_sr', 'kd_sr');
     }
+
+    public function getSRSewaPivot()
+    {
+        return $this->belongsTo('App\SRSewaPivot', 'kd_sr', 'kd_sr');
+    }
 }

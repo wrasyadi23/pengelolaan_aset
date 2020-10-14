@@ -119,6 +119,9 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/transport/sr-esd-nopol/{kd_sr}/{kd_tarif}', 'SrEsdController@index_store_nopol');
     Route::post('/transport/sr-esd-store-nopol/{kd_sr}/{kd_tarif}', 'SrEsdController@store_nopol');
     Route::post('/transport/sr-esd-store','SrEsdController@store');
+    Route::get('/transport/sr-esd-tampil', 'SrEsdController@tampilsresd');
+    Route::get('/transport/sr-esd-edit/{id}', 'SrEsdController@edit');
+    Route::post('/transport/sr-esd-update/{id}', 'SrEsdController@update');
 
      //input purchase request sewa
     Route::get('/transport/pr-create', 'PrController@create');

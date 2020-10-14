@@ -17,16 +17,11 @@ class SRSewaPivot extends Model
 
     public function getTarif()
     {
-        return $this->hasOne(TarifSewaEsd::class, 'kd_tarif', 'kd_tarif');
+        return $this->hasOne('App\HargaSewa', 'kd_tarif', 'kd_tarif');
     }
 
     public function getSR()
     {
-        return $this->hasMany('App\SR', 'kd_sr', 'kd_sr');
-    }
-
-    public function PivotKendaraan()
-    {
-        return Kendaraan::where('kd_kendaraan', $this->getKendataan->kd_kendaraan)->pluck('kd_kendaraan');
+        return $this->hasOne('App\SR', 'kd_sr', 'kd_sr');
     }
 }

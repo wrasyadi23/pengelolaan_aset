@@ -50,9 +50,13 @@ class SrController extends Controller
     }
 
     public function tampilsr(){
-        $sr = SR::orderBy('id', 'desc')
-        ->where('status', '=', 'Request')
-        ->paginate(10);
+        $sr = SR::whereHas('getKendaraan', function ($query) {
+            $query->where('jenis_sewa','SewaSP');
+        })->where('status','Request')->get();
+
+        // $sr = SR::orderBy('id', 'desc')
+        // ->where('status', '=', 'Request')
+        // ->paginate(10);
         return view('transport/sr-tampil', ['sr' => $sr]);
     }
 

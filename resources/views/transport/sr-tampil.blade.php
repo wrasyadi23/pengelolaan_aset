@@ -13,22 +13,18 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title style1">Data Service Request Transport</h4>
-                    <form action="/transport/sr-cari" method="get">
-                        <div class="row">
-                            <div class="form-group col-md-8">
-                                <input type="text" name="key" id="" class="form-control" placeholder="Panggil Service Request">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <button type="submit" class="btn btn-primary">Cari</button>
-                                <button type="reset" class="btn btn-primary" onclick="window.location.href='/transport/sr-tampil'">Reset</button>
-                                <a href="/transport/sr-create" class="btn btn-success">SR Baru</a>
-                            </div> 
-                    </form>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <h4 class="card-title style1">Data Service Request Transport</h4>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-primary" onclick="window.location.href='/transport/sr-create'">+ SR Baru</button>
+                        </div>
+                    </div>
                     <div class="card-content">
                         {{-- Tampilan detail table, uncomment dari bawah untuk pakai --}}
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped">
+                            <table class="table table-bordered table-striped zero-configuration" style="width: 100%;">
                                 <thead>
                                     <tr class = "table-secondary">
                                         <th><div align="center">No</div></th>
@@ -43,9 +39,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
                                     @foreach ($sr as $result => $sp)
                                     <tr>
-                                        <td>{{ $result + $sr->firstitem() }}</td>
+                                        <td>{{ $no++ }}</td>
                                         <td>{{ $sp->kd_sr }}</td>
                                         <td>{{ $sp->no_sr }}</td>
                                         <td>{{ $sp->tgl }}</td>
@@ -62,7 +61,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $sr->links()}}
                         </div>
                     </div>
                 </div>

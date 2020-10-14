@@ -13,12 +13,17 @@
                                 <div class="basic-form">
                                     <div class="form-group">
                                         <label for="nopol">Nomor Polisi</label>
-                                        <input type="text" name="nopol" id="" class="form-control input-default"
+                                        <input type="text" name="nopol" id="" class="form-control input-default" placeholder="Nopol Kendaraan Yang Disewa"
                                                required>
                                     </div>
                                     <div class="form-group">
                                         <label for="tahun">Tahun</label>
-                                        <input type="text" name="tahun" id="" class="form-control input-default"
+                                        <input type="text" name="tahun" id="" class="form-control input-default" placeholder="Tahun Kendaraan"
+                                               required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="warna">Dipergunakan</label>
+                                        <input type="text" name="warna" id="" class="form-control input-default" placeholder="Dipergunakan Untuk"
                                                required>
                                     </div>
                                     <div class="general-button">

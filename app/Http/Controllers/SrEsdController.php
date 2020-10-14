@@ -86,6 +86,7 @@ class SrEsdController extends Controller
 
         $nopol = $request->input('nopol');
         $tahun = $request->input('tahun');
+        $warna = $request->input('warna');
 
         $rawDataSR = SR::where('kd_sr',$kd_sr)->first();
 
@@ -102,12 +103,43 @@ class SrEsdController extends Controller
         $newKendaraan->type = $rawDataSR->getKontrakBA->getHargaSewa->first()->type;
         $newKendaraan->jenis_kend = $rawDataSR->getKontrakBA->getHargaSewa->first()->jenis_kend;
         $newKendaraan->tahun = $tahun;
-        $newKendaraan->jenis_sewa = 'ESD';
+        $newKendaraan->warna = $warna;
+        $newKendaraan->jenis_sewa = 'SewaESD';
         $newKendaraan->save();
         $newSewaPivot->save();
 
         return redirect('transport/sr-esd-nopol/'.$kd_sr.'/'.$kd_tarif)->with('message', 'Data berhasil disimpan.');
 
+    }
+
+    public function tampilsresd(){
+        $sresd = SRSewaPivot::orderBy('id', 'desc')
+        ->get();
+        return view('transport/sr-esd-tampil', ['sresd' => $sresd]);
+    }
+
+    public function edit($id)
+    {
+        $editsresd = SR::where('id', $id)->first();
+        return view('transport/sr-esd-edit', ['editsresd' => $editsresd]);
+    }
+    public function update($id, Request $request)
+    {
+        $no_sr = $request->input('no_sr');
+        $tgl = $request->input('tgl');
+        $tgl_awal = $request->input('tgl_awal');
+        $tgl_akhir = $request->input('tgl_akhir');
+        $status = $request->input('status');
+        
+        $newRealisasi = SR::findOrFail($id);
+        $newRealisasi->no_sr = $no_sr;
+        $newRealisasi->tgl = $tgl;
+        $newRealisasi->tgl_awal = $tgl_awal;
+        $newRealisasi->tgl_akhir = $tgl_akhir;
+        $newRealisasi->status = $status;
+        $newRealisasi->save();
+                
+        return redirect('transport/sr-esd-tampil');
     }
 
 }
