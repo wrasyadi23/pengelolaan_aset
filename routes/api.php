@@ -24,3 +24,5 @@ Route::post('/get-bagian', 'Api\GetResponse@getSeksi');
 Route::post('/get-seksi', 'Api\GetResponse@getRegu');
 Route::post('/get-tarif', 'Api\GetResponse@getTarif');
 Route::post('/get-merk', 'Api\GetResponse@getMerk');
+Route::post('/get-gl-acc', 'Api\GetResponse@getGLAccount');
+Route::post('/get-kd-aktifitas-rkap', 'Api\GetResponse@getKodeAktifitasRkap');

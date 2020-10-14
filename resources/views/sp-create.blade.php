@@ -12,13 +12,22 @@
                             @csrf
                             <div class="basic-form">
                                 <div class="form-row">
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label for="cost_center">Cost Center</label>
-                                        <input type="text" name="cost_center" id="" class="form-control input-default" required>
+                                        <select name="cost_center" id="cost_center" class="form-control input-default" required>
+                                            <option disabled selected></option>
+                                            @foreach ($rkap as $item)
+                                                <option value="{{$item->cost_center}}">{{$item->cost_center}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label for="gl_acc">Gl. Account</label>
-                                        <input type="text" name="gl_acc" id="" class="form-control input-default" required>
+                                        <input type="text" name="gl_acc" id="" class="form-control input-default" disabled required>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="kd_aktifitas_rkap">Aktifitas</label>
+                                        <select name="kd_aktifitas_rkap" id="kd_aktifitas_rkap" class="form-control input-default" required></select>
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -78,5 +87,75 @@
 </div>
 @endsection
 @section('script')
+<script>
+    $("#cost_center").select2({
+        placeholder: 'Pilih Cost Center',
+        allowClear: true
+    });
+    $("#gl_acc").select2({
+        placeholder: 'Pilih Commit Item/Gl. Account',
+        allowClear: true,
+        disabled: true
+    });
+    $("#kd_aktifitas_rkap").select2({
+        placeholder: 'Pilih Kode Aktifitas',
+        allowClear: true,
+        disabled: true
+    });
+    $("#cost_center").change(function () {
+            var cost_center = "<option disabled selected></option>"
+            $("#gl_acc")
+                .empty()
+                .prop("disabled", true);
+            $("#kd_aktifitas_rkap")
+                .empty()
+                .prop("disabled", true);
+            $.ajax({
+                type: "POST",
+                url: "/api/get-gl-acc", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
+                data: {
+                    cost_center: $("#cost_center").val()
+                },
+                error: function(e) {
+                    console.log(e)
+                },
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    for (var x = 0; data.length > x; x++) {
+                        gl_acc += "<option value="+data[x].kd_rkap + ">" + data[x].gl_acc + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                    }
+                    console.log(gl_acc); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
+                    $("#gl_acc")
+                    .empty()
+                    .append(gl_acc) // variable yang berisi tag <option> diassign ke combobox terkait
+                    .prop("disabled", false);
+                }
+            })
+        })
 
+        $("#gl_acc").change(function () {
+            var kd_aktifitas_rkap = "<option disabled selected></option>"
+            $.ajax({
+                type: "POST",
+                url: "/api/get-kd-aktifitas-rkap", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
+                data: {
+                    kd_alamat: $("#gl_acc").val()
+                },
+                error: function(e) {
+                    console.log(e)
+                },
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    for (var x = 0; data.length > x; x++) {
+                        kd_aktifitas_rkap += "<option value="+data[x].kd_aktifitas_rkap + ">" + data[x].aktifitas + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                    }
+                    console.log(kd_aktifitas_rkap); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
+                    $("#kd_aktifitas_rkap")
+                    .empty()
+                    .append(kd_aktifitas_rkap) // variable yang berisi tag <option> diassign ke combobox terkait
+                    .prop("disabled", false);
+                }
+            })
+        })
+</script>
 @endsection

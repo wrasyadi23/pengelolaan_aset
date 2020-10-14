@@ -9,6 +9,8 @@ use App\Regu;
 use App\Kontrak;
 use App\KontrakBA;
 use App\HargaSewaEsd;
+use App\Rkap;
+use App\RkapDetail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -55,6 +57,20 @@ class GetResponse extends Controller
         $kd_tarif = $request->input('kd_tarif');
         $response = HargaSewaEsd::select('merk')->where('kd_tarif',$kd_tarif)
             ->groupBy('merk')->get()->toJson();
+        return $response;
+    }
+
+    public function getGLAccount(Request $request)
+    {
+        $cost_center = $request->cost_center;
+        $response = Rkap::where('cost_center', $cost_center)->get()->toJson();
+        return $response;
+    }
+
+    public function getKodeAktifitasRkap(Request $request)
+    {
+        $kd_rkap = $request->gl_acc; //nama field gl_acc tapi value dari option saya isi kd_rkap
+        $response = RkapDetail::where('kd_rkap', $kd_rkap)->get()->toJson();
         return $response;
     }
 }
