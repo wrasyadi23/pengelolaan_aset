@@ -8,10 +8,16 @@ class SRSewaPivot extends Model
 {
     protected $table = 'r_sr_sewa_pivot';
     public $incrementing = false;
+    public $timestamps = false;
 
     public function getKendaraan()
     {
-        return $this->hasMany('App\Kendaraan', 'kd_kendaraan', 'kd_kendaraan');
+        return $this->hasOne('App\Kendaraan', 'kd_kendaraan', 'kd_kendaraan');
+    }
+
+    public function getTarif()
+    {
+        return $this->hasOne(TarifSewaEsd::class, 'kd_tarif', 'kd_tarif');
     }
 
     public function getSR()
@@ -21,6 +27,6 @@ class SRSewaPivot extends Model
 
     public function PivotKendaraan()
     {
-        return Kendaraan::where('kd_kendaraan', $this->getKendataan->kd_kendaraan)->pluck('kd_kendaraan')
+        return Kendaraan::where('kd_kendaraan', $this->getKendataan->kd_kendaraan)->pluck('kd_kendaraan');
     }
 }

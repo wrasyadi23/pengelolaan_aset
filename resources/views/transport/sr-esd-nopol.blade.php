@@ -8,16 +8,18 @@
                     <div class="card-body">
                         <h4 class="card-title">Input Nopol ESD</h4>
                         <div class="card-content">
-                            <form action="/transport/sr-esd-store-nopol" method="post">
+                            <form action="/transport/sr-esd-store-nopol/{{$kd_sr}}/{{$kd_tarif}}" method="post">
                                 @csrf
                                 <div class="basic-form">
                                     <div class="form-group">
                                         <label for="nopol">Nomor Polisi</label>
-                                        <input type="text" name="nopol" id="" class="form-control input-default" required>
+                                        <input type="text" name="nopol" id="" class="form-control input-default"
+                                               required>
                                     </div>
                                     <div class="form-group">
                                         <label for="tahun">Tahun</label>
-                                        <input type="text" name="tahun" id="" class="form-control input-default" required>
+                                        <input type="text" name="tahun" id="" class="form-control input-default"
+                                               required>
                                     </div>
                                     <div class="general-button">
                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -32,21 +34,32 @@
                         <h4 class="card-title">Data Nopol SR Isidentil</h4>
                         <div class="card-content">
                             <div class="table-responsive">
-                                <table class="table-striped table-bordered zero-configuration table" style="width: 100%">
+                                <table class="table-striped table-bordered zero-configuration table"
+                                       style="width: 100%">
                                     <thead>
-                                        <tr>
-                                            <td>No</td>
-                                            <td>Nopol</td>
-                                            <td>Merk</td>
-                                            <td>Type</td>
-                                            <td>Harga</td>
-                                            <td>Action</td>
-                                        </tr>
+                                    <tr>
+                                        <td>No</td>
+                                        <td>Nopol</td>
+                                        <td>Merk</td>
+                                        <td>Type</td>
+                                        <td>Harga</td>
+                                        <td>Action</td>
+                                    </tr>
                                     </thead>
                                     <tbody>
+                                    @forelse($getKendaraan as $index => $kendaraanPivot)
                                         <tr>
-                                            <td></td>
+                                            <td>{{$index +1}}</td>
+                                            <td>{{$kendaraanPivot->getKendaraan->nopol}}</td>
+                                            <td>{{$kendaraanPivot->getKendaraan->merk}}</td>
+                                            <td>{{$kendaraanPivot->getKendaraan->type}}</td>
+                                            <td>{{$kendaraanPivot->getTarif->harga}}</td>
                                         </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="6" align="center">Belum ada data kendaraan</td>
+                                        </tr>
+                                    @endforelse
                                     </tbody>
                                 </table>
                             </div>

@@ -35,21 +35,21 @@ class SrEsdController extends Controller
             $kd_sr = 'SR' . $tahun_sekarang . sprintf('%05s', 1);
         }
 
-        $tgl = $request->tgl;
-        $tgl_awal = $request->tgl_awal;
-        $tgl_akhir = $request->tgl_akhir;
-        $kd_ba = $request->kd_ba;
-        $jenis_kend = $request->jenis_kend;
-        $merk = $request->merk;
-        $tarif = $request->tarif;
+        $tgl = $request->input('tgl');
+        $tgl_awal = $request->input('tgl_awal');
+        $tgl_akhir = $request->input('tgl_akhir');
+        $kd_ba = $request->input('kd_ba');
+        $jenis_kend = $request->input('jenis_kend');
+        $merk = $request->input('merk');
+        $tarif = $request->input('tarif');
 
-        $getTarif = HargaSewa::where(
+        $getTarif = HargaSewa::where([
             ['kd_ba', $kd_ba],
             ['jenis_kend', $jenis_kend],
             ['merk', $merk],
-            ['klasifikasi_tarif', $tarif]
-        )->first();
-        
+            ['kd_tarif', $tarif]
+        ])->first();
+
         $newSR = new SR;
         $newSR->kd_sr = $kd_sr;
         $newSR->no_sr = '-';
@@ -59,14 +59,20 @@ class SrEsdController extends Controller
         $newSR->status = 'Request';
         $newSR->kd_ba = $kd_ba;
         $newSR->save();
-                
+
         return redirect('transport/sr-esd-nopol/'.$kd_sr.'/'.$getTarif->kd_tarif);
     }
 
-    // public function index_store_nopol()
-    // {
-    //     $
-    // }
+     public function index_store_nopol($kd_sr, $kd_tarif)
+     {
+         $getKendaraan = SRSewaPivot::where('kd_sr', $kd_sr)->get();
+
+         return view('transport/sr-esd-nopol',[
+             'kd_sr' => $kd_sr,
+             'kd_tarif' => $kd_tarif,
+             'getKendaraan' => $getKendaraan
+         ]);
+     }
 
     public function store_nopol($kd_sr, $kd_tarif, Request $request)
     {
@@ -77,9 +83,9 @@ class SrEsdController extends Controller
         } else {
             $kd_kendaraan = 'KEND' .  sprintf('%04s', 1);
         }
-        
-        $nopol = $request->nopol;
-        $tahun = $request->tahun;
+
+        $nopol = $request->input('nopol');
+        $tahun = $request->input('tahun');
 
         $rawDataSR = SR::where('kd_sr',$kd_sr)->first();
 
@@ -87,21 +93,21 @@ class SrEsdController extends Controller
         $newSewaPivot->kd_sr = $kd_sr;
         $newSewaPivot->kd_kendaraan = $kd_kendaraan;
         $newSewaPivot->kd_tarif = $kd_tarif;
-        $newSewaPivot->save();
+
 
         $newKendaraan = new Kendaraan;
         $newKendaraan->nopol = $nopol;
-        $newKendaraan->merk = $rawDataSR->merk;
-        $newKendaraan->type = $rawDataSR->type;
-        $newKendaraan->jenis_kend = $rawDataSR->jenis_kend;
+        $newKendaraan->kd_kendaraan = $kd_kendaraan;
+        $newKendaraan->merk = $rawDataSR->getKontrakBA->getHargaSewa->first()->merk;
+        $newKendaraan->type = $rawDataSR->getKontrakBA->getHargaSewa->first()->type;
+        $newKendaraan->jenis_kend = $rawDataSR->getKontrakBA->getHargaSewa->first()->jenis_kend;
         $newKendaraan->tahun = $tahun;
         $newKendaraan->jenis_sewa = 'ESD';
         $newKendaraan->save();
+        $newSewaPivot->save();
 
-        $rawDataKendaraan = Kendaraan::where('kd_kendaraan', $getKendaraan->pivot_kendaraan)->get();
-
-        return view('transport/sr-esd-nopol/'.$kd_sr.'/'.$kd_tarif, compact('rawDataKendaraan'))->with('message', 'Data berhasil disimpan.');
+        return redirect('transport/sr-esd-nopol/'.$kd_sr.'/'.$kd_tarif)->with('message', 'Data berhasil disimpan.');
 
     }
-    
+
 }
