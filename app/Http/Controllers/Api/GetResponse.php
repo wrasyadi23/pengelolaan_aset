@@ -62,14 +62,14 @@ class GetResponse extends Controller
 
     public function getGLAccount(Request $request)
     {
-        $cost_center = $request->cost_center;
+        $cost_center = $request->input('cost_center');
         $response = Rkap::where('cost_center', $cost_center)->get()->toJson();
         return $response;
     }
 
     public function getKodeAktifitasRkap(Request $request)
     {
-        $kd_rkap = $request->gl_acc; //nama field gl_acc tapi value dari option saya isi kd_rkap
+        $kd_rkap = $request->input('gl_acc'); //nama field gl_acc tapi value dari option saya isi kd_rkap
         $response = RkapDetail::where('kd_rkap', $kd_rkap)->get()->toJson();
         return $response;
     }

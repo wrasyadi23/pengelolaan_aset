@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="gl_acc">Gl. Account</label>
-                                        <input type="text" name="gl_acc" id="" class="form-control input-default" disabled required>
+                                        <select name="gl_acc" id="gl_acc" class="form-control input-default" disabled required></select>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="kd_aktifitas_rkap">Aktifitas</label>
@@ -122,7 +122,7 @@
                 success: function(response) {
                     var data = JSON.parse(response);
                     for (var x = 0; data.length > x; x++) {
-                        gl_acc += "<option value="+data[x].kd_rkap + ">" + data[x].gl_acc + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                        gl_acc += "<option value="+ data[x].kd_rkap + ">" + data[x].gl_acc + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
                     }
                     console.log(gl_acc); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
                     $("#gl_acc")
@@ -134,12 +134,12 @@
         })
 
         $("#gl_acc").change(function () {
-            var kd_aktifitas_rkap = "<option disabled selected></option>"
+            var gl_acc = "<option disabled selected></option>"
             $.ajax({
                 type: "POST",
                 url: "/api/get-kd-aktifitas-rkap", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
                 data: {
-                    kd_alamat: $("#gl_acc").val()
+                    gl_acc: $("#gl_acc").val()
                 },
                 error: function(e) {
                     console.log(e)
@@ -147,7 +147,7 @@
                 success: function(response) {
                     var data = JSON.parse(response);
                     for (var x = 0; data.length > x; x++) {
-                        kd_aktifitas_rkap += "<option value="+data[x].kd_aktifitas_rkap + ">" + data[x].aktifitas + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                        kd_aktifitas_rkap += "<option value="+ data[x].kd_aktifitas_rkap + ">" + data[x].uraian + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
                     }
                     console.log(kd_aktifitas_rkap); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
                     $("#kd_aktifitas_rkap")

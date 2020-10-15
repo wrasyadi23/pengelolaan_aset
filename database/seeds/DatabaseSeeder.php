@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             KlasifikasiPekerjaanSeeder::class,
             UserSeeder::class,
             KapasitasSeeder::class,
+            SpreadsheetSeeder::class,
         ]);
     }
 }

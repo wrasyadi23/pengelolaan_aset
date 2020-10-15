@@ -30,8 +30,10 @@ class SpController extends Controller
 
     public function create()
     {   
-        $rkap = Rkap::where('kd_departemen', Auth::user()->getKaryawan->departemen)
-            ->where('status', 'Aktif')->get();
+        $rkap = Rkap::where('kd_departemen', Auth::user()->getKaryawan->kd_departemen)
+            ->where('status', 'Aktif')
+            ->groupBy('cost_center')
+            ->get();
         return view('sp-create', compact('rkap'));
     }
     
