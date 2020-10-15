@@ -2,14 +2,14 @@
     .style1 {color: #0066FF}
     </style>
     @extends('layouts.master')
-    @section('title','Edit Service Request')
+    @section('title','Edit Service Request Esd')
     @section('content')
     <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Edit Sevice Request</h4>
+                        <h4 class="card-title">Edit Sevice Request Esd</h4>
                         <div class="card-content">
                             <form action="/transport/sr-esd-update/{{ $editsresd->id }}" method="post">
                                 @csrf

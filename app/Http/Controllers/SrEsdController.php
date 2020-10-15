@@ -113,7 +113,7 @@ class SrEsdController extends Controller
     }
 
     public function tampilsresd(){
-        $sresd = SRSewaPivot::orderBy('id', 'desc')
+        $sresd = SRSewaPivot::groupBy('kd_sr')
         ->get();
         return view('transport/sr-esd-tampil', ['sresd' => $sresd]);
     }
@@ -140,6 +140,12 @@ class SrEsdController extends Controller
         $newRealisasi->save();
                 
         return redirect('transport/sr-esd-tampil');
+    }
+
+    public function detail(){
+        $sresd = SRSewaPivot::orderBy('id', 'desc')
+        ->get();
+        return view('transport/sr-esd-detail', ['sresd' => $sresd]);
     }
 
 }

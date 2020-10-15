@@ -3,7 +3,7 @@
     .style2 {color: #000000}
     </style>
     @extends('layouts.master')
-    @section('title','Data Service Request Sewa Esidentil')
+    @section('title','Data Service Request Sewa Esidentil Detail')
     @section('content')
     <div class="container-fluid mt-3">
         @if (session('message'))
@@ -13,7 +13,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title style1">Data Service Request Sewa Esidentil</h4>
+                        <h4 class="card-title style1">Data Service Request Sewa Esidentil Detail</h4>
                         <form action="/transport/sr-cari" method="get">
                             <div class="row">
                                 <div class="form-group col-md-8">
@@ -34,7 +34,8 @@
                                             <th><div align="center">No</div></th>
                                             <th><div align="center">Kode.Sr</div></th>
                                             <th><div align="center">No.Sr</div></th>
-                                            <th><div align="center">Uraian</div></th>
+                                            <th><div align="center">Nopol</div></th>
+                                            <th><div align="center">Merk</div></th>
                                             <th><div align="center">Tahun</div></th>
                                             <th><div align="center">Tanggal</div></th>
                                             <th><div align="center">Mulai</div></th>
@@ -54,7 +55,8 @@
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $esd->kd_sr }}</td>
                                             <td>{{ $esd->getSR->no_sr }}</td>
-                                            <td>Sewa Kendaraan {{ $esd->getKendaraan->jenis_kend }} {{ $esd->getKendaraan->merk }}</td>
+                                            <td>{{ $esd->getKendaraan->nopol }}</td>
+                                            <td>{{ $esd->getKendaraan->merk }}</td>
                                             <td>{{ $esd->getKendaraan->tahun }}</td>
                                             <td>{{ $esd->getSR->tgl }}</td>
                                             <td>{{ $esd->getSR->tgl_awal }}</td>
@@ -63,9 +65,7 @@
                                             <td><div align="right"><span class="style1">{{ number_format($esd->getTarif->harga,0) }}</span></div></td>
                                             
                                             <th>
-                                                <a href="/transport/sr-esd-edit/{{ $esd->id }}" class="badge badge-primary">Isi No.Sr</a>
-                                                <a href="/transport/sr-preview/{{ $esd->kd_sr }}" class="badge badge-primary">Print</a>
-                                                <a href="/transport/sr-esd-detail/{{ $esd->kd_sr }}" class="badge badge-primary">Detail</a>
+                                                <a href="/transport/sr-esd-edit/{{ $esd->id }}" class="badge badge-primary">Edit</a>
                                             </th>
                                         </tr>
                                         @endforeach
