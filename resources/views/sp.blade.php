@@ -39,14 +39,14 @@
                                         @php
                                             $no = 1;
                                         @endphp
-                                        @foreach ($kontrak as $sp)
+                                        @foreach ($kontrak as $item => $sp)
                                         <tr>
                                             <td>{{$no++}}</td>
                                             <td>{{$sp->kd_sp}}</td>
                                             <td>{{$sp->no_sp}}</td>
                                             <td>{{$sp->tgl}}</td>
                                             <td>{{$sp->deskripsi}}</td>
-                                            <td>{{$sp->Vendor}}</td>
+                                            <td>{{$sp->rekanan}}</td>
                                             <td>
                                                 @if ($sp->status == "Requested")
                                                     <a href="" class="badge badge-warning">{{$sp->status}}</a>

@@ -18,8 +18,7 @@
                                                     class="form-control input-default" required>
                                                 <option disabled selected></option>
                                                 @foreach ($rkap as $item)
-                                                    <option
-                                                        value="{{$item->cost_center}}">{{$item->cost_center}}</option>
+                                                    <option value="{{$item->cost_center}}">{{$item->cost_center}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -83,7 +82,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="file">File Kontrak/Dokumen terkait</label>
-                                        <input type="file" name="file[]" id="file[]" class="form-control input-default"
+                                        <input type="file" name="dokumen[]" id="dokumen[]" class="form-control input-default"
                                                multiple>
                                     </div>
                                     <div class="general-button">
@@ -138,7 +137,7 @@
                 success: function (response) {
                     var data = JSON.parse(response);
                     for (var x = 0; data.length > x; x++) {
-                        gl_acc += "<option value=" + data[x].kd_rkap + ">" + data[x].gl_acc + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                        gl_acc += "<option value=" + data[x].kd_rkap + ">" + data[x].gl_acc +" - "+ data[x].nama_aktifitas + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
                     }
                     console.log(gl_acc); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
                     $("#gl_acc")

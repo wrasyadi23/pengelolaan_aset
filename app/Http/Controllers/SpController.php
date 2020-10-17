@@ -24,8 +24,8 @@ class SpController extends Controller
 
         $kontrak = Kontrak::with(['getRkapDetail' => function ($query) {
             $query->where('tb_rkap_detail.kd_bagian', Auth::user()->kontrak_bagian)->select('*');
-        }])->where('status','Aktif')->get();
-        return view('sp', compact('kontrak'));
+        }])->get();
+        return view('sp', ['kontrak' => $kontrak]);
     }
 
     public function create()
@@ -34,7 +34,7 @@ class SpController extends Controller
             ->where('status', 'Aktif')
             ->groupBy('cost_center')
             ->get();
-        return view('sp-create', compact('rkap'));
+        return view('sp-create', ['rkap' => $rkap]);
     }
     
     public function store(Request $request)
@@ -84,11 +84,11 @@ class SpController extends Controller
             $newKontrak->save();
 
             //bagaimana upload file extension hanya .jpg .jpeg dan .pdf?
-            if ($request->hasFile('file')) {
-                foreach ($request->hasFile('file') as $key => $file) {
+            if ($request->hasFile('dokumen')) {
+                foreach ($request->file('dokumen') as $key => $dokumen) {
                     $uid = uniqid(time(), false);
-                    $filename = $uid . '_' . $file->getClientOriginalName();
-                    $file->move(public_path('kontrak'), $filename);
+                    $filename = $uid . '_' . $dokumen->getClientOriginalName();
+                    $dokumen->move(public_path('kontrak'), $filename);
                     $newKontrakFile = new KontrakFile;
                     $newKontrakFile->kd_sp = $kd_sp;
                     $newKontrakFile->file = $filename;
@@ -96,7 +96,7 @@ class SpController extends Controller
                 }
             }
 
-            return view('sp')->with('message-success', 'Data berhasil disimpan.');
+            return redirect('sp')->with('message-success', 'Data berhasil disimpan.');
         }
     }
 }
