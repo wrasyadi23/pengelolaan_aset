@@ -137,9 +137,9 @@
                 success: function (response) {
                     var data = JSON.parse(response);
                     for (var x = 0; data.length > x; x++) {
-                        gl_acc += "<option value=" + data[x].kd_rkap + ">" + data[x].gl_acc + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                        gl_acc += "<option value=" + data[x].kd_rkap + ">" + data[x].gl_acc + " - " + data[x].get_rkap_detail[0].nama_aktifitas +"</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
                     }
-                    console.log(gl_acc); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
+                    console.log(data); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
                     $("#gl_acc")
                         .empty()
                         .append(gl_acc) // variable yang berisi tag <option> diassign ke combobox terkait

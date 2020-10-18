@@ -64,7 +64,7 @@ class GetResponse extends Controller
     {
         $cost_center = $request->input('cost_center');
         $response = Rkap::with(['getRkapDetail' => function ($query) {
-            $query->select('tb_rkap_detail.nama_aktifitas')->groupBy('tb_rkap_detail.nama_aktifitas');
+            return $query->select(['kd_rkap', 'nama_aktifitas'])->groupBy('nama_aktifitas');
         }])->where('cost_center', $cost_center)->get()->toJson();
         return $response;
     }
