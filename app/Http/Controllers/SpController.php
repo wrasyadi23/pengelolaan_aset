@@ -64,7 +64,7 @@ class SpController extends Controller
 
         $validasi = Kontrak::where('no_sp', $no_sp)->get();
         if ($validasi->count() == 1) {
-            return view('sp')->with('message-error', 'Data sudah ada.');
+            return redirect('sp')->with('message-error', 'Data sudah ada.');
         } else {
             $newKontrak = new Kontrak;
             $newKontrak->kd_sp = $kd_sp;
@@ -98,5 +98,11 @@ class SpController extends Controller
 
             return redirect('sp')->with('message-success', 'Data berhasil disimpan.');
         }
+    }
+
+    public function edit($kd_sp)
+    {
+        $kontrak = Kontrak::where('kd_sp', $kd_sp)->first();
+        return view('sp-edit', $data);
     }
 }
