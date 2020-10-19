@@ -1,7 +1,6 @@
 <style type="text/css">
     .style1 {color: #0000FF}
-    .style2 {color: #000000}
-    </style>
+</style>
     @extends('layouts.master')
     @section('title','Data Service Request Sewa Esidentil Detail')
     @section('content')
@@ -14,17 +13,6 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title style1">Data Service Request Sewa Esidentil Detail</h4>
-                        <form action="/transport/sr-cari" method="get">
-                            <div class="row">
-                                <div class="form-group col-md-8">
-                                    <input type="text" name="key" id="" class="form-control" placeholder="Panggil Service Request">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <button type="submit" class="btn btn-primary">Cari</button>
-                                    <button type="reset" class="btn btn-primary" onclick="window.location.href='/transport/sr-tampil'">Reset</button>
-                                    <a href="/transport/sr-esd-create" class="btn btn-success">SR Esd Baru</a>
-                                </div> 
-                        </form>
                         <div class="card-content">
                             {{-- Tampilan detail table, uncomment dari bawah untuk pakai --}}
                             <div class="table-responsive">
@@ -63,14 +51,25 @@
                                             <td>{{ $esd->getSR->tgl_akhir }}</td>
                                             <td>{{ $esd->getKendaraan->warna }}</td> 
                                             <td><div align="right"><span class="style1">{{ number_format($esd->getTarif->harga,0) }}</span></div></td>
+											<td>{{ $esd->getKendaraan->nopol }}</td>
                                             
                                             <th>
                                                 <a href="/transport/sr-esd-edit/{{ $esd->id }}" class="badge badge-primary">Edit</a>
                                             </th>
                                         </tr>
                                         @endforeach
+                                        <tr>
+                                            <td colspan="10" align="right"><em><strong>Total Harga</strong></em></td>
+                                            <td colspan="3"></td>
+                                            
+                                        </tr>
                                     </tbody>
                                 </table>
+                                <div class="general-button">
+                                        <button type="button" class="btn btn-primary"
+                                                onclick="window.location.href='/transport/sr-esd-tampil'">Back
+                                        </button>
+                              </div>
                             </div>
                         </div>
                     </div>

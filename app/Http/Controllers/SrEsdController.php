@@ -142,10 +142,17 @@ class SrEsdController extends Controller
         return redirect('transport/sr-esd-tampil');
     }
 
-    public function detail(){
-        $sresd = SRSewaPivot::orderBy('id', 'desc')
+    public function detail($kd_sr){
+        $sresd = SRSewaPivot::where('kd_sr', $kd_sr)->orderBy('id', 'desc')
         ->get();
         return view('transport/sr-esd-detail', ['sresd' => $sresd]);
+    }
+
+    public function print($kd_sr)
+    {
+        $pdf = SRSewaPivot::where('kd_sr', $kd_sr)->first();
+        $pdf = PDF::loadView('transport/sr-esd-print', ['pdf' => $pdf]);
+        return $pdf->stream();
     }
 
 }

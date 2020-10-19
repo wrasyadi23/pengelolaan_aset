@@ -40,7 +40,7 @@
                                             <th><div align="center">Mulai</div></th>
                                             <th><div align="center">Sampai</div></th>
                                             <th><div align="center">Dipergunakan</div></th>
-                                            <th><div align="center">Harga/Hari</div></th>
+                                            <th><div align="center">Total Harga</div></th>
                                             <th><div align="center">Rekanan</div></th>
                                             <th><div align="center">Aksi</div></th>
                                         </tr>
@@ -64,7 +64,7 @@
                                             
                                             <th>
                                                 <a href="/transport/sr-esd-edit/{{ $esd->id }}" class="badge badge-primary">Isi No.Sr</a>
-                                                <a href="/transport/sr-preview/{{ $esd->kd_sr }}" class="badge badge-primary">Print</a>
+                                                <a href="/transport/sr-esd-print/{{ $esd->kd_sr }}" class="badge badge-primary">Print</a>
                                                 <a href="/transport/sr-esd-detail/{{ $esd->kd_sr }}" class="badge badge-primary">Detail</a>
                                             </th>
                                         </tr>
