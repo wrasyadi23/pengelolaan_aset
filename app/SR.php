@@ -31,6 +31,6 @@ class SR extends Model
 
     public function getSRSewaPivot()
     {
-        return $this->belongsTo('App\SRSewaPivot', 'kd_sr', 'kd_sr');
+        return $this->hasMany('App\SRSewaPivot', 'kd_sr', 'kd_sr');
     }
 }

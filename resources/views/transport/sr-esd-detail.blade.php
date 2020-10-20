@@ -37,6 +37,7 @@
                                     <tbody>
                                         @php
                                             $no = 1;
+                                            $total = 0;
                                         @endphp
                                         @foreach ($sresd as $result => $esd)
                                         <tr>
@@ -49,19 +50,24 @@
                                             <td>{{ $esd->getSR->tgl }}</td>
                                             <td>{{ $esd->getSR->tgl_awal }}</td>
                                             <td>{{ $esd->getSR->tgl_akhir }}</td>
-                                            <td>{{ $esd->getKendaraan->warna }}</td> 
+                                            <td>{{ $esd->getKendaraan->warna }}</td>
                                             <td><div align="right"><span class="style1">{{ number_format($esd->getTarif->harga,0) }}</span></div></td>
 											<td>{{ $esd->getKendaraan->nopol }}</td>
-                                            
+
                                             <th>
                                                 <a href="/transport/sr-esd-edit/{{ $esd->id }}" class="badge badge-primary">Edit</a>
                                             </th>
                                         </tr>
+                                            @php
+                                                $tglAwal[$result] = \Carbon\Carbon::parse($esd->getSR->tgl_awal);
+                                                $tglAkhir[$result] = \Carbon\Carbon::parse($esd->getSR->tgl_akhir);
+                                                $subtotal[$result] = $esd->getTarif->harga * $tglAkhir[$result]->diffInDays($tglAwal[$result]);
+                                                $total = $subtotal[$result] + $total;
+                                            @endphp
                                         @endforeach
                                         <tr>
                                             <td colspan="10" align="right"><em><strong>Total Harga</strong></em></td>
-                                            <td colspan="3"></td>
-                                            
+                                            <td colspan="3">{{number_format($total)}}</td>
                                         </tr>
                                     </tbody>
                                 </table>

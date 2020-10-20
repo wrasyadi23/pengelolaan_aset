@@ -130,7 +130,7 @@ class SrEsdController extends Controller
         $tgl_awal = $request->input('tgl_awal');
         $tgl_akhir = $request->input('tgl_akhir');
         $status = $request->input('status');
-        
+
         $newRealisasi = SR::findOrFail($id);
         $newRealisasi->no_sr = $no_sr;
         $newRealisasi->tgl = $tgl;
@@ -138,7 +138,7 @@ class SrEsdController extends Controller
         $newRealisasi->tgl_akhir = $tgl_akhir;
         $newRealisasi->status = $status;
         $newRealisasi->save();
-                
+
         return redirect('transport/sr-esd-tampil');
     }
 
@@ -150,8 +150,10 @@ class SrEsdController extends Controller
 
     public function print($kd_sr)
     {
-        $pdf = SRSewaPivot::where('kd_sr', $kd_sr)->first();
-        $pdf = PDF::loadView('transport/sr-esd-print', ['pdf' => $pdf]);
+        $sr = SR::where('kd_sr', $kd_sr)->first();
+//        dd($sr->getSRSewaPivot);
+//        $sr = SR::findOrFail($kd_sr);
+        $pdf = PDF::loadView('transport/sr-esd-print', ['sr' => $sr]);
         return $pdf->stream();
     }
 

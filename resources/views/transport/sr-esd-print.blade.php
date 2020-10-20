@@ -24,19 +24,19 @@
       <tr>
         <td width="105"><img src="{{ ('logo-PG-agro.jpg') }}" width="105px"/></td>
         <td width="383"  style="border-left:inset"><div align="center">
-          <p class="style10">PERMINTAAN JASA (SERVICE REQUEST) <span class="style13">Kode :{{ $pdf->kd_sr }}</span></p>
+          <p class="style10">PERMINTAAN JASA (SERVICE REQUEST) <span class="style13">Kode :{{ $sr->kd_sr }}</span></p>
         </div> </td>
       </tr>
     </table>
     <table align="center" width="492" rules="rows">
       <tr>
-        <td class="style8"><div align="center" class="style9">Nomor : {{ $pdf->getSR->no_sr }}</div></td>
+        <td class="style8"><div align="center" class="style9">Nomor : {{ $sr->no_sr }}</div></td>
       </tr>
       <tr>
         <td class="style8"><div align="center" class="style9"><em>Tanggal Permintaan Unit Kerja :</em></div></td>
       </tr>
     </table>
-    
+
     <table align="center" width="495" rules="rowas">
       <tr>
         <td width="23" class="style8"><div align="center" class="style9">
@@ -56,7 +56,7 @@
         <td class="style9"><div align="center" class="style9">
           <div align="center">:</div>
         </div></td>
-        <td class="style9"><span class="style9">Sewa Kendaraan {{ $pdf->getKendaraan->jenis_kend }} {{ $pdf->getKendaraan->merk }}</span></td>
+        <td class="style9"><span class="style9">Sewa Kendaraan {{ $sr->getSRSewaPivot->first()->getKendaraan->jenis_kend }} {{ $sr->getSRSewaPivot->first()->getKendaraan->merk }}</span></td>
         </tr>
       <tr>
         <td class="style8"><div align="center" class="style9">
@@ -129,9 +129,9 @@
         <td colspan="3" class="style9"><span class="style8">Vendor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;</span></td>
         </tr>
     </table>
-    
+
     <table rules="all" align="center" width="485">
-	
+
       <tr>
         <td width="24"><div align="center" class="style7">No</div></td>
         <td width="180"><div align="center" class="style7">Deskripsi</div></td>
@@ -141,16 +141,18 @@
         <td width="35"><div align="center" class="style7">Waktu</div></td>
         <td width="56"><div align="center" class="style7">Total Harga </div></td>
       </tr>
-	  
-      <tr>
-        <td align="center" class="style8">1</td>
-        <td class="style11">Sewa Kendaraan {{ $pdf->getKendaraan->jenis_kend }} {{ $pdf->getKendaraan->merk }} {{ $pdf->getKendaraan->nopol }}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td class="style8">&nbsp;</td>
-        <td align="center" class="style8">&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
+    @foreach($sr->getSRSewaPivot as $index => $data)
+            <tr>
+                <td align="center" class="style8">1</td>
+                <td class="style11">Sewa Kendaraan {{ $data->kd_kendaraan }} {{ $data->getKendaraan->merk }} {{ $data->getKendaraan->nopol }}</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="style8">&nbsp;</td>
+                <td align="center" class="style8">&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        @endforeach
+
       <tr>
         <td div align="right" class="style9"colspan="2">Jumlah </td>
         <td class="style9">&nbsp;</td>
@@ -168,7 +170,7 @@
           </span>
           <p align="center">&nbsp;</p>
           <div align="center"><span class="style9"><u>Sunoto</u>	  <br>
-            (Kasi Administrasi) </span><br/> 
+            (Kasi Administrasi) </span><br/>
             </p>
           </div>
         </div></td>
@@ -179,7 +181,7 @@
           </span>
           <p align="center">&nbsp;</p>
           <div align="center"><span class="style1"><u>Djuli Fanani </u><br>
-            (Kabag. Transporti) </span><br/> 
+            (Kabag. Transporti) </span><br/>
             </p>
           </div>
           </div></div></td>
@@ -191,16 +193,15 @@
           </span>
           <p align="center">&nbsp;</p>
           <div align="center"><span class="style1"><u>Oda Sugarda </u><br>
-            (Manager Pelayanan Umum) </span><br/> 
+            (Manager Pelayanan Umum) </span><br/>
             </p>
           </div>
           </div></td>
       </tr>
     </table>
-    
+
         </td>
       </tr>
     </table>
-    
-    
-    
+
+
