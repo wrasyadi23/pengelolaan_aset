@@ -30,7 +30,7 @@
                                             <th><div align="center">Sampai</div></th>
                                             <th><div align="center">Dipergunakan</div></th>
                                             <th><div align="center">Harga/Hari</div></th>
-                                            <th><div align="center">Rekanan</div></th>
+                                            <th><div align="center">Lama Sewa</div></th>
                                             <th><div align="center">Aksi</div></th>
                                         </tr>
                                     </thead>
@@ -61,7 +61,7 @@
                                             @php
                                                 $tglAwal[$result] = \Carbon\Carbon::parse($esd->getSR->tgl_awal);
                                                 $tglAkhir[$result] = \Carbon\Carbon::parse($esd->getSR->tgl_akhir);
-                                                $subtotal[$result] = $esd->getTarif->harga * $tglAkhir[$result]->diffInDays($tglAwal[$result]);
+                                                $subtotal[$result] = $esd->getTarif->harga * $tglAkhir[$result]->diffInDays($tglAwal[$result]) + 1;
                                                 $total = $subtotal[$result] + $total;
                                             @endphp
                                         @endforeach

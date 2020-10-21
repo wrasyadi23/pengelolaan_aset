@@ -6,13 +6,17 @@
         font-size: 16px;
         font-weight: bold;
     }
+    .style11 {
+        font-size: 12px;
+        font-style: italic;
+        font-weight: bold;
+    }
     .style13 {
         font-size: 9px;
         font-style: italic;
         color: #0000FF;
     }
-    .style14 {font-style: italic; font-size: 12px;}
-</style>
+    </style>
     <table align="center" width="428" rules="all">
       <tr>
         <td>
@@ -20,19 +24,19 @@
       <tr>
         <td width="105"><img src="{{ ('logo-PG-agro.jpg') }}" width="105px"/></td>
         <td width="383"  style="border-left:inset"><div align="center">
-          <p class="style10">PERMINTAAN JASA (SERVICE REQUEST) <span class="style13">Kode : {{ $sr->kd_sr }}</span></p>
+          <p class="style10">PERMINTAAN JASA (SERVICE REQUEST) <span class="style13">Kode :{{ $sr->kd_sr }}</span></p>
         </div> </td>
       </tr>
     </table>
     <table align="center" width="492" rules="rows">
       <tr>
-        <td class="style8"><div align="center" class="style9">Nomor : {{ $sr->no_sr }} /LG.00.12/SR/{{ date('Y', strtotime($sr->tgl)) }}</div></td>
+        <td class="style8"><div align="center" class="style9">Nomor : {{ $sr->no_sr }}</div></td>
       </tr>
       <tr>
-        <td class="style8"><div align="center" class="style9"><em>Tanggal Permintaan Unit Kerja : </em>{{ date('d M Y', strtotime($sr->tgl)) }}</div></td>
+        <td class="style8"><div align="center" class="style9"><em>Tanggal Permintaan Unit Kerja :</em></div></td>
       </tr>
     </table>
-    
+
     <table align="center" width="495" rules="rowas">
       <tr>
         <td width="23" class="style8"><div align="center" class="style9">
@@ -62,7 +66,7 @@
         <td class="style9"><div align="center" class="style9">
           <div align="center">:</div>
         </div></td>
-        <td class="style9"><span class="style9">{{$sr->getKontrakBA->getKontrak->cost_center}}</span></td>
+        <td class="style9"><span class="style9"></span></td>
         </tr>
       <tr>
         <td class="style8"><div align="center" class="style9">IV</div></td>
@@ -70,7 +74,7 @@
         <td class="style9"><div align="center" class="style9">
           <div align="center">:</div>
         </div></td>
-        <td class="style9"><span class="style9">{{$sr->getKontrakBA->getKontrak->gl_acc}}</span></td>
+        <td class="style9"><span class="style9"></span></td>
         </tr>
       <tr>
         <td class="style8"><div align="center" class="style9">VI.</div></td>
@@ -94,19 +98,19 @@
         <td class="style9"><div align="center" class="style9">
           <div align="center">:</div>
         </div></td>
-        <td class="style9">&nbsp;</td>
+        <td class="style9"><span class="style9"></span></td>
         </tr>
       <tr>
         <td class="style8"><div align="center" class="style9">IX.</div></td>
         <td class="style9"><span class="style9">Pekerjaan yang dibutuhkan *) </span></td>
         <td class="style9"><div align="center" class="style9">:</div></td>
-        <td class="style9">{{ date('d M Y', strtotime($sr->tgl_awal)) }} s/d {{ date('d M Y', strtotime($sr->tgl_akhir)) }}</td>
+        <td class="style9">&nbsp;</td>
         </tr>
       <tr>
         <td class="style8"><div align="center" class="style9">X.</div></td>
         <td class="style9"><span class="style9">Estimasi biaya (tahun berjalan **) </span></td>
         <td class="style9"><div align="center" class="style9">:</div></td>
-        <td class="style9">&nbsp;</td>
+        <td class="style9">&nbsp;<strong>Rp.</strong></td>
         </tr>
       <tr>
         <td class="style8"><div align="center" class="style9">XI.</div></td>
@@ -114,19 +118,20 @@
         </tr>
       <tr>
         <td class="style8">&nbsp;</td>
-        <td colspan="3" class="style9"><span class="style8">Dasar SP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;{{$sr->getKontrakBA->getKontrak->no_sp}}</span></td>
+        <td colspan="3" class="style9"><span class="style8">Dasar SP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;</span></td>
         </tr>
       <tr>
         <td class="style8">&nbsp;</td>
-        <td colspan="3" class="style9"><span class="style8">Periode SP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;{{ date('d M Y', strtotime($sr->getKontrakBA->tgl_awal)) }} s/d {{ date('d M Y', strtotime($sr->getKontrakBA->tgl_akhir)) }}</span></td>
+        <td colspan="3" class="style9"><span class="style8">Periode SP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span></td>
         </tr>
       <tr>
         <td class="style8">&nbsp;</td>
-        <td colspan="3" class="style9"><span class="style8">Vendor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;{{$sr->getKontrakBA->getKontrak->rekanan}}</span></td>
+        <td colspan="3" class="style9"><span class="style8">Vendor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;</span></td>
         </tr>
     </table>
-    
+
     <table rules="all" align="center" width="485">
+
       <tr>
         <td width="24"><div align="center" class="style7">No</div></td>
         <td width="180"><div align="center" class="style7">Deskripsi</div></td>
@@ -136,36 +141,24 @@
         <td width="35"><div align="center" class="style7">Waktu</div></td>
         <td width="56"><div align="center" class="style7">Total Harga </div></td>
       </tr>
-      @php
-          $no = 1;
-      @endphp
-      @foreach($sr->getSRSewaPivot as $index => $data)
+    @foreach($sr->getSRSewaPivot as $index => $data)
+            <tr>
+                <td align="center" class="style8">1</td>
+                <td class="style8">Sewa Kendaraan {{ $data->kd_kendaraan }} {{ $data->getKendaraan->merk }} {{ $data->getKendaraan->nopol }}</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td class="style8"><td><div align="right"><span class="style1">{{ number_format($data->getTarif->harga,0) }}</span></div></td></td>
+                <td align="center" class="style8">&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        @endforeach
+
       <tr>
-        <td align="center" class="style8">{{$no++}}</td>
-        <td class="style14">Sewa Kendaraan {{ $data->getKendaraan->merk }} {{ $data->getKendaraan->nopol }}</td>
-        <td align="center" class="style8">{{$data->where('kd_sr', $data->kd_sr)->count('kd_kendaraan') - 1}}</td>
-        <td class="style14"><div align="center" class="style8"></div>
-          <div align="center">{{$data->getSR->getKontrakBA->getKontrak->satuan}}</div></td>
-        <td class="style14"><div align="right" class="style8">{{ number_format($data->getTarif->harga,0) }}</div></td>
-        <td align="center" class="style8">
-          @php
-              $tglAwal = \Carbon\Carbon::parse($data->getSR->tgl_awal);
-              $tglAkhir = \Carbon\Carbon::parse($data->getSR->tgl_akhir);
-              $hari = $tglAwal->diffInDays($tglAkhir) + 1;
-              $subTotal = $data->getTarif->harga * $hari;
-              // $total += $subTotal;
-          @endphp
-          {{$hari}} Hari
-        </td>
-        <td><div align="right" class="style8">{{number_format($subTotal,0)}}</div></td>
-      </tr>
-      @endforeach
-      <tr>
-        <td div align="right" class="style9"colspan="2">Grand Total </td>
+        <td div align="right" class="style9"colspan="2">Jumlah </td>
         <td class="style9">&nbsp;</td>
         <td class="style9">&nbsp;</td>
-        <td colspan="3" class="style9"></td>
-      </tr>
+        <td colspan="3">&nbsp;</td>
+        </tr>
     </table>
     <table align="center" width="485" rules="all">
       <tr>
@@ -177,7 +170,7 @@
           </span>
           <p align="center">&nbsp;</p>
           <div align="center"><span class="style9"><u>Sunoto</u>	  <br>
-            (Kasi Administrasi) </span><br/> 
+            (Kasi Administrasi) </span><br/>
             </p>
           </div>
         </div></td>
@@ -188,7 +181,7 @@
           </span>
           <p align="center">&nbsp;</p>
           <div align="center"><span class="style1"><u>Djuli Fanani </u><br>
-            (Kabag. Transporti) </span><br/> 
+            (Kabag. Transporti) </span><br/>
             </p>
           </div>
           </div></div></td>
@@ -200,16 +193,15 @@
           </span>
           <p align="center">&nbsp;</p>
           <div align="center"><span class="style1"><u>Oda Sugarda </u><br>
-            (Manager Pelayanan Umum) </span><br/> 
+            (Manager Pelayanan Umum) </span><br/>
             </p>
           </div>
           </div></td>
       </tr>
     </table>
-    
+
         </td>
       </tr>
     </table>
-    
-    
-    
+
+

@@ -118,12 +118,12 @@ class SrEsdController extends Controller
         return view('transport/sr-esd-tampil', ['sresd' => $sresd]);
     }
 
-    public function edit($id)
+    public function edit($kd_sr)
     {
-        $editsresd = SR::where('id', $id)->first();
+        $editsresd = SR::where('kd_sr', $kd_sr)->first();
         return view('transport/sr-esd-edit', ['editsresd' => $editsresd]);
     }
-    public function update($id, Request $request)
+    public function update($kd_sr, Request $request)
     {
         $no_sr = $request->input('no_sr');
         $tgl = $request->input('tgl');
@@ -131,7 +131,7 @@ class SrEsdController extends Controller
         $tgl_akhir = $request->input('tgl_akhir');
         $status = $request->input('status');
 
-        $newRealisasi = SR::findOrFail($id);
+        $newRealisasi = SR::where('kd_sr', $kd_sr)->first();
         $newRealisasi->no_sr = $no_sr;
         $newRealisasi->tgl = $tgl;
         $newRealisasi->tgl_awal = $tgl_awal;
@@ -151,6 +151,7 @@ class SrEsdController extends Controller
     public function print($kd_sr)
     {
         $sr = SR::where('kd_sr', $kd_sr)->first();
+        
 //        dd($sr->getSRSewaPivot);
 //        $sr = SR::findOrFail($kd_sr);
         $pdf = PDF::loadView('transport/sr-esd-print', ['sr' => $sr]);

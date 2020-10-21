@@ -63,7 +63,7 @@
                                             <td><div align="right"><span class="style1">{{ number_format($esd->getTarif->harga,0) }}</span></div></td>
                                             
                                             <th>
-                                                <a href="/transport/sr-esd-edit/{{ $esd->id }}" class="badge badge-primary">Isi No.Sr</a>
+                                                <a href="/transport/sr-esd-edit/{{ $esd->kd_sr }}" class="badge badge-primary">Isi No.Sr</a>
                                                 <a href="/transport/sr-esd-print/{{ $esd->kd_sr }}" class="badge badge-primary">Print</a>
                                                 <a href="/transport/sr-esd-detail/{{ $esd->kd_sr }}" class="badge badge-primary">Detail</a>
                                             </th>

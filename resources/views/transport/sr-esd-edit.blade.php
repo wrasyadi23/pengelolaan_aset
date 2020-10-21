@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Edit Sevice Request Esd</h4>
                         <div class="card-content">
-                            <form action="/transport/sr-esd-update/{{ $editsresd->id }}" method="post">
+                            <form action="/transport/sr-esd-update/{{ $editsresd->kd_sr }}" method="post">
                                 @csrf
                                 <div class="basic-form">
                                     <div class="form-row">
