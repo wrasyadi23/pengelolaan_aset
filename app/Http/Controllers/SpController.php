@@ -23,7 +23,7 @@ class SpController extends Controller
         // })->where('status','Aktif')->get();
 
         $kontrak = Kontrak::with(['getRkapDetail' => function ($query) {
-            $query->where('tb_rkap_detail.kd_bagian', Auth::user()->kontrak_bagian)->select('*');
+            $query->where('kd_bagian', Auth::user()->kontrak_bagian)->select('*');
         }])->get();
         return view('sp', ['kontrak' => $kontrak]);
     }
@@ -102,7 +102,13 @@ class SpController extends Controller
 
     public function edit($kd_sp)
     {
-        $kontrak = Kontrak::where('kd_sp', $kd_sp)->first();
+        $rkap = Rkap::where('kd_departemen', Auth::user()->getKaryawan->kd_departemen)
+            ->where('status', 'Aktif')
+            ->groupBy('cost_center')
+            ->get();
+
+        // ambil data kontrak eksisting
+
         return view('sp-edit', $data);
     }
 }

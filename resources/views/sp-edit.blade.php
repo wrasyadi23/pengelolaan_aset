@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Input Kontrak</h4>
                     <div class="card-content">
-                        <form action="/sp-store" method="post" enctype="multipart/form-data">
+                        <form action="/sp-update/{{}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="basic-form">
                                 <div class="form-row">
@@ -102,76 +102,5 @@
 </div>
 @endsection
 @section('script')
-    <script>
-        $("#cost_center").select2({
-            placeholder: 'Pilih Cost Center',
-            allowClear: true
-        });
-        $("#gl_acc").select2({
-            placeholder: 'Pilih Commit Item/Gl. Account',
-            allowClear: true,
-            disabled: true
-        });
-        $("#kd_aktifitas_rkap").select2({
-            placeholder: 'Pilih Kode Aktifitas',
-            allowClear: true,
-            disabled: true
-        });
-        $("#cost_center").change(function () {
-            var gl_acc = "<option disabled selected></option>"
-            $("#gl_acc")
-                .empty()
-                .prop("disabled", true);
-            $("#kd_aktifitas_rkap")
-                .empty()
-                .prop("disabled", true);
-            $.ajax({
-                type: "POST",
-                url: "/api/get-gl-acc", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
-                data: {
-                    cost_center: $("#cost_center").val()
-                },
-                error: function (e) {
-                    console.log(e)
-                },
-                success: function (response) {
-                    var data = JSON.parse(response);
-                    for (var x = 0; data.length > x; x++) {
-                        gl_acc += "<option value=" + data[x].kd_rkap + ">" + data[x].gl_acc + " - " + data[x].get_rkap_detail[0].nama_aktifitas +"</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
-                    }
-                    console.log(data); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
-                    $("#gl_acc")
-                        .empty()
-                        .append(gl_acc) // variable yang berisi tag <option> diassign ke combobox terkait
-                        .prop("disabled", false);
-                }
-            })
-        })
-
-        $("#gl_acc").change(function () {
-            var kd_aktifitas_rkap = "<option disabled selected></option>"
-            $("#kd_aktifitas_rkap").empty()
-            $.ajax({
-                type: "POST",
-                url: "/api/get-kd-aktifitas-rkap", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
-                data: {
-                    gl_acc: $("#gl_acc").val()
-                },
-                error: function (e) {
-                    console.log(e)
-                },
-                success: function (response) {
-                    var data = JSON.parse(response);
-                    for (var x = 0; data.length > x; x++) {
-                        kd_aktifitas_rkap += "<option value=" + data[x].kd_aktifitas_rkap + ">" + data[x].uraian + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
-                    }
-                    console.log(kd_aktifitas_rkap); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
-                    $("#kd_aktifitas_rkap")
-                        .empty()
-                        .append(kd_aktifitas_rkap) // variable yang berisi tag <option> diassign ke combobox terkait
-                        .prop("disabled", false);
-                }
-            })
-        })
-    </script>
+    
 @endsection

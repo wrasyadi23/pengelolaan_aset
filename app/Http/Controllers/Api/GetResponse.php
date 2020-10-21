@@ -71,7 +71,7 @@ class GetResponse extends Controller
 
     public function getKodeAktifitasRkap(Request $request)
     {
-        $kd_rkap = $request->input('gl_acc'); //nama field gl_acc tapi value dari option saya isi kd_rkap
+        $kd_rkap = $request->input('gl_acc');
         $response = RkapDetail::where('kd_rkap', $kd_rkap)->get()->toJson();
         return $response;
     }
