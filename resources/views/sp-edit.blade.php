@@ -17,67 +17,72 @@
                                         <select name="cost_center" id="cost_center"
                                                 class="form-control input-default" required>
                                             <option disabled selected></option>
-                                            @foreach ($rkap as $item)
-                                                <option value="{{$item->cost_center}}">{{$item->cost_center}}</option>
+                                            @foreach ($rkap as $resultRkap => $itemRkap)
+                                                <option value="{{$itemRkap->cost_center}}" {{$itemRkap->cost_center == $kontrak->cost_center ? 'selected' : ''}}>{{$itemRkap->cost_center}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="gl_acc">Gl. Account</label>
-                                        <select name="gl_acc" id="gl_acc" class="form-control input-default"
-                                                disabled required></select>
+                                        <select name="gl_acc" id="gl_acc" class="form-control input-default" required>
+                                            @foreach ($gl_acc as $resultGlAcc => $itemGlAcc)
+                                                <option value="{{$itemGlAcc->kd_rkap}}" {{$itemGlAcc->kd_rkap == $kontak->getRkapDetail->kd_rkap ? 'selected' : ''}}>{{$itemGlAcc->gl_acc}} - {{$itemGlAcc->getRkapDetail->nama_aktifitas}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="kd_aktifitas_rkap">Aktifitas</label>
-                                        <select name="kd_aktifitas_rkap" id="kd_aktifitas_rkap"
-                                                class="form-control input-default" required></select>
+                                        <select name="kd_aktifitas_rkap" id="kd_aktifitas_rkap" class="form-control input-default" required>
+                                            @foreach ($kd_aktifitas_rkap as $resultKodeAktifitasRkap => $item)
+                                                <option value="{{$item->kd_aktifitas_rkap}}" {{$item->kd_aktifitas_rkap == $kontrak->kd_aktifitas_rkap ? 'selected' : ''}}>{{$item->uraian}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
                                         <label for="tgl">Tanggal</label>
-                                        <input type="date" name="tgl" id="" class="form-control input-default"
-                                                required>
+                                        <input type="date" name="tgl" id="" class="form-control input-default" value="{{$kontrak->tgl}}" required>
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="jml">Jumlah</label>
-                                        <input type="number" name="jml" id="" class="form-control input-default"
+                                        <input type="number" name="jml" id="" class="form-control input-default" value="{{$kontrak->jml}}"
                                                 required>
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="satuan">Satuan</label>
-                                        <input type="text" name="satuan" id="" class="form-control input-default"
+                                        <input type="text" name="satuan" id="" class="form-control input-default" value="{{$kontrak->satuan}}"
                                                 required>
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="harga">Harga</label>
-                                        <input type="number" name="harga" id="" class="form-control input-default"
+                                        <input type="number" name="harga" id="" class="form-control input-default" value="{{$kontrak->harga}}"
                                                 required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="deskripsi">Deskripsi</label>
-                                    <input type="text" name="deskripsi" id="" class="form-control input-default"
+                                    <input type="text" name="deskripsi" id="" class="form-control input-default" value="{{$kontrak->deskripsi}}"
                                             required>
                                 </div>
                                 <div class="form-group">
                                     <label for="uraian">Uraian</label>
-                                    <input type="text" name="uraian" id="" class="form-control input-default"
+                                    <input type="text" name="uraian" id="" class="form-control input-default" value="{{$kontrak->uraian}}"
                                             required>
                                 </div>
                                 <div class="form-group">
                                     <label for="keterangan">Keterangan</label>
-                                    <input type="text" name="keterangan" id="" class="form-control input-default"
+                                    <input type="text" name="keterangan" id="" class="form-control input-default" value="{{$kontrak->keterangan}}"
                                             required>
                                 </div>
                                 <div class="form-group">
                                     <label for="no_sp">Nomor Kontrak/SP</label>
-                                    <input type="text" name="no_sp" id="" class="form-control input-default"
+                                    <input type="text" name="no_sp" id="" class="form-control input-default" value="{{$kontrak->no_sp}}"
                                             required>
                                 </div>
                                 <div class="form-group">
                                     <label for="rekanan">Rekanan/Vendor</label>
-                                    <input type="text" name="rekanan" id="" class="form-control input-default"
+                                    <input type="text" name="rekanan" id="" class="form-control input-default" value="{{$kontrak->rekanan}}"
                                             required>
                                 </div>
                                 <div class="form-group">

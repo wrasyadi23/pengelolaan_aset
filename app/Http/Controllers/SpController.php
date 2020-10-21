@@ -108,7 +108,15 @@ class SpController extends Controller
             ->get();
 
         // ambil data kontrak eksisting
+        $kontrak = Kontrak::where('kd_sp', $kd_sp)->first();
+        $gl_acc = Rkap::where('kd_departemen', $kontrak->getRkapDetail->getRkap->kd_departmen)->get();
+        $kd_aktifitas_rkap = RkapDetail::where('kd_rkap', $gl_acc->where('kd_rkap', $kontrak->getRkapDetail->kd_rkap)->first()->kd_aktifitas_rkap)->get();
 
-        return view('sp-edit', $data);
+        return view('sp-edit', [
+            'kontrak' => $kontrak,
+            'rkap' => $rkap,
+            'gl_acc' => $gl_acc,
+            'kd_aktifitas_rkap' => $kd_aktifitas_rkap
+        ]);
     }
 }
