@@ -90,11 +90,39 @@
                                     <input type="file" name="dokumen[]" id="dokumen[]" class="form-control input-default"
                                             multiple>
                                 </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <td>No</td>
+                                                <td>File</td>
+                                                <td>Action</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        @if ($kontrak->getKontrakFile != null)
+                                            @php
+                                                $no = 1;
+                                            @endphp
+                                            @foreach ($kontrak->getKontrakFile->all() as $file)
+                                                <tr>
+                                                    <td>{{$no++}}</td>
+                                                    <td><a href="{{asset('kontrak/'.$file->file)}}">{{$file->file}}</a></td>
+                                                    <td><a href="/sp-delete-file/{{$file->id}}" class="badge badge-danger">Hapus</a></td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="3"> Tidak ada file yang diunggah.</td>
+                                            </tr>
+                                        @endif
+                                        </tbody>
+                                    </table>
+                                </div>
                                 <div class="general-button">
                                     <button type="button" class="btn btn-primary"
                                             onclick="window.location.href='/sp'">Back
                                     </button>
-                                    <button type="reset" class="btn btn-warning">Reset</button>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>

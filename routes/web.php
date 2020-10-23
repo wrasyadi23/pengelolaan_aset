@@ -65,6 +65,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::post('/sp-update/{kd_sp}', 'SpController@update');
     Route::get('/sp-delete/{kd_sp}', 'SpController@delete');
     Route::get('/sp-detail/{kd_sp}', 'SpController@detail');
+    Route::get('/sp-delete-file/{id}', 'SpController@deleteFile');
 });
 
 Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function () {
