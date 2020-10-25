@@ -106,6 +106,10 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/transport/kendaraan-edit/{id}', 'KendaraanController@edit');
     Route::post('/transport/kendaraan-edit/{id}', 'KendaraanController@update');
     Route::get('/transport/cari1', 'KendaraanController@cari1');
+    //input kendaraan investasi
+    Route::get('/transport/kendaraan-invest-tampil', 'KendaraanInvestController@tampilkendinvest');
+    Route::get('/transport/kendaraan-invest-create', 'KendaraanInvestController@create');
+    Route::post('/transport/kendaraan-invest-store','KendaraanInvestController@store');
      //input servie request sewa
     Route::get('/transport/sr-create', 'SrController@create');
     Route::post('/transport/sr-store','SrController@store');

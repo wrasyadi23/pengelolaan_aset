@@ -35,7 +35,8 @@
                 <i class="icon-note menu-icon"></i><span class="nav-text">Data Kendaraan</span>
             </a>
             <ul aria-expanded="false">
-                <li><a href="/transport/kendaraan-tampil">Data Kendaraan</a></li>
+                <li><a href="/transport/kendaraan-tampil">Data Kendaraan Sewa</a></li>
+                <li><a href="/transport/kendaraan-invest-tampil">Data Kendaraan Investasi</a></li>
                 <li><a href="/transport/kendaraan-mutasi">Mutasi Kendaraan</a></li>
                 <li><a href="/transport/kendaraan-data">Data Kendaraan</a></li>
             </ul>
