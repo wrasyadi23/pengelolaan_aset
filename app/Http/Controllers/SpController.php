@@ -59,7 +59,6 @@ class SpController extends Controller
         $jml = $request->jml;
         $satuan = $request->satuan;
         $rekanan = $request->rekanan;
-        $status = $request->uraian;
         $kd_aktifitas_rkap = $request->kd_aktifitas_rkap;
 
         $validasi = Kontrak::where('no_sp', $no_sp)->get();
@@ -118,5 +117,62 @@ class SpController extends Controller
             'gl_acc' => $gl_acc,
             'kd_aktifitas_rkap' => $kd_aktifitas_rkap
         ]);
+    }
+
+    public function update($kd_sp, Request $request)
+    {
+        $no_sp = $request->no_sp;
+        $cost_center = $request->cost_center;
+        $gl_acc = $request->gl_acc;
+        $deskripsi = $request->deskripsi;
+        $uraian = $request->uraian;
+        $keterangan = $request->keterangan;
+        $tgl = $request->tgl;
+        $harga = $request->harga;
+        $jml = $request->jml;
+        $satuan = $request->satuan;
+        $rekanan = $request->rekanan;
+        $kd_aktifitas_rkap = $request->kd_aktifitas_rkap;
+
+        $updateKontrak = Kontrak::where('kd_sp', $kd_sp)->first();
+        $updateKontrak->no_sp = $no_sp;
+        $updateKontrak->cost_center = $cost_center;
+        $updateKontrak->gl_acc = $gl_acc;
+        $updateKontrak->deskripsi = $deskripsi;
+        $updateKontrak->uraian = $uraian;
+        $updateKontrak->keterangan = $keterangan;
+        $updateKontrak->tgl = $keterangan;
+        $updateKontrak->harga = $keterangan;
+        $updateKontrak->jml = $keterangan;
+        $updateKontrak->satuan = $keterangan;
+        $updateKontrak->rekanan = $keterangan;
+        $updateKontrak->kd_aktifitas_rkap = $keterangan;
+        $updateKontrak->save();
+
+        if ($request->hasFile('dokumen')) {
+            foreach ($request->file('dokumen') as $key => $dokumen) {
+                $uid = uniqid(time(), false);
+                $filename = $uid . '_' . $dokumen->getClientOriginalName();
+                $dokumen->move(public_path('kontrak'), $filename);
+                $newKontrakFile = new KontrakFile;
+                $newKontrakFile->kd_sp = $kd_sp;
+                $newKontrakFile->file = $filename;
+                $newKontrakFile->save();
+            }
+        }
+    }
+
+    public function deleteFile($id)
+    {
+        $kontrakFile = KontrakFile::where('id', $id)->first();
+        $kontrakFile->delete();
+        unlink(public_path('kontrak/') . $kontrakFile->file);
+
+        return redirect()->back();
+    }
+
+    public function detail($kd_sp)
+    {
+        
     }
 }

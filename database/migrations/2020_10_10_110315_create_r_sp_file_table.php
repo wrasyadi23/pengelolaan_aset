@@ -16,7 +16,7 @@ class CreateRSpFileTable extends Migration
         Schema::create('r_sp_file', function (Blueprint $table) {
             $table->id();
             $table->string('kd_sp', 45);
-            $table->string('file', 45);
+            $table->string('file', 100);
         });
     }
 

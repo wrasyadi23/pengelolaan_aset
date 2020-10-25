@@ -16,7 +16,7 @@ class CreateRBaFileTable extends Migration
         Schema::create('r_ba_file', function (Blueprint $table) {
             $table->id();
             $table->string('kd_ba', 45);
-            $table->string('file', 45);
+            $table->string('file', 100);
         });
     }
 
