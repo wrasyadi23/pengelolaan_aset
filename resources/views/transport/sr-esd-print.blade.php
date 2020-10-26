@@ -106,7 +106,7 @@
         <td class="style8"><div align="center" class="style9">X.</div></td>
         <td class="style9"><span class="style9">Estimasi biaya (tahun berjalan **) </span></td>
         <td class="style9"><div align="center" class="style9">:</div></td>
-        <td class="style9">&nbsp;</td>
+        <td class="style9">&nbsp;?</td>
         </tr>
       <tr>
         <td class="style8"><div align="center" class="style9">XI.</div></td>
@@ -162,9 +162,9 @@
       @endforeach
       <tr>
         <td div align="right" class="style9"colspan="2">Grand Total </td>
-        <td class="style9">&nbsp;</td>
-        <td class="style9">&nbsp;</td>
-        <td colspan="3" class="style9"></td>
+        <td class="style9">&nbsp;?</td>
+        <td class="style9"><div align="center" class="style14">Hari</div></td>
+        <td colspan="3" class="style9">?</td>
       </tr>
     </table>
     <table align="center" width="485" rules="all">

@@ -31,6 +31,7 @@
                                             <th><div align="center">Dipergunakan</div></th>
                                             <th><div align="center">Harga/Hari</div></th>
                                             <th><div align="center">Lama Sewa</div></th>
+                                            <th><div align="center">Sub Total</div></th>
                                             <th><div align="center">Aksi</div></th>
                                         </tr>
                                     </thead>
@@ -52,7 +53,8 @@
                                             <td>{{ $esd->getSR->tgl_akhir }}</td>
                                             <td>{{ $esd->getKendaraan->warna }}</td>
                                             <td><div align="right"><span class="style1">{{ number_format($esd->getTarif->harga,0) }}</span></div></td>
-											<td>{{ $esd->getKendaraan->nopol }}</td>
+                                            <td>?</td>
+                                            <td>?</td>
 
                                             <th>
                                                 <a href="/transport/sr-esd-edit/{{ $esd->id }}" class="badge badge-primary">Edit</a>
@@ -67,7 +69,7 @@
                                         @endforeach
                                         <tr>
                                             <td colspan="10" align="right"><em><strong>Total Harga</strong></em></td>
-                                            <td colspan="3">{{number_format($total)}}</td>
+                                            <td colspan="4"><div align="center" class="style1"><em><strong>Rp.{{number_format($total)}}</strong></em></div></td>
                                         </tr>
                                     </tbody>
                                 </table>
