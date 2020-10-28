@@ -49,8 +49,6 @@ class SpController extends Controller
         }
 
         $no_sp = $request->no_sp;
-        $cost_center = $request->cost_center;
-        $gl_acc = $request->gl_acc;
         $deskripsi = $request->deskripsi;
         $uraian = $request->uraian;
         $keterangan = $request->keterangan;
@@ -68,8 +66,6 @@ class SpController extends Controller
             $newKontrak = new Kontrak;
             $newKontrak->kd_sp = $kd_sp;
             $newKontrak->no_sp = $no_sp;
-            $newKontrak->cost_center = $cost_center;
-            $newKontrak->gl_acc = $gl_acc;
             $newKontrak->deskripsi = $deskripsi;
             $newKontrak->uraian = $uraian;
             $newKontrak->keterangan = $keterangan;
@@ -109,7 +105,7 @@ class SpController extends Controller
         // ambil data kontrak eksisting
         $kontrak = Kontrak::where('kd_sp', $kd_sp)->first();
         $gl_acc = Rkap::where('kd_departemen', $kontrak->getRkapDetail->getRkap->kd_departmen)->get();
-        $kd_aktifitas_rkap = RkapDetail::where('kd_rkap', $gl_acc->where('kd_rkap', $kontrak->getRkapDetail->kd_rkap)->first()->kd_aktifitas_rkap)->get();
+        $kd_aktifitas_rkap = RkapDetail::where('kd_rkap', $kontrak->getRkapDetail->kd_rkap)->get();
 
         return view('sp-edit', [
             'kontrak' => $kontrak,
@@ -122,8 +118,6 @@ class SpController extends Controller
     public function update($kd_sp, Request $request)
     {
         $no_sp = $request->no_sp;
-        $cost_center = $request->cost_center;
-        $gl_acc = $request->gl_acc;
         $deskripsi = $request->deskripsi;
         $uraian = $request->uraian;
         $keterangan = $request->keterangan;
@@ -136,8 +130,6 @@ class SpController extends Controller
 
         $updateKontrak = Kontrak::where('kd_sp', $kd_sp)->first();
         $updateKontrak->no_sp = $no_sp;
-        $updateKontrak->cost_center = $cost_center;
-        $updateKontrak->gl_acc = $gl_acc;
         $updateKontrak->deskripsi = $deskripsi;
         $updateKontrak->uraian = $uraian;
         $updateKontrak->keterangan = $keterangan;
@@ -173,6 +165,8 @@ class SpController extends Controller
 
     public function detail($kd_sp)
     {
-        
+        $kontrak = Kontrak::where('kd_sp', $kd_sp)->first();
+
+        return view('sp-detail', compact('kontrak'));
     }
 }

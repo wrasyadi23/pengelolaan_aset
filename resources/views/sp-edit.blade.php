@@ -18,7 +18,7 @@
                                                 class="form-control input-default" required>
                                             <option disabled selected></option>
                                             @foreach ($rkap as $resultRkap => $itemRkap)
-                                                <option value="{{$itemRkap->cost_center}}" {{$itemRkap->cost_center == $kontrak->cost_center ? 'selected' : ''}}>{{$itemRkap->cost_center}}</option>
+                                                <option value="{{$itemRkap->cost_center}}" {{$itemRkap->cost_center == $kontrak->getRkapDetail->getRkap->cost_center ? 'selected' : ''}}>{{$itemRkap->cost_center}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -26,7 +26,7 @@
                                         <label for="gl_acc">Gl. Account</label>
                                         <select name="gl_acc" id="gl_acc" class="form-control input-default" required>
                                             @foreach ($gl_acc as $resultGlAcc => $itemGlAcc)
-                                                <option value="{{$itemGlAcc->kd_rkap}}" {{$itemGlAcc->kd_rkap == $kontak->getRkapDetail->kd_rkap ? 'selected' : ''}}>{{$itemGlAcc->gl_acc}} - {{$itemGlAcc->getRkapDetail->nama_aktifitas}}</option>
+                                                <option value="{{$itemGlAcc->kd_rkap}}" {{$itemGlAcc->kd_rkap == $kontrak->getRkapDetail->kd_rkap ? 'selected' : ''}}>{{$itemGlAcc->gl_acc}} - {{$itemGlAcc->getRkapDetail->nama_aktifitas}}</option>
                                             @endforeach
                                         </select>
                                     </div>

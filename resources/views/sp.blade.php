@@ -56,7 +56,7 @@
                                                     <a href="" class="badge badge-danger">{{$sp->status}}</a>
                                                 @endif
                                             </td>
-                                            <td>Action</td>
+                                            <td><a href="/sp-detail/{{$sp->kd_sp}}" class="badge badge-success">Detail</a></td>
                                         </tr>
                                         @endforeach
                                     </tbody>
