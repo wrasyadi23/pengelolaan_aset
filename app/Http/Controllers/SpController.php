@@ -29,14 +29,14 @@ class SpController extends Controller
     }
 
     public function create()
-    {   
+    {
         $rkap = Rkap::where('kd_departemen', Auth::user()->getKaryawan->kd_departemen)
             ->where('status', 'Aktif')
             ->groupBy('cost_center')
             ->get();
         return view('sp-create', ['rkap' => $rkap]);
     }
-    
+
     public function store(Request $request)
     {
         $data = Kontrak::select('id', 'kd_sp')
@@ -104,7 +104,7 @@ class SpController extends Controller
 
         // ambil data kontrak eksisting
         $kontrak = Kontrak::where('kd_sp', $kd_sp)->first();
-        $gl_acc = Rkap::where('kd_departemen', $kontrak->getRkapDetail->getRkap->kd_departmen)->get();
+        $gl_acc = Rkap::where('kd_departemen', $kontrak->getRkapDetail->getRkap->kd_departemen)->get();
         $kd_aktifitas_rkap = RkapDetail::where('kd_rkap', $kontrak->getRkapDetail->kd_rkap)->get();
 
         return view('sp-edit', [

@@ -26,7 +26,7 @@
                                         <label for="gl_acc">Gl. Account</label>
                                         <select name="gl_acc" id="gl_acc" class="form-control input-default" required>
                                             @foreach ($gl_acc as $resultGlAcc => $itemGlAcc)
-                                                <option value="{{$itemGlAcc->kd_rkap}}" {{$itemGlAcc->kd_rkap == $kontrak->getRkapDetail->kd_rkap ? 'selected' : ''}}>{{$itemGlAcc->gl_acc}} - {{$itemGlAcc->getRkapDetail->nama_aktifitas}}</option>
+                                                <option value="{{$itemGlAcc->kd_rkap}}" {{$itemGlAcc->kd_rkap == $kontrak->getRkapDetail->kd_rkap ? 'selected' : ''}}>{{$itemGlAcc->gl_acc}} - {{$itemGlAcc->getRkapDetail->first()->nama_aktifitas}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -143,12 +143,10 @@
     $("#gl_acc").select2({
         placeholder: 'Pilih Commit Item/Gl. Account',
         allowClear: true,
-        disabled: true
     });
     $("#kd_aktifitas_rkap").select2({
         placeholder: 'Pilih Kode Aktifitas',
         allowClear: true,
-        disabled: true
     });
     $("#cost_center").change(function () {
         var gl_acc = "<option disabled selected></option>"
