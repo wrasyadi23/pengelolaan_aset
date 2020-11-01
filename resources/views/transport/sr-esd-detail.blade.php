@@ -30,8 +30,12 @@
                                             <th><div align="center">Sampai</div></th>
                                             <th><div align="center">Dipergunakan</div></th>
                                             <th><div align="center">Harga/Hari</div></th>
+                                            
+
                                             <th><div align="center">Lama Sewa</div></th>
-                                            <th><div align="center">Sub Total</div></th>
+
+                                            <th><div align="center">Subtotal</div></th>
+
                                             <th><div align="center">Aksi</div></th>
                                         </tr>
                                     </thead>
@@ -41,6 +45,12 @@
                                             $total = 0;
                                         @endphp
                                         @foreach ($sresd as $result => $esd)
+                                            @php
+                                                $tglAwal[$result] = \Carbon\Carbon::parse($esd->getSR->tgl_awal);
+                                                $tglAkhir[$result] = \Carbon\Carbon::parse($esd->getSR->tgl_akhir);
+                                                $subtotal[$result] = $esd->getTarif->harga * $tglAkhir[$result]->diffInDays($tglAwal[$result]);
+                                                $total = $subtotal[$result] + $total;
+                                            @endphp
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $esd->kd_sr }}</td>
@@ -53,23 +63,22 @@
                                             <td>{{ $esd->getSR->tgl_akhir }}</td>
                                             <td>{{ $esd->getKendaraan->warna }}</td>
                                             <td><div align="right"><span class="style1">{{ number_format($esd->getTarif->harga,0) }}</span></div></td>
-                                            <td>?</td>
-                                            <td>?</td>
+
+											<td><div align="center">{{ $tglAkhir[$result]->diffInDays($tglAwal[$result]) }} Hari</div></td>
+                                            <td>{{ number_format($subtotal[$result]) }}</td>
+
 
                                             <th>
                                                 <a href="/transport/sr-esd-edit/{{ $esd->id }}" class="badge badge-primary">Edit</a>
                                             </th>
                                         </tr>
-                                            @php
-                                                $tglAwal[$result] = \Carbon\Carbon::parse($esd->getSR->tgl_awal);
-                                                $tglAkhir[$result] = \Carbon\Carbon::parse($esd->getSR->tgl_akhir);
-                                                $subtotal[$result] = $esd->getTarif->harga * $tglAkhir[$result]->diffInDays($tglAwal[$result]) + 1;
-                                                $total = $subtotal[$result] + $total;
-                                            @endphp
+
                                         @endforeach
                                         <tr>
                                             <td colspan="10" align="right"><em><strong>Total Harga</strong></em></td>
+
                                             <td colspan="4"><div align="center" class="style1"><em><strong>Rp.{{number_format($total)}}</strong></em></div></td>
+
                                         </tr>
                                     </tbody>
                                 </table>

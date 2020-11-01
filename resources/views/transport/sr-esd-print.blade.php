@@ -12,6 +12,12 @@
         color: #0000FF;
     }
     .style14 {font-style: italic; font-size: 12px;}
+.style15 {
+	font-style: italic;
+	font-size: 12px;
+	color: #0000FF;
+	font-weight: bold;
+}
 </style>
     <table align="center" width="428" rules="all">
       <tr>
@@ -32,7 +38,7 @@
         <td class="style8"><div align="center" class="style9"><em>Tanggal Permintaan Unit Kerja : </em>{{ date('d M Y', strtotime($sr->tgl)) }}</div></td>
       </tr>
     </table>
-    
+
     <table align="center" width="495" rules="rowas">
       <tr>
         <td width="23" class="style8"><div align="center" class="style9">
@@ -125,7 +131,7 @@
         <td colspan="3" class="style9"><span class="style8">Vendor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;{{$sr->getKontrakBA->getKontrak->rekanan}}</span></td>
         </tr>
     </table>
-    
+
     <table rules="all" align="center" width="485">
       <tr>
         <td width="24"><div align="center" class="style7">No</div></td>
@@ -149,22 +155,29 @@
         <td class="style14"><div align="right" class="style8">{{ number_format($data->getTarif->harga,0) }}</div></td>
         <td align="center" class="style8">
           @php
-              $tglAwal = \Carbon\Carbon::parse($data->getSR->tgl_awal);
-              $tglAkhir = \Carbon\Carbon::parse($data->getSR->tgl_akhir);
-              $hari = $tglAwal->diffInDays($tglAkhir) + 1;
-              $subTotal = $data->getTarif->harga * $hari;
+              $tglAwal[$index] = \Carbon\Carbon::parse($data->getSR->tgl_awal);
+              $tglAkhir[$index] = \Carbon\Carbon::parse($data->getSR->tgl_akhir);
+              $hari[$index] = $tglAwal[$index]->diffInDays($tglAkhir[$index]) + 1;
+              $subTotal[$index] = $data->getTarif->harga * $hari[$index];
+              $jmlKendaraan[$index] = $data->where('kd_sr', $data->kd_sr)->count('kd_kendaraan') - 1;
               // $total += $subTotal;
           @endphp
-          {{$hari}} Hari
+          {{$hari[$index]}} Hari
         </td>
-        <td><div align="right" class="style8">{{number_format($subTotal,0)}}</div></td>
+        <td><div align="right" class="style8">{{number_format($subTotal[$index],0)}}</div></td>
       </tr>
       @endforeach
       <tr>
-        <td div align="right" class="style9"colspan="2">Grand Total </td>
-        <td class="style9">&nbsp;?</td>
-        <td class="style9"><div align="center" class="style14">Hari</div></td>
-        <td colspan="3" class="style9">?</td>
+        <td div align="right" class="style14"colspan="2"><strong>Grand Total</strong> &nbsp;</td>
+<<<<<<< HEAD
+        <td class="style9">&nbsp;</td>
+        <td class="style9"><div align="center" class="style14">{{array_sum($jmlKendaraan)}}</div></td>
+        <td colspan="4" class="style9"><div align="center" class="style15">Rp. {{number_format(array_sum($subTotal))}}</div></td>
+=======
+        
+       
+        
+>>>>>>> e6d93b064e65bdecf9c1058693e12bb4e2e175e4
       </tr>
     </table>
     <table align="center" width="485" rules="all">
@@ -177,7 +190,7 @@
           </span>
           <p align="center">&nbsp;</p>
           <div align="center"><span class="style9"><u>Sunoto</u>	  <br>
-            (Kasi Administrasi) </span><br/> 
+            (Kasi Administrasi) </span><br/>
             </p>
           </div>
         </div></td>
@@ -188,7 +201,7 @@
           </span>
           <p align="center">&nbsp;</p>
           <div align="center"><span class="style1"><u>Djuli Fanani </u><br>
-            (Kabag. Transporti) </span><br/> 
+            (Kabag. Transporti) </span><br/>
             </p>
           </div>
           </div></div></td>
@@ -200,16 +213,15 @@
           </span>
           <p align="center">&nbsp;</p>
           <div align="center"><span class="style1"><u>Oda Sugarda </u><br>
-            (Manager Pelayanan Umum) </span><br/> 
+            (Manager Pelayanan Umum) </span><br/>
             </p>
           </div>
           </div></td>
       </tr>
     </table>
-    
+
         </td>
       </tr>
     </table>
-    
-    
-    
+
+
