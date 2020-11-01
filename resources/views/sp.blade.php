@@ -6,6 +6,8 @@
         <div class="alert alert-success">{{session('message-success')}}</div>
     @elseif (session('message-error'))
         <div class="alert alert-danger">{{session('message-error')}}</div>
+    @elseif (session('message-success-delete'))
+        <div class="alert alert-success">{{session('message-success-delete')}}</div>
     @endif
     <div class="row">
         <div class="col-lg-12">

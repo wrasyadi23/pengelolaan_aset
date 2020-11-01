@@ -2,9 +2,16 @@
 @section('title', 'Kontrak/SP')
 @section('content')
 <div class="container-fluid mt-3">
+    {{-- notification area --}}
     @if (session('message-success'))
         <div class="alert alert-success">{{session('message-success')}}</div>
+    @elseif (session('message-success-update'))
+        <div class="alert alert-success">{{session('message-success-update')}}</div>
+    @elseif (session('message-error-delete'))
+        <div class="alert alert-danger">{{session('message-error-delete')}}</div>
     @endif
+    {{-- end notification area --}}
+    
     <div class="row">
         <div class="col-lg-12">
             <div class="card">

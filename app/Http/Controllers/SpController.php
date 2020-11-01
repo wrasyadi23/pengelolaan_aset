@@ -133,12 +133,12 @@ class SpController extends Controller
         $updateKontrak->deskripsi = $deskripsi;
         $updateKontrak->uraian = $uraian;
         $updateKontrak->keterangan = $keterangan;
-        $updateKontrak->tgl = $keterangan;
-        $updateKontrak->harga = $keterangan;
-        $updateKontrak->jml = $keterangan;
-        $updateKontrak->satuan = $keterangan;
-        $updateKontrak->rekanan = $keterangan;
-        $updateKontrak->kd_aktifitas_rkap = $keterangan;
+        $updateKontrak->tgl = $tgl;
+        $updateKontrak->harga = $harga;
+        $updateKontrak->jml = $jml;
+        $updateKontrak->satuan = $satuan;
+        $updateKontrak->rekanan = $rekanan;
+        $updateKontrak->kd_aktifitas_rkap = $kd_aktifitas_rkap;
         $updateKontrak->save();
 
         if ($request->hasFile('dokumen')) {
@@ -152,6 +152,27 @@ class SpController extends Controller
                 $newKontrakFile->save();
             }
         }
+
+        return redirect('sp-detail/' . $updateKontrak->kd_sp)->with('message-success-update', 'Data berhasil diupdate.');
+    }
+
+    public function delete($kd_sp)
+    {
+        $deleteKontrak = Kontrak::where('kd_sp', $kd_sp)->first();
+        if ($deleteKontrak->status == 'Requested') {
+            $deleteKontrakFile = KontrakFile::where('kd_sp', $kd_sp)->get();
+            foreach ($deleteKontrakFile as $key => $item) {
+                unlink(public_path('kontrak/' . $item->file));
+            }
+            $deleteKontrakFile->delete();
+            $deleteKontrak->delete();
+
+            return redirect('sp')->with('message-success-delete', 'Data berhasil dihapus.');
+        } else {
+            return redirect('sp-detail/' . $kd_sp)->with('message-error-delete', 'Tidak dapat menghapus data.');
+        }
+
+
     }
 
     public function deleteFile($id)
