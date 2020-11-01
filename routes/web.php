@@ -66,6 +66,15 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::get('/sp-delete/{kd_sp}', 'SpController@delete');
     Route::get('/sp-detail/{kd_sp}', 'SpController@detail');
     Route::get('/sp-delete-file/{id}', 'SpController@deleteFile');
+    // data kontrak ba sp 
+    Route::get('/ba', 'BaController@index');
+    Route::get('/ba-create', 'BaController@create');
+    Route::post('/ba-store', 'BaController@store');
+    Route::get('/ba-edit/{kd_ba}', 'BaController@edit');
+    Route::post('/ba-update/{kd_ba}', 'BaController@update');
+    Route::get('/ba-delete/{kd_ba}', 'BaController@delete');
+    Route::get('/ba-detail/{kd_ba}', 'BaController@detail');
+    Route::get('/ba-delete-file/{id}', 'BaController@deleteFile');
 });
 
 Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function () {
