@@ -48,7 +48,9 @@
                                             @php
                                                 $tglAwal[$result] = \Carbon\Carbon::parse($esd->getSR->tgl_awal);
                                                 $tglAkhir[$result] = \Carbon\Carbon::parse($esd->getSR->tgl_akhir);
-                                                $subtotal[$result] = $esd->getTarif->harga * $tglAkhir[$result]->diffInDays($tglAwal[$result]);
+                                                $hari[$result] = $tglAwal[$result]->diffInDays($tglAkhir[$result]) + 1;
+                                                $subtotal[$result] = $esd->getTarif->harga * $hari[$result];
+                                                $jmlKendaraan[$result] = $esd->where('kd_sr', $esd->kd_sr)->count('kd_kendaraan') - 1;
                                                 $total = $subtotal[$result] + $total;
                                             @endphp
                                         <tr>
@@ -64,7 +66,7 @@
                                             <td>{{ $esd->getKendaraan->warna }}</td>
                                             <td><div align="right"><span class="style1">{{ number_format($esd->getTarif->harga,0) }}</span></div></td>
 
-											<td><div align="center">{{ $tglAkhir[$result]->diffInDays($tglAwal[$result]) }} Hari</div></td>
+											<td><div align="center">{{ $tglAkhir[$result]->diffInDays($tglAwal[$result])+1 }} Hari</div></td>
                                             <td>{{ number_format($subtotal[$result]) }}</td>
 
 
