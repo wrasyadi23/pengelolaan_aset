@@ -23,4 +23,14 @@ class SR extends Model
     {
         return $this->hasMany('App\PR', 'kd_sr', 'kd_sr');
     }
+
+    public function getSRVerifikasi()
+    {
+        return $this->hasMany('App\SRVerifikasi', 'kd_sr', 'kd_sr');
+    }
+
+    public function getSRSewaPivot()
+    {
+        return $this->hasMany('App\SRSewaPivot', 'kd_sr', 'kd_sr');
+    }
 }

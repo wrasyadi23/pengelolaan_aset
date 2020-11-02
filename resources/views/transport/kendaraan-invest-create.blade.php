@@ -1,17 +1,17 @@
 @extends('layouts.master')
-@section('title','Input Kendaraan')
+@section('title','Input Kendaraan Investasi')
 @section('content')
 <div class="container-fluid mt-3">
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Input Kendaraan</h4>
+                    <h4 class="card-title">Input Kendaraan Investasi</h4>
                     <div class="card-content">
-                        <form action="/transport/kendaraan-store" method="post">
+                        <form action="/transport/kendaraan-invest-store" method="post">
                             @csrf
                             <div class="basic-form">
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="kd_ba">Kode BA</label>
                                     <select name="kd_ba" id="kd_ba" class="form-control input-default">
                                         <option disabled selected></option>
@@ -19,7 +19,7 @@
                                             <option value="{{$item->kd_ba}}">{{$item->no_ba}}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="nopol">Nopol</label>
@@ -60,7 +60,7 @@
                                     <div class="form-group col-md-4">
                                         <label for="jenis_bbm">Jenis BBM</label>
                                         <select name = "jenis_bbm" class="form-control input-default">
-                                            <option selected="selected">Pilih Jenis Kendaraan</option>
+                                            <option selected="selected">Pilih Jenis BBM</option>
                                             <option value="PetraMax">PetraMax</option>
                                             <option value="Pertalite">Pertalite</option>
                                             <option value="PeraminaDex">PeraminaDex</option>
@@ -97,7 +97,7 @@
                                             <option value="SewaSP">SewaSP</option>
                                             <option value="SewaESD">SewaESD</option>
                                             <option value="SewaTA">SewaTA</option>
-                                            <option value="Ivestasi">Ivestasi</option>
+                                            <option value="Investasi">Investasi</option>
                                         </select>
                                     </div>
                                 </div>

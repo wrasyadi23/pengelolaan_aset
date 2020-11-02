@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTbOkTable extends Migration
+class CreateRSrSewaPivotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateTbOkTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_ok', function (Blueprint $table) {
+        Schema::create('r_sr_sewa_pivot', function (Blueprint $table) {
             $table->id();
-            $table->string('kd_ok', 45)->unique();
-            $table->string('no_ok', 45);
-            $table->date('tgl');
-            $table->string('kd_pr', 45);
-            $table->string('kd_sr', 45);
+            $table->string('kd_sr',45);
+            $table->string('kd_kendaraan',45);
+            $table->string('kd_tarif',45);
         });
     }
 
@@ -30,6 +28,6 @@ class CreateTbOkTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_ok');
+        Schema::dropIfExists('r_sr_sewa_pivot');
     }
 }

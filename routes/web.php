@@ -79,7 +79,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/pemeliharaan/laporan','LaporanController@index');
     Route::post('/pemeliharaan/laporan-search','LaporanController@search');
     Route::get('/pemeliharaan/laporan-preview/{awal}/{akhir}','LaporanController@preview');
-    //input servie request sewa
+    //input SP sewa
     Route::get('/transport/sewa-sp-create', 'SpSewaController@spsewa');
     Route::post('/transport/sewa-sp-store','SpSewaController@store');
     Route::get('/transport/sewa-sp-tampil', 'SpSewaController@tampilsp');
@@ -87,39 +87,63 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/transport/cari', 'SpSewaController@cari');
     Route::get('/transport/sewa-sp-edit/{kd_sp}','SpSewaController@edit_sp');
     Route::post('/transport/update/{kd_sp}','SpSewaController@update');
+     //input berita acara kendaraan sewa
     Route::get('/transport/sewa-ba-create', 'BAController@index');
     Route::post('/transport/sewa-ba-store', 'BAController@store');
     Route::get('/transport/sewa-ba-tampil', 'BAController@tampilba');
     Route::get('/transport/sewa-ba-edit/{kd_ba}', 'BAController@editba');
     Route::post('/transport/sewa-ba-update/{id}', 'BAController@update');
+    Route::get('/transport/sewa-tarif-tampil', 'TarifSewaEsdController@tampiltarif');
+    Route::get('/transport/sewa-tarif-create', 'TarifSewaEsdController@create');
+    Route::post('/transport/sewa-tarif-store','TarifSewaEsdController@store');
+    Route::get('/transport/sewa-tarif-edit/{kd_tarif}', 'TarifSewaEsdController@edit');
+    Route::post('/transport/sewa-tarif-update/{kd_tarif}','TarifSewaEsdController@update');
+    Route::get('/transport/sewa-tarif-cari', 'TarifSewaEsdController@cari');
+     //input kendaraan sewa
     Route::get('/transport/kendaraan-create', 'KendaraanController@create');
     Route::post('/transport/kendaraan-store','KendaraanController@store');
     Route::get('/transport/kendaraan-tampil', 'KendaraanController@tampilkend');
     Route::get('/transport/kendaraan-edit/{id}', 'KendaraanController@edit');
     Route::post('/transport/kendaraan-edit/{id}', 'KendaraanController@update');
     Route::get('/transport/cari1', 'KendaraanController@cari1');
+    //input kendaraan investasi
+    Route::get('/transport/kendaraan-invest-tampil', 'KendaraanInvestController@tampilkendinvest');
+    Route::get('/transport/kendaraan-invest-create', 'KendaraanInvestController@create');
+    Route::post('/transport/kendaraan-invest-store','KendaraanInvestController@store');
+     //input servie request sewa
     Route::get('/transport/sr-create', 'SrController@create');
     Route::post('/transport/sr-store','SrController@store');
     Route::get('/transport/sr-tampil', 'SrController@tampilsr');
     Route::get('/transport/sr-detail/{kd_sr}', 'SrController@detail');
-    Route::get('/transport/cari', 'SrController@cari');
+    Route::get('/transport/sr-cari', 'SrController@cari');
     Route::get('/transport/sr-edit/{id}', 'SrController@edit');
     Route::post('/transport/sr-update/{id}', 'SrController@update');
     Route::get('transport/sr-preview/{kd_sr}', 'SrController@preview');
-    Route::get('/transport/sr-esd-new', 'SrController@new');
-    Route::post('/transport/sr-simpan','SrController@simpan');
+    Route::get('/transport/sr-esd-create', 'SrEsdController@create');
+    Route::get('/transport/sr-esd-nopol/{kd_sr}/{kd_tarif}', 'SrEsdController@index_store_nopol');
+    Route::post('/transport/sr-esd-store-nopol/{kd_sr}/{kd_tarif}', 'SrEsdController@store_nopol');
+    Route::post('/transport/sr-esd-store','SrEsdController@store');
+    Route::get('/transport/sr-esd-tampil', 'SrEsdController@tampilsresd');
+    Route::get('/transport/sr-esd-edit/{kd_sr}', 'SrEsdController@edit');
+    Route::post('/transport/sr-esd-update/{kd_sr}', 'SrEsdController@update');
+    Route::get('transport/sr-esd-detail/{kd_sr}', 'SrEsdController@detail');
+    Route::get('transport/sr-esd-print/{kd_sr}', 'SrEsdController@print');
+
+     //input purchase request sewa
     Route::get('/transport/pr-create', 'PrController@create');
     Route::post('/transport/pr-store','PrController@store');
     Route::get('/transport/pr-tampil', 'PrController@tampil');
     Route::get('/transport/pr-cari', 'PrController@cari');
     Route::get('/transport/pr-edit/{id}', 'PrController@edit');
     Route::post('/transport/pr-update/{id}', 'PrController@update');
+     //input ok sewa
     Route::get('/transport/ok-create', 'OkController@create');
     Route::post('/transport/ok-store','OkController@store');
     Route::get('/transport/ok-tampil', 'OkController@tampil');
     Route::get('/transport/cari', 'OkController@cari');
     Route::get('/transport/ok-edit/{id}', 'OkController@edit');
     Route::post('/transport/ok-update/{id}', 'OkController@update');
+     //input bariksama sewa
     Route::get('/transport/bariksama-create', 'BaRiksamaController@create');
     Route::post('/transport/bariksama-store','BaRiksamaController@store');
     Route::get('/transport/bariksama-edit/{id}', 'BaRiksamaController@edit');

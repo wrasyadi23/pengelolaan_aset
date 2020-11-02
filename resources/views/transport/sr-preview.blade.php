@@ -30,7 +30,7 @@
 </table>
 <table align="center" width="492" rules="rows">
   <tr>
-    <td class="style8"><div align="center" class="style9">Nomor : {{ $pdf->no_sr }}/LG.00.---/SR/{{ date('Y', strtotime($pdf->tgl)) }}</div></td>
+    <td class="style8"><div align="center" class="style9">Nomor : {{ $pdf->no_sr }}/LG.00.12/SR/{{ date('Y', strtotime($pdf->tgl)) }}</div></td>
   </tr>
   <tr>
     <td class="style8"><div align="center" class="style9"><em>Tanggal Permintaan Unit Kerja : {{ date('d M Y', strtotime($pdf->tgl)) }}</em></div></td>

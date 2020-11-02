@@ -17,4 +17,14 @@ class Kendaraan extends Model
     {
         return $this->belongsTo('App\SR', 'kd_ba', 'kd_ba');
     }
+
+    public function getKendaraanHistory()
+    {
+        return $this->hasMany('App\KendaraanHistory', 'kd_kendaraan', 'kd_kendaraan');
+    }
+
+    public function getSRSewaPivot()
+    {
+        return $this->belongsTo('App\SRSewaPivot', 'kd_kendaraan', 'kd_kendaraan');
+    }
 }
