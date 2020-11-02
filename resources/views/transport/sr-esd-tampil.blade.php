@@ -40,7 +40,7 @@
                                             <th><div align="center">Mulai</div></th>
                                             <th><div align="center">Sampai</div></th>
                                             <th><div align="center">Dipergunakan</div></th>
-                                            <th><div align="center">Total Harga</div></th>
+                                            {{-- <th><div align="center">Total Harga</div></th> --}}
                                             <th><div align="center">Rekanan</div></th>
                                             <th><div align="center">Aksi</div></th>
                                         </tr>
@@ -53,15 +53,15 @@
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $esd->kd_sr }}</td>
-                                            <td>{{ $esd->getSR->no_sr }}</td>
+                                            <td><div align="center">{{ $esd->getSR->no_sr }}</div></td>
                                             <td>Sewa Kendaraan {{ $esd->getKendaraan->jenis_kend }} {{ $esd->getKendaraan->merk }}</td>
-                                            <td>{{ $esd->getKendaraan->tahun }}</td>
+                                            <td><div align="center">{{ $esd->getKendaraan->tahun }}</div></td>
                                             <td>{{ $esd->getSR->tgl }}</td>
                                             <td>{{ $esd->getSR->tgl_awal }}</td>
                                             <td>{{ $esd->getSR->tgl_akhir }}</td>
                                             <td>{{ $esd->getKendaraan->warna }}</td> 
-                                            <td><div align="right"><span class="style1">{{ number_format($esd->getTarif->harga,0) }}</span></div></td>
-                                            
+                                            {{-- <td><div align="right"><span class="style1">{{ number_format($esd->getTarif->harga,0) }}</span></div></td> --}}
+                                            <td><div align="center">{{ $esd->getSR->getKontrakBA->getKontrak->rekanan }}</div></td>
                                             <th>
                                                 <a href="/transport/sr-esd-edit/{{ $esd->kd_sr }}" class="badge badge-primary">Isi No.Sr</a>
                                                 <a href="/transport/sr-esd-print/{{ $esd->kd_sr }}" class="badge badge-primary">Print</a>
