@@ -75,6 +75,8 @@
                 @elseif (Auth::user()->getKaryawan->getBagian->kd_bagian == 'BAG0003')
                     @include('sidebars.pemeliharaan')
                 @endif
+            @else
+                @include('sidebars.user')
             @endif
         </div>
         <!--**********************************
