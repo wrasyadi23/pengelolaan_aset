@@ -159,8 +159,8 @@ class SpController extends Controller
             $deleteKontrakFile = KontrakFile::where('kd_sp', $kd_sp)->get();
             foreach ($deleteKontrakFile as $key => $item) {
                 unlink(public_path('kontrak/' . $item->file));
+                $item->delete();
             }
-            $deleteKontrakFile->delete();
             $deleteKontrak->delete();
 
             return redirect('sp')->with('message-success-delete', 'Data berhasil dihapus.');

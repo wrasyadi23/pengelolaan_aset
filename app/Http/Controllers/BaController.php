@@ -16,5 +16,11 @@ use Carbon\Carbon;
 
 class BaController extends Controller
 {
-    //
+    public function index()
+    {
+        $kontrak = Kontrak::with(['getRkapDetail' => function ($query) {
+            $query->where('kd_bagian', Auth::user()->kontrak_bagian)->select('*');
+        }])->get();
+        return view('ba', ['kontrak' => $kontrak]);
+    }
 }

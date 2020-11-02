@@ -18,7 +18,7 @@
                             <h4 class="card-title">Data Kontrak/SP - Bagian {{Auth::user()->getKaryawan->getBagian->bagian}}</h4>
                         </div>
                         <div class="col-md-6 text-right">
-                            <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='/sp-create'">+ Kontrak/SP Baru</button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='/ba-create'">+ Tambah BA</button>
                         </div>
                     </div>
                     <div class="card-content">
