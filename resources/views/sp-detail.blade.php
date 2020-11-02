@@ -87,7 +87,7 @@
                         </div>
                         <div class="general-button">
                             <button class="btn btn-primary" onclick="window.location.href='/sp'">Back</button>
-                            @if (Auth::user()->role == 'Admin')
+                            @if (Auth::user()->role == 'Admin' && $kontrak->whereIn('status',['Requested','Aktif']))
                                 <button class="btn btn-primary" onclick="window.location.href='/sp-edit/{{$kontrak->kd_sp}}'">Edit</button>
                                 <button class="btn btn-danger" onclick="window.location.href='/sp-delete/{{$kontrak->kd_sp}}'">Delete</button>
                             @endif    
