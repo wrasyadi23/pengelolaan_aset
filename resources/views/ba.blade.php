@@ -28,12 +28,11 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>No. BA Kontrak</th>
+                                            <th>Uraian BA</th>
+                                            <th>Tanggal</th>
                                             <th>No. Kontrak</th>
-                                            <th>Deskripsi</th>
-                                            <th>Uraian</th>
-                                            <th>Vendor</th>
-                                            <th>Status</th>
-                                            <th>Jumlah BA</th>
+                                            <th>Uraian Kontrak</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -41,31 +40,15 @@
                                         @php
                                             $no = 1;
                                         @endphp
-                                        @foreach ($kontrak as $item => $sp)
+                                        @foreach ($kontrakBA as $item => $ba)
                                         <tr>
                                             <td>{{$no++}}</td>
-                                            <td>{{$sp->no_sp}}</td>
-                                            <td>{{$sp->deskripsi}}</td>
-                                            <td>{{$sp->uraian}}</td>
-                                            <td>{{$sp->rekanan}}</td>
-                                            <td>
-                                                @if ($sp->status == "Requested")
-                                                    <a href="" class="badge badge-warning">{{$sp->status}}</a>
-                                                @elseif ($sp->status == "Aktif")
-                                                    <a href="" class="badge badge-success">{{$sp->status}}</a>
-                                                @else
-                                                    <a href="" class="badge badge-danger">{{$sp->status}}</a>
-                                                @endif
-                                            </td>
-                                            @if ($kontrak->first()->getKontrakBA->count() != null)
-                                                <td>{{$kontrak->first()->getKontrakBA->count()}}</td>
-                                            @else
-                                                <td>-</td>
-                                            @endif
-                                            <td>
-                                                <a href="/sp-detail/{{$sp->kd_sp}}" class="badge badge-success">Detail</a> | 
-                                                <a href="/ba-create/{{$sp->kd_sp}}" class="badge badge-primary">+ Tambah BA</a>
-                                            </td>
+                                            <td>{{$ba->no_ba}}</td>
+                                            <td>{{$ba->uraian}}</td>
+                                            <td>{{$ba->tgl}}</td>
+                                            <td>{{$ba->getKontrak->no_sp}}</td>
+                                            <td>{{$ba->getKontrak->uraian}}</td>
+                                            <td><a href="/ba-detail/{{$ba->kd_ba}}" class="badge badge-success">Detail</a></td>
                                         </tr>
                                         @endforeach
                                     </tbody>
