@@ -30,6 +30,7 @@
                                             <th>No</th>
                                             <th>No. Kontrak</th>
                                             <th>Deskripsi</th>
+                                            <th>Uraian</th>
                                             <th>Vendor</th>
                                             <th>Status</th>
                                             <th>Jumlah BA</th>
@@ -45,6 +46,7 @@
                                             <td>{{$no++}}</td>
                                             <td>{{$sp->no_sp}}</td>
                                             <td>{{$sp->deskripsi}}</td>
+                                            <td>{{$sp->uraian}}</td>
                                             <td>{{$sp->rekanan}}</td>
                                             <td>
                                                 @if ($sp->status == "Requested")
@@ -55,6 +57,11 @@
                                                     <a href="" class="badge badge-danger">{{$sp->status}}</a>
                                                 @endif
                                             </td>
+                                            @if ($kontrak->first()->getKontrakBA->count() != null)
+                                                <td>{{$kontrak->first()->getKontrakBA->count()}}</td>
+                                            @else
+                                                <td>-</td>
+                                            @endif
                                             <td>
                                                 <a href="/sp-detail/{{$sp->kd_sp}}" class="badge badge-success">Detail</a> | 
                                                 <a href="/ba-create/{{$sp->kd_sp}}" class="badge badge-primary">+ Tambah BA</a>

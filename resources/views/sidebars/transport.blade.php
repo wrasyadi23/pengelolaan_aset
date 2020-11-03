@@ -13,7 +13,7 @@
             </a>
             <ul aria-expanded="false">
                 <li><a href="/sp">Kontrak</a></li>
-                <li><a href="/sp-ba">BA Kontrak</a></li>
+                <li><a href="/ba">BA Kontrak</a></li>
                 @if (Auth::user()->getKaryawan->kd_regu == 'RU0009')
                     <li><a href="/sp-harga-sewa">Daftar Harga Sewa</a></li>
                 @elseif (Auth::user()->getKaryawan->kd_regu == 'RU0010')
