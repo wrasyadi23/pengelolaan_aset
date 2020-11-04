@@ -82,5 +82,23 @@ class BaController extends Controller
         }
     }
 
-    
+    public function edit($kd_ba)
+    {
+        $kontrak = Kontrak::with(['getRkapDetail' => function ($query) {
+            $query->where('kd_bagian', Auth::user()->kontrak_bagian)->select('*');
+        }])->where('status','Requested')->get();
+
+        // ambil data eksisting
+        $kontrakBA = KontrakBA::where('kd_ba', $kd_ba)->first();
+
+        return view('ba-edit', [
+            'kontrak' => $kontrak,
+            'kontrakBA' => $kontrakBA,
+        ]);
+    }
+
+    public function update($kd_ba, Request $request)
+    {
+        
+    }
 }
