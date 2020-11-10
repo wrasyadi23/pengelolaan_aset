@@ -16,7 +16,7 @@ class CreateTbKendaraanHargaSewaTable extends Migration
         Schema::create('tb_kendaraan_harga_sewa', function (Blueprint $table) {
             $table->id();
             $table->string('kd_tarif',45)->unique();
-            $table->string('klasifikasi_tarif',45);
+            $table->string('klasifiksai_tarif',45);
             $table->string('merk',45);
             $table->string('type',45);
             $table->string('jenis_kend',45);

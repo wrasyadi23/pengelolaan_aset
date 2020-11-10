@@ -17,8 +17,6 @@ class CreateTbSpTable extends Migration
             $table->id();
             $table->string('kd_sp', 45)->unique();
             $table->string('no_sp', 45);
-            $table->string('cost_center', 45);
-            $table->string('gl_acc', 45);
             $table->text('deskripsi', 255)->nullable();
             $table->text('uraian', 255)->nullable();
             $table->text('keterangan', 255)->nullable();
