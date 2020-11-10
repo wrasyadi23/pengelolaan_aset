@@ -6,7 +6,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Input Kontrak</h4>
+                    <h4 class="card-title">Edit Kontrak</h4>
                     <div class="card-content">
                         <form action="/sp-update/{{$kontrak->kd_sp}}" method="post" enctype="multipart/form-data">
                             @csrf
