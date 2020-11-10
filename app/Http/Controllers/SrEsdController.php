@@ -113,8 +113,9 @@ class SrEsdController extends Controller
     }
 
     public function tampilsresd(){
-        $sresd = SRSewaPivot::groupBy('kd_sr')
-        ->get();
+        $sresd = SRSewaPivot::with(['getKendaraan' => function($query) {
+            $query->where('jenis_sewa','SewaESD')->select('*');
+        }])->groupBy('kd_sr')->get();
         return view('transport/sr-esd-tampil', ['sresd' => $sresd]);
     }
 
