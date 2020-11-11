@@ -66,12 +66,17 @@ class BaController extends Controller
             $newKontrakBA->kd_sp = $kd_sp;
             $newKontrakBA->save();
 
+            // update status sp
+            $updateKontrak = Kontrak::where('kd_sp', $kd_sp)->first();
+            $updateKontrak->status = 'Aktif';
+            $updateKontrak->save();
+
             if ($request->hasFile('dokumen')) {
                 foreach ($request->file('dokumen') as $key => $dokumen) {
                     $uid = uniqid(time(), false);
                     $filename = $uid . '_' . $dokumen->getClientOriginalName();
-                    $dokumen->move(public_path('kontrak'), $filename);
-                    $newKontrakFile = new KontrakFile;
+                    $dokumen->move(public_path('kontrakBA'), $filename);
+                    $newKontrakFile = new KontrakBAFile;
                     $newKontrakFile->kd_ba = $kd_ba;
                     $newKontrakFile->file = $filename;
                     $newKontrakFile->save();
@@ -99,6 +104,41 @@ class BaController extends Controller
 
     public function update($kd_ba, Request $request)
     {
-        
+        $no_ba = $request->no_ba;
+        $uraian = $request->uraian;
+        $tgl = $request->tgl;
+        $tgl_awal = $request->tgl_awal;
+        $tgl_akhir = $request->tgl_akhir;
+        $kd_sp = $request->kd_sp;
+
+        $updateKontrakBa = KontrakBA::where('kd_ba', $kd_ba)->first();
+        $updateKontrakBa->no_ba = $no_ba;
+        $updateKontrakBa->uraian = $uraian;
+        $updateKontrakBa->tgl = $tgl;
+        $updateKontrakBa->tgl_awal = $tgl_awal;
+        $updateKontrakBa->tgl_akhir = $tgl_akhir;
+        $updateKontrakBa->kd_sp = $kd_sp;
+        $updateKontrakBa->save();
+
+        if ($request->hasFile('dokumen')) {
+            foreach ($request->file('dokumen') as $key => $dokumen) {
+                $uid = uniqid(time(), false);
+                $filename = $uid . '_' . $dokumen->getClientOriginalName();
+                $dokumen->move(public_path('kontrakBA'), $filename);
+                $newKontrakFile = new KontrakBAFile;
+                $newKontrakFile->kd_ba = $kd_ba;
+                $newKontrakFile->file = $filename;
+                $newKontrakFile->save();
+            }
+        }
+
+        return redirect('ba-detail/' . $updateKontrakBa->kd_ba)->with('message-success-update', 'Data berhasil diupdate.');
+    }
+
+    public function detail($kd_ba)
+    {
+        $kontrakBA = KontrakBA::where('kd_ba', $kd_ba)->first();
+
+        return view('ba-detail', compact('kontrakBA'));
     }
 }
