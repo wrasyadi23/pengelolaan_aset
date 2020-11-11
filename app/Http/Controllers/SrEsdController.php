@@ -16,11 +16,12 @@ use Carbon\Carbon;
 
 class SrEsdController extends Controller
 {
-    public function create(){
+    public function create()
+    {
         $rawDataBA = KontrakBA::orderBy('id', 'desc')->get();
         return view('transport/sr-esd-create', [
             'rawDataBA' => $rawDataBA
-            ]);
+        ]);
     }
 
     public function store(Request $request)
@@ -60,35 +61,35 @@ class SrEsdController extends Controller
         $newSR->kd_ba = $kd_ba;
         $newSR->save();
 
-        return redirect('transport/sr-esd-nopol/'.$kd_sr.'/'.$getTarif->kd_tarif);
+        return redirect('transport/sr-esd-nopol/' . $kd_sr . '/' . $getTarif->kd_tarif);
     }
 
-     public function index_store_nopol($kd_sr, $kd_tarif)
-     {
-         $getKendaraan = SRSewaPivot::where('kd_sr', $kd_sr)->get();
+    public function index_store_nopol($kd_sr, $kd_tarif)
+    {
+        $getKendaraan = SRSewaPivot::where('kd_sr', $kd_sr)->get();
 
-         return view('transport/sr-esd-nopol',[
-             'kd_sr' => $kd_sr,
-             'kd_tarif' => $kd_tarif,
-             'getKendaraan' => $getKendaraan
-         ]);
-     }
+        return view('transport/sr-esd-nopol', [
+            'kd_sr' => $kd_sr,
+            'kd_tarif' => $kd_tarif,
+            'getKendaraan' => $getKendaraan
+        ]);
+    }
 
     public function store_nopol($kd_sr, $kd_tarif, Request $request)
     {
         $data = Kendaraan::select('id', 'kd_kendaraan')
             ->orderBy('id', 'desc')->count();
         if ($data > 0) {
-            $kd_kendaraan = 'KEND' .  sprintf('%04s', $data + 1);
+            $kd_kendaraan = 'KEND' . sprintf('%04s', $data + 1);
         } else {
-            $kd_kendaraan = 'KEND' .  sprintf('%04s', 1);
+            $kd_kendaraan = 'KEND' . sprintf('%04s', 1);
         }
 
         $nopol = $request->input('nopol');
         $tahun = $request->input('tahun');
         $warna = $request->input('warna');
 
-        $rawDataSR = SR::where('kd_sr',$kd_sr)->first();
+        $rawDataSR = SR::where('kd_sr', $kd_sr)->first();
 
         $newSewaPivot = new SRSewaPivot;
         $newSewaPivot->kd_sr = $kd_sr;
@@ -108,14 +109,20 @@ class SrEsdController extends Controller
         $newKendaraan->save();
         $newSewaPivot->save();
 
-        return redirect('transport/sr-esd-nopol/'.$kd_sr.'/'.$kd_tarif)->with('message', 'Data berhasil disimpan.');
+        return redirect('transport/sr-esd-nopol/' . $kd_sr . '/' . $kd_tarif)->with('message', 'Data berhasil disimpan.');
 
     }
 
-    public function tampilsresd(){
-        $sresd = SRSewaPivot::with(['getKendaraan' => function($query) {
-            $query->where('jenis_sewa','SewaESD')->select('*');
-        }])->groupBy('kd_sr')->get();
+    public function tampilsresd()
+    {
+        $sresd = SRSewaPivot::with([
+            'getKendaraan' => function ($query) {
+                $query->where('jenis_sewa', 'SewaESD')->select('*');
+            },
+            'getSR' => function ($query) {
+                $query->where('status', 'Request')->select('*');
+            }
+        ])->groupBy('kd_sr')->get();
         return view('transport/sr-esd-tampil', ['sresd' => $sresd]);
     }
 
@@ -124,6 +131,7 @@ class SrEsdController extends Controller
         $editsresd = SR::where('kd_sr', $kd_sr)->first();
         return view('transport/sr-esd-edit', ['editsresd' => $editsresd]);
     }
+
     public function update($kd_sr, Request $request)
     {
         $no_sr = $request->input('no_sr');
@@ -143,16 +151,17 @@ class SrEsdController extends Controller
         return redirect('transport/sr-esd-tampil');
     }
 
-    public function detail($kd_sr){
+    public function detail($kd_sr)
+    {
         $sresd = SRSewaPivot::where('kd_sr', $kd_sr)->orderBy('id', 'desc')
-        ->get();
+            ->get();
         return view('transport/sr-esd-detail', ['sresd' => $sresd]);
     }
 
     public function print($kd_sr)
     {
         $sr = SR::where('kd_sr', $kd_sr)->first();
-        
+
 //        dd($sr->getSRSewaPivot);
 //        $sr = SR::findOrFail($kd_sr);
         $pdf = PDF::loadView('transport/sr-esd-print', ['sr' => $sr]);
