@@ -142,7 +142,7 @@
   </tr>
   <tr>
     <td align="center" class="style8">1</td>
-    <td><span class="style8">&nbsp;{{ $pdf->getKontrakBA->getKontrak->uraian}} ---{{ $pdf->getKontrakBA->getKontrak->jml }} </span></td>
+    <td><span class="style8">&nbsp;{{ $pdf->getKontrakBA->getKontrak->uraian }} {{ $pdf->getKontrakBA->getKendaraan->merk }} {{ date('Y', strtotime($pdf->tgl)) }} - {{ $pdf->getKontrakBA->getKontrak->jml }} {{ $pdf->getKontrakBA->getKontrak->satuan }} </span></td>
     <td><div align="center" class="style8">{{ $pdf->getKontrakBA->getKontrak->jml }}</div></td>
     <td><div align="center" class="style8">{{ $pdf->getKontrakBA->getKontrak->satuan }}</div></td>
     <td class="style8"><div align="right" class="style8">{{ number_format ($pdf->getKontrakBA->getKontrak->harga,0) }}&nbsp;</div></td>

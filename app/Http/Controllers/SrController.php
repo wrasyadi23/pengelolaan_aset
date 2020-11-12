@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Sr;
 use App\Kontrak;
+use App\SRSewaPivot;
 use App\Srfull;
 use App\Kendaraan;
 use App\KontrakBA;
@@ -51,7 +52,7 @@ class SrController extends Controller
 
     public function tampilsr(){
         $sr = SR::whereHas('getKendaraan', function ($query) {
-            $query->where('jenis_sewa','SewaSP');
+            // $query->where('jenis_sewa','SewaSP');
         })->where('status','Request')->get();
 
         // $sr = SR::orderBy('id', 'desc')
@@ -60,9 +61,22 @@ class SrController extends Controller
         return view('transport/sr-tampil', ['sr' => $sr]);
     }
 
-    public function detail(){
-        $sr = Srfull::orderBy('no_sr', 'desc')
-        ->paginate(10);
+    // public function detail(){
+    //     $sr = SR::orderBy('no_sr', 'desc')
+    //     ->paginate(10);
+    //     return view('transport/sr-detail', ['sr' => $sr]);
+    // }
+
+    // public function detail($kd_sr){
+    //     $sr = SRSewaPivot::where('kd_sr', $kd_sr)->orderBy('id', 'desc')
+    //     ->get();
+    //     return view('transport/sr-detail', ['sr' => $sr]);
+    // }
+
+    public function detail($kd_sr){
+        $baa = SR::select('kd_ba')->where('kd_sr', $kd_sr)->first();
+        $ba=$baa->kd_ba;
+        $sr = Kendaraan::where('kd_ba',$ba)->orderBy('id', 'desc')->get();
         return view('transport/sr-detail', ['sr' => $sr]);
     }
 

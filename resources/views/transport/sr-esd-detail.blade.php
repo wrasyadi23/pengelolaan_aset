@@ -86,7 +86,7 @@
                                 </table>
                                 <div class="general-button">
                                         <button type="button" class="btn btn-primary"
-                                                onclick="window.location.href='/transport/sr-esd-tampil'">Back
+                                                onclick="window.location.href='/transport/sr-tampil'">Back
                                         </button>
                               </div>
                             </div>
