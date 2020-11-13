@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Kontrak;
 use App\KontrakBA;
+use App\RkapDetail;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -10,7 +11,10 @@ use Illuminate\Support\Facades\DB;
 class SpSewaController extends Controller
 {
     public function spsewa(){
-        return view('transport/sewa-sp-create');
+        $kd_aktifitas_rkap = RkapDetail::all();
+        return view('transport/sewa-sp-create',[
+            'kd_aktifitas_rkap' => $kd_aktifitas_rkap,
+        ]);
     }
     
     public function store(Request $request)

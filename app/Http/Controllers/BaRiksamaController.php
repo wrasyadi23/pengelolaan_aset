@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\OK;
+use App\PR;
 use App\SR;
+use App\Kendaraan;
 use PDF;
 use App\Riksama;
 use Carbon\Carbon;
@@ -99,6 +101,34 @@ class BaRiksamaController extends Controller
         $hari = $tgl_awal->diffInDays($tgl_akhir) + 1;
         $pdf = PDF::loadView('transport/bariksama-print', [
             'pdf' => $pdf,
+            'waktu' => $waktu,
+            'hari' => $hari
+        ]);
+        return $pdf->stream();
+    }
+
+    public function print_esd($kd_riksama)
+    {
+        Carbon::setLocale('id');
+        $pdf = Riksama::where('kd_riksama', $kd_riksama)->first();
+        $pdf1=$pdf->kd_ok;
+        $ok = OK::where('kd_ok', $pdf1)->first();
+        $ok1=$ok->kd_pr;
+        $PR = PR::where('kd_pr', $ok1)->first();
+        $PR1=$ok->kd_sr;
+        // $SR = SR::where('kd_sr', $PR1)->first();
+        // $SR1=$ok->kd_ba;
+
+        $sr = SR::where('kd_sr', 'SR20201100002')->first();
+        
+        $tgl_awal = Carbon::createFromFormat('Y-m-d',$pdf->tgl_awal);
+        $tgl_akhir = Carbon::createFromFormat('Y-m-d',$pdf->tgl_akhir);
+        $waktu = $tgl_awal->diffInMonths($tgl_akhir) + 1;
+        $hari = $tgl_awal->diffInDays($tgl_akhir) + 1;
+        
+        $pdf = PDF::loadView('transport/bariksama-esd-print', [
+            'pdf' => $pdf,
+            'sr' => $sr,
             'waktu' => $waktu,
             'hari' => $hari
         ]);

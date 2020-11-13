@@ -80,7 +80,7 @@
                                             <th>
                                                 <a href="/transport/bariksama-edit/{{ $sp->id }}" class="badge badge-primary style3">Edit</a>
                                                 @if ( $sp->getOK->getPR->getSR->getKontrakBA->no_ba == "Sewa-Esidentil")
-                                                <a href="/transport/bariksama-print/{{ $sp->kd_riksama }}" class="badge badge-primary style3">Print</a></th>
+                                                <a href="/transport/bariksama-esd-print/{{ $sp->kd_riksama }}" class="badge badge-primary style3">Print</a></th>
                                                 @else
                                                 <a href="/transport/bariksama-print/{{ $sp->kd_riksama }}" class="badge badge-primary style3">Print</a></th>
                                                 @endif

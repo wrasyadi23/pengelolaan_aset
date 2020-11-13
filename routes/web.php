@@ -151,6 +151,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/transport/bariksama-tampil', 'BaRiksamaController@tampil');
     Route::get('/transport/bariksama-cari', 'BaRiksamaController@cari');
     Route::get('transport/bariksama-print/{kd_riksama}', 'BaRiksamaController@print');
+    Route::get('transport/bariksama-esd-print/{kd_riksama}', 'BaRiksamaController@print_esd');
     //parkirtol
     Route::get('/transport/parkirtol', 'parkirtolController@index');
     Route::get('/transport/parkirtol-create', 'parkirtolController@create');

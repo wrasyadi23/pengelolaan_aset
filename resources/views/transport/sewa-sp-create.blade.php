@@ -14,6 +14,14 @@
                             <form action="/transport/sewa-sp-store" method="post">
                                 @csrf
                                 <div class="basic-form">
+                                    <div class="form-group">
+                                        <label for="kd_aktifitas_rkap">Aktifitas</label>
+                                        <select name="kd_aktifitas_rkap" id="kd_aktifitas_rkap" class="form-control input-default" required>
+                                            @foreach ($kd_aktifitas_rkap as $result =>$item)
+                                        <option value="{{$item->kd_aktifitas_rkap}}">{{$item->aktifitas}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                     <div class="form-row">
                                       <div class="form-group col-md-6">
                                           <label for="bagian"><span class="style1">No.Sp Sewa</span></label>
@@ -21,15 +29,7 @@
                                             <input type="text" name="no_sp" id="" class="form-control input-default" placeholder="Sp Sewa Baru" required>
                                             </span></div>
                                         <div class="form-group col-md-6 style1">
-                                            <label for="seksi">Cost Center</label>
-                                            <input type="text" name="cost_center" id="" class="form-control input-default" placeholder="Cost Center" required>
-                                        </div>
-                                        <div class="form-group col-md-6 style1">
-                                            <label for="regu">Gl Account</label>
-                                            <input type="text" name="gl_acc" id="" class="form-control input-default" placeholder="Gl Account" required>
-                                        </div>
-                                        <div class="form-group col-md-6 style1">
-                                            <label for="regu">Merk Kendaraan</label>
+                                            <label for="regu">Deskripsi</label>
                                             <input type="text" name="deskripsi" id="" class="form-control input-default" placeholder="Merk Kendaraan" required>
                                         </div>
                                         <div class="form-group col-md-6 style1">
@@ -37,7 +37,7 @@
                                             <input type="text" name="uraian" id="" class="form-control input-default" placeholder="uraian" required>
                                         </div>
                                         <div class="form-group col-md-6 style1">
-                                            <label for="regu">Alasan</label>
+                                            <label for="regu">Keterangan</label>
                                             <input type="text" name="keterangan" id="" class="form-control input-default" placeholder="Alasan" required>
                                         </div>
                                         <div class="form-group col-md-6 style1">
@@ -83,4 +83,12 @@
             </div>
         </div>
     </div>
+    @endsection
+    @section('script')
+        <script>
+            $("#kd_aktifitas_rkap").select2({
+            placeholder: 'Pilih Aktifitas',
+            allowClear: true
+            });
+        </script>
     @endsection
