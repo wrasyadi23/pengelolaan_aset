@@ -150,7 +150,6 @@
 
         $("#gl_acc").change(function () {
             var kd_aktifitas_rkap = "<option disabled selected></option>"
-            $("#kd_aktifitas_rkap").empty()
             $.ajax({
                 type: "POST",
                 url: "/api/get-kd-aktifitas-rkap", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON

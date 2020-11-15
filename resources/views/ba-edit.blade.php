@@ -34,6 +34,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="">Uraian</label>
+                                <input type="text" name="uraian" id="" value="{{$kontrakBA->uraian}}" class="form-control input-default" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">No. Berita Acara Kontrak</label>
+                                <input type="text" name="no_ba" id="" value="{{$kontrakBA->no_ba}}" class="form-control input-default" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="file">File BA Kontrak/Dokumen terkait</label>
                                 <input type="file" name="dokumen[]" id="dokumen[]" class="form-control input-default" multiple>
                             </div>

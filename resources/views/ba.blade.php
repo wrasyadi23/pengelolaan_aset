@@ -13,14 +13,8 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <h4 class="card-title">Data Kontrak/SP - Bagian {{Auth::user()->getKaryawan->getBagian->bagian}}</h4>
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='/ba-create'">+ Tambah BA</button>
-                        </div>
-                    </div>
+                    <h4 class="card-title">Data Kontrak/SP - Bagian {{Auth::user()->getKaryawan->getBagian->bagian}}</h4>
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='/ba-create'">+ Tambah BA</button>
                     <div class="card-content">
                         <div class="form-group">
                             <div class="table-responsive">

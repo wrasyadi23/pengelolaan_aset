@@ -13,6 +13,7 @@
                             <div class="form-group">
                                 <label for="Kontrak">No. Kontrak</label>
                                 <select name="kd_sp" id="kd_sp" class="form-control input-default">
+                                    <option disabled selected></option>
                                     @foreach ($kontrak as $result => $sp)
                                         <option value="{{$sp->kd_sp}}">{{$sp->no_sp}}</option>
                                     @endforeach
@@ -32,6 +33,14 @@
                                 <div class="form-group col-md-6">
                                     <input type="date" name="tgl_akhir" id="" class="form-control input-default" required>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Uraian</label>
+                                <input type="text" name="uraian" id="" class="form-control input-default" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">No. Berita Acara Kontrak</label>
+                                <input type="text" name="no_ba" id="" class="form-control input-default" required>
                             </div>
                             <div class="form-group">
                                 <label for="file">File BA Kontrak/Dokumen terkait</label>

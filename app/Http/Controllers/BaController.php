@@ -31,7 +31,7 @@ class BaController extends Controller
             $query->where('kd_bagian', Auth::user()->kontrak_bagian)->select('*');
         }])->get();
 
-        return view('ba', ['kontrak' => $kontrak]);
+        return view('ba-create', ['kontrak' => $kontrak]);
     }
 
     public function store(Request $request)
@@ -53,7 +53,7 @@ class BaController extends Controller
         $kd_sp = $request->kd_sp;
 
         $validation = KontrakBA::where('no_ba', $no_ba)->get();
-        if ($validation == 1) {
+        if ($validation->count() == 1) {
             return redirect('ba')->with('message-error', 'Data sudah ada.');
         } else {
             $newKontrakBA = new KontrakBA;
@@ -91,7 +91,7 @@ class BaController extends Controller
     {
         $kontrak = Kontrak::with(['getRkapDetail' => function ($query) {
             $query->where('kd_bagian', Auth::user()->kontrak_bagian)->select('*');
-        }])->where('status','Requested')->get();
+        }])->where('status','Aktif')->get();
 
         // ambil data eksisting
         $kontrakBA = KontrakBA::where('kd_ba', $kd_ba)->first();

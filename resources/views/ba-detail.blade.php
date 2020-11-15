@@ -16,7 +16,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Detail BA</h4>
+                    <h4 class="card-title">Detail Berita Acara Kontrak</h4>
                     <div class="card-content">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered">
@@ -52,6 +52,13 @@
                                 </tr>
                                 @endif
                             </table>
+                        </div>
+                        <div class="general-button">
+                            <button class="btn btn-primary" onclick="window.location.href='/ba'">Back</button>
+                            @if (Auth::user()->role == 'Admin')
+                                <button class="btn btn-primary" onclick="window.location.href='/ba-edit/{{$kontrakBA->kd_ba}}'">Edit</button>
+                                <button class="btn btn-danger" onclick="window.location.href='/ba-delete/{{$kontrakBA->kd_ba}}'">Delete</button>
+                            @endif    
                         </div>                       
                     </div>
                 </div>
@@ -91,13 +98,6 @@
                                     <td>{{$kontrakBA->getKontrak->tgl}}</td>
                                 </tr>
                             </table>
-                        </div>
-                        <div class="general-button">
-                            <button class="btn btn-primary" onclick="window.location.href='/ba'">Back</button>
-                            @if (Auth::user()->role == 'Admin')
-                                <button class="btn btn-primary" onclick="window.location.href='/ba-edit/{{$kontrakBA->kd_ba}}'">Edit</button>
-                                <button class="btn btn-danger" onclick="window.location.href='/ba-delete/{{$kontrakBA->kd_ba}}'">Delete</button>
-                            @endif    
                         </div>                        
                     </div>
                 </div>
