@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Rkap;
+use App\RkapDetail;
 use App\Kontrak;
 use App\KontrakBA;
-use App\RkapDetail;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -31,8 +32,6 @@ class SpSewaController extends Controller
 
 
         $no_sp = $request->input('no_sp');
-        $cost_center = $request->input('cost_center');
-        $gl_acc = $request->input('gl_acc');
         $deskripsi = $request->input('deskripsi');
         $uraian = $request->input('uraian');
         $keterangan = $request->input('keterangan');
@@ -41,13 +40,12 @@ class SpSewaController extends Controller
         $jml = $request->input('jml');
         $satuan = $request->input('satuan');
         $rekanan = $request->input('rekanan');
+        $kd_aktifitas_rkap = $request->kd_aktifitas_rkap;
         
         $newRealisasi = new Kontrak();
         $newRealisasi->kd_sp = $getkdsp;
         $newRealisasi->no_sp = $no_sp;
-        $newRealisasi->cost_center = $cost_center;
-        $newRealisasi->gl_acc = $gl_acc;
-        $newRealisasi->kd_aktifitas_rkap = '123';
+        $newRealisasi->kd_aktifitas_rkap = $kd_aktifitas_rkap;
         $newRealisasi->deskripsi = $deskripsi;
         $newRealisasi->uraian = $uraian;
         $newRealisasi->keterangan = $keterangan;

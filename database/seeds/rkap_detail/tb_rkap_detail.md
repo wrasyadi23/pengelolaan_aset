@@ -25,5 +25,9 @@ tb_rkap_detail
 | RD20201000020     | TFA53      | Sewa - Kendaraan                | Sewa Kendaraan Sepeda Motor/Gerobak   | 2098384653      | R20201000008 | BAG0001   | SIE0004  |
 | RD20201000021     | TFA54      | Sewa - Kendaraan                | Sewa Kendaraan Station                | 6115543624      | R20201000008 | BAG0001   | SIE0004  |
 | RD20201000022     | TFA55      | Sewa - Kendaraan                | Sewa Kendaraan Pick Up                | 8516190470      | R20201000008 | BAG0001   | SIE0004  |
-(22 rows)
+| RD20201000023     | HAR01      | Sewa - Kendaraan                | Sewa Kendaraan TA Har I               | 0               | R20201000010 | BAG0001   | SIE0004  |
+| RD20201000024     | HAR02      | Sewa - Kendaraan                | Sewa Kendaraan TA Har II              | 0               | R20201000009 | BAG0001   | SIE0004  |
+| RD20201000025     | HAR02      | Sewa - Kendaraan                | Sewa Kendaraan TA Har II              | 0               | R20201000011 | BAG0001   | SIE0004  |
+| RD20201000026     | HAR03      | Sewa - Kendaraan                | Sewa Kendaraan TA Har III             | 0               | R20201000012 | BAG0001   | SIE0004  |
+(26 rows)
 
