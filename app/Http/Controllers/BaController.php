@@ -52,39 +52,35 @@ class BaController extends Controller
         $tgl_akhir = $request->tgl_akhir;
         $kd_sp = $request->kd_sp;
 
-        $validation = KontrakBA::where('no_ba', $no_ba)->get();
-        if ($validation->count() == 1) {
-            return redirect('ba')->with('message-error', 'Data sudah ada.');
-        } else {
-            $newKontrakBA = new KontrakBA;
-            $newKontrakBA->kd_ba = $kd_ba;
-            $newKontrakBA->no_ba = $no_ba;
-            $newKontrakBA->uraian = $uraian;
-            $newKontrakBA->tgl = $tgl;
-            $newKontrakBA->tgl_awal = $tgl_awal;
-            $newKontrakBA->tgl_akhir = $tgl_akhir;
-            $newKontrakBA->kd_sp = $kd_sp;
-            $newKontrakBA->save();
+        $newKontrakBA = new KontrakBA;
+        $newKontrakBA->kd_ba = $kd_ba;
+        $newKontrakBA->no_ba = $no_ba;
+        $newKontrakBA->uraian = $uraian;
+        $newKontrakBA->tgl = $tgl;
+        $newKontrakBA->tgl_awal = $tgl_awal;
+        $newKontrakBA->tgl_akhir = $tgl_akhir;
+        $newKontrakBA->kd_sp = $kd_sp;
+        $newKontrakBA->save();
 
-            // update status sp
-            $updateKontrak = Kontrak::where('kd_sp', $kd_sp)->first();
-            $updateKontrak->status = 'Aktif';
-            $updateKontrak->save();
+        // update status sp
+        $updateKontrak = Kontrak::where('kd_sp', $kd_sp)->first();
+        $updateKontrak->status = 'Aktif';
+        $updateKontrak->save();
 
-            if ($request->hasFile('dokumen')) {
-                foreach ($request->file('dokumen') as $key => $dokumen) {
-                    $uid = uniqid(time(), false);
-                    $filename = $uid . '_' . $dokumen->getClientOriginalName();
-                    $dokumen->move(public_path('kontrakBA'), $filename);
-                    $newKontrakFile = new KontrakBAFile;
-                    $newKontrakFile->kd_ba = $kd_ba;
-                    $newKontrakFile->file = $filename;
-                    $newKontrakFile->save();
-                }
+        if ($request->hasFile('dokumen')) {
+            foreach ($request->file('dokumen') as $key => $dokumen) {
+                $uid = uniqid(time(), false);
+                $filename = $uid . '_' . $dokumen->getClientOriginalName();
+                $dokumen->move(public_path('kontrakBA'), $filename);
+                $newKontrakFile = new KontrakBAFile;
+                $newKontrakFile->kd_ba = $kd_ba;
+                $newKontrakFile->file = $filename;
+                $newKontrakFile->save();
             }
-
-            return redirect('ba')->with('message-success', 'Data berhasil disimpan.');
         }
+
+        return redirect('ba')->with('message-success', 'Data berhasil disimpan.');
+        
     }
 
     public function edit($kd_ba)

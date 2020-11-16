@@ -55,40 +55,36 @@ class SpController extends Controller
         $rekanan = $request->rekanan;
         $kd_aktifitas_rkap = $request->kd_aktifitas_rkap;
 
-        $validasi = Kontrak::where('no_sp', $no_sp)->get();
-        if ($validasi->count() == 1) {
-            return redirect('sp')->with('message-error', 'Data sudah ada.');
-        } else {
-            $newKontrak = new Kontrak;
-            $newKontrak->kd_sp = $kd_sp;
-            $newKontrak->no_sp = $no_sp;
-            $newKontrak->deskripsi = $deskripsi;
-            $newKontrak->uraian = $uraian;
-            $newKontrak->keterangan = $keterangan;
-            $newKontrak->tgl = $tgl;
-            $newKontrak->harga = $harga;
-            $newKontrak->jml = $jml;
-            $newKontrak->satuan = $satuan;
-            $newKontrak->rekanan = $rekanan;
-            $newKontrak->status = 'Requested';
-            $newKontrak->kd_aktifitas_rkap = $kd_aktifitas_rkap;
-            $newKontrak->save();
+        $newKontrak = new Kontrak;
+        $newKontrak->kd_sp = $kd_sp;
+        $newKontrak->no_sp = $no_sp;
+        $newKontrak->deskripsi = $deskripsi;
+        $newKontrak->uraian = $uraian;
+        $newKontrak->keterangan = $keterangan;
+        $newKontrak->tgl = $tgl;
+        $newKontrak->harga = $harga;
+        $newKontrak->jml = $jml;
+        $newKontrak->satuan = $satuan;
+        $newKontrak->rekanan = $rekanan;
+        $newKontrak->status = 'Requested';
+        $newKontrak->kd_aktifitas_rkap = $kd_aktifitas_rkap;
+        $newKontrak->save();
 
-            //bagaimana upload file extension hanya .jpg .jpeg dan .pdf?
-            if ($request->hasFile('dokumen')) {
-                foreach ($request->file('dokumen') as $key => $dokumen) {
-                    $uid = uniqid(time(), false);
-                    $filename = $uid . '_' . $dokumen->getClientOriginalName();
-                    $dokumen->move(public_path('kontrak'), $filename);
-                    $newKontrakFile = new KontrakFile;
-                    $newKontrakFile->kd_sp = $kd_sp;
-                    $newKontrakFile->file = $filename;
-                    $newKontrakFile->save();
-                }
+        //bagaimana upload file extension hanya .jpg .jpeg dan .pdf?
+        if ($request->hasFile('dokumen')) {
+            foreach ($request->file('dokumen') as $key => $dokumen) {
+                $uid = uniqid(time(), false);
+                $filename = $uid . '_' . $dokumen->getClientOriginalName();
+                $dokumen->move(public_path('kontrak'), $filename);
+                $newKontrakFile = new KontrakFile;
+                $newKontrakFile->kd_sp = $kd_sp;
+                $newKontrakFile->file = $filename;
+                $newKontrakFile->save();
             }
-
-            return redirect('sp')->with('message-success', 'Data berhasil disimpan.');
         }
+
+        return redirect('sp')->with('message-success', 'Data berhasil disimpan.');
+        
     }
 
     public function edit($kd_sp)
