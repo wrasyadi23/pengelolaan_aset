@@ -72,7 +72,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::post('/ba-store', 'BaController@store');
     Route::get('/ba-edit/{kd_ba}', 'BaController@edit');
     Route::post('/ba-update/{kd_ba}', 'BaController@update');
-    Route::get('/ba-delete/{kd_ba}', 'BaController@delete');
+    Route::get('/ba-delete/{kd_ba}/{kd_sp}', 'BaController@delete');
     Route::get('/ba-detail/{kd_ba}', 'BaController@detail');
     Route::get('/ba-delete-file/{id}', 'BaController@deleteFile');
 });

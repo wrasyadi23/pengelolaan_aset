@@ -23,6 +23,14 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(60)
             ],
             [
+                'nama' => 'Ahmad Husammudin',
+                'nik' => 'T545440',
+                'email' => 'husam@gmail.com',
+                'role' => 'Admin',
+                'password' => Hash::make('rahasiakita'),
+                'remember_token' => Str::random(60)
+            ],
+            [
                 'nama' => 'M. Fajar bukhori',
                 'nik' => 'T545434',
                 'email' => 'fajar@gmail.com',
@@ -93,6 +101,20 @@ class UserSeeder extends Seeder
                 'tanggal_lahir' => '1993-04-23',
                 'jenis_kelamin' => 'L',
                 'jabatan' => 'Pelaksana',
+                'golongan' => '6A',
+                'kd_departemen' => 'DEP0001',
+                'kd_bagian' => 'BAG0003',
+                'kd_seksi' => 'SIE0001',
+                'kd_regu' => 'RU0002',
+                'status' => 'Aktif'
+            ],
+            [
+                'nama' => 'Ahmad Husammudin',
+                'nik' => 'T545440',
+                'tempat_lahir' => 'Gresik',
+                'tanggal_lahir' => '1993-04-23',
+                'jenis_kelamin' => 'L',
+                'jabatan' => 'Karu',
                 'golongan' => '6A',
                 'kd_departemen' => 'DEP0001',
                 'kd_bagian' => 'BAG0003',

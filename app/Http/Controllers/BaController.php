@@ -137,4 +137,46 @@ class BaController extends Controller
 
         return view('ba-detail', compact('kontrakBA'));
     }
+
+    public function deleteFile($id)
+    {
+        $kontrakBAFile = KontrakBAFile::where('id', $id)->first();
+        $kontrakBAFile->delete();
+        unlink(public_path('kontrak/') . $kontrakBAFile->file);
+
+        return redirect()->back();
+    }
+
+    public function delete($kd_ba, $kd_sp)
+    {
+        $validasi = KontrakBA::where('kd_sp', $kd_sp)->get();
+        if ($validasi->count() > 1) {
+            $deleteKontrakBA = KontrakBA::where('kd_ba', $kd_ba)->first();
+            $deleteKontrakBAFile = KontrakBAFile::where('kd_ba', $kd_ba)->get();
+            foreach ($deleteKontrakBAFile as $key => $item) {
+                unlink(public_path('kontrak/' . $item->file));
+                $item->delete();
+            }
+            $deleteKontrakBA->delete();
+
+            return redirect('ba')->with('message-success-delete', 'Data berhasil dihapus.');
+        }
+        elseif ($validasi->count() == 1) {
+            // update status sp
+            $updateKontrak = Kontrak::where('kd_sp', $kd_sp)->first();
+            $updateKontrak->status = 'Requested';
+            $updateKontrak->save();
+            // hapus ba kontrak
+            $deleteKontrakBA = KontrakBA::where('kd_ba', $kd_ba)->first();
+            $deleteKontrakBAFile = KontrakBAFile::where('kd_ba', $kd_ba)->get();
+            foreach ($deleteKontrakBAFile as $key => $item) {
+                unlink(public_path('kontrak/' . $item->file));
+                $item->delete();
+            }
+            $deleteKontrakBA->delete();
+
+            return redirect('ba')->with('message-success-delete', 'Data berhasil dihapus.');
+        }
+
+    }
 }

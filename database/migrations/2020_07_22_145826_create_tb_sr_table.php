@@ -20,6 +20,7 @@ class CreateTbSrTable extends Migration
             $table->date('tgl');
             $table->date('tgl_awal');
             $table->date('tgl_akhir');
+            $table->string('jenis_sr', 45);
             $table->string('status', 45);
             $table->string('kd_ba', 45);
             $table->timestamps();

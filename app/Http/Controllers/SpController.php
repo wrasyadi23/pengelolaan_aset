@@ -161,10 +161,8 @@ class SpController extends Controller
 
             return redirect('sp')->with('message-success-delete', 'Data berhasil dihapus.');
         } else {
-            return redirect('sp-detail/' . $kd_sp)->with('message-error-delete', 'Tidak dapat menghapus data.');
+            return redirect('sp-detail/' . $kd_sp)->with('message-error-delete', 'Tidak dapat menghapus data. Silahkan hapus Berita Acara terkait dengan Kontrak ini.');
         }
-
-
     }
 
     public function deleteFile($id)

@@ -57,7 +57,7 @@
                             <button class="btn btn-primary" onclick="window.location.href='/ba'">Back</button>
                             @if (Auth::user()->role == 'Admin')
                                 <button class="btn btn-primary" onclick="window.location.href='/ba-edit/{{$kontrakBA->kd_ba}}'">Edit</button>
-                                <button class="btn btn-danger" onclick="window.location.href='/ba-delete/{{$kontrakBA->kd_ba}}'">Delete</button>
+                                <button class="btn btn-danger" onclick="window.location.href='/ba-delete/{{$kontrakBA->kd_ba}}/{{$kontrakBA->kd_sp}}'">Delete</button>
                             @endif    
                         </div>                       
                     </div>
@@ -96,6 +96,10 @@
                                 <tr>
                                     <th>Tanggal Kontrak/SP</th>
                                     <td>{{$kontrakBA->getKontrak->tgl}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Status</th>
+                                    <td>{{$kontrakBA->getKontrak->status}}</td>
                                 </tr>
                             </table>
                         </div>                        
