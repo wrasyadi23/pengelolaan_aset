@@ -75,6 +75,13 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::get('/ba-delete/{kd_ba}/{kd_sp}', 'BaController@delete');
     Route::get('/ba-detail/{kd_ba}', 'BaController@detail');
     Route::get('/ba-delete-file/{id}', 'BaController@deleteFile');
+    // data harga sewa kendaraan
+    Route::get('/transport/harga-sewa', 'HargaSewaController@index');
+    Route::get('/transport/harga-sewa-create', 'HargaSewaController@create');
+    Route::post('/transport/harga-sewa-store', 'HargaSewaController@store');
+    Route::get('/transport/harga-sewa-edit/{kd_tarif}', 'HargaSewaController@edit');
+    Route::post('/transport/harga-sewa-update/{kd_tarif}', 'HargaSewaController@update');
+    Route::get('/transport/harga-sewa-delete/{kd_tarif}', 'HargaSewaController@delete');
 });
 
 Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function () {

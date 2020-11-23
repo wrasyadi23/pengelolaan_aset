@@ -9,7 +9,6 @@ use App\Kontrak;
 use App\KontrakBA;
 use App\KontrakFile;
 use App\KontrakBAFile;
-use App\HargaSewa;
 use File;
 use Auth;
 use Carbon\Carbon;
@@ -131,22 +130,15 @@ class BaController extends Controller
         return redirect('ba-detail/' . $updateKontrakBa->kd_ba)->with('message-success-update', 'Data berhasil diupdate.');
     }
 
-    public function detail($kd_ba)
-    {
-        $kontrakBA = KontrakBA::where('kd_ba', $kd_ba)->first();
-
-        return view('ba-detail', compact('kontrakBA'));
-    }
-
     public function deleteFile($id)
     {
         $kontrakBAFile = KontrakBAFile::where('id', $id)->first();
         $kontrakBAFile->delete();
         unlink(public_path('kontrak/') . $kontrakBAFile->file);
-
+        
         return redirect()->back();
     }
-
+    
     public function delete($kd_ba, $kd_sp)
     {
         $validasi = KontrakBA::where('kd_sp', $kd_sp)->get();
@@ -158,7 +150,7 @@ class BaController extends Controller
                 $item->delete();
             }
             $deleteKontrakBA->delete();
-
+            
             return redirect('ba')->with('message-success-delete', 'Data berhasil dihapus.');
         }
         elseif ($validasi->count() == 1) {
@@ -174,9 +166,16 @@ class BaController extends Controller
                 $item->delete();
             }
             $deleteKontrakBA->delete();
-
+            
             return redirect('ba')->with('message-success-delete', 'Data berhasil dihapus.');
         }
+        
+    }
 
+    public function detail($kd_ba)
+    {
+        $kontrakBA = KontrakBA::where('kd_ba', $kd_ba)->first();
+    
+        return view('ba-detail', compact('kontrakBA'));
     }
 }
