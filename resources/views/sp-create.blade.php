@@ -76,6 +76,14 @@
                                             required>
                                 </div>
                                 <div class="form-group">
+                                    <label for="jenis_sp">Jenis Kontrak</label>
+                                    <select name="jenis_sp" id="jenis_sp" class="form-control input-default" required>
+                                        <option value="Tetap">Sewa Tetap</option>
+                                        <option value="Isidentil">Sewa Isidentil</option>
+                                        <option value="TA/Crash Program">Sewa TA/Crash Program</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="rekanan">Rekanan/Vendor</label>
                                     <input type="text" name="rekanan" id="" class="form-control input-default"
                                             required>
@@ -117,6 +125,10 @@
             allowClear: true,
             disabled: true
         });
+        $("#jenis_sp").select2({
+            placeholder: 'Pilih Jenis Kontrak',
+            allowClear: true
+        });
         $("#cost_center").change(function () {
             var gl_acc = "<option disabled selected></option>"
             $("#gl_acc")
@@ -137,7 +149,7 @@
                 success: function (response) {
                     var data = JSON.parse(response);
                     for (var x = 0; data.length > x; x++) {
-                        gl_acc += "<option value=" + data[x].kd_rkap + ">" + data[x].gl_acc + " - " + data[x].get_rkap_detail[0].nama_aktifitas +"</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                        gl_acc += "<option value=" + data[x].kd_rkap + ">" + data[x].gl_acc + " - " + data[x].uraian +"</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
                     }
                     console.log(data); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
                     $("#gl_acc")

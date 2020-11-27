@@ -13,8 +13,8 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Data Harga Sewa Kendaraan/h4>
-                    <button type="button" class="btn btn-primary" onclick="window.location.href='/ba-create'">+ Tambah Harga Sewa</button>
+                    <h4 class="card-title">Data Harga Sewa Kendaraan</h4>
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='/transport/harga-sewa-create'">+ Tambah Harga Sewa</button>
                     <div class="card-content">
                         <div class="form-group">
                             <div class="table-responsive">

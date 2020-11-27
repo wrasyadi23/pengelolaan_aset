@@ -25,6 +25,7 @@ class CreateTbSpTable extends Migration
             $table->integer('jml')->nullable();
             $table->string('satuan', 45)->nullable();
             $table->string('rekanan', 45)->nullable();
+            $table->string('jenis_sp', 45);
             $table->string('status', 45);
             $table->string('kd_aktifitas_rkap', 45);
             $table->timestamps();

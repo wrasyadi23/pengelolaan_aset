@@ -53,6 +53,7 @@ class SpController extends Controller
         $jml = $request->jml;
         $satuan = $request->satuan;
         $rekanan = $request->rekanan;
+        $jenis_sp = $request->jenis_sp;
         $kd_aktifitas_rkap = $request->kd_aktifitas_rkap;
 
         $newKontrak = new Kontrak;
@@ -66,6 +67,7 @@ class SpController extends Controller
         $newKontrak->jml = $jml;
         $newKontrak->satuan = $satuan;
         $newKontrak->rekanan = $rekanan;
+        $newKontrak->jenis_sp = $jenis_sp;
         $newKontrak->status = 'Requested';
         $newKontrak->kd_aktifitas_rkap = $kd_aktifitas_rkap;
         $newKontrak->save();
@@ -118,6 +120,7 @@ class SpController extends Controller
         $jml = $request->jml;
         $satuan = $request->satuan;
         $rekanan = $request->rekanan;
+        $jenis_sp = $request->jenis_sp;
         $kd_aktifitas_rkap = $request->kd_aktifitas_rkap;
 
         $updateKontrak = Kontrak::where('kd_sp', $kd_sp)->first();
@@ -130,6 +133,7 @@ class SpController extends Controller
         $updateKontrak->jml = $jml;
         $updateKontrak->satuan = $satuan;
         $updateKontrak->rekanan = $rekanan;
+        $updateKontrak->jenis_sp = $jenis_sp;
         $updateKontrak->kd_aktifitas_rkap = $kd_aktifitas_rkap;
         $updateKontrak->save();
 

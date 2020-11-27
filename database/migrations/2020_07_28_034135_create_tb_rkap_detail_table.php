@@ -17,7 +17,7 @@ class CreateTbRkapDetailTable extends Migration
             $table->id();
             $table->string('kd_aktifitas_rkap', 45)->unique();
             $table->string('aktifitas', 45);
-            $table->string('nama_aktifitas', 45);
+            $table->text('nama_aktifitas');
             $table->text('uraian');
             $table->decimal('nilai_aktifitas', 15, 2);
             $table->string('kd_rkap', 45);

@@ -15,9 +15,9 @@
                 <li><a href="/sp">Kontrak</a></li>
                 <li><a href="/ba">BA Kontrak</a></li>
                 @if (Auth::user()->getKaryawan->kd_regu == 'RU0009')
-                    <li><a href="/harga-sewa">Daftar Harga Sewa</a></li>
+                    <li><a href="/transport/harga-sewa">Daftar Harga Sewa</a></li>
                 @elseif (Auth::user()->getKaryawan->kd_regu == 'RU0010')
-                    <li><a href="/harga-material">Daftar Harga Material</a></li>
+                    <li><a href="/transport/harga-material">Daftar Harga Material</a></li>
                 @endif
                 <li><a href="/sp-data">Data Kontrak</a></li>
             </ul>

@@ -63,9 +63,11 @@ class GetResponse extends Controller
     public function getGLAccount(Request $request)
     {
         $cost_center = $request->input('cost_center');
-        $response = Rkap::with(['getRkapDetail' => function ($query) {
-            return $query->select(['kd_rkap', 'nama_aktifitas'])->groupBy('nama_aktifitas');
-        }])->where('cost_center', $cost_center)->get()->toJson();
+        // $response = Rkap::with(['getRkapDetail' => function ($query) {
+        //     return $query->select(['kd_rkap', 'nama_aktifitas'])->groupBy('nama_aktifitas');
+        // }])->where('cost_center', $cost_center)->get()->toJson();
+
+        $response = Rkap::where('cost_center', $cost_center)->get()->toJson();
         return $response;
     }
 

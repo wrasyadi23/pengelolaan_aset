@@ -18,6 +18,7 @@ class CreateTbRkapTable extends Migration
             $table->string('kd_rkap', 45)->unique();
             $table->string('cost_center', 45);
             $table->string('gl_acc', 45);
+            $table->string('uraian', 45);
             $table->year('tahun_rkap');
             $table->decimal('nilai_rkap', 15, 2);
             $table->string('status', 45);

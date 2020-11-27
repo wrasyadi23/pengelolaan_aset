@@ -28,7 +28,6 @@ class CreateRKendaraanHistoryTable extends Migration
             $table->string('no_stnk', 45)->nullable();
             $table->string('no_mesin', 45)->nullable();
             $table->string('no_rangka', 45)->nullable();
-            $table->string('jenis_sewa', 45);
             $table->string('status', 45)->nullable();
             $table->string('kd_ba', 45);
             $table->string('kd_tarif', 45)->nullable();
