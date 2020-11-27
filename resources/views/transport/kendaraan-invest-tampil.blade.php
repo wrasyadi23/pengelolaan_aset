@@ -50,7 +50,7 @@
                                         @endphp
                                         @foreach ($kendaraan as $result => $sp)
                                         <tr>
-                                            <td align="center">{{ $result + $kendaraan->firstitem() }}</td>
+                                            <td align="center">{{ $no++ }}</td>
                                             <td>{{ $sp->kd_kendaraan }}</td>
                                             <td align="center">{{ $sp->nopol }}</td>
                                             <td>{{ $sp->merk }}</td>

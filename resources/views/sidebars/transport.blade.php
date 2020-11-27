@@ -9,6 +9,16 @@
         @if (Auth::user()->role == 'Admin')
         <li class="mega-menu mega-menu-sm">
             <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                <i class="icon-note menu-icon"></i><span class="nav-text">R K A P</span>
+            </a>
+            <ul aria-expanded="false">
+                <li><a href="/transport/rkap-tampil">Data RKAP</a></li>
+                <li><a href="/transport/rkap-detail-tampil">Data Detaik RKAP</a></li>
+                <li><a href="/transport/sewa-tarif-tampil">Data Tarif Sewa Esidentil</a></li>
+            </ul>
+        </li>
+        <li class="mega-menu mega-menu-sm">
+            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                 <i class="icon-note menu-icon"></i><span class="nav-text">SP Sewa</span>
             </a>
             <ul aria-expanded="false">

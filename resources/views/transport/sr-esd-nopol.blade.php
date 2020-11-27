@@ -58,7 +58,8 @@
                                             <td>{{$kendaraanPivot->getKendaraan->nopol}}</td>
                                             <td>{{$kendaraanPivot->getKendaraan->merk}}</td>
                                             <td>{{$kendaraanPivot->getKendaraan->type}}</td>
-                                            <td>{{$kendaraanPivot->getTarif->harga}}</td>
+                                            {{-- <td>{{$kendaraanPivot->getTarif->harga}}</td> --}}
+                                            <td>{{ number_format($kendaraanPivot->getTarif->harga,0) }}</td>
                                         </tr>
                                     @empty
                                         <tr>

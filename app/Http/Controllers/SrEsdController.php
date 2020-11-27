@@ -103,6 +103,7 @@ class SrEsdController extends Controller
         $newKendaraan->merk = $rawDataSR->getKontrakBA->getHargaSewa->first()->merk;
         $newKendaraan->type = $rawDataSR->getKontrakBA->getHargaSewa->first()->type;
         $newKendaraan->jenis_kend = $rawDataSR->getKontrakBA->getHargaSewa->first()->jenis_kend;
+        $newKendaraan->kd_ba = $rawDataSR->kd_ba;
         $newKendaraan->tahun = $tahun;
         $newKendaraan->warna = $warna;
         $newKendaraan->jenis_sewa = 'SewaESD';

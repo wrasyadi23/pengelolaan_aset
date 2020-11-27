@@ -178,4 +178,16 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/transport/uangmuka-data', 'uangmukaController@data');
     Route::get('/transport/uangmuka-realisasi', 'uangmukaController@realisasi');
     Route::get('/transport/uangmuka-laporan', 'uangmukaController@laporan');
+
+    //rkap
+    Route::get('/transport/rkap-tampil', 'RkapController@tampilrkap');
+    Route::get('/transport/rkap-create', 'RkapController@create');
+    Route::post('/transport/rkap-store', 'RkapController@store');
+    Route::get('/transport/rkap-edit/{id}', 'RkapController@edit');
+    Route::post('/transport/rkap-update/{id}', 'RkapController@update');
+    Route::get('/transport/rkap-detail-tampil', 'RkapDetailController@rkapdetail');
+    Route::get('/transport/rkapdet-create', 'RkapDetailController@create');
+    Route::post('/transport/rkapdet-store', 'RkapDetailController@store');
+    Route::get('/transport/rkap-detail-edit/{kd_aktifitas_rkap}', 'RkapDetailController@edit');
+    Route::post('/transport/rkap-detail-update/{kd_aktifitas_rkap}', 'RkapDetailController@update');
 });

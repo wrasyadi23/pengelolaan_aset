@@ -44,6 +44,7 @@ class BAController extends Controller
         $newKontrakBA->tgl_awal = $tgl_awal;
         $newKontrakBA->uraian = $uraian;
         $newKontrakBA->kd_sp = $kd_sp;
+        $newKontrakBA->jenis_ba = 'Sewa-Esidentil';
         $newKontrakBA->save();
         
         $updateKontrak = Kontrak::where('kd_sp', $kd_sp)->first();

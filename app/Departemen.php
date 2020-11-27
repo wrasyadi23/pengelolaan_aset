@@ -19,4 +19,9 @@ class Departemen extends Model
     {
         return $this->belongsTo('App\Karyawan', 'nik', 'nik');
     }
+
+    public function getRkap()
+    {
+        return $this->belongsTo('App\Rkap', 'kd_departemen', 'kd_departemen');
+    }
 }

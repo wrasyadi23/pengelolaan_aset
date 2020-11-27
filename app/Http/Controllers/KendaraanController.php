@@ -4,15 +4,22 @@ namespace App\Http\Controllers;
 use App\Kontrak;
 use App\KontrakBA;
 use App\Kendaraan;
+use App\Departemen;
+use App\KendaraanHistory;
+use App\Bagian;
+use App\Seksi;
+use App\Regu;
 use Auth;
 use Illuminate\Http\Request;
 
 class KendaraanController extends Controller
 {
     public function create(){
+        $departemen = Departemen::all();
         $rawDataBA = KontrakBA::orderBy('id', 'desc')->get();
         return view('transport/kendaraan-create', [
-            'rawDataBA' => $rawDataBA
+            'rawDataBA' => $rawDataBA,
+            'departemen' => $departemen,
             ]);
         }
 
@@ -62,10 +69,10 @@ class KendaraanController extends Controller
         $newRealisasi->jenis_sewa = $jenis_sewa;
         $newRealisasi->status = 'Aktif';
         $newRealisasi->kd_ba = $kd_ba;
-        $newRealisasi->kd_departemen = '-';
-        $newRealisasi->kd_bagian = '-';
-        $newRealisasi->kd_seksi = '-';
-        $newRealisasi->kd_regu = '-';
+        $newRealisasi->kd_departemen = $kd_departemen;
+        $newRealisasi->kd_bagian = $kd_bagian;
+        $newRealisasi->kd_seksi = $kd_seksi;
+        $newRealisasi->kd_regu = $kd_regu;
         $newRealisasi->save();
 
         $newRealisasi = new KendaraanHistory();
@@ -85,10 +92,10 @@ class KendaraanController extends Controller
         $newRealisasi->jenis_sewa = $jenis_sewa;
         $newRealisasi->status = 'Aktif';
         $newRealisasi->kd_ba = $kd_ba;
-        $newRealisasi->kd_departemen = '-';
-        $newRealisasi->kd_bagian = '-';
-        $newRealisasi->kd_seksi = '-';
-        $newRealisasi->kd_regu = '-';
+        $newRealisasi->kd_departemen = $kd_departemen;
+        $newRealisasi->kd_bagian = $kd_bagian;
+        $newRealisasi->kd_seksi = $kd_seksi;
+        $newRealisasi->kd_regu = $kd_regu;
         $newRealisasi->save();
         
         return redirect('transport/kendaraan-create');
@@ -98,7 +105,7 @@ class KendaraanController extends Controller
         $kendaraan = Kendaraan::orderBy('id', 'desc')
         ->where('status', '=', 'Aktif')
         ->where('jenis_sewa', '=', 'SewaSP')
-        ->paginate(6);
+        ->get();
         return view('transport/kendaraan-tampil', ['kendaraan' => $kendaraan]);
     }
 

@@ -53,7 +53,7 @@
                                         <td>{{ $sp->tgl_awal }}</td>
                                         <td>{{ $sp->tgl_akhir }}</td> 
 
-                                        @if ( $sp->getKontrakBA->no_ba == "Sewa-Esidentil")
+                                        @if ( $sp->getKontrakBA->jenis_ba == "Sewa-Esidentil")
 
                                         @php
                                         $tglAwal[$result] = \Carbon\Carbon::parse($sp->tgl_awal);
@@ -70,12 +70,12 @@
                                         <td>{{ $sp->getKontrakBA->getKendaraan->jenis_sewa}}</td>
                                         <th>
                                             <a href="/transport/sr-edit/{{ $sp->id }}" class="badge badge-primary">Isi No.Sr</a>
-                                            @if ( $sp->getKontrakBA->no_ba == "Sewa-Esidentil")
+                                            @if ( $sp->getKontrakBA->jenis_ba == "Sewa-Esidentil")
                                             <a href="/transport/sr-esd-print/{{ $sp->kd_sr }}" class="badge badge-primary">Print</a>
                                             @else
                                             <a href="/transport/sr-preview/{{ $sp->kd_sr }}" class="badge badge-primary">Print</a>
                                             @endif 
-                                            @if ( $sp->getKontrakBA->no_ba == "Sewa-Esidentil")
+                                            @if ( $sp->getKontrakBA->jenis_ba == "Sewa-Esidentil")
                                             <a href="/transport/sr-esd-detail/{{ $sp->kd_sr }}" class="badge badge-primary">Detail</a>
                                             @else
                                             <a href="/transport/sr-detail/{{ $sp->kd_sr }}" class="badge badge-primary">Detail</a>

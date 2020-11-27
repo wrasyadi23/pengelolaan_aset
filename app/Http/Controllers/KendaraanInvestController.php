@@ -5,6 +5,10 @@ use App\Kontrak;
 use App\KontrakBA;
 use App\Kendaraan;
 use App\KendaraanHistory;
+use App\Departemen;
+use App\Bagian;
+use App\Seksi;
+use App\Regu;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -14,12 +18,15 @@ class KendaraanInvestController extends Controller
     $kendaraan = Kendaraan::orderBy('id', 'desc')
     ->where('status', '=', 'Aktif')
     ->where('jenis_sewa', '=', 'Investasi')
-    ->paginate(6);
+    ->get();
     return view('transport/kendaraan-invest-tampil', ['kendaraan' => $kendaraan]);
    }
 
    public function create(){
-       return view('transport/kendaraan-invest-create');
+       $departemen = Departemen::all();
+       return view('transport/kendaraan-invest-create', [
+           'departemen' => $departemen,
+       ]);
    }
 
    public function store(Request $request)
@@ -45,7 +52,7 @@ class KendaraanInvestController extends Controller
     $no_rangka = $request->input('no_rangka');
     $jenis_sewa = $request->input('jenis_sewa');
     $status = $request->input('status');
-    //$kd_ba = $request->input('kd_ba');
+    $kd_ba = $request->input('kd_ba');
     $kd_departemen = $request->input('kd_departemen');
     $kd_bagian = $request->input('kd_bagian');
     $kd_seksi = $request->input('kd_seksi');
@@ -67,11 +74,11 @@ class KendaraanInvestController extends Controller
     $newRealisasi->no_rangka = $no_rangka;
     $newRealisasi->jenis_sewa = $jenis_sewa;
     $newRealisasi->status = 'Aktif';
-    //$newRealisasi->kd_ba = '-';
-    $newRealisasi->kd_departemen = '-';
-    $newRealisasi->kd_bagian = '-';
-    $newRealisasi->kd_seksi = '-';
-    $newRealisasi->kd_regu = '-';
+    $newRealisasi->kd_ba = $kd_ba;
+    $newRealisasi->kd_departemen = $kd_departemen;
+    $newRealisasi->kd_bagian = $kd_bagian;
+    $newRealisasi->kd_seksi = $kd_seksi;
+    $newRealisasi->kd_regu = $kd_regu;
     $newRealisasi->save();
 
     $newRealisasi = new KendaraanHistory();
@@ -90,7 +97,7 @@ class KendaraanInvestController extends Controller
     $newRealisasi->no_rangka = $no_rangka;
     $newRealisasi->jenis_sewa = $jenis_sewa;
     $newRealisasi->status = 'Aktif';
-    //$newRealisasi->kd_ba = '-';
+    $newRealisasi->kd_ba =$kd_ba;
     $newRealisasi->kd_departemen = '-';
     $newRealisasi->kd_bagian = '-';
     $newRealisasi->kd_seksi = '-';

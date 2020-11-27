@@ -70,7 +70,8 @@
                                             <td><div align="center">{{ $r->getSR->getKontrakBA->getKendaraan->jenis_sewa}}</div></td>
                                           
                                             <th>
-                                                <a href="/transport/pr-edit/{{ $r->id }}" class="badge badge-primary">Edit</a>                                            </th>
+                                                <a href="/transport/pr-edit/{{ $r->id }}" class="badge badge-primary">Edit</a>                                            
+                                            </th>
                                         </tr>
                                         @endforeach
                                     </tbody>

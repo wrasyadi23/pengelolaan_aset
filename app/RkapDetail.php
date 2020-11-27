@@ -28,4 +28,9 @@ class RkapDetail extends Model
     {
         return $this->hasMany('App\Uangmuka', 'kd_aktifitas_rkap', 'kd_aktifitas_rkap');
     }
+
+    public function getBagian()
+    {
+        return $this->hasOne('App\Bagian', 'kd_bagian', 'kd_bagian');
+    }
 }

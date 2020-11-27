@@ -30,8 +30,8 @@
                                             <th>No</th>
                                         <th><div align="center">No.Sp</div></th>
                                         <th>Tanggal</th>
-                                        <th>Cost Center</th>
-                                        <th>Gl Account</th>
+                                        {{-- <th>Cost Center</th>
+                                        <th>Gl Account</th> --}}
                                         <th>Merk</th>
                                         <th>Jumlah</th>
                                         <th>Harga</th>
@@ -51,8 +51,8 @@
                                             <td><div align="center">{{ $result + $getspsewa->firstitem() }}</div></td>
                                             <td><div align="center">{{ $sp->no_sp }}</div></td>
                                             <td><div align="center">{{ $sp->tgl }}</div></td>
-                                            <td><div align="center">{{ $sp->getRkapDetail->getRkap->cost_center }}</div></td>
-                                            <td><div align="center">{{ $sp->getRkapDetail->getRkap->gl_acc }}</div></td>
+                                            {{-- <td><div align="center">{{ $sp->getRkapDetail->getRkap->cost_center }}</div></td>
+                                            <td><div align="center">{{ $sp->getRkapDetail->getRkap->gl_acc }}</div></td> --}}
                                             <td>{{ $sp->deskripsi }}</td>
                                             <td><div align="center">{{ $sp->jml }}</div></td>
                                             <td><div align="right"><span class="style1">{{ number_format($sp->harga,0) }}</span></div></td>

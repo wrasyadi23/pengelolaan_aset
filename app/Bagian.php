@@ -24,4 +24,9 @@ class Bagian extends Model
     {
         return $this->belongsTo('App\Karyawan', 'nik', 'nik');
     }
+
+    public function getRkapDetail()
+    {
+        return $this->belongsTo('App\RkapDetail', 'kd_bagian', 'kd_bagian');
+    }
 }

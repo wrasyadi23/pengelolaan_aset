@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\AreaAlamat;
 use App\AreaKeterangan;
+use App\Bagian;
 use App\Seksi;
 use App\Regu;
 use App\Kontrak;
@@ -25,6 +26,13 @@ class GetResponse extends Controller
     {
         $kd_alamat = $request->input('kd_alamat');
         $response = AreaKeterangan::where('kd_alamat', $kd_alamat)->get()->toJson();
+        return $response;
+    }
+
+    public function getBagian(Request $request)
+    {
+        $kd_departemen = $request->input('kd_departemen');
+        $response = Bagian::where('kd_departemen', $kd_departemen)->get()->toJson();
         return $response;
     }
 

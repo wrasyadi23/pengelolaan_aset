@@ -13,4 +13,9 @@ class Rkap extends Model
     {
         return $this->hasMany('App\RkapDetail', 'kd_rkap', 'kd_rkap');
     }
+
+    public function getDepartemen()
+    {
+        return $this->hasMany('App\Departemen', 'kd_departemen', 'kd_departemen');
+    }
 }
