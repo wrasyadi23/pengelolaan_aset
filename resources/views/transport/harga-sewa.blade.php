@@ -43,8 +43,8 @@
                                             <td>{{$item->jenis_kend}}</td>
                                             <td>Rp. {{number_format($item->harga,2,',','.')}}</td>
                                             <td>
-                                                <a href="/harga-sewa-delete/{{$item->kd_tarif}}" class="badge badge-danger">Hapus</a>
-                                                <a href="/" class="badge badge-primary"></a>
+                                                <a href="/transport/harga-sewa-delete/{{$item->kd_tarif}}" class="badge badge-danger">Hapus</a>
+                                                <a href="/transport/harga-sewa-edit/{{$item->kd_tarif}}" class="badge badge-primary">Edit</a>
                                             </td>
                                         </tr>
                                         @endforeach

@@ -20,7 +20,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Klasifikasi Tarif</label>
-                                <select name="klasifikasi_tarif" id="klasifikasi_tarif" class="form-control input-default">
+                                <select name="klasifikasi_tarif" id="klasifikasi_tarif" class="form-control input-default" required>
+                                    <option selected></option>
                                     <option value="Jabar I">Jabar I</option>
                                     <option value="Jabar II">Jabar II</option>
                                     <option value="Jateng I">Jateng I</option>
@@ -31,10 +32,31 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Merk</label>
-                                <input type="text" name="merk" id="merk" class="form-control input-default">
+                                <input type="text" name="merk" id="" class="form-control input-default" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Type</label>
+                                <input type="text" name="type" id="" class="form-control input-default" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Jenis Kendaraan</label>
+                                <select name="jenis_kend" id="jenis_kend" class="form-control input-default" required>
+                                    <option selected></option>
+                                    <option value="Station">Station</option>
+                                    <option value="Pick Up">Pick Up</option>
+                                    <option value="Bus Besar">Bus Besar</option>
+                                    <option value="Bus Medium">Bus Medium</option>
+                                    <option value="Sepeda Motor">Sepeda Motor</option>
+                                    <option value="Sepeda Gerobak">Sepeda Gerobak</option>
+                                </select>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Harga</label>
+                                <input type="number" name="type" id="" class="form-control input-default">
                             </div>
                             <div class="general-button">
-                                <button class="btn btn-primary" onclick="window.location.href='/ba'">Back</button>
+                                <button class="btn btn-primary" onclick="window.location.href='/transport/harga-sewa'">Back</button>
                                 <button type="reset" class="btn btn-warning">Reset</button>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
@@ -64,9 +86,9 @@
         //     placeholder: 'Pilih Type',
         //     allowClear: true
         // });
-        // $("#jenis_kend").select2({
-        //     placeholder: 'Pilih Jenis Kendaraan',
-        //     allowClear: true
-        // });
+        $("#jenis_kend").select2({
+            placeholder: 'Pilih Jenis Kendaraan',
+            allowClear: true
+        });
     </script>
 @endsection

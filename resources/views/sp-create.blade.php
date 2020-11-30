@@ -78,6 +78,7 @@
                                 <div class="form-group">
                                     <label for="jenis_sp">Jenis Kontrak</label>
                                     <select name="jenis_sp" id="jenis_sp" class="form-control input-default" required>
+                                        <option selected></option>
                                         <option value="Tetap">Sewa Tetap</option>
                                         <option value="Isidentil">Sewa Isidentil</option>
                                         <option value="TA/Crash Program">Sewa TA/Crash Program</option>
