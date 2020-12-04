@@ -44,5 +44,30 @@ class HargaSewaController extends Controller
         $jenis_kend = $request->jenis_kend;
         $harga = $request->harga;
         $kd_ba = $request->kd_ba;
+
+        $newhargasewa = new HargaSewa;
+        $newhargasewa->kd_tarif = $kd_tarif;
+        $newhargasewa->klasifikasi_tarif = $klasifikasi_tarif;
+        $newhargasewa->merk = $merk;
+        $newhargasewa->type = $type;
+        $newhargasewa->jenis_kend = $jenis_kend;
+        $newhargasewa->harga = $harga;
+        $newhargasewa->kd_ba = $kd_ba;
+        $newhargasewa->save();
+
+        return redirect('transport/harga-sewa')->with('message-success', 'Data berhasil disimpan.');
+    }
+
+    public function edit($kd_tarif)
+    {
+        $kontrakba = KontrakBA::all();
+
+        // ambil data eksisting
+        $hargasewa = HargaSewa::where('kd_tarif', $kd_tarif)->first();
+
+        return view('transport/harga-sewa-edit', [
+            'kontrakba' => $kontrakba,
+            'hargasewa' => $hargasewa,
+        ]);
     }
 }
