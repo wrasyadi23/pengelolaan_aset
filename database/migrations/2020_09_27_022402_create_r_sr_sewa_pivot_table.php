@@ -15,6 +15,7 @@ class CreateRSrSewaPivotTable extends Migration
     {
         Schema::create('r_sr_sewa_pivot', function (Blueprint $table) {
             $table->id();
+            $table->string('kd_sp',45);
             $table->string('kd_sr',45);
             $table->string('kd_kendaraan',45);
             $table->string('kd_tarif',45);
