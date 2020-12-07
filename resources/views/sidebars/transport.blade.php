@@ -13,7 +13,7 @@
             </a>
             <ul aria-expanded="false">
                 <li><a href="/transport/rkap-tampil">Data RKAP</a></li>
-                <li><a href="/transport/rkap-detail-tampil">Data Detaik RKAP</a></li>
+                <li><a href="/transport/rkap-detail-tampil">Data Detail RKAP</a></li>
                 <li><a href="/transport/sewa-tarif-tampil">Data Tarif Sewa Esidentil</a></li>
             </ul>
         </li>
