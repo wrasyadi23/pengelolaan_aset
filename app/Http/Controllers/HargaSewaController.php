@@ -70,4 +70,25 @@ class HargaSewaController extends Controller
             'hargasewa' => $hargasewa,
         ]);
     }
+
+    public function update($kd_tarif, request $request)
+    {
+        $klasifikasi_tarif = $request->klasifikasi_tarif;
+        $merk = $request->merk;
+        $type = $request->type;
+        $jenis_kend = $request->jenis_kend;
+        $harga = $request->harga;
+        $kd_ba = $request->kd_ba;
+
+        $updatehargasewa = HargaSewa::where('kd_tarif', $kd_tarif)->first();
+        $updatehargasewa->klasifikasi_tarif = $klasifikasi_tarif;
+        $updatehargasewa->merk = $merk;
+        $updatehargasewa->type = $type;
+        $updatehargasewa->jenis_kend = $jenis_kend;
+        $updatehargasewa->harga = $harga;
+        $updatehargasewa->kd_ba = $kd_ba;
+        $updatehargasewa->save();
+
+        return redirect('transport/harga-sewa')->with('message-success-update', 'Data berhasil diupdate.');
+    }
 }
