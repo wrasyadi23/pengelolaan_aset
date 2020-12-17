@@ -91,4 +91,12 @@ class HargaSewaController extends Controller
 
         return redirect('transport/harga-sewa')->with('message-success-update', 'Data berhasil diupdate.');
     }
+
+    public function delete($kd_tarif)
+    {
+        $deletehargasewa = HargaSewa::where('kd_tarif', $kd_tarif)->first();
+        $deletehargasewa->delete();
+
+        return redirect()->back();
+    }
 }

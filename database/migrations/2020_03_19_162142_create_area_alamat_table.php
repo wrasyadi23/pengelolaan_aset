@@ -15,9 +15,9 @@ class CreateAreaAlamatTable extends Migration
     {
         Schema::create('area_alamat', function (Blueprint $table) {
             $table->id();
-            $table->string('kd_alamat',45)->unique();
-            $table->string('alamat',45);
-            $table->string('kd_area',45);
+            $table->string('kd_alamat', 45)->unique();
+            $table->string('alamat', 45);
+            $table->string('kd_area', 45);
         });
     }
 
