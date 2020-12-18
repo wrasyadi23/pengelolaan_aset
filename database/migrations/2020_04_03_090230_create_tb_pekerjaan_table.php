@@ -21,14 +21,15 @@ class CreateTbPekerjaanTable extends Migration
             $table->string('nik',45);
             $table->string('telepon',45);
             // job info 
+            $table->datetime('tanggal_pekerjaan');
+            $table->date('tanggal_pelaksanaan')->nullable();
+            $table->text('uraian');
+            $table->string('status',45);
             $table->string('kd_area',45);
             $table->string('kd_alamat',45);
             $table->string('kd_keterangan',45);
             $table->string('kd_klasifikasi_pekerjaan',45);
-            $table->datetime('tanggal_pekerjaan');
-            $table->date('tanggal_pelaksanaan');
-            $table->text('uraian');
-            $table->string('status',45);
+            $table->string('kd_sr',45);
             $table->timestamps();
         });
     }

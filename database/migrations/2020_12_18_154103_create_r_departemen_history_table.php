@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAsetAreaTable extends Migration
+class CreateRDepartemenHistoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateAsetAreaTable extends Migration
      */
     public function up()
     {
-        Schema::create('aset_area', function (Blueprint $table) {
+        Schema::create('r_departemen_history', function (Blueprint $table) {
             $table->id();
-            $table->string('kd_aset',45);
-            $table->string('kd_area',45);
-            $table->string('kd_alamat',45);
-            $table->string('kd_keterangan',45);
-            
+            $table->string('kd_departemen',45);
+            $table->string('departemen',45);
+            $table->string('kd_kompartemen',45);
         });
     }
 
@@ -30,6 +28,6 @@ class CreateAsetAreaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aset_area');
+        Schema::dropIfExists('r_departemen_history');
     }
 }

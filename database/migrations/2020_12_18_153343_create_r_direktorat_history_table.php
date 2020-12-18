@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTbDepartemenTable extends Migration
+class CreateRDirektoratHistoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateTbDepartemenTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_departemen', function (Blueprint $table) {
+        Schema::create('r_direktorat_history', function (Blueprint $table) {
             $table->id();
-            $table->string('kd_departemen',45)->unique();
-            $table->string('departemen',45);
-            $table->string('kd_kompartemen',45);
+            $table->string('kd_direktorat', 45);
+            $table->string('direktorat', 45);
         });
     }
 
@@ -28,6 +27,6 @@ class CreateTbDepartemenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_departemen');
+        Schema::dropIfExists('r_direktorat_history');
     }
 }

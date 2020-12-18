@@ -9,14 +9,8 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <h4 class="card-title">Input Pekerjaan</h4>
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='/pemeliharaan/pekerjaan-create'">+ Tambah Pekerjaan</button>
-                        </div>
-                    </div>
+                    <h4 class="card-title">Input Pekerjaan</h4>
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='/pemeliharaan/pekerjaan-create'">+ Tambah Pekerjaan</button>
                     <div class="card-content">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered zero-configuration" style="width: 100%;">

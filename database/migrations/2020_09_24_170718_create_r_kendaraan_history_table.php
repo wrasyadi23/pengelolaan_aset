@@ -31,6 +31,8 @@ class CreateRKendaraanHistoryTable extends Migration
             $table->string('status', 45)->nullable();
             $table->string('kd_ba', 45);
             $table->string('kd_tarif', 45)->nullable();
+            $table->string('kd_direktorat', 45)->nullable();
+            $table->string('kd_kompartemen', 45)->nullable();
             $table->string('kd_departemen', 45)->nullable();
             $table->string('kd_bagian', 45)->nullable();
             $table->string('kd_seksi', 45)->nullable();
