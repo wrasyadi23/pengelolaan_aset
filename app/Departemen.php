@@ -19,4 +19,14 @@ class Departemen extends Model
     {
         return $this->belongsTo('App\Karyawan', 'nik', 'nik');
     }
+
+    public function getAset()
+    {
+        return $this->belongsTo('App\Aset', 'kd_departemen', 'kd_departemen');
+    }
+
+    public function getDepartemenHistory()
+    {
+        return $this->hasMany('App\DepartemenHistory', 'kd_departemen', 'kd_departemen');
+    }
 }

@@ -24,4 +24,14 @@ class Seksi extends Model
     {
         return $this->belongsTo('App\Karyawan', 'nik', 'nik');
     }
+
+    public function getAset()
+    {
+        return $this->belongsTo('App\Aset', 'kd_seksi', 'kd_seksi');
+    }
+
+    public function getSeksiHistory()
+    {
+        return $this->hasMany('App\SeksiHistory', 'kd_seksi', 'kd_seksi');
+    }
 }

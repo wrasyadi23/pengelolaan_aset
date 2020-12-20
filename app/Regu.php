@@ -29,4 +29,14 @@ class Regu extends Model
     {
         return $this->hasOne('App\PekerjaanKapasitas', 'kd_regu', 'kd_regu');
     }
+
+    public function getAset()
+    {
+        return $this->belongsTo('App\Aset', 'kd_regu', 'kd_regu');
+    }
+
+    public function getReguHistory()
+    {
+        return $this->hasMany('App\ReguHistory', 'kd_regu', 'kd_regu');
+    }
 }

@@ -19,4 +19,9 @@ class AreaKeterangan extends Model
     {
         return $this->belongsTo('App\Pekerjaan', 'kd_keterangan', 'kd_keterangan');
     }
+
+    public function getAreaKeteranganHistory()
+    {
+        return $this->hasMany('App\AreaKeteranganHistory', 'kd_keterangan', 'kd_keterangan');
+    }
 }

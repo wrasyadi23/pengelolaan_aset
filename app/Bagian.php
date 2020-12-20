@@ -24,4 +24,14 @@ class Bagian extends Model
     {
         return $this->belongsTo('App\Karyawan', 'nik', 'nik');
     }
+
+    public function getBagianHistory()
+    {
+        return $this->hasMany('App\Bagian', 'kd_bagian', 'kd_bagian');
+    }
+
+    public function getAset()
+    {
+        return $this->belongsTo('App\Aset', 'kd_bagian', 'kd_bagian');
+    }
 }
