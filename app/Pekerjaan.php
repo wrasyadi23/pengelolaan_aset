@@ -34,4 +34,9 @@ class Pekerjaan extends Model
     {
         return $this->hasMany('App\PekerjaanFile', 'booknumber', 'booknumber'); // Relasi foto menjadi hasMany karena 1 booknumber bisa memliki beberapa foto
     }
+
+    public function getSR()
+    {
+        return $this->belongsTo('App\SR', 'kd_sr', 'kd_sr');
+    }
 }

@@ -33,4 +33,9 @@ class SR extends Model
     {
         return $this->hasMany('App\SRSewaPivot', 'kd_sr', 'kd_sr');
     }
+
+    public function getPekerjaan()
+    {
+        return $this->hasMany('App\Pekerjaan', 'kd_sr', 'kd_sr');
+    }
 }

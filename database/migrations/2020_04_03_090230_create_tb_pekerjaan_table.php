@@ -29,7 +29,7 @@ class CreateTbPekerjaanTable extends Migration
             $table->string('kd_alamat',45);
             $table->string('kd_keterangan',45);
             $table->string('kd_klasifikasi_pekerjaan',45);
-            $table->string('kd_sr',45);
+            $table->string('kd_sr',45)->nullable();
             $table->timestamps();
         });
     }

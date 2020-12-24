@@ -90,8 +90,8 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     // pemeliharaan
     Route::get('/pemeliharaan/dashboard','pemeliharaanController@index');
     // input pekerjaan
-    Route::get('/pemeliharaan/pekerjaan','input_pekerjaanController@index');
-    Route::get('/pemeliharaan/pekerjaan-create','input_pekerjaanController@create');
+    Route::get('/pemeliharaan/pekerjaan','PekerjaanController@index');
+    Route::get('/pemeliharaan/pekerjaan-create','PekerjaanController@create');
     Route::post('/pemeliharaan/pekerjaan-store','input_pekerjaanController@store');
     Route::get('/pemeliharaan/pekerjaan-detail/{booknumber}','input_pekerjaanController@detail');
     Route::get('/pemeliharaan/pekerjaan-edit/{booknumber}','input_pekerjaanController@edit');

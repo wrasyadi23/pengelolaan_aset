@@ -2,8 +2,8 @@
 @section('title','Data Pekerjaan')
 @section('content')
 <div class="container-fluid mt-3">
-    @if (session('message'))
-        <div class="alert alert-success">{{session('message')}}</div>
+    @if (session('message-success'))
+        <div class="alert alert-success">{{session('message-success')}}</div>
     @endif
     <div class="row">
         <div class="col-lg-12">
@@ -27,7 +27,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($DataPekerjaan as $Pekerjaan => $item)    
+                                @foreach ($pekerjaan as $result => $item)    
                                     <tr>
                                         <td>{{$item->booknumber}}</td>
                                         <td>{{$item->nama}}</td>
