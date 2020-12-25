@@ -4,6 +4,8 @@
 <div class="container-fluid mt-3">
     @if (session('message-success'))
         <div class="alert alert-success">{{session('message-success')}}</div>
+    @elseif (session('message-success-approve'))
+        <div class="alert alert-success">{{session('message-success-approve')}}</div>
     @endif
     <div class="row">
         <div class="col-lg-12">

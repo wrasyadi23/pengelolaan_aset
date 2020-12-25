@@ -66,7 +66,7 @@ class PekerjaanController extends Controller
         $nama = $request->nama;
         $nik = $request->nik;
         $telepon = $request->telepon;
-        $tanggal_pekerjaan = $request->tanggal_pekerjaan;
+        $tanggal_pekerjaan = date('Y-m-d h:m:s');
         $uraian = $request->uraian;
         $status = $request->status;
         $kd_area = $request->kd_area;
@@ -100,5 +100,25 @@ class PekerjaanController extends Controller
         }
 
         return redirect('pemeliharaan/pekerjaan')->with('message-success', 'Data berhasil disimpan.');
-    }   
+    }
+
+    public function detail($booknumber)
+    {
+        $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
+
+        return view('pemeliharaan/pekerjaan-detail', [
+            'pekerjaan' => $pekerjaan,
+        ]);
+    }
+
+    public function approve($booknumber, request $request)
+    {
+        $tanggal_pelaksanaan = $request->tanggal_pelaksanaan;
+
+        $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
+        $pekerjaan->tanggal_pelaksanaan = $tanggal_pelaksanaan;
+        $pekerjaan->save();
+
+        return redirect('pemeliharaan/pekerjaan')->with('message-success-approve', 'Data telah diapprove.');
+    }
 }

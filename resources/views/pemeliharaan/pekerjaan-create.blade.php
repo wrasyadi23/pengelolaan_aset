@@ -23,11 +23,11 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="alamat">Sub Area 1/Alamat</label>
+                                        <label for="alamat">Alamat</label>
                                         <select name="kd_alamat" id="kd_alamat" class="form-control input-default" disabled required></select>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="keterangan">Sub Area 2/Keterangan Objek</label>
+                                        <label for="keterangan">Keterangan</label>
                                         <select name="kd_keterangan" id="kd_keterangan" class="form-control input-default" required></select>
                                     </div>
                                 </div>
@@ -42,8 +42,16 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label for="telepon">Nama PIC</label>
+                                    <input type="text" name="nama" id="" class="form-control input-default" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telepon">NIK</label>
+                                    <input type="text" name="nik" id="" class="form-control input-default" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="telepon">Telepon</label>
-                                    <input type="text" name="telepon" id="" class="form-control form-control-sm input-default" required>
+                                    <input type="text" name="telepon" id="" class="form-control input-default" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="uraian">Uraian Kerusakan/Error</label>

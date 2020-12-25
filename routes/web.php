@@ -21,7 +21,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
-    Route::get('/pemeliharaan/pekerjaan-approve/{booknumber}','input_pekerjaanController@approve');
+    Route::get('/pemeliharaan/pekerjaan-approve/{booknumber}','PekerjaanController@approve');
     Route::get('/pemeliharaan/pekerjaan-disapprove/{booknumber}','input_pekerjaanController@disapprove');
     Route::get('/pemeliharaan/pekerjaan-cancel/{booknumber}','input_pekerjaanController@cancel');
     Route::get('/pemeliharaan/pekerjaan-close/{booknumber}','input_pekerjaanController@close');
@@ -92,8 +92,8 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     // input pekerjaan
     Route::get('/pemeliharaan/pekerjaan','PekerjaanController@index');
     Route::get('/pemeliharaan/pekerjaan-create','PekerjaanController@create');
-    Route::post('/pemeliharaan/pekerjaan-store','input_pekerjaanController@store');
-    Route::get('/pemeliharaan/pekerjaan-detail/{booknumber}','input_pekerjaanController@detail');
+    Route::post('/pemeliharaan/pekerjaan-store','PekerjaanController@store');
+    Route::get('/pemeliharaan/pekerjaan-detail/{booknumber}','PekerjaanController@detail');
     Route::get('/pemeliharaan/pekerjaan-edit/{booknumber}','input_pekerjaanController@edit');
     Route::post('/pemeliharaan/pekerjaan-update/{booknumber}','input_pekerjaanController@update');
     Route::get('/pemeliharaan/pekerjaan-delete-file/{id}','input_pekerjaanController@deleteFile');
