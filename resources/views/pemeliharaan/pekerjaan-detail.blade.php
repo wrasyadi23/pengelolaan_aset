@@ -4,6 +4,8 @@
 <div class="container-fluid mt-3">
     @if (session('message'))
         <div class="alert alert-success">{{session('message')}}</div>
+    @elseif (session('disapprove'))
+        <div class="alert alert-success">{{session('dissapprove')}}</div>
     @endif
     <div class="row">
         <div class="col-lg-12">
@@ -78,7 +80,7 @@
                                 @endif
                             @endif
                             @if ($pekerjaan->status == 'Approved' && Auth::user()->role == 'Admin')
-                                <button class="btn btn-warning" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-disapprove/{{$pekerjaan->booknumber}}'">Disapprove</button>
+                                <button class="btn btn-warning" type="button" data-toggle="modal" data-target="#modalDisapprove">Disapprove</button>
                                 <button class="btn btn-success" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-close/{{$pekerjaan->booknumber}}'">Closed</button>
                             @endif
                             @if ($pekerjaan->whereIn('status',['Requested','Approved']) && Auth::user()->role == 'Admin')
@@ -97,7 +99,8 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="/pemeliharaan/pekerjaan-approve/{{$pekerjaan->booknumber}}" method="post" enctype="multipart/form-data">
+                                            <form action="/pemeliharaan/pekerjaan-approve/{{$pekerjaan->booknumber}}" 
+                                                method="post" name="approve" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="basic-form">
                                                     <div class="form-group">
@@ -107,7 +110,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                    <button type="submit" name="approve" class="btn btn-primary">Submit</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -116,6 +119,39 @@
                             </div>
                         </div>
                         {{-- end modal approve  --}}
+
+                        {{-- modal disapprove  --}}
+                        <div class="bootstrap-modal">
+                            <div class="modal fade" id="modalDisapprove" style="display: none;" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Disapprove Pekerjaan</h5>
+                                            <button class="close" type="button" data-dismiss="modal">
+                                                <span>x</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="/pemeliharaan/pekerjaan-disapprove/{{$pekerjaan->booknumber}}" 
+                                                method="post" name="disapprove" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="basic-form">
+                                                    <div class="form-group">
+                                                        <label for="tanggal_pelaksanaan">Catatan</label>
+                                                        <textarea name="catatan" id="" cols="30" rows="10" class="form-control input-default"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" name="disapprove" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- end modal disapprove  --}}
                     </div>
                 </div>
             </div>

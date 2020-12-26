@@ -9,6 +9,7 @@ use App\PekerjaanFile;
 use App\PekerjaanKlasifikasi;
 use App\PekerjaanKapasitas;
 use App\Pekerjaan;
+use App\PekerjaanVerifikasi;
 use App\Regu;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -24,10 +25,9 @@ class PekerjaanController extends Controller
         } 
         
         elseif (Auth::user()->role == 'Worker') {
-            $pekerjaan = Pekerjaan::where([
-                ['status','Approved'],
-                ['kd_klasifikasi_pekerjaan', Auth::user()->getKaryawan->getRegu->getKlasifikasi->map->only('kd_klasifikasi_pekerjaan')]
-            ])->with('getKlasifikasi')->get();
+            $pekerjaan = Pekerjaan::where(
+                'kd_klasifikasi_pekerjaan', Auth::user()->getKaryawan->getRegu->getKlasifikasi->map->only('kd_klasifikasi_pekerjaan')
+            )->with('getKlasifikasi')->get();
         } 
         
         else {
@@ -117,8 +117,29 @@ class PekerjaanController extends Controller
 
         $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
         $pekerjaan->tanggal_pelaksanaan = $tanggal_pelaksanaan;
+        $pekerjaan->status = 'Approved';
         $pekerjaan->save();
 
         return redirect('pemeliharaan/pekerjaan')->with('message-success-approve', 'Data telah diapprove.');
+    }
+
+    public function disapprove($booknumber, Request $request)
+    {
+        $catatan = $request->catatan;
+        
+        $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
+        $pekerjaan->tanggal_pelaksanaan = '0000-00-00';
+        $pekerjaan->status = 'Requested';
+        $pekerjaan->save();
+
+        $verifikasi = new PekerjaanVerifikasi;
+        $verifikasi->booknumber = $booknumber;
+        $verifikasi->status = 'Requested';
+        $verifikasi->tgl = date('Y-m-d');
+        $verifikasi->catatan = $catatan;
+        $verifikasi->save();
+
+        return redirect('pemeliharaan/pekerjaan-detail/' . $booknumber)->with('dissaprove', 'Status berhasil dirubah.');
+        
     }
 }
