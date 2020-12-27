@@ -10,6 +10,7 @@ use App\PekerjaanKlasifikasi;
 use App\PekerjaanKapasitas;
 use App\Pekerjaan;
 use App\PekerjaanVerifikasi;
+use App\Penilaian;
 use App\Regu;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -74,32 +75,42 @@ class PekerjaanController extends Controller
         $kd_keterangan = $request->kd_keterangan;
         $kd_klasifikasi_pekerjaan = $request->kd_klasifikasi_pekerjaan;
 
-        $newPekerjaan = new Pekerjaan;
-        $newPekerjaan->booknumber = $booknumber;
-        $newPekerjaan->nama = $nama;
-        $newPekerjaan->nik = $nik;
-        $newPekerjaan->telepon = $telepon;
-        $newPekerjaan->tanggal_pekerjaan = $tanggal_pekerjaan;
-        $newPekerjaan->uraian = $uraian;
-        $newPekerjaan->status = 'Requested';
-        $newPekerjaan->kd_area = $kd_area;
-        $newPekerjaan->kd_alamat = $kd_alamat;
-        $newPekerjaan->kd_keterangan = $kd_keterangan;
-        $newPekerjaan->kd_klasifikasi_pekerjaan = $kd_klasifikasi_pekerjaan;
-        $newPekerjaan->save();
-
-        if ($request->hasFile('foto')) {
-            foreach ($request->file('foto') as $key => $foto) {
-                $uid = uniqid(time(), false); // Generate random unique id
-                $foto->move(public_path('pemeliharaan'), $uid . '_' . $foto->getClientOriginalName());
-                $pekerjaanFile = new PekerjaanFile;
-                $pekerjaanFile->booknumber = $booknumber;
-                $pekerjaanFile->file = $uid . '_' . $foto->getClientOriginalName();
-                $pekerjaanFile->save();
+        $validasi = Pekerjaan::where([
+            ['kd_keterangan', $kd_keterangan],
+            ['status','Done']
+            ])->get();
+        if ($validasi->count() >= 3) {
+            return redirect('pemeliharaan/pekerjaan-create')->with('survey-error', 'Silahkan isi survey kepuasan pelanggan untuk pekerjaan sebelumnya.');
+        }
+        elseif ($validasi->count() < 3) {
+            $newPekerjaan = new Pekerjaan;
+            $newPekerjaan->booknumber = $booknumber;
+            $newPekerjaan->nama = $nama;
+            $newPekerjaan->nik = $nik;
+            $newPekerjaan->telepon = $telepon;
+            $newPekerjaan->tanggal_pekerjaan = $tanggal_pekerjaan;
+            $newPekerjaan->uraian = $uraian;
+            $newPekerjaan->status = 'Requested';
+            $newPekerjaan->kd_area = $kd_area;
+            $newPekerjaan->kd_alamat = $kd_alamat;
+            $newPekerjaan->kd_keterangan = $kd_keterangan;
+            $newPekerjaan->kd_klasifikasi_pekerjaan = $kd_klasifikasi_pekerjaan;
+            $newPekerjaan->save();
+    
+            if ($request->hasFile('foto')) {
+                foreach ($request->file('foto') as $key => $foto) {
+                    $uid = uniqid(time(), false); // Generate random unique id
+                    $foto->move(public_path('pemeliharaan'), $uid . '_' . $foto->getClientOriginalName());
+                    $pekerjaanFile = new PekerjaanFile;
+                    $pekerjaanFile->booknumber = $booknumber;
+                    $pekerjaanFile->file = $uid . '_' . $foto->getClientOriginalName();
+                    $pekerjaanFile->save();
+                }
             }
+    
+            return redirect('pemeliharaan/pekerjaan')->with('message-success', 'Data berhasil disimpan.');
         }
 
-        return redirect('pemeliharaan/pekerjaan')->with('message-success', 'Data berhasil disimpan.');
     }
 
     public function detail($booknumber)
@@ -120,7 +131,14 @@ class PekerjaanController extends Controller
         $pekerjaan->status = 'Approved';
         $pekerjaan->save();
 
-        return redirect('pemeliharaan/pekerjaan')->with('message-success-approve', 'Data telah diapprove.');
+        $verifikasi = new PekerjaanVerifikasi;
+        $verifikasi->booknumber = $booknumber;
+        $verifikasi->status = 'Approved';
+        $verifikasi->tgl = date('Y-m-d');
+        $verifikasi->catatan = 'Approved by ' . Auth::user()->role;
+        $verifikasi->save();
+
+        return redirect('pemeliharaan/pekerjaan')->with('approve', 'Data telah diapprove.');
     }
 
     public function disapprove($booknumber, Request $request)
@@ -136,10 +154,76 @@ class PekerjaanController extends Controller
         $verifikasi->booknumber = $booknumber;
         $verifikasi->status = 'Requested';
         $verifikasi->tgl = date('Y-m-d');
-        $verifikasi->catatan = $catatan;
+        $verifikasi->catatan = $catatan . ' - by ' . Auth::user()->role;
         $verifikasi->save();
 
         return redirect('pemeliharaan/pekerjaan-detail/' . $booknumber)->with('dissaprove', 'Status berhasil dirubah.');
         
+    }
+
+    public function proceed($booknumber)
+    {
+        $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
+        $pekerjaan->status = 'In Progress';
+        $pekerjaan->save();
+
+        $verifikasi = new PekerjaanVerifikasi;
+        $verifikasi->booknumber = $booknumber;
+        $verifikasi->status = 'In Progress';
+        $verifikasi->tgl = date('Y-m-d');
+        $verifikasi->catatan = 'Proceed by ' . Auth::user()->role;
+        $verifikasi->save();
+
+        return redirect('pemeliharaan/pekerjaan')->with('proceed', 'Pekerjaan sedang diproses.');
+    }
+
+    public function done($booknumber)
+    {
+        $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
+        $pekerjaan->status = 'Done';
+        $pekerjaan->save();
+
+        $verifikasi = new PekerjaanVerifikasi;
+        $verifikasi->booknumber = $booknumber;
+        $verifikasi->status = 'Done';
+        $verifikasi->tgl = date('Y-m-d');
+        $verifikasi->save();
+
+        return redirect('pemeliharaan/pekerjaan')->with('done', 'Pekerjaan telah selesai. Silahkan beri penilaian.');
+    }
+
+    public function close($booknumber, request $request)
+    {
+        $data = Pekerjaan::select('id', 'kd_penilaian')
+            ->orderBy('id', 'desc')->count();
+        $tahun_sekarang = date('Ym');
+        if ($data > 0) {
+            $kd_penilaian = 'RATE' . $tahun_sekarang . sprintf('%05s', $data + 1);
+        } else {
+            $kd_penilaian = 'RATE' . $tahun_sekarang . sprintf('%05s', 1);
+        }
+
+        $nilai = $request->nilai;
+        $catatan = $request->catatan;
+
+        $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
+        $pekerjaan->status = 'Closed';
+        $pekerjaan->save();
+
+        $verifikasi = new PekerjaanVerifikasi;
+        $verifikasi->booknumber = $booknumber;
+        $verifikasi->status = 'Closed';
+        $verifikasi->tgl = date('Y-m-d');
+        $verifikasi->catatan = 'Closed by ' . Auth::user()->role;
+        $verifikasi->save();
+
+        $penilaian = new Penilaian;
+        $penilaian->kd_penilaian = $kd_penilaian;
+        $penilaian->nilai = $nilai;
+        $penilaian->tgl = date('Y-m-d');
+        $penilaian->catatan = $catatan . ' - by ' . $pekerjaan->nama . $pekerjaan->nik;
+        $penilaian->kd_pekerjaan = $booknumber;
+
+        return redirect('pemeliharaan/pekerjaan')->with('done', 'Pekerjaan telah selesai. Silahkan beri penilaian.');
     }
 }

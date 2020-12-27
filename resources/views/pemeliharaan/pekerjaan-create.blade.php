@@ -2,6 +2,9 @@
 @section('title','Input Pekerjaan')
 @section('content')
 <div class="container-fluid mt-3">
+    @if (session('survey-error'))
+        <div class="alert alert-danger">{{session('survey-error')}}</div>
+    @endif
     <div class="row">
         <div class="col-lg-12">
             <div class="card">

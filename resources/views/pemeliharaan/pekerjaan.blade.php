@@ -4,8 +4,10 @@
 <div class="container-fluid mt-3">
     @if (session('message-success'))
         <div class="alert alert-success">{{session('message-success')}}</div>
-    @elseif (session('message-success-approve'))
-        <div class="alert alert-success">{{session('message-success-approve')}}</div>
+    @elseif (session('approve'))
+        <div class="alert alert-success">{{session('approve')}}</div>
+    @elseif (session('done'))
+        <div class="alert alert-success">{{session('done')}}</div>
     @endif
     <div class="row">
         <div class="col-lg-12">
@@ -20,7 +22,7 @@
                                 </li>
                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#approved">Approved ({{$pekerjaan->where('status', 'Approved')->count()}})</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#inprogress">In Progress ({{$pekerjaan->where('status', 'In progress')->count()}})</a>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#inprogress">In Progress ({{$pekerjaan->where('status', 'In Progress')->count()}})</a>
                                 </li>
                                 {{-- only admin and worker who can see done tab  --}}
                                 @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Worker')    
@@ -152,16 +154,16 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach ($pekerjaan->where('status','Done') as $result => $item)    
+                                                @foreach ($pekerjaan->where('status','Done') as $result => $done)    
                                                     <tr>
-                                                        <td>{{$item->booknumber}}</td>
-                                                        <td>{{$item->nama}}</td>
-                                                        <td>{{$item->nik}}</td>
-                                                        <td>{{$item->tanggal_pekerjaan}}</td>
-                                                        <td>{{$item->tanggal_pelaksanaan}}</td>
-                                                        <td>{{$item->getKlasifikasi->klasifikasi_pekerjaan}}</td>
-                                                        <td><span class="badge badge-primary">{{$item->status}}</span></td>
-                                                        <td><a href="/pemeliharaan/pekerjaan-detail/{{$item->booknumber}}" class="badge badge-success">Detail</a></td>
+                                                        <td>{{$done->booknumber}}</td>
+                                                        <td>{{$done->nama}}</td>
+                                                        <td>{{$done->nik}}</td>
+                                                        <td>{{$done->tanggal_pekerjaan}}</td>
+                                                        <td>{{$done->tanggal_pelaksanaan}}</td>
+                                                        <td>{{$done->getKlasifikasi->klasifikasi_pekerjaan}}</td>
+                                                        <td><span class="badge badge-primary">{{$done->status}}</span></td>
+                                                        <td><a href="/pemeliharaan/pekerjaan-detail/{{$done->booknumber}}" class="badge badge-success">Detail</a></td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>

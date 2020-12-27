@@ -24,7 +24,6 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::post('/pemeliharaan/pekerjaan-approve/{booknumber}','PekerjaanController@approve');
     Route::post('/pemeliharaan/pekerjaan-disapprove/{booknumber}','PekerjaanController@disapprove');
     Route::get('/pemeliharaan/pekerjaan-cancel/{booknumber}','input_pekerjaanController@cancel');
-    Route::get('/pemeliharaan/pekerjaan-close/{booknumber}','input_pekerjaanController@close');
     // input klasifikasi pekerjaan
     Route::get('/pemeliharaan/klasifikasi','input_klasifikasiController@index');
     Route::get('/pemeliharaan/klasifikasi-create','input_klasifikasiController@create');
@@ -97,9 +96,9 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/pemeliharaan/pekerjaan-edit/{booknumber}','PekerjaanController@edit');
     Route::post('/pemeliharaan/pekerjaan-update/{booknumber}','input_pekerjaanController@update');
     Route::get('/pemeliharaan/pekerjaan-delete-file/{id}','input_pekerjaanController@deleteFile');
-    Route::get('/pemeliharaan/pekerjaan-proceed/{booknumber}','input_pekerjaanController@proceed');
-    Route::get('/pemeliharaan/pekerjaan-done/{booknumber}','input_pekerjaanController@done');
-    Route::get('/pemeliharaan/pekerjaan-accepted/{booknumber}','input_pekerjaanController@accepted');
+    Route::get('/pemeliharaan/pekerjaan-proceed/{booknumber}','PekerjaanController@proceed');
+    Route::get('/pemeliharaan/pekerjaan-done/{booknumber}','PekerjaanController@done');
+    Route::post('/pemeliharaan/pekerjaan-close/{booknumber}','PekerjaanController@close');
     // laporan kegiatan
     Route::get('/pemeliharaan/laporan','LaporanController@index');
     Route::post('/pemeliharaan/laporan-search','LaporanController@search');

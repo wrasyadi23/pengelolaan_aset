@@ -79,9 +79,20 @@
                                 <button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalApprove">Approve</button>
                                 @endif
                             @endif
-                            @if ($pekerjaan->status == 'Approved' && Auth::user()->role == 'Admin')
+                            @if ($pekerjaan->status == 'Approved')
+                                @if (Auth::user()->role == 'Worker')    
+                                <button class="btn btn-primary" onclick="window.location.href='/pemeliharaan/pekerjaan-proceed/{{$pekerjaan->booknumber}}'">Proceed</button>
+                                @elseif(Auth::user()->role == 'Admin')
                                 <button class="btn btn-warning" type="button" data-toggle="modal" data-target="#modalDisapprove">Disapprove</button>
-                                <button class="btn btn-success" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-close/{{$pekerjaan->booknumber}}'">Closed</button>
+                                @endif
+                            @endif
+                            @if ($pekerjaan->status == 'In Progress' && Auth::user()->role == 'Worker')    
+                                <button class="btn btn-primary" onclick="window.location.href='/pemeliharaan/pekerjaan-done/{{$pekerjaan->booknumber}}'">Done</button>
+                            @endif
+                            @if ($pekerjaan->status == 'Done')
+                                @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'User')
+                                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalClosed">Closed</button>
+                                @endif
                             @endif
                             @if ($pekerjaan->whereIn('status',['Requested','Approved']) && Auth::user()->role == 'Admin')
                                 <button class="btn btn-danger" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-cancel/{{$pekerjaan->booknumber}}'">Cancel</button>
@@ -152,6 +163,50 @@
                             </div>
                         </div>
                         {{-- end modal disapprove  --}}
+
+                        {{-- modal close  --}}
+                        <div class="bootstrap-modal">
+                            <div class="modal fade" id="modalClosed" style="display: none;" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Close Pekerjaan</h5>
+                                            <button class="close" type="button" data-dismiss="modal">
+                                                <span>x</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="/pemeliharaan/pekerjaan-close/{{$pekerjaan->booknumber}}" 
+                                                method="post" name="closed" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="basic-form">
+                                                    <div class="form-group">
+                                                        <label for="tanggal_pelaksanaan">Nilai Pelayanan</label>
+                                                        <select name="nilai" id="" class="form-control input-default" required>
+                                                            <option selected>Pilih Nilai</option>
+                                                            <option value="5">5 - Sangat Memuaskan</option>
+                                                            <option value="4">4 - Memuaskan</option>
+                                                            <option value="3">3 - Cukup</option>
+                                                            <option value="2">2 - Kurang</option>
+                                                            <option value="1">1 - Tidak Memuaskan</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="tanggal_pelaksanaan">Kritik & Saran</label>
+                                                        <textarea name="catatan" id="" cols="30" rows="10" class="form-control input-default"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" name="closed" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- end modal close  --}}
                     </div>
                 </div>
             </div>
