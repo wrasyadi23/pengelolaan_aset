@@ -122,6 +122,24 @@ class PekerjaanController extends Controller
         ]);
     }
 
+    public function revisi($booknumber, request $request)
+    {
+        $catatan = $request->catatan;
+
+        $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
+        $pekerjaan->status = 'Revisi';
+        $pekerjaan->save();
+        
+        $verifikasi = new PekerjaanVerifikasi;
+        $verifikasi->booknumber = $booknumber;
+        $verifikasi->status = 'Revisi';
+        $verifikasi->tgl = date('Y-m-d');
+        $verifikasi->catatan = $catatan . ' - by ' . Auth::user()->role;
+        $verifikasi->save();
+
+        return redirect('pemeliharaan/pekerjaan-detail/' . $booknumber)->with('revisi', 'Status berhasil dirubah.');
+    }
+
     public function approve($booknumber, request $request)
     {
         $tanggal_pelaksanaan = $request->tanggal_pelaksanaan;
@@ -225,5 +243,44 @@ class PekerjaanController extends Controller
         $penilaian->kd_pekerjaan = $booknumber;
 
         return redirect('pemeliharaan/pekerjaan')->with('done', 'Pekerjaan telah selesai. Silahkan beri penilaian.');
+    }
+
+    public function cancel($booknumber)
+    {
+        $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
+        $pekerjaan->tanggal_pelaksanaan = '0000-00-00';
+        $pekerjaan->status = 'Canceled';
+        $pekerjaan->save();
+
+        $verifikasi = new PekerjaanVerifikasi;
+        $verifikasi->booknumber = $booknumber;
+        $verifikasi->status = 'Canceled';
+        $verifikasi->tgl = date('Y-m-d');
+        $verifikasi->catatan = 'Canceled by ' . Auth::user()->role;
+        $verifikasi->save();
+
+        return redirect('pemeliharaan/pekerjaan')->with('canceled', 'Permohonan pekerjaan dibatalkan.');
+    }
+
+    public function edit($booknumber)
+    {
+        $area_klasifikasi = AreaKlasifikasi::all();
+        $pekerjaan_klasifikasi = PekerjaanKlasifikasi::all();
+        // 3 variable di bawah untuk mengambil data existing
+        $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
+        $dataAlamat = AreaAlamat::where('kd_area', $pekerjaan->kd_area)->get();
+        $dataKeterangan = AreaKeterangan::where('kd_alamat', $dataAlamat->where('kd_alamat', $pekerjaan->kd_alamat)->first()->kd_alamat)->get();
+        return view('pemeliharaan/pekerjaan-edit', [
+            'pekerjaan' => $pekerjaan,
+            'area_klasifikasi' => $area_klasifikasi,
+            'pekerjaan_klasifikasi' => $pekerjaan_klasifikasi,
+            'dataAlamat' => $dataAlamat,
+            'dataKeterangan' => $dataKeterangan
+        ]);
+    }
+
+    public function update($booknumber, request $request)
+    {
+        
     }
 }

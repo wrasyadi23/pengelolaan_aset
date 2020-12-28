@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Edit Data Pekerjaan</h4>
                     <div class="card-content">
-                        <form action="/pemeliharaan/pekerjaan-update/{{$DataPekerjaan->booknumber}}" method="post" enctype="multipart/form-data">
+                        <form action="/pemeliharaan/pekerjaan-update/{{$pekerjaan->booknumber}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="basic-form">
                                 {{-- combobox dinamis start  --}}
@@ -20,23 +20,23 @@
                                         <label for="klasifikasi-area">Klasifikasi Area</label>
                                         <select name="kd_area" id="kd_area" class="form-control input-default" required>
                                             @foreach ($area_klasifikasi as $area => $itemArea)
-                                                <option value="{{$itemArea->kd_area}}" {{$itemArea->kd_area == $DataPekerjaan->kd_area ? 'selected' : ''}}>{{$itemArea->klasifikasi_area}}</option>
+                                                <option value="{{$itemArea->kd_area}}" {{$itemArea->kd_area == $pekerjaan->kd_area ? 'selected' : ''}}>{{$itemArea->klasifikasi_area}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="alamat">Sub Area 1/Alamat</label>
+                                        <label for="alamat">Alamat</label>
                                         <select name="kd_alamat" id="kd_alamat" class="form-control input-default" required>
                                             @foreach ($dataAlamat as $alamat => $itemAlamat)
-                                                <option value="{{$itemAlamat->kd_alamat}}" {{$itemAlamat->kd_alamat == $DataPekerjaan->kd_alamat ? 'selected' : ''}}>{{$itemAlamat->alamat}}</option>                                                
+                                                <option value="{{$itemAlamat->kd_alamat}}" {{$itemAlamat->kd_alamat == $pekerjaan->kd_alamat ? 'selected' : ''}}>{{$itemAlamat->alamat}}</option>                                                
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="keterangan">Sub Area 2/Keterangan Objek</label>
+                                        <label for="keterangan">Keterangan</label>
                                         <select name="kd_keterangan" id="kd_keterangan" class="form-control input-default" required>
                                             @foreach ($dataKeterangan as $areaKeterangan => $itemKeterangan)
-                                                <option value="{{$itemKeterangan->kd_keterangan}}" {{$itemKeterangan->kd_keterangan == $DataPekerjaan->kd_keterangan ? 'selected' : ''}}>{{$itemKeterangan->keterangan}}</option>                                                
+                                                <option value="{{$itemKeterangan->kd_keterangan}}" {{$itemKeterangan->kd_keterangan == $pekerjaan->kd_keterangan ? 'selected' : ''}}>{{$itemKeterangan->keterangan}}</option>                                                
                                             @endforeach
                                         </select>
                                     </div>
@@ -46,19 +46,27 @@
                                     <label for="jenisPekerjaan">Jenis Pekerjaan</label>
                                     <select name="kd_klasifikasi_pekerjaan" id="kd_klasifikasi_pekerjaan" class="form-control input-default" required>
                                         @foreach ($pekerjaan_klasifikasi as $pekerjaan => $itemPekerjaan)
-                                            <option value="{{$itemPekerjaan->kd_klasifikasi_pekerjaan}}" {{$itemPekerjaan->kd_klasifikasi_pekerjaan == $DataPekerjaan->kd_klasifikasi_pekerjaan ? 'selected' : '' }}>
+                                            <option value="{{$itemPekerjaan->kd_klasifikasi_pekerjaan}}" {{$itemPekerjaan->kd_klasifikasi_pekerjaan == $pekerjaan->kd_klasifikasi_pekerjaan ? 'selected' : '' }}>
                                                 {{$itemPekerjaan->klasifikasi_pekerjaan}}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label for="telepon">Nama PIC</label>
+                                    <input type="text" name="nama" id="" class="form-control input-default" value="{{$pekerjaan->nama}}" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telepon">NIK</label>
+                                    <input type="text" name="nik" id="" class="form-control input-default" value="{{$pekerjaan->nik}}" readonly>
+                                </div>
+                                <div class="form-group">
                                     <label for="telepon">Telepon</label>
-                                    <input type="text" name="telepon" id="" class="form-control form-control-sm input-default" value="{{$DataPekerjaan->telepon}}" required>
+                                    <input type="text" name="telepon" id="" class="form-control form-control-sm input-default" value="{{$pekerjaan->telepon}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="uraian">Uraian Kerusakan/Error</label>
-                                    <textarea name="uraian" id="" rows="7" class="form-control input-default" required>{{$DataPekerjaan->uraian}}</textarea>
+                                    <textarea name="uraian" id="" rows="7" class="form-control input-default" required>{{$pekerjaan->uraian}}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="image">Upload Foto</label>
@@ -74,8 +82,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @if ($DataPekerjaan->getFile->count() != null) {{-- Untuk Cek apakah ada data ber-relasi atau tidak --}}
-                                            @foreach ($DataPekerjaan->getFile->all() as $foto)
+                                        @if ($pekerjaan->getFile->count() != null) {{-- Untuk Cek apakah ada data ber-relasi atau tidak --}}
+                                            @foreach ($pekerjaan->getFile->all() as $foto)
                                             <tr>
                                                 <td>
                                                     <img src="{{asset('pemeliharaan/'.$foto->file)}}" width="150px"><br>
@@ -94,15 +102,15 @@
                                             </tr>
                                         @endif
                                             {{-- <tr>
-                                                <td><img src="{{asset('pemeliharaan/'.$DataPekerjaan->getFile->file)}}" width="150px"></td>
-                                                <td><a href="{{asset('pemeliharaan/'.$DataPekerjaan->getFile->file)}}">{{$DataPekerjaan->getFile->file}}</a></td>
+                                                <td><img src="{{asset('pemeliharaan/'.$pekerjaan->getFile->file)}}" width="150px"></td>
+                                                <td><a href="{{asset('pemeliharaan/'.$pekerjaan->getFile->file)}}">{{$pekerjaan->getFile->file}}</a></td>
                                                 <td><button type="button" class="btn btn-danger" onclick="window.location.href='/pemeliharaan/pekerjaan-delete-file/{{$DataPekerjaan->getFile->id}}'">Delete</button></th>
                                             </tr> --}}
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="general-button">
-                                    <button type="button" class="btn btn-primary" onclick="window.location.href='/pemeliharaan/pekerjaan-detail/{{$DataPekerjaan->booknumber}}'">Back</button>
+                                    <button type="button" class="btn btn-primary" onclick="window.location.href='/pemeliharaan/pekerjaan-detail/{{$pekerjaan->booknumber}}'">Back</button>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>

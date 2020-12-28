@@ -2,11 +2,17 @@
 @section('title','Detail Pekerjaan')
 @section('content')
 <div class="container-fluid mt-3">
+    {{-- notification area  --}}
     @if (session('message'))
         <div class="alert alert-success">{{session('message')}}</div>
     @elseif (session('disapprove'))
         <div class="alert alert-success">{{session('dissapprove')}}</div>
+    @elseif (session('revisi'))
+        <div class="alert alert-success">{{session('revisi')}}</div>
+    @elseif ($pekerjaan->status == 'Canceled')
+        <div class="alert alert-danger">Permohonan pekerjaan telah dibatalkan.</div>
     @endif
+    {{-- end notification area  --}}
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -76,6 +82,7 @@
                             @if ($pekerjaan->status == 'Requested')
                                 <button class="btn btn-primary" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-edit/{{$pekerjaan->booknumber}}'">Edit</button>
                                 @if (Auth::user()->role == 'Admin')
+                                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalRevisi">Revisi</button>
                                 <button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalApprove">Approve</button>
                                 @endif
                             @endif
@@ -207,6 +214,47 @@
                             </div>
                         </div>
                         {{-- end modal close  --}}
+
+                        {{-- modal revisi  --}}
+                        <div class="bootstrap-modal">
+                            <div class="modal fade" id="modalRevisi" style="display: none;" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Revisi Pekerjaan</h5>
+                                            <button class="close" type="button" data-dismiss="modal">
+                                                <span>x</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="/pemeliharaan/pekerjaan-revisi/{{$pekerjaan->booknumber}}" 
+                                                method="post" name="revisi" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="basic-form">
+                                                    <div class="form-group">
+                                                        <label for="tanggal_pelaksanaan">Catatan</label>
+                                                        <textarea name="catatan" id="" cols="30" rows="10" class="form-control input-default"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" name="revisi" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- end modal revisi  --}}
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Catatan</h4>
+                    <div class="card-content">
+                        
                     </div>
                 </div>
             </div>
