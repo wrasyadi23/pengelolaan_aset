@@ -45,5 +45,10 @@
                 <i class="icon-notebook menu-icon"></i><span class="nav-text">Laporan</span>
             </a>
         </li>
+        <li>
+            <a href="#" aria-expanded="false">
+                <i class="icon-lock menu-icon"></i><span class="nav-text">Ganti Password</span>
+            </a>
+        </li>
     </ul>
 </div>

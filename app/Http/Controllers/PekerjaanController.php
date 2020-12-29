@@ -67,9 +67,8 @@ class PekerjaanController extends Controller
         $nama = $request->nama;
         $nik = $request->nik;
         $telepon = $request->telepon;
-        $tanggal_pekerjaan = date('Y-m-d h:m:s');
+        $tanggal_pekerjaan = date('Y-m-d');
         $uraian = $request->uraian;
-        $status = $request->status;
         $kd_area = $request->kd_area;
         $kd_alamat = $request->kd_alamat;
         $kd_keterangan = $request->kd_keterangan;
@@ -77,7 +76,8 @@ class PekerjaanController extends Controller
 
         $validasi = Pekerjaan::where([
             ['kd_keterangan', $kd_keterangan],
-            ['status','Done']
+            ['status','Done'],
+            ['created_by', Auth::user()->nik],
             ])->get();
         if ($validasi->count() >= 3) {
             return redirect('pemeliharaan/pekerjaan-create')->with('survey-error', 'Silahkan isi survey kepuasan pelanggan untuk pekerjaan sebelumnya.');
@@ -91,6 +91,7 @@ class PekerjaanController extends Controller
             $newPekerjaan->tanggal_pekerjaan = $tanggal_pekerjaan;
             $newPekerjaan->uraian = $uraian;
             $newPekerjaan->status = 'Requested';
+            $newPekerjaan->created_by = Auth::user()->nik;
             $newPekerjaan->kd_area = $kd_area;
             $newPekerjaan->kd_alamat = $kd_alamat;
             $newPekerjaan->kd_keterangan = $kd_keterangan;
@@ -281,6 +282,48 @@ class PekerjaanController extends Controller
 
     public function update($booknumber, request $request)
     {
+        $nama = $request->nama;
+        $nik = $request->nik;
+        $telepon = $request->telepon;
+        $uraian = $request->uraian;
+        $kd_area = $request->kd_area;
+        $kd_alamat = $request->kd_alamat;
+        $kd_keterangan = $request->kd_keterangan;
+        $kd_klasifikasi_pekerjaan = $request->kd_klasifikasi_pekerjaan;
+
         
+        $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
+        $pekerjaan->nama = $nama;
+        $pekerjaan->nik = $nik;
+        $pekerjaan->telepon = $telepon;
+        $pekerjaan->uraian = $uraian;
+        $pekerjaan->status = 'Requested';
+        $pekerjaan->kd_area = $kd_area;
+        $pekerjaan->kd_alamat = $kd_alamat;
+        $pekerjaan->kd_keterangan = $kd_keterangan;
+        $pekerjaan->kd_klasifikasi_pekerjaan = $kd_klasifikasi_pekerjaan;
+        $pekerjaan->save();
+
+        if ($request->hasFile('foto')) {
+            foreach ($request->file('foto') as $key => $foto) {
+                $uid = uniqid(time(), false); // Generate random unique id
+                $foto->move(public_path('pemeliharaan'), $uid . '_' . $foto->getClientOriginalName());
+                $pekerjaanFile = new PekerjaanFile;
+                $pekerjaanFile->booknumber = $booknumber;
+                $pekerjaanFile->file = $uid . '_' . $foto->getClientOriginalName();
+                $pekerjaanFile->save();
+            }
+        }
+
+        return redirect('pemeliharaan/pekerjaan-detail/' . $pekerjaan->booknumber)->with('update', 'Data berhasil diupdate.');
+    }
+
+    public function deleteFile($id)
+    {
+        $getFile = PekerjaanFile::where('id', $id)->first();
+        $getFile->delete();
+        unlink(public_path('pemeliharaan/') . $getFile->file);
+
+        return redirect()->back();
     }
 }

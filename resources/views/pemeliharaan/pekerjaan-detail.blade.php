@@ -11,6 +11,8 @@
         <div class="alert alert-success">{{session('revisi')}}</div>
     @elseif ($pekerjaan->status == 'Canceled')
         <div class="alert alert-danger">Permohonan pekerjaan telah dibatalkan.</div>
+    @elseif (session('update'))
+        <div class="alert alert-success">{{session('update')}}</div>
     @endif
     {{-- end notification area  --}}
     <div class="row">
