@@ -96,7 +96,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/pemeliharaan/pekerjaan-detail/{booknumber}','PekerjaanController@detail');
     Route::get('/pemeliharaan/pekerjaan-edit/{booknumber}','PekerjaanController@edit');
     Route::post('/pemeliharaan/pekerjaan-update/{booknumber}','PekerjaanController@update');
-    Route::get('/pemeliharaan/pekerjaan-delete-file/{id}','input_pekerjaanController@deleteFile');
+    Route::get('/pemeliharaan/pekerjaan-delete-file/{id}','PekerjaanController@deleteFile');
     Route::get('/pemeliharaan/pekerjaan-proceed/{booknumber}','PekerjaanController@proceed');
     Route::get('/pemeliharaan/pekerjaan-done/{booknumber}','PekerjaanController@done');
     Route::post('/pemeliharaan/pekerjaan-close/{booknumber}','PekerjaanController@close');
