@@ -53,6 +53,10 @@
                                     <td>{{$pekerjaan->tanggal_pekerjaan}}</td>
                                 </tr>
                                 <tr>
+                                    <th>Status</th>
+                                    <td><a href="" class="badge badge-primary">{{$pekerjaan->status}}</a></td>
+                                </tr>
+                                <tr>
                                     <th>Uraian</th>
                                     <td>{{$pekerjaan->uraian}}</td>
                                 </tr>
@@ -254,7 +258,33 @@
                 <div class="card-body">
                     <h4 class="card-title">Catatan</h4>
                     <div class="card-content">
-                        
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Tanggal</th>
+                                    <th>Status</th>
+                                    <th>Catatan</th>
+                                </tr>
+                                @if ($pekerjaan->getPekerjaanVerifikasi->count() != null)
+                                @php
+                                    $no = 1;
+                                @endphp
+                                @foreach ($pekerjaan->getPekerjaanVerifikasi as $result => $notes)  
+                                <tr>
+                                    <td>{{$no++}}</td>
+                                    <td>{{$notes->tgl}}</td>
+                                    <td>{{$notes->status}}</td>
+                                    <td>{{$notes->catatan}}</td>
+                                </tr>
+                                @endforeach
+                                @else
+                                <tr>
+                                    <td colspan="4" align="center">Tidak ada catatan.</td>
+                                </tr>
+                                @endif
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
