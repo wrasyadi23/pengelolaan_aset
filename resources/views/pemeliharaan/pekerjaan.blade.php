@@ -84,16 +84,16 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach ($pekerjaan->where('status','Approved') as $result => $item)    
+                                                @foreach ($pekerjaan->where('status','Approved') as $result => $approved)    
                                                     <tr>
-                                                        <td>{{$item->booknumber}}</td>
-                                                        <td>{{$item->nama}}</td>
-                                                        <td>{{$item->nik}}</td>
-                                                        <td>{{$item->tanggal_pekerjaan}}</td>
-                                                        <td>{{$item->tanggal_pelaksanaan}}</td>
-                                                        <td>{{$item->getKlasifikasi->klasifikasi_pekerjaan}}</td>
-                                                        <td><span class="badge badge-primary">{{$item->status}}</span></td>
-                                                        <td><a href="/pemeliharaan/pekerjaan-detail/{{$item->booknumber}}" class="badge badge-success">Detail</a></td>
+                                                        <td>{{$approved->booknumber}}</td>
+                                                        <td>{{$approved->nama}}</td>
+                                                        <td>{{$approved->nik}}</td>
+                                                        <td>{{$approved->tanggal_pekerjaan}}</td>
+                                                        <td>{{$approved->tanggal_pelaksanaan}}</td>
+                                                        <td>{{$approved->getKlasifikasi->klasifikasi_pekerjaan}}</td>
+                                                        <td><span class="badge badge-primary">{{$approved->status}}</span></td>
+                                                        <td><a href="/pemeliharaan/pekerjaan-detail/{{$approved->booknumber}}" class="badge badge-success">Detail</a></td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>
@@ -119,16 +119,16 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach ($pekerjaan->where('status','In Progress') as $result => $item)    
+                                                @foreach ($pekerjaan->where('status','In Progress') as $result => $inprogress)    
                                                     <tr>
-                                                        <td>{{$item->booknumber}}</td>
-                                                        <td>{{$item->nama}}</td>
-                                                        <td>{{$item->nik}}</td>
-                                                        <td>{{$item->tanggal_pekerjaan}}</td>
-                                                        <td>{{$item->tanggal_pelaksanaan}}</td>
-                                                        <td>{{$item->getKlasifikasi->klasifikasi_pekerjaan}}</td>
-                                                        <td><span class="badge badge-primary">{{$item->status}}</span></td>
-                                                        <td><a href="/pemeliharaan/pekerjaan-detail/{{$item->booknumber}}" class="badge badge-success">Detail</a></td>
+                                                        <td>{{$inprogress->booknumber}}</td>
+                                                        <td>{{$inprogress->nama}}</td>
+                                                        <td>{{$inprogress->nik}}</td>
+                                                        <td>{{$inprogress->tanggal_pekerjaan}}</td>
+                                                        <td>{{$inprogress->tanggal_pelaksanaan}}</td>
+                                                        <td>{{$inprogress->getKlasifikasi->klasifikasi_pekerjaan}}</td>
+                                                        <td><span class="badge badge-primary">{{$inprogress->status}}</span></td>
+                                                        <td><a href="/pemeliharaan/pekerjaan-detail/{{$inprogress->booknumber}}" class="badge badge-success">Detail</a></td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>
@@ -189,16 +189,16 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach ($pekerjaan->where('status','Done') as $result => $item)    
+                                                @foreach ($pekerjaan->where('status','Closed') as $result => $close)    
                                                     <tr>
-                                                        <td>{{$item->booknumber}}</td>
-                                                        <td>{{$item->nama}}</td>
-                                                        <td>{{$item->nik}}</td>
-                                                        <td>{{$item->tanggal_pekerjaan}}</td>
-                                                        <td>{{$item->getKlasifikasi->klasifikasi_pekerjaan}}</td>
-                                                        <td>{{$item->getRating->nilai}}</td>
-                                                        <td><span class="badge badge-primary">{{$item->status}}</span></td>
-                                                        <td><a href="/pemeliharaan/pekerjaan-detail/{{$item->booknumber}}" class="badge badge-success">Detail</a></td>
+                                                        <td>{{$close->booknumber}}</td>
+                                                        <td>{{$close->nama}}</td>
+                                                        <td>{{$close->nik}}</td>
+                                                        <td>{{$close->tanggal_pekerjaan}}</td>
+                                                        <td>{{$close->getKlasifikasi->klasifikasi_pekerjaan}}</td>
+                                                        <td>{{$close->getPenilaian->nilai}}</td>
+                                                        <td><span class="badge badge-primary">{{$close->status}}</span></td>
+                                                        <td><a href="/pemeliharaan/pekerjaan-detail/{{$close->booknumber}}" class="badge badge-success">Detail</a></td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>

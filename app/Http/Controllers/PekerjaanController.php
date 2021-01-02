@@ -32,7 +32,7 @@ class PekerjaanController extends Controller
         } 
         
         else {
-            $pekerjaan = Pekerjaan::where('nik', Auth::user()->nik)
+            $pekerjaan = Pekerjaan::where('created_by', Auth::user()->nik)
             ->orderBy('booknumber', 'desc')
             ->get();
         }
@@ -173,7 +173,7 @@ class PekerjaanController extends Controller
         $verifikasi->booknumber = $booknumber;
         $verifikasi->status = 'Requested';
         $verifikasi->tgl = date('Y-m-d');
-        $verifikasi->catatan = $catatan . ' - by ' . Auth::user()->role;
+        $verifikasi->catatan = $catatan . ' by ' . Auth::user()->role;
         $verifikasi->save();
 
         return redirect('pemeliharaan/pekerjaan-detail/' . $booknumber)->with('dissaprove', 'Status berhasil dirubah.');
@@ -206,6 +206,7 @@ class PekerjaanController extends Controller
         $verifikasi->booknumber = $booknumber;
         $verifikasi->status = 'Done';
         $verifikasi->tgl = date('Y-m-d');
+        $verifikasi->catatan = 'Done at ' . date('Y-m-d') . ' by ' . Auth::user()->role;
         $verifikasi->save();
 
         return redirect('pemeliharaan/pekerjaan')->with('done', 'Pekerjaan telah selesai. Silahkan beri penilaian.');
@@ -213,7 +214,7 @@ class PekerjaanController extends Controller
 
     public function close($booknumber, request $request)
     {
-        $data = Pekerjaan::select('id', 'kd_penilaian')
+        $data = Penilaian::select('id', 'kd_penilaian')
             ->orderBy('id', 'desc')->count();
         $tahun_sekarang = date('Ym');
         if ($data > 0) {
@@ -228,6 +229,13 @@ class PekerjaanController extends Controller
         $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
         $pekerjaan->status = 'Closed';
         $pekerjaan->save();
+        
+        $penilaian = new Penilaian;
+        $penilaian->kd_penilaian = $kd_penilaian;
+        $penilaian->nilai = $nilai;
+        $penilaian->tgl = date('Y-m-d');
+        $penilaian->catatan = $catatan . ' by ' . $pekerjaan->nama . $pekerjaan->nik;
+        $penilaian->kd_pekerjaan = $booknumber;
 
         $verifikasi = new PekerjaanVerifikasi;
         $verifikasi->booknumber = $booknumber;
@@ -236,14 +244,7 @@ class PekerjaanController extends Controller
         $verifikasi->catatan = 'Closed by ' . Auth::user()->role;
         $verifikasi->save();
 
-        $penilaian = new Penilaian;
-        $penilaian->kd_penilaian = $kd_penilaian;
-        $penilaian->nilai = $nilai;
-        $penilaian->tgl = date('Y-m-d');
-        $penilaian->catatan = $catatan . ' - by ' . $pekerjaan->nama . $pekerjaan->nik;
-        $penilaian->kd_pekerjaan = $booknumber;
-
-        return redirect('pemeliharaan/pekerjaan')->with('done', 'Pekerjaan telah selesai. Silahkan beri penilaian.');
+        return redirect('pemeliharaan/pekerjaan')->with('close', 'Pekerjaan telah selesai. Terima kasih atas penilaian anda.');
     }
 
     public function cancel($booknumber)

@@ -40,7 +40,7 @@ class Pekerjaan extends Model
         return $this->belongsTo('App\SR', 'kd_sr', 'kd_sr');
     }
 
-    public function getRating()
+    public function getPenilaian()
     {
         return $this->hasOne('App\Penilaian', 'kd_pekerjaan', 'booknumber');
     }

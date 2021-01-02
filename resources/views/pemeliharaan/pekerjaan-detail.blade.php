@@ -104,11 +104,13 @@
                             @endif
                             @if ($pekerjaan->status == 'Done')
                                 @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'User')
-                                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalClosed">Closed</button>
+                                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalClosed">Close</button>
                                 @endif
                             @endif
-                            @if ($pekerjaan->whereIn('status',['Requested','Approved']) && Auth::user()->role == 'Admin')
+                            @if ($pekerjaan->status == 'Requested' || $pekerjaan->status == 'Approved')
+                                @if (Auth::user()->role == 'Admin')
                                 <button class="btn btn-danger" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-cancel/{{$pekerjaan->booknumber}}'">Cancel</button>
+                                @endif
                             @endif
                         </div>
                         {{-- modal approve  --}}
@@ -253,6 +255,27 @@
                             </div>
                         </div>
                         {{-- end modal revisi  --}}
+
+                        {{-- modalEnd  --}}
+                        <div class="bootstrap-modal">
+                            <div class="modal fade" id="modalEnd" style="display: none;" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Message</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h3 class="text-center">{{session('close')}}</h3>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" data-dismiss="modal" 
+                                            onclick="window.location.href='/pemeliharaan/pekerjaan'">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- end modalEnd  --}}
                     </div>
                 </div>
             </div>
@@ -295,5 +318,11 @@
 </div>
 @endsection
 @section('script')
-    
+    @if (session('close'))
+        <script>
+            $(document).ready(function() {
+                $('#modalClose').modal();
+            });
+        </script>
+    @endif
 @endsection

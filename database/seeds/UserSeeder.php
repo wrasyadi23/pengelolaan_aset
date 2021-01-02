@@ -75,9 +75,9 @@ class UserSeeder extends Seeder
                 'jabatan' => 'Pelaksana',
                 'golongan' => '6A',
                 'kd_departemen' => 'DEP0001',
-                'kd_bagian' => 'BAG0001',
-                'kd_seksi' => 'SIE0004',
-                'kd_regu' => 'RU0009',
+                'kd_bagian' => 'BAG0003',
+                'kd_seksi' => 'SIE0001',
+                'kd_regu' => 'RU0002',
                 'status' => 'Aktif'
             ],
             [
