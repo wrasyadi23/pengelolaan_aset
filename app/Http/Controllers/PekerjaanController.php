@@ -23,14 +23,14 @@ class PekerjaanController extends Controller
     {
         if (Auth::user()->role == 'Admin') {
             $pekerjaan = Pekerjaan::all();
-        } 
-        
+        }
+
         elseif (Auth::user()->role == 'Worker') {
             $pekerjaan = Pekerjaan::where(
                 'kd_klasifikasi_pekerjaan', Auth::user()->getKaryawan->getRegu->getKlasifikasi->map->only('kd_klasifikasi_pekerjaan')
             )->with('getKlasifikasi')->get();
-        } 
-        
+        }
+
         else {
             $pekerjaan = Pekerjaan::where('created_by', Auth::user()->nik)
             ->orderBy('booknumber', 'desc')
@@ -97,7 +97,7 @@ class PekerjaanController extends Controller
             $newPekerjaan->kd_keterangan = $kd_keterangan;
             $newPekerjaan->kd_klasifikasi_pekerjaan = $kd_klasifikasi_pekerjaan;
             $newPekerjaan->save();
-    
+
             if ($request->hasFile('foto')) {
                 foreach ($request->file('foto') as $key => $foto) {
                     $uid = uniqid(time(), false); // Generate random unique id
@@ -108,7 +108,7 @@ class PekerjaanController extends Controller
                     $pekerjaanFile->save();
                 }
             }
-    
+
             return redirect('pemeliharaan/pekerjaan')->with('message-success', 'Data berhasil disimpan.');
         }
 
@@ -130,7 +130,7 @@ class PekerjaanController extends Controller
         $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
         $pekerjaan->status = 'Revisi';
         $pekerjaan->save();
-        
+
         $verifikasi = new PekerjaanVerifikasi;
         $verifikasi->booknumber = $booknumber;
         $verifikasi->status = 'Revisi';
@@ -163,7 +163,7 @@ class PekerjaanController extends Controller
     public function disapprove($booknumber, Request $request)
     {
         $catatan = $request->catatan;
-        
+
         $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
         $pekerjaan->tanggal_pelaksanaan = '0000-00-00';
         $pekerjaan->status = 'Requested';
@@ -177,7 +177,7 @@ class PekerjaanController extends Controller
         $verifikasi->save();
 
         return redirect('pemeliharaan/pekerjaan-detail/' . $booknumber)->with('dissaprove', 'Status berhasil dirubah.');
-        
+
     }
 
     public function proceed($booknumber)
@@ -229,13 +229,14 @@ class PekerjaanController extends Controller
         $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
         $pekerjaan->status = 'Closed';
         $pekerjaan->save();
-        
+
         $penilaian = new Penilaian;
         $penilaian->kd_penilaian = $kd_penilaian;
         $penilaian->nilai = $nilai;
         $penilaian->tgl = date('Y-m-d');
         $penilaian->catatan = $catatan . ' by ' . $pekerjaan->nama . $pekerjaan->nik;
         $penilaian->kd_pekerjaan = $booknumber;
+        $penilaian->save();
 
         $verifikasi = new PekerjaanVerifikasi;
         $verifikasi->booknumber = $booknumber;
@@ -292,7 +293,7 @@ class PekerjaanController extends Controller
         $kd_keterangan = $request->kd_keterangan;
         $kd_klasifikasi_pekerjaan = $request->kd_klasifikasi_pekerjaan;
 
-        
+
         $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
         $pekerjaan->nama = $nama;
         $pekerjaan->nik = $nik;
