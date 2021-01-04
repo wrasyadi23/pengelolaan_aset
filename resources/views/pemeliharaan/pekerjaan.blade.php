@@ -23,12 +23,9 @@
                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#approved">Approved ({{$pekerjaan->where('status', 'Approved')->count()}})</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#inprogress">In Progress ({{$pekerjaan->where('status', 'In Progress')->count()}})</a>
-                                </li>
-                                {{-- only admin and worker who can see done tab  --}}
-                                @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Worker')    
+                                </li> 
                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#done">Done ({{$pekerjaan->where('status', 'Done')->count()}})</a>
                                 </li>
-                                @endif
                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#closed">Closed</a>
                                 </li>
                             </ul>

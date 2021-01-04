@@ -234,7 +234,7 @@ class PekerjaanController extends Controller
         $penilaian->kd_penilaian = $kd_penilaian;
         $penilaian->nilai = $nilai;
         $penilaian->tgl = date('Y-m-d');
-        $penilaian->catatan = $catatan . ' by ' . $pekerjaan->nama . $pekerjaan->nik;
+        $penilaian->catatan = $catatan . ' by ' . $pekerjaan->nama . ' / ' . $pekerjaan->nik;
         $penilaian->kd_pekerjaan = $booknumber;
         $penilaian->save();
 
@@ -245,7 +245,7 @@ class PekerjaanController extends Controller
         $verifikasi->catatan = 'Closed by ' . Auth::user()->role;
         $verifikasi->save();
 
-        return redirect('pemeliharaan/pekerjaan')->with('close', 'Pekerjaan telah selesai. Terima kasih atas penilaian anda.');
+        return redirect('pemeliharaan/pekerjaan-detail/' . $booknumber)->with('close', 'Pekerjaan telah selesai. Terima kasih atas penilaian anda.');
     }
 
     public function cancel($booknumber)
