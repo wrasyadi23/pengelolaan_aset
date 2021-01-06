@@ -146,7 +146,8 @@
     <script src="{{asset('quixlab/plugins/tables/js/datatable/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('quixlab/plugins/tables/js/datatable-init/datatable-basic.min.js')}}"></script>
     <script src="{{asset('select2/js/select2.full.min.js')}}"></script>
-
+    {{--Highcharts--}}
+    <script src="{{asset('highcharts/highcharts.js')}}"></script>
     @yield('script')
 </body>
 
