@@ -19,4 +19,9 @@ class PekerjaanKlasifikasi extends Model
     {
         return $this->belongsTo('App\Regu', 'kd_regu', 'kd_regu');
     }
+
+    public function getTotalPekerjaanAttribute()
+    {
+        return $this->getPekerjaan->count();
+    }
 }

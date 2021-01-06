@@ -14,44 +14,32 @@ use Illuminate\Http\Request;
 
 class pemeliharaanController extends Controller
 {
-    public function index(){
-       if (Auth::user()->role == 'Admin') {
+    public function index()
+    {
+        if (Auth::user()->role == 'Admin') {
             $pekerjaan = Pekerjaan::all();
-
-            $chartX = [];
-            $chartY = [];
-
-            foreach ($pekerjaan as $data) {
-                $chartX = $data->status;
-                $chartY = $data->where('status', $chartX)->count();
-            }
-        }
-
-        elseif (Auth::user()->role == 'Worker') {
+        } elseif (Auth::user()->role == 'Worker') {
             $pekerjaan = Pekerjaan::where(
                 'kd_klasifikasi_pekerjaan', Auth::user()->getKaryawan->getRegu->getKlasifikasi->map->only('kd_klasifikasi_pekerjaan')
             )->with('getKlasifikasi')->get();
-        }
-
-        else {
+        } else {
             $pekerjaan = Pekerjaan::where('created_by', Auth::user()->nik)
-            ->orderBy('booknumber', 'desc')
-            ->get();
+                ->orderBy('booknumber', 'desc')
+                ->get();
         }
 
-        // dd($chartY);
+        $pekerjaanKlasifikasi = PekerjaanKlasifikasi::all();
 
         return view('pemeliharaan/dashboard', [
             'pekerjaan' => $pekerjaan,
-            'chartX' => $chartX,
-            'chartY' => $chartY,
+            'pekerjaanKlasifikasi' => $pekerjaanKlasifikasi
         ]);
     }
 
     public function data()
     {
-        $pekerjaan = Pekerjaan::where('created_by',Auth::user()->nik)->get();
-        return view('pemeliharaan/data',[
+        $pekerjaan = Pekerjaan::where('created_by', Auth::user()->nik)->get();
+        return view('pemeliharaan/data', [
             'pekerjaan' => $pekerjaan,
         ]);
     }
