@@ -24,7 +24,7 @@
                 <i class="icon-user menu-icon"></i><span class="nav-text">Profil</span>
             </a>
             <ul aria-expanded="false">
-                <li><a href="/pemeliharaan/pekerjaan">Ganti Password</a></li>
+                <li><a href="#">Ganti Password</a></li>
             </ul>
         </li>
     </ul>
