@@ -22,6 +22,8 @@ class CreateTbKaryawanTable extends Migration
             $table->string('jenis_kelamin',45);
             $table->string('jabatan',45);
             $table->string('golongan',45);
+            $table->string('kd_direktorat',45);
+            $table->string('kd_kompartemen',45);
             $table->string('kd_departemen',45);
             $table->string('kd_bagian',45);
             $table->string('kd_seksi',45);

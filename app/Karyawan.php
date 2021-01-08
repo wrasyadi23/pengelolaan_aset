@@ -14,6 +14,16 @@ class Karyawan extends Model
         return $this->belongsTo('App\User', 'nik', 'nik');
     }
 
+    public function getDirektorat()
+    {
+        return $this->hasOne('App\Direktorat', 'kd_direktorat', 'kd_direktorat');
+    }
+
+    public function getKompartemen()
+    {
+        return $this->hasOne('App\Kompartemen', 'kd_kompartemen', 'kd_kompartemen');
+    }
+
     public function getDepartemen()
     {
         return $this->hasOne('App\Departemen', 'kd_departemen', 'kd_departemen');

@@ -29,4 +29,9 @@ class Kompartemen extends Model
     {
         return $this->hasMany('App\Departemen', 'kd_kompartemen', 'kd_kompartemen');
     }
+
+    public function getKaryawan()
+    {
+        return $this->belongsTo('App\Karyawan', 'kd_kompartemen', 'kd_kompartemen');
+    }
 }

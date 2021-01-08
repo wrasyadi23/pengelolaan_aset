@@ -24,4 +24,9 @@ class Direktorat extends Model
     {
         return $this->hasMany('App\DirektoratHistory', 'kd_direktorat', 'kd_direktorat');
     }
+
+    public function getKaryawan()
+    {
+        return $this->belongsTo('App\Karyawan', 'kd_direktorat', 'kd_direktorat');
+    }
 }

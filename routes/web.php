@@ -82,6 +82,14 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::get('/transport/harga-sewa-edit/{kd_tarif}', 'HargaSewaController@edit');
     Route::post('/transport/harga-sewa-update/{kd_tarif}', 'HargaSewaController@update');
     Route::get('/transport/harga-sewa-delete/{kd_tarif}', 'HargaSewaController@delete');
+    // data user 
+    Route::get('/users', 'UsersController@index');
+    Route::get('/users-create', 'UsersController@create');
+    Route::post('/users-store', 'UsersController@store');
+    Route::get('/users-edit/{id}', 'UsersController@edit');
+    Route::post('/users-update/{id}', 'UsersController@update');
+    Route::get('/users-delete/{id}', 'UsersController@delete');
+    Route::get('/users-detail/{id}', 'UsersController@detail');
 });
 
 Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function () {
