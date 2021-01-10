@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\AreaKlasifikasi;
 use Auth;
+use MongoDB\Driver\Session;
 
 class AreaKlasifikasiController extends Controller
 {
@@ -14,5 +15,23 @@ class AreaKlasifikasiController extends Controller
         return view('pemeliharaan/area-klasifikasi', [
             'klasifikasi' => $klasifikasi,
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        $kd_area = 'AR' . sprintf('%04s', AreaKlasifikasi::all()->count() + 1);
+        $klasifikasi = new AreaKlasifikasi();
+        $klasifikasi->kd_area = $kd_area;
+        $klasifikasi->klasifikasi_area = $request->klasifikasi_area;
+        $klasifikasi->save();
+        return back()->with('message-success', 'Data berhasil disimpan.');
+    }
+
+    public function update($kd_area, Request $request)
+    {
+        AreaKlasifikasi::where('kd_area', $kd_area)->update([
+            'klasifikasi_area' => $request->klasifikasi_area
+        ]);
+        return back()->with('message-success', 'Data berhasil disimpan.');
     }
 }
