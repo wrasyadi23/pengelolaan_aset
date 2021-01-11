@@ -9,17 +9,13 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <h4 class="card-title">Input Klasifikasi Pekerjaan</h4>
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='/pemeliharaan/klasifikasi-create'">+ Tambah Klasifikasi</button>
-                        </div>
+                    <h4 class="card-title">Input Klasifikasi Pekerjaan</h4>
+                    <div class="general-button">
+                        <button type="button" class="btn btn-primary" onclick="window.location.href='/pemeliharaan/klasifikasi-create'">Tambah Klasifikasi</button>
                     </div>
                     <div class="card-content">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
+                            <table class="table table-striped table-bordered zero-configuration" style="width: 100%;">
                                 <thead>
                                     <tr>
                                         <td>No</td>
@@ -48,7 +44,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        {{$klasifikasi_pekerjaan->links()}}
                     </div>
                 </div>
             </div>

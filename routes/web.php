@@ -37,6 +37,10 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::post('/pemeliharaan/area-klasifikasi-store', 'AreaKlasifikasiController@store');
     Route::post('/pemeliharaan/area-klasifikasi-update/{kd_area}', 'AreaKlasifikasiController@update');
     Route::get('/pemeliharaan/area-klasifikasi-delete/{kd_area}', 'AreaKlasifikasiController@delete');
+    Route::get('/pemeliharaan/area-alamat/{kd_area}', 'AreaAlamatController@index');
+    Route::get('/pemeliharaan/area-alamat-store/{kd_area}', 'AreaAlamatController@store');
+    Route::get('/pemeliharaan/area-alamat-update/{kd_alamat}', 'AreaAlamatController@update');
+    Route::get('/pemeliharaan/area-alamat-delete/{kd_alamat}', 'AreaAlamatController@delete');
     // data organisasi
     Route::get('/organisasi-departemen','DepartemenController@index');
     Route::get('/organisasi-departemen-create','DepartemenController@create');

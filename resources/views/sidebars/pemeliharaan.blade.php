@@ -16,15 +16,10 @@
                 <li><a href="/pemeliharaan/klasifikasi">Klasifikasi</a></li>
             </ul>
         </li>
-        <li class="mega-menu mega-menu-sm">
-            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+        <li>
+            <a href="/pemeliharaan/area-klasifikasi" aria-expanded="false">
                 <i class="icon-note menu-icon"></i><span class="nav-text">Area</span>
             </a>
-            <ul aria-expanded="false">
-                <li><a href="/pemeliharaan/area-klasifikasi">Klasifikasi</a></li>
-                <li><a href="/pemeliharaan/area-alamat">Alamat</a></li>
-                <li><a href="/pemeliharaan/area-keterangan">Keterangan</a></li>
-            </ul>
         </li>
         @endif
         {{-- <li>
@@ -32,13 +27,13 @@
                 <i class="fa fa-address-book-o"></i><span class="nav-text">Organisasi</span>
             </a>
         </li> --}}
-        @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Worker')    
+        {{-- @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Worker')    
         <li>
             <a href="/pemeliharaan/data" aria-expanded="false">
                 <i class="icon-chart menu-icon"></i><span class="nav-text">Data Pemeliharaan</span>
             </a>
         </li>
-        @endif
+        @endif --}}
         {{-- <li>
             <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                 <i class="icon-graph menu-icon"></i><span class="nav-text">Suku Cadang</span>
@@ -49,11 +44,11 @@
                 <li><a href="/pemeliharaan/suku-cadang-laporan">Laporan</a></li>
             </ul>
         </li> --}}
-        <li>
+        {{-- <li>
             <a href="/pemeliharaan/laporan" aria-expanded="false">
                 <i class="icon-notebook menu-icon"></i><span class="nav-text">Laporan</span>
             </a>
-        </li>
+        </li> --}}
         <li class="mega-menu mega-menu-sm">
             <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                 <i class="icon-user menu-icon"></i><span class="nav-text">Profil</span>

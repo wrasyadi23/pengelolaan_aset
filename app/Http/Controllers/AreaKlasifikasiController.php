@@ -34,4 +34,10 @@ class AreaKlasifikasiController extends Controller
         ]);
         return back()->with('message-success', 'Data berhasil disimpan.');
     }
+
+    public function delete($kd_area)
+    {
+        AreaKlasifikasi::where('kd_area', $kd_area)->delete();
+        return back()->with('delete','Data berhasil dihapus.');
+    }
 }

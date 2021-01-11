@@ -2,8 +2,8 @@
 @section('title','Data Pekerjaan')
 @section('content')
     <div class="container-fluid mt-3">
-        @if (session('message-success'))
-            <div class="alert alert-success">{{session('message-success')}}</div>
+        @if (session('success'))
+            <div class="alert alert-success">{{session('success')}}</div>
         @elseif (session('delete'))
             <div class="alert alert-danger">{{session('delete')}}</div>
         @endif
@@ -11,9 +11,12 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Klasifikasi Area</h4>
-                        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#tambah">Tambah Klasifikasi
-                        </button>
+                        <h4 class="card-title">Alamat</h4>
+                        <div class="general-button">
+                            <button class="btn btn-primary" onclick="window.location.href='/pemeliharaan/area-klasifikasi'">Back</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah">Tambah Alamat
+                            </button>
+                        </div>
                         <div class="card-content">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered zero-configuration" style="width: 100%">
@@ -21,7 +24,7 @@
                                         <tr>
                                             <td>No.</td>
                                             <td>Kode</td>
-                                            <td>Klasifikasi Area</td>
+                                            <td>Alamat</td>
                                             <td>Action</td>
                                         </tr>
                                     </thead>
@@ -29,22 +32,21 @@
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach ($klasifikasi as $item)
+                                    @foreach ($klasifikasi->getAreaAlamat as $item => $alamat)
                                         <tr>
                                             <td>{{$no++}}</td>
-                                            <td>{{$item->kd_area}}</td>
-                                            <td>{{$item->klasifikasi_area}}</td>
+                                            <td>{{$alamat->kd_alamat}}</td>
+                                            <td>{{$alamat->alamat}}</td>
                                             <td>
-                                                <button class="btn btn-success btn-sm" type="button" 
-                                                onclick="window.location.href='/pemeliharaan/area-alamat/{{$item->kd_area}}'">
+                                                <button class="btn btn-success btn-sm" onclick="window.location.href='/pemeliharaan/area-keterangan/{{$alamat->kd_alamat}}">
                                                     Detail
                                                 </button>
                                                 <button class="btn btn-warning btn-sm triggerEditModal" type="button"
                                                         data-toggle="modal"
-                                                        data-target="#edit" onclick='editValue({!! $item !!})'>Edit
+                                                        data-target="#edit" onclick='editValue({!! $alamat !!})'>Edit
                                                 </button>
                                                 <button class="btn btn-danger btn-sm" type="button"
-                                                        onclick="window.location.href='/pemeliharaan/area-klasifikasi-delete/{{$item->kd_area}}'">
+                                                        onclick="window.location.href='/pemeliharaan/area-alamat-delete/{{$alamat->kd_alamat}}'">
                                                     Delete
                                                 </button>
                                             </td>
@@ -60,19 +62,19 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Tambah Klasifikasi</h5>
+                                            <h5 class="modal-title">Tambah Alamat</h5>
                                             <button class="close" type="button" data-dismiss="modal">
                                                 <span>x</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="/pemeliharaan/area-klasifikasi-store"
+                                            <form action="/pemeliharaan/area-alamat-store/{{$klasifikasi->kd_area}}"
                                                   method="post" name="tambah" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="basic-form">
                                                     <div class="form-group">
                                                         <label for="tanggal_pelaksanaan">Klasifikasi Area</label>
-                                                        <input type="text" name="klasifikasi_area" id=""
+                                                        <input type="text" name="area_alamat" id=""
                                                                class="form-control input-default" required>
                                                     </div>
                                                 </div>
@@ -94,7 +96,7 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Edit Klasifikasi</h5>
+                                            <h5 class="modal-title">Edit Alamat</h5>
                                             <button class="close" type="button" data-dismiss="modal">
                                                 <span>x</span>
                                             </button>
@@ -106,10 +108,10 @@
                                                 @csrf
                                                 <div class="basic-form">
                                                     <div class="form-group">
-                                                        <label for="tanggal_pelaksanaan">Klasifikasi Area</label>
-                                                        <input type="text" name="klasifikasi_area" id="klasifikasi_area"
+                                                        <label for="area_alamat">Klasifikasi Area</label>
+                                                        <input type="text" name="area_alamat" id="area_alamat"
                                                                class="form-control input-default" required
-                                                               value="{{$klasifikasi->first()}}">
+                                                               value="{{$klasifikasi->getAreaAlamat->first()}}">
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -134,8 +136,8 @@
 @section('script')
     <script>
         function editValue(data) {
-            $('#klasifikasi_area').val(data.klasifikasi_area)
-            $('#edit-form').attr('action', '/pemeliharaan/area-klasifikasi-update/' + data.kd_area)
+            $('#area_alamat').val(data.alamat)
+            $('#edit-form').attr('action', '/pemeliharaan/area-alamat-update/' + data.kd_alamat)
         }
     </script>
 @endsection

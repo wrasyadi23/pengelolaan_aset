@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class input_klasifikasiController extends Controller
 {
     public function index() {
-        $klasifikasi_pekerjaan = PekerjaanKlasifikasi::orderBy('id','desc')->paginate(10);
+        $klasifikasi_pekerjaan = PekerjaanKlasifikasi::orderBy('id','desc')->get();
         return view('pemeliharaan/klasifikasi',['klasifikasi_pekerjaan' => $klasifikasi_pekerjaan]);
     }
 
