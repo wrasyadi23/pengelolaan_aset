@@ -38,9 +38,13 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::post('/pemeliharaan/area-klasifikasi-update/{kd_area}', 'AreaKlasifikasiController@update');
     Route::get('/pemeliharaan/area-klasifikasi-delete/{kd_area}', 'AreaKlasifikasiController@delete');
     Route::get('/pemeliharaan/area-alamat/{kd_area}', 'AreaAlamatController@index');
-    Route::get('/pemeliharaan/area-alamat-store/{kd_area}', 'AreaAlamatController@store');
-    Route::get('/pemeliharaan/area-alamat-update/{kd_alamat}', 'AreaAlamatController@update');
+    Route::post('/pemeliharaan/area-alamat-store/{kd_area}', 'AreaAlamatController@store');
+    Route::post('/pemeliharaan/area-alamat-update/{kd_alamat}', 'AreaAlamatController@update');
     Route::get('/pemeliharaan/area-alamat-delete/{kd_alamat}', 'AreaAlamatController@delete');
+    Route::get('/pemeliharaan/area-keterangan/{kd_alamat}', 'AreaKeteranganController@index');
+    Route::post('/pemeliharaan/area-keterangan-store/{kd_alamat}', 'AreaKeteranganController@store');
+    Route::post('/pemeliharaan/area-keterangan-update/{kd_keterangan}', 'AreaKeteranganController@update');
+    Route::get('/pemeliharaan/area-keterangan->delete/{kd_alamat}', 'AreaKeteranganController@delete');
     // data organisasi
     Route::get('/organisasi-departemen','DepartemenController@index');
     Route::get('/organisasi-departemen-create','DepartemenController@create');

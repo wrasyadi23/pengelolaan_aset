@@ -14,7 +14,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Input Pekerjaan</h4>
-                    <button type="button" class="btn btn-primary mb-3" onclick="window.location.href='/pemeliharaan/pekerjaan-create'">+ Tambah Pekerjaan</button>
+                    <button type="button" class="btn btn-primary mb-3" onclick="window.location.href='/pemeliharaan/pekerjaan-create'">Tambah Pekerjaan</button>
                     <div class="card-content">
                         <div class="default-tab">
                             <ul class="nav nav-tabs mb-3" role="tablist">

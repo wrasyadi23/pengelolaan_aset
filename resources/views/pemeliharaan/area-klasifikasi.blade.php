@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Data Pekerjaan')
+@section('title','Area')
 @section('content')
     <div class="container-fluid mt-3">
         @if (session('message-success'))

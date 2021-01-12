@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Area')
+@section('title','Data Pekerjaan')
 @section('content')
     <div class="container-fluid mt-3">
         @if (session('success'))
@@ -11,10 +11,10 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Alamat</h4>
+                        <h4 class="card-title">Keterangan</h4>
                         <div class="general-button">
-                            <button class="btn btn-primary" onclick="window.location.href='/pemeliharaan/area-klasifikasi'">Back</button>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah">Tambah Alamat
+                            <button class="btn btn-primary" onclick="window.location.href='/pemeliharaan/area-alamat/{{$alamat->kd_area}}'">Back</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah">Tambah Keterangan
                             </button>
                         </div>
                         <div class="card-content">
@@ -24,7 +24,7 @@
                                         <tr>
                                             <td>No.</td>
                                             <td>Kode</td>
-                                            <td>Alamat</td>
+                                            <td>Keterangan</td>
                                             <td>Action</td>
                                         </tr>
                                     </thead>
@@ -32,21 +32,18 @@
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach ($klasifikasi->getAreaAlamat as $item => $alamat)
+                                    @foreach ($alamat->getAreaKeterangan as $item => $ket)
                                         <tr>
                                             <td>{{$no++}}</td>
-                                            <td>{{$alamat->kd_alamat}}</td>
-                                            <td>{{$alamat->alamat}}</td>
+                                            <td>{{$ket->kd_keterangan}}</td>
+                                            <td>{{$ket->keterangan}}</td>
                                             <td>
-                                                <button class="btn btn-success btn-sm" onclick="window.location.href='/pemeliharaan/area-keterangan/{{$alamat->kd_alamat}}'">
-                                                    Detail
-                                                </button>
                                                 <button class="btn btn-warning btn-sm triggerEditModal" type="button"
                                                         data-toggle="modal"
-                                                        data-target="#edit" onclick='editValue({!! $alamat !!})'>Edit
+                                                        data-target="#edit" onclick='editValue({!! $ket !!})'>Edit
                                                 </button>
                                                 <button class="btn btn-danger btn-sm" type="button"
-                                                        onclick="window.location.href='/pemeliharaan/area-alamat-delete/{{$alamat->kd_alamat}}'">
+                                                        onclick="window.location.href='/pemeliharaan/area-keterangan-delete/{{$ket->kd_keterangan}}'">
                                                     Delete
                                                 </button>
                                             </td>
@@ -62,19 +59,19 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Tambah Alamat</h5>
+                                            <h5 class="modal-title">Tambah Keterangan</h5>
                                             <button class="close" type="button" data-dismiss="modal">
                                                 <span>x</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="/pemeliharaan/area-alamat-store/{{$klasifikasi->kd_area}}"
+                                            <form action="/pemeliharaan/area-keterangan-store/{{$alamat->kd_alamat}}"
                                                   method="post" name="tambah" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="basic-form">
                                                     <div class="form-group">
-                                                        <label for="area_alamat">Alamat</label>
-                                                        <input type="text" name="area_alamat" id=""
+                                                        <label for="area_keterangan">Keterangan</label>
+                                                        <input type="text" name="area_keterangan" id=""
                                                                class="form-control input-default" required>
                                                     </div>
                                                 </div>
@@ -108,10 +105,10 @@
                                                 @csrf
                                                 <div class="basic-form">
                                                     <div class="form-group">
-                                                        <label for="area_alamat">Alamat</label>
-                                                        <input type="text" name="area_alamat" id="area_alamat"
+                                                        <label for="area_keterangan">Keterangan</label>
+                                                        <input type="text" name="area_keterangan" id="area_keterangan"
                                                                class="form-control input-default" required
-                                                               value="{{$klasifikasi->getAreaAlamat->first()}}">
+                                                               value="{{$alamat->getAreaKeterangan->first()}}">
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -136,8 +133,8 @@
 @section('script')
     <script>
         function editValue(data) {
-            $('#area_alamat').val(data.alamat)
-            $('#edit-form').attr('action', '/pemeliharaan/area-alamat-update/' + data.kd_alamat)
+            $('#area_keterangan').val(data.keterangan)
+            $('#edit-form').attr('action', '/pemeliharaan/area-keterangan-update/' + data.kd_keterangan)
         }
     </script>
 @endsection

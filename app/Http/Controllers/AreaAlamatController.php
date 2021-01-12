@@ -31,7 +31,7 @@ class AreaAlamatController extends Controller
     public function update($kd_alamat)
     {
         AreaAlamat::where('kd_alamat', $kd_alamat)->update([
-            'alamat' => $request->alamat,
+            'alamat' => $request->area_alamat,
         ]);
         return back()->with('success','Data berhasil disimpan.');
     }
