@@ -38,6 +38,7 @@ class RkapDetailController extends Controller
     $nama_aktifitas = $request->input('nama_aktifitas');
     $uraian = $request->input('uraian');
     $nilai_aktifitas = $request->input('nilai_aktifitas');
+    $kd_rkap = $request->input('gl_acc');
     $kd_bagian = $request->input('kd_bagian');
     $kd_seksi = $request->input('kd_seksi');
 
@@ -46,6 +47,8 @@ class RkapDetailController extends Controller
     $newRealisasi->aktifitas = $aktifitas;
     $newRealisasi->nama_aktifitas = $nama_aktifitas;
     $newRealisasi->uraian = $uraian;
+    $newRealisasi->nilai_aktifitas = $nilai_aktifitas;
+    $newRealisasi->kd_rkap = $kd_rkap;
     $newRealisasi->kd_bagian = $kd_bagian;
     $newRealisasi->kd_seksi = $kd_seksi;
     $newRealisasi->save();
