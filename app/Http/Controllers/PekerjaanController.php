@@ -118,8 +118,20 @@ class PekerjaanController extends Controller
     {
         $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
 
+        // merubah warna notif 
+        if ($pekerjaan->status == 'Requested') {
+            $warna = 'btn-primary';
+        } elseif ($pekerjaan->status == 'Approved' || $pekerjaan->status == 'In Progress' || $pekerjaan->status == 'Closed') {
+            $warna = 'btn-success';
+        } elseif ($pekerjaan->status == 'Done' || $pekerjaan->status == 'Revisi') {
+            $warna = 'btn-warning';
+        } elseif ($pekerjaan->status == 'Canceled') {
+            $warna = 'btn-danger';
+        }
+
         return view('pemeliharaan/pekerjaan-detail', [
             'pekerjaan' => $pekerjaan,
+            'warna' => $warna,
         ]);
     }
 

@@ -9,8 +9,8 @@
         <div class="alert alert-success">{{session('dissapprove')}}</div>
     @elseif (session('revisi'))
         <div class="alert alert-success">{{session('revisi')}}</div>
-    @elseif ($pekerjaan->status == 'Canceled')
-        <div class="alert alert-danger">Permohonan pekerjaan telah dibatalkan.</div>
+    {{-- @elseif ($pekerjaan->status == 'Canceled')
+        <div class="alert alert-danger">Permohonan pekerjaan telah dibatalkan.</div> --}}
     @elseif (session('update'))
         <div class="alert alert-success">{{session('update')}}</div>
     @endif
@@ -56,7 +56,9 @@
                                 </tr>
                                 <tr>
                                     <th>Status</th>
-                                    <td><a href="" class="badge badge-primary">{{$pekerjaan->status}}</a></td>
+                                    <td>
+                                        <a href="" class="badge {{$warna}}">{{$pekerjaan->status}}</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Uraian</th>

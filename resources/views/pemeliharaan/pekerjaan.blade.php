@@ -18,7 +18,7 @@
                     <div class="card-content">
                         <div class="default-tab">
                             <ul class="nav nav-tabs mb-3" role="tablist">
-                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#requested">Requested ({{$pekerjaan->where('status', ['Requested','Revisi'])->count()}})</a>
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#requested">Requested ({{$pekerjaan->whereIn('status', ['Requested','Revisi'])->count()}})</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#approved">Approved ({{$pekerjaan->where('status', 'Approved')->count()}})</a>
                                 </li>
@@ -93,7 +93,7 @@
                                                         <td>{{$approved->tanggal_pekerjaan}}</td>
                                                         <td>{{$approved->tanggal_pelaksanaan}}</td>
                                                         <td>{{$approved->getKlasifikasi->klasifikasi_pekerjaan}}</td>
-                                                        <td><span class="badge badge-primary">{{$approved->status}}</span></td>
+                                                        <td><span class="badge badge-success">{{$approved->status}}</span></td>
                                                         <td><a href="/pemeliharaan/pekerjaan-detail/{{$approved->booknumber}}" class="badge badge-success">Detail</a></td>
                                                     </tr>
                                                 @endforeach
@@ -128,7 +128,7 @@
                                                         <td>{{$inprogress->tanggal_pekerjaan}}</td>
                                                         <td>{{$inprogress->tanggal_pelaksanaan}}</td>
                                                         <td>{{$inprogress->getKlasifikasi->klasifikasi_pekerjaan}}</td>
-                                                        <td><span class="badge badge-primary">{{$inprogress->status}}</span></td>
+                                                        <td><span class="badge badge-success">{{$inprogress->status}}</span></td>
                                                         <td><a href="/pemeliharaan/pekerjaan-detail/{{$inprogress->booknumber}}" class="badge badge-success">Detail</a></td>
                                                     </tr>
                                                 @endforeach
@@ -163,7 +163,7 @@
                                                         <td>{{$done->tanggal_pekerjaan}}</td>
                                                         <td>{{$done->tanggal_pelaksanaan}}</td>
                                                         <td>{{$done->getKlasifikasi->klasifikasi_pekerjaan}}</td>
-                                                        <td><span class="badge badge-primary">{{$done->status}}</span></td>
+                                                        <td><span class="badge badge-warning">{{$done->status}}</span></td>
                                                         <td><a href="/pemeliharaan/pekerjaan-detail/{{$done->booknumber}}" class="badge badge-success">Detail</a></td>
                                                     </tr>
                                                 @endforeach
@@ -198,7 +198,7 @@
                                                         <td>{{$close->tanggal_pekerjaan}}</td>
                                                         <td>{{$close->getKlasifikasi->klasifikasi_pekerjaan}}</td>
                                                         <td>{{$close->getPenilaian->nilai}}</td>
-                                                        <td><span class="badge badge-primary">{{$close->status}}</span></td>
+                                                        <td><span class="badge badge-success">{{$close->status}}</span></td>
                                                         <td><a href="/pemeliharaan/pekerjaan-detail/{{$close->booknumber}}" class="badge badge-success">Detail</a></td>
                                                     </tr>
                                                 @endforeach
@@ -231,7 +231,7 @@
                                                         <td>{{$cancel->nik}}</td>
                                                         <td>{{$cancel->tanggal_pekerjaan}}</td>
                                                         <td>{{$cancel->getKlasifikasi->klasifikasi_pekerjaan}}</td>
-                                                        <td><span class="badge badge-warning">{{$cancel->status}}</span></td>
+                                                        <td><span class="badge badge-danger">{{$cancel->status}}</span></td>
                                                         <td><a href="/pemeliharaan/pekerjaan-detail/{{$cancel->booknumber}}" class="badge badge-success">Detail</a></td>
                                                     </tr>
                                                 @endforeach
