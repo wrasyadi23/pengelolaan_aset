@@ -45,7 +45,7 @@
                                 <div class="form-group">
                                     <label for="jenisPekerjaan">Jenis Pekerjaan</label>
                                     <select name="kd_klasifikasi_pekerjaan" id="kd_klasifikasi_pekerjaan" class="form-control input-default" required>
-                                        @foreach ($pekerjaan_klasifikasi as $pekerjaan => $itemPekerjaan)
+                                        @foreach ($pekerjaan_klasifikasi as $result => $itemPekerjaan)
                                             <option value="{{$itemPekerjaan->kd_klasifikasi_pekerjaan}}" {{$itemPekerjaan->kd_klasifikasi_pekerjaan == $pekerjaan->kd_klasifikasi_pekerjaan ? 'selected' : '' }}>
                                                 {{$itemPekerjaan->klasifikasi_pekerjaan}}
                                             </option>
