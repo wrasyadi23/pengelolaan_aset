@@ -111,7 +111,7 @@
                     color: '#f29d56'
                 }, {
                     name: 'Cancel',
-                    y: {{$pekerjaan->where('status','Cancel')->count()}},
+                    y: {{$pekerjaan->where('status','Canceled')->count()}},
                     color: '#f44336'
                 }, {
                     name: 'Revisi',

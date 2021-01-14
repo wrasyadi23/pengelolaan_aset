@@ -208,7 +208,7 @@
                                     </div>
                                 </div>
                                 {{-- tab canceled  --}}
-                                <div class="tab-pane fade" id="closed">
+                                <div class="tab-pane fade" id="canceled">
                                     <div class="p-t-15">
                                         <div class="table-responsive">
                                             <table class="table table-striped table-bordered zero-configuration" style="width: 100%;">
