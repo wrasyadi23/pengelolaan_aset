@@ -109,6 +109,14 @@
                     name: 'Closed',
                     y: {{$pekerjaan->where('status','Closed')->count()}},
                     color: '#f29d56'
+                }, {
+                    name: 'Cancel',
+                    y: {{$pekerjaan->where('status','Cancel')->count()}},
+                    color: '#f44336'
+                }, {
+                    name: 'Revisi',
+                    y: {{$pekerjaan->where('status','Revisi')->count()}},
+                    color: '#26A69A'
                 }]
             }]
         });

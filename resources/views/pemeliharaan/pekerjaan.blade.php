@@ -18,7 +18,7 @@
                     <div class="card-content">
                         <div class="default-tab">
                             <ul class="nav nav-tabs mb-3" role="tablist">
-                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#requested">Requested ({{$pekerjaan->where('status', 'Requested')->count()}})</a>
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#requested">Requested ({{$pekerjaan->where('status', ['Requested','Revisi'])->count()}})</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#approved">Approved ({{$pekerjaan->where('status', 'Approved')->count()}})</a>
                                 </li>
@@ -28,6 +28,10 @@
                                 </li>
                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#closed">Closed</a>
                                 </li>
+                                @if (Auth::user()->role == 'Admin')
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#canceled">Canceled</a>
+                                </li>
+                                @endif
                             </ul>
                             <div class="tab-content">
                                 {{-- tab requested  --}}
@@ -47,7 +51,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach ($pekerjaan->where('status','Requested') as $result => $item)    
+                                                @foreach ($pekerjaan->whereIn('status',['Requested','Revisi']) as $result => $item)    
                                                     <tr>
                                                         <td>{{$item->booknumber}}</td>
                                                         <td>{{$item->nama}}</td>
@@ -196,6 +200,39 @@
                                                         <td>{{$close->getPenilaian->nilai}}</td>
                                                         <td><span class="badge badge-primary">{{$close->status}}</span></td>
                                                         <td><a href="/pemeliharaan/pekerjaan-detail/{{$close->booknumber}}" class="badge badge-success">Detail</a></td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- tab canceled  --}}
+                                <div class="tab-pane fade" id="closed">
+                                    <div class="p-t-15">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-bordered zero-configuration" style="width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <td>No Booking</td>
+                                                        <td>Nama</td>
+                                                        <td>NIK</td>
+                                                        <td>Tanggal</td>
+                                                        <td>Klasifikasi</td>
+                                                        <td>Status</td>
+                                                        <td>Detail</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach ($pekerjaan->where('status','Canceled') as $result => $cancel)    
+                                                    <tr>
+                                                        <td>{{$cancel->booknumber}}</td>
+                                                        <td>{{$cancel->nama}}</td>
+                                                        <td>{{$cancel->nik}}</td>
+                                                        <td>{{$cancel->tanggal_pekerjaan}}</td>
+                                                        <td>{{$cancel->getKlasifikasi->klasifikasi_pekerjaan}}</td>
+                                                        <td><span class="badge badge-warning">{{$cancel->status}}</span></td>
+                                                        <td><a href="/pemeliharaan/pekerjaan-detail/{{$cancel->booknumber}}" class="badge badge-success">Detail</a></td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>
