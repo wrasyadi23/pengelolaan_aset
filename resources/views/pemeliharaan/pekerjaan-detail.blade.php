@@ -87,7 +87,7 @@
                         </div>
                         <div class="general-button">
                             <button class="btn btn-primary" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan'">Back</button>
-                            @if ($pekerjaan->status == 'Requested')
+                            @if ($pekerjaan->status == 'Requested' || $pekerjaan->status == 'Revisi')
                                 <button class="btn btn-primary" type="button" onclick="window.location.href='/pemeliharaan/pekerjaan-edit/{{$pekerjaan->booknumber}}'">Edit</button>
                                 @if (Auth::user()->role == 'Admin')
                                 <button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalRevisi">Revisi</button>
