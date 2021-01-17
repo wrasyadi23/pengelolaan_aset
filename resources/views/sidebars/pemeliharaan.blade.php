@@ -21,12 +21,12 @@
                 <i class="icon-note menu-icon"></i><span class="nav-text">Area</span>
             </a>
         </li>
-        @endif
-        {{-- <li>
+        <li>
             <a href="/organisasi-departemen" aria-expanded="false">
                 <i class="fa fa-address-book-o"></i><span class="nav-text">Organisasi</span>
             </a>
-        </li> --}}
+        </li>
+        @endif
         {{-- @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Worker')    
         <li>
             <a href="/pemeliharaan/data" aria-expanded="false">

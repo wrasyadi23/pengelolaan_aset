@@ -9,14 +9,8 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <h4 class="card-title">Data Organisasi</h4>
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='/organisasi-departemen-create'">+ Tambah Departemen</button>
-                        </div>
-                    </div>
+                    <h4 class="card-title">Data Organisasi</h4>
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='/organisasi-departemen-create'">Tambah Departemen</button>
                     <div class="card-content">
                         {{-- <div class="basic-form">
                             <form action="/organisasi-search-departemen" method="post" enctype="multipart/form-data">
@@ -31,7 +25,7 @@
                         </div> --}}
                         <div class="form-group">
                             <div class="table-responsive">
-                                <table class="table table-striped table-sm table-bordered zero-configuration" style="width: 100%;">
+                                <table class="table table-striped table-bordered zero-configuration" style="width: 100%;">
                                     <thead>
                                         <tr>
                                             <th>No</th>
