@@ -22,7 +22,7 @@ class AreaAlamatController extends Controller
         $kd_alamat = 'AL' . sprintf('%04s', AreaAlamat::all()->count() + 1);
         $alamat = new AreaAlamat;
         $alamat->kd_alamat = $kd_alamat;
-        $alamat->alamat = $request->alamat;
+        $alamat->alamat = $request->area_alamat;
         $alamat->kd_area = $kd_area;
         $alamat->save();
         return back()->with('success','Data berhasil disimpan.');

@@ -22,7 +22,7 @@ class AreaKeteranganController extends Controller
         $kd_keterangan = 'AN' . sprintf('%04s', AreaKeterangan::all()->count() + 1);
         $keterangan = new AreaKeterangan;
         $keterangan->kd_keterangan = $kd_keterangan; 
-        $keterangan->keterangan = $keterangan; 
+        $keterangan->keterangan = $request->area_keterangan; 
         $keterangan->kd_alamat = $kd_alamat; 
         $keterangan->save();
         return back()->with('success','Data berhasil disimpan.'); 
