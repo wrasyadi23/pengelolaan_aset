@@ -65,10 +65,46 @@
                                             @csrf
                                             <div class="basic-form">
                                                 <div class="form-group">
-                                                    <label for="tanggal_pelaksanaan">Klasifikasi Area</label>
-                                                    <input type="text" name="klasifikasi_area" id=""
-                                                           class="form-control input-default" required>
+                                                    <label for="nama">Nama</label>
+                                                    <input type="text" name="nama" id=""
+                                                        class="form-control input-default" required>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="nik">NIK</label>
+                                                    <input type="text" name="nik" id="" 
+                                                        class="form-control input-default" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email">Email</label>
+                                                    <input type="email" name="email" id="" 
+                                                        class="form-control input-default" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password">Password</label>
+                                                    <input type="password" name="password" id="" 
+                                                        class="form-control input-default" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="role">Role</label>
+                                                    <select name="role" id="">
+                                                        @if (Auth::user()->role == 'Root')
+                                                        <option value="Admin">Admin</option>
+                                                        @endif
+                                                        <option value="Worker">Worker</option>
+                                                        <option value="User">User</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="level">Level Group</label>
+                                                    <select name="level" id="">
+                                                        @if (Auth::user()->role == 'Root')
+                                                        <option value="0">Root</option>
+                                                        @endif
+                                                        <option value="1">Khusus</option>
+                                                        <option value="2">Umum</option>
+                                                    </select>
+                                                </div>
+
                                             </div>
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary" data-dismiss="modal">Close
