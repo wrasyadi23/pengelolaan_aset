@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use App\User;
+use App\Imports\UserImport;
 use App\Karyawan;
 
 class UsersController extends Controller
@@ -29,8 +31,10 @@ class UsersController extends Controller
         return back()->with('success','Data berhasil disimpan.');
     }
 
-    public function update()
+    public function import(request $request)
     {
-        # code...
+        // dd($request->file('user'));
+        Excel::import(new UserImport, $request->file('user'));
+        return back()->with('success', 'Data berhasil diupload.')
     }
 }

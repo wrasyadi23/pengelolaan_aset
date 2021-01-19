@@ -26,6 +26,11 @@
                 <i class="fa fa-address-book-o"></i><span class="nav-text">Organisasi</span>
             </a>
         </li>
+        <li>
+            <a href="/users" aria-expanded="false">
+                <i class="icon-user menu-icon"></i><span class="nav-text">User</span>
+            </a>
+        </li>
         @endif
         {{-- @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'Worker')    
         <li>

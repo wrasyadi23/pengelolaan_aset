@@ -98,6 +98,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     // data user 
     Route::get('/users', 'UsersController@index');
     Route::post('/users-store', 'UsersController@store');
+    Route::post('/users-import', 'UsersController@import');
     Route::post('/users-update/{id}', 'UsersController@update');
     Route::get('/users-delete/{id}', 'UsersController@delete');
     Route::get('/users-detail/{id}', 'UsersController@detail');

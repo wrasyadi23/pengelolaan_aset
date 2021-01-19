@@ -15,8 +15,8 @@
                 <div class="card-body">
                     <h4 class="card-title">Data User</h4>
                     <div class="general-button">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah">+ Tambah User</button>
-                        <button type="button" class="btn btn-success" onclick="window.location.href='/users-create-upload'">Upload User (Excel)</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah">Tambah User</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#import">Upload User (Excel)</button>
                     </div>
                     <div class="card-content">
                         <div class="form-group">
@@ -49,6 +49,7 @@
                             </div>
                         </div>
                     </div>
+                    {{-- tambah user  --}}
                     <div class="bootstrap-modal">
                         <div class="modal fade" id="tambah" style="display: none;" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -60,7 +61,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="/pemeliharaan/user-store"
+                                        <form action="/users-store"
                                               method="post" name="tambah" enctype="multipart/form-data">
                                             @csrf
                                             <div class="basic-form">
@@ -85,8 +86,9 @@
                                                         class="form-control input-default" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="role">Role</label>
-                                                    <select name="role" id="">
+                                                    <label for="">Role</label>
+                                                    <select name="role" id="role" class="form-control input-default" required>
+                                                        <option disabled selected></option>
                                                         @if (Auth::user()->role == 'Root')
                                                         <option value="Admin">Admin</option>
                                                         @endif
@@ -96,20 +98,54 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="level">Level Group</label>
-                                                    <select name="level" id="">
+                                                    <select name="level" id="level" class="form-control input-default" required>
+                                                        <option disabled selected></option>
                                                         @if (Auth::user()->role == 'Root')
                                                         <option value="0">Root</option>
                                                         @endif
-                                                        <option value="1">Khusus</option>
-                                                        <option value="2">Umum</option>
+                                                        <option value="1">Karyawan</option>
+                                                        <option value="2">Unit Kerja</option>
+                                                        <option value="3">Rumdin</option>
                                                     </select>
                                                 </div>
-
                                             </div>
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary" data-dismiss="modal">Close
                                                 </button>
                                                 <button type="submit" name="tambah" class="btn btn-primary">Submit
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- tambah user excel  --}}
+                    <div class="bootstrap-modal">
+                        <div class="modal fade" id="import" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Tambah User</h5>
+                                        <button class="close" type="button" data-dismiss="modal">
+                                            <span>x</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="users-import"
+                                              method="post" name="import" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="basic-form">
+                                                <div class="form-group">
+                                                    <label for="file">Browse</label>
+                                                    <input type="file" name="user" id="" class="form-control input-default" required>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" data-dismiss="modal">Close
+                                                </button>
+                                                <button type="submit" name="import" class="btn btn-primary">Upload
                                                 </button>
                                             </div>
                                         </form>
@@ -125,5 +161,14 @@
 </div>
 @endsection
 @section('script')
-    
+    <script>
+        $("#role").select2({
+            placeholder: 'Pilih Role',
+            allowClear: true
+        });
+        $("#level").select2({
+            placeholder: 'Pilih Level Group',
+            allowClear: true
+        });
+    </script>
 @endsection
