@@ -175,23 +175,28 @@
 @section('script')
     <script>
         $("#role").select2({
+            width: '100%',
             placeholder: 'Pilih Role',
             allowClear: true
         });
         $("#level").select2({
+            width: '100%',
             placeholder: 'Pilih Level Group',
             allowClear: true
         });
         $("#kd_bagian").select2({
+            width: '100%',
             placeholder: 'Pilih Bagian',
             allowClear: true
         }); // fungsi untuk mengubah dropdown biasa menjadi plugin select2
         $("#kd_seksi").select2({
+            width: '100%',
             placeholder: 'Pilih Seksi',
             allowClear: true,
             disabled: true
         }); // fungsi untuk mengubah dropdown biasa menjadi plugin select2
         $("#kd_regu").select2({
+            width: '100%',
             placeholder: 'Pilih Regu',
             allowClear: true,
             disabled: true
