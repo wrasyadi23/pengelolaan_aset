@@ -82,13 +82,17 @@
                                                         class="form-control input-default" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="bagian">Bagian</label>
-                                                    <select name="kd_bagian" id="kd_bagian" class="form-control input-default" required>
+                                                    <label for="departemen">Departemen</label>
+                                                    <select name="kd_departemen" id="kd_departemen" class="form-control input-default" required>
                                                         <option disabled selected></option>
-                                                        @foreach ($bagian as $itemBagian)
-                                                            <option value="{{$itemBagian->kd_bagian}}">{{$itemBagian->bagian}}</option>
+                                                        @foreach ($departemen as $key => $item)
+                                                        <option value="{{$item->kd_departemen}}">{{$item->departemen}}</option>
                                                         @endforeach
                                                     </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="bagian">Bagian</label>
+                                                    <select name="kd_bagian" id="kd_bagian" class="form-control input-default" disabled required></select>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="seksi">Seksi</label>
@@ -185,10 +189,16 @@
             placeholder: 'Pilih Level Group',
             allowClear: true
         });
+        $("#kd_departemen").select2({
+            width: '100%',
+            placeholder: 'Pilih Departemen',
+            allowClear: true
+        }); // fungsi untuk mengubah dropdown biasa menjadi plugin select2
         $("#kd_bagian").select2({
             width: '100%',
             placeholder: 'Pilih Bagian',
-            allowClear: true
+            allowClear: true,
+            disabled:true
         }); // fungsi untuk mengubah dropdown biasa menjadi plugin select2
         $("#kd_seksi").select2({
             width: '100%',
@@ -204,14 +214,41 @@
         }); // fungsi untuk mengubah dropdown biasa menjadi plugin select2
 
 
-        $("#kd_bagian").change(function () {
-            var seksi = "<option disabled selected></option>"
+        $("#kd_departemen").change(function () {
+            var bagian = "<option disabled selected></option>"
+            $("#kd_bagian")
+                .empty()
+                .prop("disabled", true);
             $("#kd_seksi")
                 .empty()
                 .prop("disabled", true);
             $("#kd_regu")
                 .empty()
                 .prop("disabled", true);
+            $.ajax({
+                type: "POST",
+                url: "/api/get-departemen", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON
+                data: {
+                    kd_departemen: $("#kd_departemen").val()
+                },
+                error: function(e) {
+                    console.log(e)
+                },
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    for (var x = 0; data.length > x; x++) {
+                        bagian += "<option value="+data[x].kd_bagian + ">" + data[x].bagian + "</option>"; // data json yang telah dioutput diassign ke variable dalam bentuk tag <option>
+                    }
+                    console.log(bagian); // ini hanya untuk cek di console browser, apakah data berhasil teroutput?
+                    $("#kd_bagian")
+                    .empty()
+                    .append(bagian) // variable yang berisi tag <option> diassign ke combobox terkait
+                    .prop("disabled", false);
+                }
+            })
+        })
+        $("#kd_bagian").change(function () {
+            var seksi = "<option disabled selected></option>"
             $.ajax({
                 type: "POST",
                 url: "/api/get-bagian", // memanggil url di controller API/Controller/GetResponse@getAlamat & akan output data JSON

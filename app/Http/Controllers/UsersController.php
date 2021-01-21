@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\User;
 use App\Karyawan;
+use App\Departemen;
 use App\Bagian;
 use App\Seksi;
 use App\Regu;
@@ -18,11 +19,10 @@ class UsersController extends Controller
     public function index()
     {
         $user = User::all();
-        $bagian = Bagian::all();
-
+        $departemen = Departemen::all();
         return view('users', [
             'user' => $user,
-            'bagian' => $bagian,
+            'departemen' => $departemen,
         ]);
     }
 
@@ -49,7 +49,7 @@ class UsersController extends Controller
             $karyawan->golongan = '-';
             $karyawan->kd_direktorat = '-';
             $karyawan->kd_kompartemen = '-';
-            $karyawan->kd_departemen = '-';
+            $karyawan->kd_departemen = $request->kd_departemen;
             $karyawan->kd_bagian = $request->kd_bagian;
             $karyawan->kd_seksi = $request->kd_seksi;
             $karyawan->kd_regu = $request->kd_regu;
