@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UserImport;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -13,6 +12,7 @@ use App\Departemen;
 use App\Bagian;
 use App\Seksi;
 use App\Regu;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UsersController extends Controller
 {
@@ -64,6 +64,6 @@ class UsersController extends Controller
     {
         // dd($request->file('user'));
         Excel::import(new UserImport, $request->file('user'));
-        return back()->with('success', 'Data berhasil diupload.');
+        // return back()->with('success', 'Data berhasil diupload.');
     }
 }

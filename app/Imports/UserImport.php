@@ -21,10 +21,10 @@ class UserImport implements ToCollection
                 User::create([
                     'nama' => $col[0],
                     'nik' => $col[1],
-                    'email' => $col[2],
-                    'password' => Hash::make($col[3]),
-                    'role' => $col[4],
-                    'level' => $col[5],
+                    'email' => '-',
+                    'password' => Hash::make($col[1]),
+                    'role' => '3',
+                    'level' => 'Rumdin',
                     'remember_token' => Str::random(60),
                 ]);
     

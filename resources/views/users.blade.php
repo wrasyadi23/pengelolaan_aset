@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Data User</h4>
                     <div class="general-button">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah">Tambah User</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah">Tambah Operator</button>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#import">Upload User (Excel)</button>
                         <a href="{{asset('user-import.xlsx')}}" class="btn btn-success">Download Template</a>
                     </div>
