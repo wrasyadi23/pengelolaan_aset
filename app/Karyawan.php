@@ -9,6 +9,10 @@ class Karyawan extends Model
     protected $table = 'tb_karyawan';
     public $incrementing = false;
 
+    protected $fillable = [
+        'nama', 'nik',
+    ];
+
     public function getUser()
     {
         return $this->belongsTo('App\User', 'nik', 'nik');
