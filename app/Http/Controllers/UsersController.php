@@ -18,7 +18,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $user = User::all();
+        $user = Karyawan::all();
         $departemen = Departemen::all();
         return view('users', [
             'user' => $user,
@@ -64,6 +64,25 @@ class UsersController extends Controller
     {
         // dd($request->file('user'));
         Excel::import(new UserImport, $request->file('user'));
-        // return back()->with('success', 'Data berhasil diupload.');
+        return back()->with('success', 'Data berhasil diupload.');
+    }
+
+    public function changestatus($nik)
+    {
+        $karyawan = Karyawan::where('nik', $nik)->first();
+        if ($karyawan->status == 'Aktif') {
+            $karyawan->status = 'Non Aktif';
+        } else {
+            $karyawan->status = 'Aktif';
+        }
+        $karyawan->save();
+        return back()->with('status', 'Status berhasil dirubah.');
+    }
+
+    public function delete($nik)
+    {
+        Karyawan::where('nik', $nik)->delete();
+        User::where('nik', $nik)->delete();
+        return back()->with('delete', 'User berhasil dihapus.');
     }
 }

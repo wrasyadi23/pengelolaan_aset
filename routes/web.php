@@ -100,7 +100,8 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::post('/users-store', 'UsersController@store');
     Route::post('/users-import', 'UsersController@import');
     Route::post('/users-update/{id}', 'UsersController@update');
-    Route::get('/users-delete/{id}', 'UsersController@delete');
+    Route::get('/users-change-status/{nik}', 'UsersController@changestatus');
+    Route::get('/users-delete/{nik}', 'UsersController@delete');
     Route::get('/users-detail/{id}', 'UsersController@detail');
 });
 

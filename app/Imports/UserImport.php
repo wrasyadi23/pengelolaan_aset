@@ -24,8 +24,8 @@ class UserImport implements ToCollection
                     'nik' => $col[1],
                     'email' => 'test'.$key.'@mail.com',
                     'password' => Hash::make($col[1]),
-                    'role' => '3',
-                    'level' => 'Rumdin',
+                    'role' => 'User',
+                    'level' => '3',
                     'remember_token' => Str::random(60),
                 ]);
 

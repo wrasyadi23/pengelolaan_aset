@@ -10,7 +10,9 @@ class Karyawan extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'nama', 'nik',
+        'nama', 'nik', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'jabatan', 'golongan',
+        'kd_direktorat', 'kd_kompartemen', 'kd_departemen', 'kd_bagian', 'kd_seksi', 'kd_regu',
+        'status',
     ];
 
     public function getUser()

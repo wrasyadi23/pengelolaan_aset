@@ -315,6 +315,15 @@
                     </div>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Waiting List</h4>
+                    <div class="card-content">
+                        <div class="table-responsive">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -2,12 +2,12 @@
 @section('title','User')
 @section('content')
 <div class="container-fluid mt-3">
-    @if (session('message-success'))
-        <div class="alert alert-success">{{session('message-success')}}</div>
-    @elseif (session('message-error'))
-        <div class="alert alert-danger">{{session('message-error')}}</div>
-    @elseif (session('message-success-delete'))
-        <div class="alert alert-danger">{{session('message-success-delete')}}</div>
+    @if (session('success'))
+        <div class="alert alert-success">{{session('success')}}</div>
+    @elseif (session('status'))
+        <div class="alert alert-success">{{session('status')}}</div>
+    @elseif (session('delete'))
+        <div class="alert alert-danger">{{session('delete')}}</div>
     @endif
     <div class="row">
         <div class="col-lg-12">
@@ -15,9 +15,9 @@
                 <div class="card-body">
                     <h4 class="card-title">Data User</h4>
                     <div class="general-button">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah">Tambah Operator</button>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#import">Upload User (Excel)</button>
-                        <a href="{{asset('user-import.xlsx')}}" class="btn btn-success">Download Template</a>
+                        <button type="button" class="btn btn-primary mt-1" data-toggle="modal" data-target="#tambah">Tambah Operator</button>
+                        <button type="button" class="btn btn-success mt-1" data-toggle="modal" data-target="#import">Upload User (Excel)</button>
+                        <a href="{{asset('user-import.xlsx')}}" class="btn btn-success mt-1">Download Template</a>
                     </div>
                     <div class="card-content">
                         <div class="form-group">
@@ -26,7 +26,9 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Username</th>
+                                            <th>Nama</th>
+                                            <th>NIK</th>
+                                            <th>Status</th>
                                             <th>Role</th>
                                             <th>Level</th>
                                             <th>Action</th>
@@ -40,9 +42,18 @@
                                         <tr>
                                             <td>{{$no++}}</td>
                                             <td>{{$users->nama}}</td>
-                                            <td>{{$users->role}}</td>
-                                            <td>{{$users->level}}</td>
-                                            <td><a href="" class="badge badge-success">Detail</a></td>
+                                            <td>{{$users->nik}}</td>
+                                            <td>{{$users->status}}</td>
+                                            <td>{{$users->getUser->role}}</td>
+                                            <td>{{$users->getUser->level}}</td>
+                                            <td>
+                                                @if ($users->status == 'Aktif')
+                                                <a href="/users-change-status/{{$users->nik}}" class="badge badge-danger">Non Aktifkan</a>
+                                                @else
+                                                <a href="/users-change-status/{{$users->nik}}" class="badge badge-success">Aktifkan</a>
+                                                @endif
+                                                <a href="/users-delete/{{$users->nik}}" class="badge badge-danger">Delete</a>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
