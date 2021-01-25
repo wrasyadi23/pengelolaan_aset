@@ -320,6 +320,44 @@
                     <h4 class="card-title">Waiting List</h4>
                     <div class="card-content">
                         <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <tr>
+                                    <th>No Booking</th>
+                                    <th>Nama</th>
+                                    <th>NIK</th>
+                                    <th>Tanggal</th>
+                                    <th>Klasifikasi</th>
+                                    <th>Status</th>
+                                </tr>
+                                @if ($waitinglist->count() != null)
+                                @php
+                                    $no =1;
+                                @endphp
+                                @foreach ($waitinglist as $key => $list)
+                                <tr>
+                                    <td>{{$no++}}</td>
+                                    <td>{{$list->booknumber}}</td>
+                                    <td>{{$list->nama}}</td>
+                                    <td>{{$list->nik}}</td>
+                                    <td>{{$list->tanggal_pekerjaan}}</td>
+                                    <td>{{$list->kd_klasifikasi_pekerjaan}} - {{$list->getKlasifikasi->klasifikasi_pekerjaan}}</td>
+                                    <td>
+                                        @if ($list->status == 'Requested')
+                                        <a href="" class="badge badge-primary">{{$list->status}}</a>
+                                        @elseif ($list->status == 'Approved' || $list->status == 'In Progress' || $list->status == 'Closed')
+                                        <a href="" class="badge badge-success">{{$list->status}}</a>
+                                        @elseif ($list->status == 'Done' || $list->status == 'Revisi')
+                                        <a href="" class="badge badge-warning">{{$list->status}}</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                                @else
+                                <tr>
+                                    <td colspan="4" align="center">Tidak ada waiting list.</td>
+                                </tr>
+                                @endif
+                            </table>
                         </div>
                     </div>
                 </div>

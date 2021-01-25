@@ -117,6 +117,9 @@ class PekerjaanController extends Controller
     public function detail($booknumber)
     {
         $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
+        $waitinglist = Pekerjaan::where('kd_klasifikasi_pekerjaan', $pekerjaan->kd_klasifikasi_pekerjaan)
+        ->whereNotIn('status', 'Canceled')
+        ->get();
 
         // merubah warna notif 
         if ($pekerjaan->status == 'Requested') {
@@ -132,6 +135,7 @@ class PekerjaanController extends Controller
         return view('pemeliharaan/pekerjaan-detail', [
             'pekerjaan' => $pekerjaan,
             'warna' => $warna,
+            'waitinglist' => $waitinglist,
         ]);
     }
 
