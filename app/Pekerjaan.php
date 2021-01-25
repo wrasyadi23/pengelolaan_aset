@@ -49,4 +49,27 @@ class Pekerjaan extends Model
     {
         return $this->hasMany('App\PekerjaanVerifikasi', 'booknumber', 'booknumber');
     }
+
+    public function getNotificationBadgeAttribute()
+    {
+        switch ($this->status) {
+            case 'Requested':
+                return "<span class='badge badge-primary'>$this->status</span>";
+                break;
+            case 'Approved':
+            case 'In Progress':
+            case 'Closed':
+                return "<span class='badge badge-success'>$this->status</span>";
+                break;
+            case 'Done':
+            case 'Revisi':
+                return "<span class='badge badge-warning'>$this->status</span>";
+                break;
+            case 'Canceled':
+                return "<span class='btn-danger'>$this->status</span>";
+                break;
+            default:
+                return "<span class='btn-info'>$this->status</span>";
+                break;
+        }    }
 }

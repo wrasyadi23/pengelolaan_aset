@@ -23,18 +23,14 @@ class PekerjaanController extends Controller
     {
         if (Auth::user()->role == 'Admin') {
             $pekerjaan = Pekerjaan::all();
-        }
-
-        elseif (Auth::user()->role == 'Worker') {
+        } elseif (Auth::user()->role == 'Worker') {
             $pekerjaan = Pekerjaan::where(
                 'kd_klasifikasi_pekerjaan', Auth::user()->getKaryawan->getRegu->getKlasifikasi->map->only('kd_klasifikasi_pekerjaan')
             )->with('getKlasifikasi')->get();
-        }
-
-        else {
+        } else {
             $pekerjaan = Pekerjaan::where('created_by', Auth::user()->nik)
-            ->orderBy('booknumber', 'desc')
-            ->get();
+                ->orderBy('booknumber', 'desc')
+                ->get();
         }
 
         return view('pemeliharaan/pekerjaan', [
@@ -76,13 +72,12 @@ class PekerjaanController extends Controller
 
         $validasi = Pekerjaan::where([
             ['kd_keterangan', $kd_keterangan],
-            ['status','Done'],
+            ['status', 'Done'],
             ['created_by', Auth::user()->nik],
-            ])->get();
+        ])->get();
         if ($validasi->count() >= 3) {
             return redirect('pemeliharaan/pekerjaan-create')->with('survey-error', 'Silahkan isi survey kepuasan pelanggan untuk pekerjaan sebelumnya.');
-        }
-        elseif ($validasi->count() < 3) {
+        } elseif ($validasi->count() < 3) {
             $newPekerjaan = new Pekerjaan;
             $newPekerjaan->booknumber = $booknumber;
             $newPekerjaan->nama = $nama;
@@ -118,23 +113,11 @@ class PekerjaanController extends Controller
     {
         $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
         $waitinglist = Pekerjaan::where('kd_klasifikasi_pekerjaan', $pekerjaan->kd_klasifikasi_pekerjaan)
-        ->whereNotIn('status', ['Canceled'])
-        ->get();
-
-        // merubah warna notif 
-        if ($pekerjaan->status == 'Requested') {
-            $warna = 'btn-primary';
-        } elseif ($pekerjaan->status == 'Approved' || $pekerjaan->status == 'In Progress' || $pekerjaan->status == 'Closed') {
-            $warna = 'btn-success';
-        } elseif ($pekerjaan->status == 'Done' || $pekerjaan->status == 'Revisi') {
-            $warna = 'btn-warning';
-        } elseif ($pekerjaan->status == 'Canceled') {
-            $warna = 'btn-danger';
-        }
+            ->whereNotIn('status', ['Canceled'])
+            ->get();
 
         return view('pemeliharaan/pekerjaan-detail', [
             'pekerjaan' => $pekerjaan,
-            'warna' => $warna,
             'waitinglist' => $waitinglist,
         ]);
     }
