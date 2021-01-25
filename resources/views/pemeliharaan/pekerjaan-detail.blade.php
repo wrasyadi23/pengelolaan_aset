@@ -330,12 +330,8 @@
                                     <th>Status</th>
                                 </tr>
                                 @if ($waitinglist->count() != null)
-                                @php
-                                    $no =1;
-                                @endphp
                                 @foreach ($waitinglist as $key => $list)
                                 <tr>
-                                    <td>{{$no++}}</td>
                                     <td>{{$list->booknumber}}</td>
                                     <td>{{$list->nama}}</td>
                                     <td>{{$list->nik}}</td>
