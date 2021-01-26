@@ -56,9 +56,7 @@
                                 </tr>
                                 <tr>
                                     <th>Status</th>
-                                    <td>
-                                        <a href="" class="badge {{$warna}}">{{$pekerjaan->status}}</a>
-                                    </td>
+                                    <td>{!! $pekerjaan->notification_badge !!}</td>
                                 </tr>
                                 <tr>
                                     <th>Uraian</th>
@@ -337,15 +335,7 @@
                                     <td>{{$list->nik}}</td>
                                     <td>{{$list->tanggal_pekerjaan}}</td>
                                     <td>{{$list->kd_klasifikasi_pekerjaan}} - {{$list->getKlasifikasi->klasifikasi_pekerjaan}}</td>
-                                    <td>
-                                        @if ($list->status == 'Requested')
-                                        <a href="" class="badge badge-primary">{{$list->status}}</a>
-                                        @elseif ($list->status == 'Approved' || $list->status == 'In Progress' || $list->status == 'Closed')
-                                        <a href="" class="badge badge-success">{{$list->status}}</a>
-                                        @elseif ($list->status == 'Done' || $list->status == 'Revisi')
-                                        <a href="" class="badge badge-warning">{{$list->status}}</a>
-                                        @endif
-                                    </td>
+                                    <td>{!! $list->notification_badge !!}</td>
                                 </tr>
                                 @endforeach
                                 @else

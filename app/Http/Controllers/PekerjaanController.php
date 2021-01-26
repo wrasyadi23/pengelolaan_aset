@@ -113,7 +113,8 @@ class PekerjaanController extends Controller
     {
         $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
         $waitinglist = Pekerjaan::where('kd_klasifikasi_pekerjaan', $pekerjaan->kd_klasifikasi_pekerjaan)
-            ->whereNotIn('status', ['Canceled'])
+            ->whereIn('status', ['Requested','Approved','In Progress'])
+            ->orderBy('booknumber', 'asc')
             ->get();
 
         return view('pemeliharaan/pekerjaan-detail', [
