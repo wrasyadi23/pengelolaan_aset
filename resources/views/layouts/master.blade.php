@@ -17,6 +17,7 @@
     <!-- Custom Stylesheet -->
     <link href="{{asset('quixlab/css/style.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('select2/css/select2.min.css')}}">
+    @stack('css-stack')
 </head>
 
 <body>
