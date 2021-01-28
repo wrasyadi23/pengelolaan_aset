@@ -77,6 +77,7 @@
 
 @section('script')
     <script src="{{asset('plugins/fileinput/js/fileinput.js')}}"></script>
+    <script src="{{asset('plugins/fileinput/themes/fa/theme.js')}}"></script>
     <script>
         $("#kd_area").select2({
             placeholder: 'Pilih Klasifikasi area',
@@ -154,7 +155,8 @@
         })
 
         $('#foto').fileinput({
-            multiple: true
+            multiple: true,
+            theme: 'fa'
         })
     </script>
 @endsection
