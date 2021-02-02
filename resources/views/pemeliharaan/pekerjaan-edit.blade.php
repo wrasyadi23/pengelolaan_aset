@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="image">Upload Foto</label>
-                                    <input type="file" class="form-control input-default" name="foto[]" id="foto[]" multiple> {{-- ditambahkan simbol array[] & multiple agar bisa upload beberapa file --}}
+                                    <input type="file" class="form-control input-default" name="foto[]" id="foto" multiple> {{-- ditambahkan simbol array[] & multiple agar bisa upload beberapa file --}}
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped">
@@ -124,6 +124,8 @@
 @endsection
 
 @section('script')
+<script src="{{asset('plugins/fileinput/js/fileinput.js')}}"></script>
+<script src="{{asset('plugins/fileinput/themes/fa/theme.js')}}"></script>
 <script>
     $("#kd_area").select2({
         placeholder: 'Pilih Klasifikasi area',
@@ -199,3 +201,7 @@
     })
 </script>
 @endsection
+
+@push('css-stack')
+    <link rel="stylesheet" href="{{asset('plugins/fileinput/css/fileinput.css')}}">
+@endpush
