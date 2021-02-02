@@ -24,8 +24,8 @@ class PekerjaanController extends Controller
         if (Auth::user()->role == 'Admin') {
             $pekerjaan = Pekerjaan::all();
         } elseif (Auth::user()->role == 'Worker') {
-            $pekerjaan = Pekerjaan::where(
-                'kd_klasifikasi_pekerjaan', Auth::user()->getKaryawan->getRegu->getKlasifikasi->map->only('kd_klasifikasi_pekerjaan')
+            $pekerjaan = Pekerjaan::whereIn(
+                'kd_klasifikasi_pekerjaan', Auth::user()->getKaryawan->getRegu->getKlasifikasi->pluck('kd_klasifikasi_pekerjaan')
             )->with('getKlasifikasi')->get();
         } else {
             $pekerjaan = Pekerjaan::where('created_by', Auth::user()->nik)
