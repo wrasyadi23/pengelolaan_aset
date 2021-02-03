@@ -45,7 +45,7 @@ class LaporanController extends Controller
             // $klasifikasi = PekerjaanKlasifikasi::where('kd_klasifikasi_pekerjaan', )->get()->toArray();
             $rawData = Pekerjaan::where('tanggal_pekerjaan', '>=', $awal)
                 ->where('tanggal_pekerjaan', '<=', $akhir)
-                ->where('kd_klasifikasi_pekerjaan', Auth::user()->getKaryawan->getRegu->getKlasifikasi->map->only('kd_klasifikasi_pekerjaan'))
+                ->whereIn('kd_klasifikasi_pekerjaan', Auth::user()->getKaryawan->getRegu->getKlasifikasi->pluck('kd_klasifikasi_pekerjaan'))
                 ->with('getKlasifikasi')->get()
                 ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan')
                 ->all();
