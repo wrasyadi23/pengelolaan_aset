@@ -14,8 +14,10 @@
                 <li><a href="/pemeliharaan/pekerjaan">Pekerjaan</a></li>
                 @if (Auth::user()->role == 'Admin')
                 <li><a href="/pemeliharaan/klasifikasi">Klasifikasi</a></li>
+                @endif
             </ul>
         </li>
+        @if (Auth::user()->role == 'Admin')
         <li>
             <a href="/pemeliharaan/area-klasifikasi" aria-expanded="false">
                 <i class="icon-note menu-icon"></i><span class="nav-text">Area</span>
