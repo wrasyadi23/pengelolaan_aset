@@ -107,8 +107,6 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
 
 Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function () {
     // Route::get('/profile-password-edit/{nik}', 'UserController@');
-    // data pekerjaan
-    Route::get('/pemeliharaan/data','pemeliharaanController@data');
     // pemeliharaan
     Route::get('/pemeliharaan/dashboard','pemeliharaanController@index');
     // input pekerjaan

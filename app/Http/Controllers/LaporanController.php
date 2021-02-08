@@ -127,20 +127,6 @@ class LaporanController extends Controller
                 ->all();
         }
 
-        // $pdf =  PDF::loadView('/pemeliharaan/laporan-preview', [
-        //         'no' => 1,
-        //         'rawData' => $rawData,
-        //         'countKlasifikasi' => $countKlasifikasi,
-        //         'countPekerjaanRequested' => $countPekerjaanRequested,
-        //         'countPekerjaanApproved' => $countPekerjaanApproved,
-        //         'countPekerjaanProgress' => $countPekerjaanProgress,
-        //         'countPekerjaanDone' => $countPekerjaanDone,
-        //         'countPekerjaanClosed' => $countPekerjaanClosed,
-        //         'countPekerjaanTotal' => $countPekerjaanTotal,
-        //         'awal' => $awal,
-        //         'akhir' => $akhir,
-        //     ])->setPaper('a4','portrait');
-
         $pdf = PDF::loadView('/pemeliharaan/laporan-preview', [
             'no' => 1,
             'rawData' => $rawData,
