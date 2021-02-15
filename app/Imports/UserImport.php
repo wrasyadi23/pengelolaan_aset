@@ -19,10 +19,11 @@ class UserImport implements ToCollection
 //         dd($collection);
         foreach ($collection as $key => $col) {
             if ($key >= 1) {
+                $count = User::count() + 1;
                 User::insert([
                     'nama' => $col[0],
                     'nik' => $col[1],
-                    'email' => 'test'.$key.'@mail.com',
+                    'email' => 'user'.$count.'@mail.com',
                     'password' => Hash::make($col[1]),
                     'role' => 'User',
                     'level' => '3',
