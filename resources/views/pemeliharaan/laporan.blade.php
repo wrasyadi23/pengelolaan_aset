@@ -65,9 +65,16 @@
                                 <th>Canceled</th>
                             </tr>
                             {{-- content  --}}
+                            @php
+                                $no = 1;
+                            @endphp
+                            @foreach ($pekerjaan as $key => $itempekerjaan)    
                             <tr>
-                                <td colspan="11">Tidak ada pekerjaan</td>
+                                <td>{{$no++}}</td>
+                                <td>{{$itempekerjaan->getKlasifikasi->klasifikasi_pekerjaan}}</td>
+                                <td></td>
                             </tr>
+                            @endforeach
                         </table>
                     </div>
                 </div>

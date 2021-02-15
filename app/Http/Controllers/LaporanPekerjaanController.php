@@ -18,10 +18,32 @@ use Auth;
 
 class LaporanPekerjaanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $start = $request->start;
+        $end = $request->end;
+        $kd_seksi = $request->kd_seksi;
+        $kd_regu = $request->kd_regu;
+
         $seksi = Seksi::where('kd_bagian', Auth::user()->getKaryawan->kd_bagian)->get();
-        $pekerjaan = Pekerjaan::all();
+        $pekerjaan = Pekerjaan::query();
+        if ($request->all()->isEmpty()) {
+            $pekerjaan->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan')
+                ->get();
+        }elseif ($start->isNotEmpty() && $end->isNotEMpty()) {
+            $pekerjaan->whereBetween('tanggal_pekerjaan',[$start, $end])
+                ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan')
+                ->get();
+        }elseif ($kd_seksi->isNotEmpty()) {
+            $regu = Regu::where('kd_seksi', $kd_seksi)->get()->pluck('kd_regu');
+            $pekerjaan->whereIn('kd_klasifikasi_pekerjaan', PekerjaanKlasifikasi::whereIn('kd_regu', $regu)->get()->pluck('kd_klasifikasi_pekerjaan'))
+                ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan')
+                ->get();
+        }elseif ($kd_regu->isNotEmpty()) {
+            $pekerjaan->whereIn('kd_klasifikasi_pekerjaan', PekerjaanKlasifikasi::where('kd_regu', $kd_regu)->get()->pluck('kd_klasifikasi_pekerjaan'))
+            ->get();
+        }
+           // dd($pekerjaan);
         return view('/pemeliharaan/laporan', [
             'seksi' => $seksi,
             'pekerjaan' => $pekerjaan,
