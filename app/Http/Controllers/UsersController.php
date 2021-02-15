@@ -18,7 +18,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $user = Karyawan::all();
+        $user = Karyawan::orderBy('id', 'asc')->get();
         $departemen = Departemen::all();
         return view('users', [
             'user' => $user,
