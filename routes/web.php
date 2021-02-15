@@ -121,9 +121,9 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/pemeliharaan/pekerjaan-done/{booknumber}','PekerjaanController@done');
     Route::post('/pemeliharaan/pekerjaan-close/{booknumber}','PekerjaanController@close');
     // laporan kegiatan
-    Route::get('/pemeliharaan/laporan','LaporanController@index');
-    Route::post('/pemeliharaan/laporan-search','LaporanController@search');
-    Route::get('/pemeliharaan/laporan-preview/{awal}/{akhir}','LaporanController@preview');
+    Route::get('/pemeliharaan/laporan','LaporanPekerjaanController@index');
+    Route::post('/pemeliharaan/laporan-search','LaporanPekerjaanController@search');
+    Route::get('/pemeliharaan/laporan-preview/{awal}/{akhir}','LaporanPekerjaanController@preview');
     
     //parkirtol
     Route::get('/transport/parkirtol', 'parkirtolController@index');

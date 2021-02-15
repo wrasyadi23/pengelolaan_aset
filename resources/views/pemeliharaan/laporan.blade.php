@@ -42,13 +42,33 @@
                                     <select name="kd_regu" id="kd_regu" class="form-group input-default"></select>
                                 </div>
                             </div>
-                            <div class="general-button">
+                            <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </form>
                     </div>
                     <div class="table-responsive">
-                        
+                        <table class="table table-bordered" style="width: 100%; text-align:center; border: 1px solid;">
+                            {{-- header  --}}
+                            <tr>
+                                <th rowspan="2">No</th>
+                                <th rowspan="2">Klasifikasi Pekerjaan</th>
+                                <th colspan="7">Jumlah</th>
+                            </tr>
+                            <tr>
+                                <th>Revisi</th>
+                                <th>Requested</th>
+                                <th>Approved</th>
+                                <th>In Progress</th>
+                                <th>Done</th>
+                                <th>Closed</th>
+                                <th>Canceled</th>
+                            </tr>
+                            {{-- content  --}}
+                            <tr>
+                                <td colspan="11">Tidak ada pekerjaan</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
