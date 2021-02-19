@@ -248,7 +248,7 @@ class PekerjaanController extends Controller
         return redirect('pemeliharaan/pekerjaan-detail/' . $booknumber)->with('close', 'Pekerjaan telah selesai. Terima kasih atas penilaian anda.');
     }
 
-    public function cancel($booknumber)
+    public function cancel($booknumber, request $request)
     {
         $pekerjaan = Pekerjaan::where('booknumber', $booknumber)->first();
         $pekerjaan->tanggal_pelaksanaan = '0000-00-00';
@@ -259,7 +259,7 @@ class PekerjaanController extends Controller
         $verifikasi->booknumber = $booknumber;
         $verifikasi->status = 'Canceled';
         $verifikasi->tgl = date('Y-m-d');
-        $verifikasi->catatan = 'Canceled by ' . Auth::user()->role;
+        $verifikasi->catatan = $request->catatan . ' by ' . Auth::user()->role;
         $verifikasi->save();
 
         return redirect('pemeliharaan/pekerjaan')->with('canceled', 'Permohonan pekerjaan dibatalkan.');

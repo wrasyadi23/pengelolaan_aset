@@ -131,9 +131,8 @@
                                 @endif
                                 @if ($pekerjaan->status == 'Requested' || $pekerjaan->status == 'Approved')
                                     @if (Auth::user()->role == 'Admin')
-                                        <button class="btn btn-danger" type="button"
-                                                onclick="window.location.href='/pemeliharaan/pekerjaan-cancel/{{$pekerjaan->booknumber}}'">
-                                            Cancel
+                                        <button class="btn btn-danger" type="button" data-toggle="modal" 
+                                            data-target="modalCancel">Cancel
                                         </button>
                                     @endif
                                 @endif
@@ -213,6 +212,44 @@
                                 </div>
                             </div>
                             {{-- end modal disapprove  --}}
+
+                            {{-- modal cancel --}}
+                            <div class="bootstrap-modal">
+                                <div class="modal fade" id="modalCancel" style="display: none;" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Cancel Pekerjaan</h5>
+                                                <button class="close" type="button" data-dismiss="modal">
+                                                    <span>x</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form
+                                                    action="/pemeliharaan/pekerjaan-cancel/{{$pekerjaan->booknumber}}"
+                                                    method="post" name="cancel" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="basic-form">
+                                                        <div class="form-group">
+                                                            <label for="catatan">Catatan</label>
+                                                            <textarea name="catatan" id="" cols="30" rows="10"
+                                                                      class="form-control input-default"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-secondary" data-dismiss="modal">Close
+                                                        </button>
+                                                        <button type="submit" name="cancel" class="btn btn-primary">
+                                                            Submit
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- end modal cancel --}}
 
                             {{-- modal close  --}}
                             <div class="bootstrap-modal">

@@ -27,19 +27,25 @@ class LaporanPekerjaanController extends Controller
 
         $seksi = Seksi::where('kd_bagian', Auth::user()->getKaryawan->kd_bagian)->get();
         $pekerjaan = Pekerjaan::query();
-        if ($request->all()->isEmpty()) {
+        if (empty($request->all())) {
             $pekerjaan->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan')
                 ->get();
-        }elseif ($start->isNotEmpty() && $end->isNotEMpty()) {
+        }
+        
+        if (isset($start) && isset($end)) {
             $pekerjaan->whereBetween('tanggal_pekerjaan',[$start, $end])
                 ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan')
                 ->get();
-        }elseif ($kd_seksi->isNotEmpty()) {
+        }
+        
+        if (isset($kd_seksi)) {
             $regu = Regu::where('kd_seksi', $kd_seksi)->get()->pluck('kd_regu');
             $pekerjaan->whereIn('kd_klasifikasi_pekerjaan', PekerjaanKlasifikasi::whereIn('kd_regu', $regu)->get()->pluck('kd_klasifikasi_pekerjaan'))
                 ->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan')
                 ->get();
-        }elseif ($kd_regu->isNotEmpty()) {
+        }
+        
+        if (isset($kd_regu)) {
             $pekerjaan->whereIn('kd_klasifikasi_pekerjaan', PekerjaanKlasifikasi::where('kd_regu', $kd_regu)->get()->pluck('kd_klasifikasi_pekerjaan'))
             ->get();
         }
