@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::get('/pemeliharaan/klasifikasi-edit/{id}','input_klasifikasiController@edit');
     Route::post('/pemeliharaan/klasifikasi-update/{id}','input_klasifikasiController@update');
     Route::get('/pemeliharaan/klasifikasi-delete/{id}','input_klasifikasiController@delete');
-    // data area/kawasan 
+    // data area/kawasan
     Route::get('/pemeliharaan/area-klasifikasi', 'AreaKlasifikasiController@index');
     Route::post('/pemeliharaan/area-klasifikasi-store', 'AreaKlasifikasiController@store');
     Route::post('/pemeliharaan/area-klasifikasi-update/{kd_area}', 'AreaKlasifikasiController@update');
@@ -79,7 +79,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::get('/sp-delete/{kd_sp}', 'SpController@delete');
     Route::get('/sp-detail/{kd_sp}', 'SpController@detail');
     Route::get('/sp-delete-file/{id}', 'SpController@deleteFile');
-    // data kontrak ba sp 
+    // data kontrak ba sp
     Route::get('/ba', 'BaController@index');
     Route::get('/ba-create', 'BaController@create');
     Route::post('/ba-store', 'BaController@store');
@@ -95,7 +95,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::get('/transport/harga-sewa-edit/{kd_tarif}', 'HargaSewaController@edit');
     Route::post('/transport/harga-sewa-update/{kd_tarif}', 'HargaSewaController@update');
     Route::get('/transport/harga-sewa-delete/{kd_tarif}', 'HargaSewaController@delete');
-    // data user 
+    // data user
     Route::get('/users', 'UsersController@index');
     Route::post('/users-store', 'UsersController@store');
     Route::post('/users-import', 'UsersController@import');
@@ -122,9 +122,9 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::post('/pemeliharaan/pekerjaan-close/{booknumber}','PekerjaanController@close');
     // laporan kegiatan
     Route::get('/pemeliharaan/laporan','LaporanPekerjaanController@index');
-    Route::post('/pemeliharaan/laporan-search','LaporanPekerjaanController@search');
+    Route::post('/pemeliharaan/laporan-search','LaporanPekerjaanController@index');
     Route::get('/pemeliharaan/laporan-preview/{awal}/{akhir}','LaporanPekerjaanController@preview');
-    
+
     //parkirtol
     Route::get('/transport/parkirtol', 'parkirtolController@index');
     Route::get('/transport/parkirtol-create', 'parkirtolController@create');
