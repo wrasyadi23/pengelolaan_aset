@@ -38,9 +38,20 @@ class LaporanPekerjaanController extends Controller
                 $query->whereIn('kd_klasifikasi_pekerjaan', PekerjaanKlasifikasi::where('kd_regu', $kd_regu)->get()->pluck('kd_klasifikasi_pekerjaan'));
             })->get()->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan');
 
-        return view('/pemeliharaan/laporan', [
-            'seksi' => $seksi,
-            'pekerjaan' => $pekerjaan,
-        ]);
+//        dd($pekerjaan);
+        if ($request->input('show-mode') == 'pdf') {
+            $pdf = PDF::loadView('/pemeliharaan/laporan-pdf', [
+                'pekerjaan' => $pekerjaan
+            ])->setPaper('a4', 'landscape');
+
+            return $pdf->stream();
+
+        } else {
+            return view('/pemeliharaan/laporan', [
+                'seksi' => $seksi,
+                'pekerjaan' => $pekerjaan,
+            ]);
+        }
     }
+
 }
