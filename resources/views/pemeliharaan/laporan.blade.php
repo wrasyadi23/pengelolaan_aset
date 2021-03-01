@@ -71,7 +71,7 @@
                             @foreach ($pekerjaan as $key => $itempekerjaan)    
                             <tr>
                                 <td>{{$no++}}</td>
-                                <td>{{$itempekerjaan->first()->getKlasifikasi->klasifikasi_pekerjaan}}</td>
+                                <td align="left">{{$itempekerjaan->first()->getKlasifikasi->klasifikasi_pekerjaan}}</td>
                                 <td>{{$itempekerjaan->where('status', 'Revisi')->count()}}</td>
                                 <td>{{$itempekerjaan->where('status', 'Requested')->count()}}</td>
                                 <td>{{$itempekerjaan->where('status', 'Approved')->count()}}</td>
@@ -81,6 +81,16 @@
                                 <td>{{$itempekerjaan->where('status', 'Canceled')->count()}}</td>
                             </tr>
                             @endforeach
+                            <tr>
+                                <th colspan="2" align="left">Grand Total</th>
+                                <th>{{$pekerjaan->where('status', 'Revisi')->count()}}</th>
+                                <th>{{$pekerjaan->where('status', 'Requested')->count()}}</th>
+                                <th>{{$pekerjaan->where('status', 'Approved')->count()}}</th>
+                                <th>{{$pekerjaan->where('status', 'In Progress')->count()}}</th>
+                                <th>{{$pekerjaan->where('status', 'Done')->count()}}</th>
+                                <th>{{$pekerjaan->where('status', 'Closed')->count()}}</th>
+                                <th>{{$pekerjaan->where('status', 'Canceled')->count()}}</th>
+                            </tr>
                         </table>
                     </div>
                 </div>

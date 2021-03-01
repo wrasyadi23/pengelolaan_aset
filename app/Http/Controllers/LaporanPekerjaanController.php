@@ -26,10 +26,9 @@ class LaporanPekerjaanController extends Controller
         $kd_regu = $request->kd_regu;
 
         $seksi = Seksi::where('kd_bagian', Auth::user()->getKaryawan->kd_bagian)->get();
-
         $pekerjaan = Pekerjaan::with('getKlasifikasi')
             ->when(isset($start) && isset($end), function ($query) use ($start, $end) {
-                return $query->whereBetween('tanggal_pekerjaan', [$start, $end]);
+                $query->whereBetween('tanggal_pekerjaan', [$start, $end]);
             })
             ->when(isset($kd_seksi), function ($query) use ($kd_seksi) {
                 $regu = Regu::where('kd_seksi', $kd_seksi)->get()->pluck('kd_regu');
