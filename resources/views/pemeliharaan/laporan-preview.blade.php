@@ -61,7 +61,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Laporan Pekerjaan {{auth()->getKaryawan->getBagian->bagian}}</h1>
+        <h1>Laporan Pekerjaan {{Auth::user()->getKaryawan->getBagian->bagian}}</h1>
         <tabel>
             <tr>
                 <th rowspan="2">No</th>

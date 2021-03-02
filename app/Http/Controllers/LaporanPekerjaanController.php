@@ -38,9 +38,8 @@ class LaporanPekerjaanController extends Controller
                 $query->whereIn('kd_klasifikasi_pekerjaan', PekerjaanKlasifikasi::where('kd_regu', $kd_regu)->get()->pluck('kd_klasifikasi_pekerjaan'));
             })->get()->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan');
 
-//        dd($pekerjaan);
         if ($request->input('show-mode') == 'pdf') {
-            $pdf = PDF::loadView('/pemeliharaan/laporan-pdf', [
+            $pdf = PDF::loadView('/pemeliharaan/laporan-preview', [
                 'pekerjaan' => $pekerjaan
             ])->setPaper('a4', 'landscape');
 

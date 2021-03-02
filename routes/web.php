@@ -123,7 +123,6 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     // laporan kegiatan
     Route::get('/pemeliharaan/laporan','LaporanPekerjaanController@index');
     Route::post('/pemeliharaan/laporan-search','LaporanPekerjaanController@index');
-    Route::get('/pemeliharaan/laporan-preview/{awal}/{akhir}','LaporanPekerjaanController@preview');
 
     //parkirtol
     Route::get('/transport/parkirtol', 'parkirtolController@index');
