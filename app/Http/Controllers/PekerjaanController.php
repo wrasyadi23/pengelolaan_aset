@@ -328,4 +328,10 @@ class PekerjaanController extends Controller
 
         return redirect()->back();
     }
+
+    public function search()
+    {
+        $pekerjaan = Pekerjaan::all();
+        return view('pemeliharaan/pekerjaan-search', compact(['pekerjaan']));
+    }
 }

@@ -120,6 +120,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/pemeliharaan/pekerjaan-proceed/{booknumber}','PekerjaanController@proceed');
     Route::get('/pemeliharaan/pekerjaan-done/{booknumber}','PekerjaanController@done');
     Route::post('/pemeliharaan/pekerjaan-close/{booknumber}','PekerjaanController@close');
+    Route::get('/pemeliharaan/pekerjaan-search','PekerjaanController@search');
     // laporan kegiatan
     Route::get('/pemeliharaan/laporan','LaporanPekerjaanController@index');
     Route::post('/pemeliharaan/laporan-search','LaporanPekerjaanController@index');

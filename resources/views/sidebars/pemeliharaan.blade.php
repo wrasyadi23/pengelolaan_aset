@@ -19,6 +19,11 @@
         </li>
         @if (Auth::user()->role == 'Admin')
         <li>
+            <a href="/pemeliharaan/pekerjaan-search" aria-expanded="false">
+                <i class="mdi mdi-magnify"></i><span class="nav-text">Pencarian</span>
+            </a>
+        </li>
+        <li>
             <a href="/pemeliharaan/area-klasifikasi" aria-expanded="false">
                 <i class="icon-note menu-icon"></i><span class="nav-text">Area</span>
             </a>
