@@ -62,7 +62,7 @@
 <body>
     <div class="container">
         <h1>Laporan Pekerjaan {{Auth::user()->getKaryawan->getBagian->bagian}}</h1>
-        <tabel>
+        <table>
             <tr>
                 <th rowspan="2">No</th>
                 <th rowspan="2">Klasifikasi Pekerjaan</th>
@@ -80,7 +80,7 @@
             @php
                 $no = 1;
             @endphp
-            @foreach ($pekerjaan as $key => $itempekerjaan)    
+            @foreach ($pekerjaan as $key => $itempekerjaan)
             <tr>
                 <td>{{$no++}}</td>
                 <td>{{$itempekerjaan->first()->getKlasifikasi->klasifikasi_pekerjaan}}</td>
@@ -103,7 +103,7 @@
                 <th>{{$pekerjaan->where('status', 'Closed')->count()}}</th>
                 <th>{{$pekerjaan->where('status', 'Canceled')->count()}}</th>
             </tr>
-        </tabel>
+        </table>
     </div>
 </body>
 </html>
