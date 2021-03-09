@@ -1,4 +1,4 @@
-<table style="width: 100%; text-align:center; border: 1px solid;">
+<table>
     {{-- header  --}}
     <tr>
         <th rowspan="2">No</th>
