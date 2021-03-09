@@ -1,3 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Laporan Pekerjaan</title>
+</head>
+<body>
 <table>
     {{-- header  --}}
     <tr>
@@ -28,7 +38,9 @@
             <td>{{$itempekerjaan->where('status', 'In Progress')->count()}}</td>
             <td>{{$itempekerjaan->where('status', 'Done')->count()}}</td>
             <td>{{$itempekerjaan->where('status', 'Closed')->count()}}</td>
-            <td>{{$itempekerjaa n->where('status', 'Canceled')->count()}}</td>
+            <td>{{$itempekerjaan->where('status', 'Canceled')->count()}}</td>
         </tr>
     @endforeach
 </table>
+</body>
+</html>
