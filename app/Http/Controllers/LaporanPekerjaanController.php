@@ -39,7 +39,7 @@ class LaporanPekerjaanController extends Controller
             })->get()->groupBy('getKlasifikasi.kd_klasifikasi_pekerjaan');
 
         if ($request->input('show-mode') == 'pdf') {
-            $pdf = PDF::loadView('/pemeliharaan/laporan-preview', [
+            $pdf = PDF::loadView('/pemeliharaan/laporan-pdf', [
                 'pekerjaan' => $pekerjaan
             ])->setPaper('a4', 'landscape');
 
