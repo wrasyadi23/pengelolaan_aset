@@ -132,7 +132,7 @@
                                 @if ($pekerjaan->status == 'Requested' || $pekerjaan->status == 'Approved')
                                     @if (Auth::user()->role == 'Admin')
                                         <button class="btn btn-danger" type="button" data-toggle="modal" 
-                                            data-target="modalCancel">Cancel
+                                            data-target="#modalCancel">Cancel
                                         </button>
                                     @endif
                                 @endif
