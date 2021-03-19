@@ -47,7 +47,7 @@
                                 <form class="mt-5 mb-5 login-input" method="POST" action="{{route('login')}}">
                                     @csrf
                                     <div class="form-group">
-                                        <input type="text" id="nik" name="nik" class="form-control" value="{{ old('nik') }}" placeholder="Nomor NIK" required autofocus autocomplete="nik">
+                                        <input type="text" id="nik" name="nik" class="form-control" value="{{ old('nik') }}" placeholder="Username" required autofocus autocomplete="nik">
                                         @error('nik')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror
