@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth','role:Root,Admin']], function () {
     Route::post('/pemeliharaan/pekerjaan-revisi/{booknumber}','PekerjaanController@revisi');
     Route::post('/pemeliharaan/pekerjaan-approve/{booknumber}','PekerjaanController@approve');
     Route::post('/pemeliharaan/pekerjaan-disapprove/{booknumber}','PekerjaanController@disapprove');
-    Route::get('/pemeliharaan/pekerjaan-cancel/{booknumber}','PekerjaanController@cancel');
+    Route::post('/pemeliharaan/pekerjaan-cancel/{booknumber}','PekerjaanController@cancel');
     // input klasifikasi pekerjaan
     Route::get('/pemeliharaan/klasifikasi','input_klasifikasiController@index');
     Route::get('/pemeliharaan/klasifikasi-create','input_klasifikasiController@create');
