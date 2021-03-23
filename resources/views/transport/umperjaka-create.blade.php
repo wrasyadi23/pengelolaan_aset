@@ -1,3 +1,6 @@
+<style type="text/css">
+.style1 {color: #0000FF}
+</style>
 @extends('layouts.master')
 @section('title','Input Uangmuka')
 @section('content')
@@ -8,11 +11,11 @@
                 <div class="card-body">
                     <h4 class="card-title">Input Uangmuka</h4>
                     <div class="card-content">
-                        <form action="/transport/uangmuka-store" method="post" enctype="multipart/form-data">
+                        <form action="/transport/umperjaka-store" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="basic-form">
                                 <div class="form-group">
-                                    <label for="gl_account">Commit Item/Gl. Account</label>
+                                    <label for="gl_account"><span class="style1">Commit Item/Gl. Account</span></label>
                                     <select name="kd_aktifitas_rkap" id="kd_aktifitas_rkap" class="form-control input-default" required>
                                         <option disabled selected></option>
                                         @foreach ($rkapDetail as $itemRkap)
@@ -20,22 +23,29 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <label for="requester">Requester</label>
+                              <div class="form-group">
+                                  <label for="requester"><span class="style1">Requester</span></label>
+                                  <span class="style1">
                                     <select name="nik" id="nik" class="form-control input-default" required>
-                                        <option disabled selected></option>
+                                      <option disabled selected></option>
+                                      
                                         @foreach ($karyawan as $itemKaryawan)
-                                            <option value="{{$itemKaryawan->nik}}">{{$itemKaryawan->nama}}</option>
+                                            
+                                      <option value="{{$itemKaryawan->nik}}">{{$itemKaryawan->nama}}</option>
+                                      
                                         @endforeach
+                                    
                                     </select>
-                                </div>
-                                <div class="form-group">
+                                    </span></div>
+                                <div class="form-group style1">
                                     <label for="no_uangmuka">Nomor Uangmuka</label>
-                                    <input type="text" name="no_uangmuka" id="" class="form-control input-default" required>
+                                    <input type="text" name="no_uangmuka" id="" class="form-control input-default">
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
+                                        <span class="style1">
                                         <label for="periode">Periode</label>
+                                        </span>
                                         <input type="date" name="tgl_awal" id="" class="form-control input-default" required>
                                     </div>
                                     <div class="form-group col-md-6">
@@ -44,15 +54,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nilai_uangmuka">Nilai Uangmuka</label>
+                                    <label for="nilai_uangmuka"><span class="style1">Nilai Uangmuka</span></label>
                                     <input type="number" name="nilai_uangmuka" id="" class="form-control input-default" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="uraian">Uraian</label>
+                                    <label for="uraian"><span class="style1">Uraian</span></label>
                                     <textarea name="uraian" id="" cols="30" rows="5" class="form-control input-default" required></textarea>
                                 </div>
                                 <div class="general-button">
-                                    <button type="reset" class="btn btn-primary">Reset</button>
+                                    <button type="button" class="btn btn-primary" onclick="window.location.href='/transport/umperjaka'">Back</button>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>

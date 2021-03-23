@@ -3,7 +3,7 @@
     .style2 {color: #000000}
     </style>
     @extends('layouts.master')
-    @section('title','Data RKAP Detailt')
+    @section('title','Data RKAP')
     @section('content')
     <div class="container-fluid mt-3">
         @if (session('message'))
@@ -15,10 +15,10 @@
                     <div class="card-body">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <h4 class="card-title style1">Data RKAP Detail</h4>
+                                <h4 class="card-title style1">Data RKAP</h4>
                             </div>
                             <div class="col-md-6 text-right">
-                                <button class="btn btn-primary" onclick="window.location.href='/transport/rkapdet-create'">+ Baru</button>
+                                <button class="btn btn-primary" onclick="window.location.href='/transport/rkap-create'">+ Baru</button>
                             </div>
                         </div>
                         <div class="card-content">

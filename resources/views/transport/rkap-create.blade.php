@@ -43,7 +43,7 @@
                                     </div>
                                     
                                     <div class="general-button">
-                                        <button type="button" class="btn btn-primary" onclick="window.location.href='/transport/pr-tampil'">Back</button>
+                                        <button type="button" class="btn btn-primary" onclick="window.location.href='/transport/rkap-tampil'">Back</button>
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>

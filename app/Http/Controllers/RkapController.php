@@ -40,6 +40,7 @@ class RkapController extends Controller
     $newRealisasi->cost_center = $cost_center;
     $newRealisasi->gl_acc = $gl_acc;
     $newRealisasi->tahun_rkap = $tahun_rkap;
+    $newRealisasi->nilai_rkap = $nilai_rkap;
     $newRealisasi->kd_departemen = $kd_departemen;
     $newRealisasi->status = 'Aktif';
     $newRealisasi->save();
@@ -63,10 +64,11 @@ class RkapController extends Controller
     $status = $request->input('status');
     // $kd_departemen = $request->input('kd_departemen');
     
-    $newRealisasi = new Rkap();
+    $newRealisasi =Rkap::findOrFail($id);
     $newRealisasi->cost_center = $cost_center;
     $newRealisasi->gl_acc = $gl_acc;
     $newRealisasi->tahun_rkap = $tahun_rkap;
+    $newRealisasi->nilai_rkap = $nilai_rkap;
     // $newRealisasi->kd_departemen = $kd_departemen;
     $newRealisasi->status = $status;
     $newRealisasi->save();

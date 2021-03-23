@@ -69,8 +69,9 @@ class SpSewaController extends Controller
     public function update($id, Request $request)
     {
         $no_sp = $request->input('no_sp');
-        $cost_center = $request->input('cost_center');
-        $gl_acc = $request->input('gl_acc');
+        // $cost_center = $request->input('cost_center');
+        // $gl_acc = $request->input('gl_acc');
+        // $kd_aktifitas_rkap = $request->input('kd_aktifitas_rkap');
         $deskripsi = $request->input('deskripsi');
         $uraian = $request->input('uraian');
         $keterangan = $request->input('keterangan');
@@ -82,9 +83,9 @@ class SpSewaController extends Controller
         
         $newRealisasi = Kontrak::findOrFail($id);
         $newRealisasi->no_sp = $no_sp;
-        $newRealisasi->cost_center = $cost_center;
-        $newRealisasi->gl_acc = $gl_acc;
-        $newRealisasi->kd_aktifitas_rkap = '123';
+        // $newRealisasi->cost_center = $cost_center;
+        // $newRealisasi->gl_acc = $gl_acc;
+        // $newRealisasi->kd_aktifitas_rkap = $kd_aktifitas_rkap;
         $newRealisasi->deskripsi = $deskripsi;
         $newRealisasi->uraian = $uraian;
         $newRealisasi->keterangan = $keterangan;

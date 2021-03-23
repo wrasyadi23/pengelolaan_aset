@@ -20,14 +20,7 @@
                                       <span class="style1">
                                         <input type="text" name="no_sp" id="" class="form-control input-default" required value="{{ $editsp->no_sp }}">
                                         </span></div>
-                                    <div class="form-group col-md-6 style1">
-                                        <label for="seksi">Cost Center</label>
-                                        <input type="text" name="cost_center" id="" class="form-control input-default" required value="{{ $editsp->cost_center }}">
-                                    </div>
-                                    <div class="form-group col-md-6 style1">
-                                        <label for="regu">Gl Account</label>
-                                        <input type="text" name="gl_acc" id="" class="form-control input-default" required value="{{ $editsp->gl_acc }}">
-                                    </div>
+                                    
                                     <div class="form-group col-md-6 style1">
                                         <label for="regu">Merk Kendaraan</label>
                                         <input type="text" name="deskripsi" id="" class="form-control input-default" required value="{{ $editsp->deskripsi }}">

@@ -7,26 +7,30 @@ use App\Karyawan;
 use App\Rkap;
 use App\RkapDetail;
 use App\Uangmuka;
+use App\WUM;
 use Auth;
 use File;
+use PDF;
 use Carbon\Carbon;
 
-class uangmukaController extends Controller
+class umperjakaController extends Controller
 {
     public function index()
     {
-        $rawDataUM = Uangmuka::all();
-        return view('transport/uangmuka', ['rawDataUM' => $rawDataUM]);
+       $umperjaka = Uangmuka::orderBy('id', 'desc')
+       ->where('status', '=', 'Requested')
+       ->get();
+        return view('transport/umperjaka', ['umperjaka' => $umperjaka]);
     }
     public function create()
     {
         $karyawan = Karyawan::all();
         $rkapDetail = RkapDetail::all();
 
-        return view('transport/uangmuka-create', compact('karyawan','rkapDetail'));
+        return view('transport/umperjaka-create', compact('karyawan','rkapDetail'));
     }
 
-    public function simpan(Request $request)
+    public function store(Request $request)
     {
         $data = Uangmuka::select('id', 'kd_uangmuka', 'tgl')
             ->whereYear('tgl', date('Y'))
@@ -47,10 +51,7 @@ class uangmukaController extends Controller
         $nik = $request->nik;
         $kd_aktifitas_rkap = $request->kd_aktifitas_rkap;
 
-        $validasi = Uangmuka::where('no_uangmuka', $no_uangmuka)->get();
-        if ($validasi->count() >= 1) {
-            return redirect('transport/uangmuka')->with('message-error','Data sudah ada.');
-        } else {
+        
             $newUangmuka = new Uangmuka;
             $newUangmuka->kd_uangmuka = $kd_uangmuka;
             $newUangmuka->no_uangmuka = $no_uangmuka;
@@ -64,17 +65,17 @@ class uangmukaController extends Controller
             $newUangmuka->kd_aktifitas_rkap = $kd_aktifitas_rkap;
             $newUangmuka->save();
 
-            return redirect('transport/uangmuka')->with('message-success','Data berhasil disimpan.');
-        }
+            return redirect('transport/umperjaka')->with('message-success','Data berhasil disimpan.');
+      
     }
 
     public function edit($kd_uangmuka)
     {
         $karyawan = Karyawan::all();
         $rkapDetail = RkapDetail::all();
-        $rawDataUM = Uangmuka::where('kd_uangmuka', $kd_uangmuka)->first();
+        $editum = Uangmuka::where('kd_uangmuka', $kd_uangmuka)->first();
 
-        return view('transport/uangmuka-edit', compact('karyawan','rkapDetail','rawDataUM'));
+        return view('transport/umperjaka-edit', compact('karyawan','rkapDetail','editum'));
     }
 
     public function update($kd_uangmuka, Request $request)
@@ -97,7 +98,32 @@ class uangmukaController extends Controller
         $update->kd_aktifitas_rkap = $kd_aktifitas_rkap;
         $update->save();
 
-        return redirect('transport/uangmuka-detail/' . $kd_uangmuka)->with('message-success', 'Data berhasil diupdate.');
+        return redirect('transport/umperjaka');
+    }
+
+    // public function rubah($kd_uangmuka)
+    // {
+    //     $editUm = Uangmuka::where('kd_uangmuka', $kd_uangmuka)->first();
+    //     return view('transport/umperjaka-rubah', ['editUm => $editUm']);
+    // }
+
+    public function sap($id)
+    {
+        $sap = Uangmuka::where('id', $id)->first();
+        return view('transport/umperjaka-sap', ['sap' => $sap]);
+    }
+
+    public function simpan($id, Request $request)
+    {
+        $no_uangmuka = $request->input('no_uangmuka');
+        $tgl = $request->input('tgl');
+
+        $newRealisasi = Uangmuka::findOrFail($id);
+        $newRealisasi->no_uangmuka = $no_uangmuka;
+        $newRealisasi->tgl = $tgl;
+        $newRealisasi->save();
+                
+        return redirect('transport/umperjaka');
     }
 
     public function detail($kd_uangmuka)
@@ -117,4 +143,19 @@ class uangmukaController extends Controller
 
         return view('transport/uangmuka-data', compact('rawDataUM'));
     }
+
+    public function print($kd_uangmuka){
+        $pdf = Uangmuka::where('kd_uangmuka', $kd_uangmuka)->first();
+        // $tgl_awal = Carbon::createFromFormat('Y-m-d',$pdf->tgl_awal);
+        // $tgl_akhir = Carbon::createFromFormat('Y-m-d',$pdf->tgl_akhir);
+        // $waktu = $tgl_awal->diffInMonths($tgl_akhir) + 1;
+        // $hari = $tgl_awal->diffInDays($tgl_akhir) + 1;
+        $pdf = PDF::loadView('transport/umperjaka-print', [
+            'pdf' => $pdf
+            // 'waktu' => $waktu,
+            // 'hari' => $hari
+            ]);
+        return $pdf->stream();
+    }
+
 }

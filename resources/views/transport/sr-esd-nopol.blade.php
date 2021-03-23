@@ -60,6 +60,7 @@
                                             <td>{{$kendaraanPivot->getKendaraan->type}}</td>
                                             {{-- <td>{{$kendaraanPivot->getTarif->harga}}</td> --}}
                                             <td>{{ number_format($kendaraanPivot->getTarif->harga,0) }}</td>
+                                            <td align="center"><a href="/transport/umperjaka-ptk-edit" class="badge badge-success">Edit</a></td>
                                         </tr>
                                     @empty
                                         <tr>

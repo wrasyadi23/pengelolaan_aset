@@ -179,6 +179,63 @@ Route::group(['middleware' => ['auth','role:Root,Admin,Worker,User']], function 
     Route::get('/transport/uangmuka-realisasi', 'uangmukaController@realisasi');
     Route::get('/transport/uangmuka-laporan', 'uangmukaController@laporan');
 
+    //uangmuka perjaka
+    Route::get('/transport/umperjaka', 'UmPerjakaController@index');
+    Route::get('/transport/umperjaka-create', 'UmPerjakaController@create');
+    Route::post('/transport/umperjaka-store', 'UmPerjakaController@store');
+    Route::get('/transport/umperjaka-edit/{kd_uangmuka}', 'UmPerjakaController@edit');
+    Route::post('/transport/umperjaka-update/{kd_uangmuka}', 'UmPerjakaController@update');
+    Route::get('transport/umperjaka-print/{kd_uangmuka}', 'UmPerjakaController@print');
+    Route::get('transport/umperjaka-print1/{kd_uangmuka}', 'UmPerjakaController@print1');
+    
+    Route::get('/transport/umperjaka-sap/{id}', 'UmPerjakaController@sap');
+    Route::post('/transport/umperjaka-simpan/{id}', 'UmPerjakaController@simpan');
+    
+    Route::get('/transport/wum-create', 'WumPerjakaController@create');
+    Route::post('/transport/wum-store', 'WumPerjakaController@store');
+    Route::get('/transport/wum-tampil', 'WumPerjakaController@tampilwum');
+    Route::get('/transport/wum-edit/{id}', 'WumPerjakaController@edit');
+    Route::post('/transport/wum-update/{id}', 'WumPerjakaController@update');
+    Route::get('/transport/wum-cetak/{id}', 'WumPerjakaController@cetak');
+    Route::get('/transport/umperjaka-real-print', 'WumPerjakaController@print');
+    
+    Route::get('/transport/umperjaka-realisasi', 'RealUmPerjakaController@create');
+    Route::post('/transport/umperjaka-realisasi-store', 'RealUmPerjakaController@store');
+
+    Route::get('/transport/umperjaka-realisasi-bbm', 'RealBbmPerjakaController@create');
+    Route::post('/transport/umperjaka-realbbm-store', 'RealBbmPerjakaController@store');
+
+    Route::get('/transport/umperjaka-realbbm-detail', 'RealBbmDetailPerjakaController@create');
+    Route::post('/transport/umperjaka-realbbm-detail-store', 'RealBbmDetailPerjakaController@store');
+    
+    Route::get('/transport/umperjaka-real-detail', 'RealUmPerjakaDetController@create');
+    Route::post('/transport/umperjaka-real-detail-store', 'RealUmPerjakaDetController@store');
+    Route::get('/transport/umperjaka-real-tampil', 'RealUmPerjakaDetController@index');
+    Route::get('/transport/umperjaka-realdet-tampil/{kd_real_um}', 'RealUmPerjakaDetController@tampil');
+    Route::get('/transport/umperjaka-realdet-edit/{id}', 'RealUmPerjakaDetController@edit');
+    Route::post('/transport/umperjaka-realdet-update/{id}', 'RealUmPerjakaDetController@update');
+    Route::get('transport/umperjaka-view/{kd_real_um}', 'RealUmPerjakaController@view');
+
+    Route::get('/transport/clearing-tampil', 'ClearingController@tampil');
+    Route::get('/transport/clearing-create', 'ClearingController@create');
+    Route::post('/transport/clearing-store', 'ClearingController@store');
+
+    Route::get('/transport/umperjaka-ptk-create', 'PtkController@create');
+    Route::post('/transport/umperjaka-ptk-store', 'PtkController@store');
+    Route::get('/transport/umperjaka-ptk-tampil', 'PtkController@tampil');
+    Route::get('/transport/umperjaka-ptk-edit/{kd_ptk}', 'PtkController@edit');
+    Route::post('/transport/umperjaka-ptk-update/{kd_ptk}', 'PtkController@update');
+    Route::get('transport/umperjaka-ptk-print/{kd_ptk}', 'PtkController@print');
+
+    Route::get('/transport/umperjaka-ptk-detail', 'PtkDetailController@create');
+    Route::post('/transport/umperjaka-ptk-detail-store', 'PtkDetailController@store');
+    Route::get('/transport/umperjaka-ptk-detail-tampil/{kd_real_um}', 'PtkDetailController@tampil');
+
+    Route::get('/transport/wum-ptk-index', 'WumPtkPerjakaController@index');
+    Route::get('/transport/wum-ptk-create', 'WumPtkPerjakaController@create');
+    Route::post('/transport/wum-ptk-store', 'WumPtkPerjakaController@store');
+    
+
     //rkap
     Route::get('/transport/rkap-tampil', 'RkapController@tampilrkap');
     Route::get('/transport/rkap-create', 'RkapController@create');
